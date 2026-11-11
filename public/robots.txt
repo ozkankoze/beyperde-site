@@ -1,0 +1,3 @@
+# Önizleme sürümü: arama motorlarına kapalı
+User-agent: *
+Disallow: /

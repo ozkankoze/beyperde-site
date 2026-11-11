@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bey Perde — Perde, Duvar Kağıdı ve Halı · Çekmeköy, İstanbul</title>
+<meta name="description" content="Çekmeköy'deki atölyemizden tül, fon, stor, rustik ve motorlu perde; tekstil ve vinil duvar kağıdı ile özel ölçü halı. Yerinde ölçü, 3–8 iş günü teslim, 3 yıl garanti.">
+<link rel="canonical" href="https://beyperde.com/tr">
+<link rel="alternate" hreflang="tr" href="https://beyperde.com/tr"><link rel="alternate" hreflang="en" href="https://beyperde.com/en"><link rel="alternate" hreflang="ar" href="https://beyperde.com/ar"><link rel="alternate" hreflang="x-default" href="https://beyperde.com/tr">
+<meta property="og:type" content="website"><meta property="og:locale" content="tr_TR"><meta property="og:site_name" content="Bey Perde">
+<meta property="og:title" content="Bey Perde — Perde, duvar kağıdı ve halı"><meta property="og:description" content="Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden."><meta property="og:image" content="https://beyperde.com/ana-sayfa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+<style>
+.intro{position:relative;height:760vh;background:#1b1814;color:#f6f1e9}
+.intro .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;--ink:#1b1814;--shell:#f6f1e9;--shell-dim:rgba(246,241,233,.72);--hair:rgba(246,241,233,.45);--brass:#c9a46a;--display:var(--font);--ui:var(--font)}
+#intro h1{display:flex;flex-direction:column;gap:18px;margin:0;font-weight:300}
+#intro h1 .big{font-size:clamp(44px,6.4vw,92px);line-height:1;letter-spacing:-.02em;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+#veil{position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(20,16,12,.55) 100%)}
+
+
+.intro .label::before{content:"";position:absolute;inset:-60px -40px;z-index:-1;background:radial-gradient(closest-side,rgba(38,28,18,.42),rgba(38,28,18,0));}
+.intro .label{position:absolute;isolation:isolate;left:50%;top:50%;z-index:4;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:14px;
+  text-align:center;pointer-events:none;opacity:0;width:min(92vw,620px);will-change:opacity,transform}
+.intro .label svg.icon{width:46px;height:46px;stroke:var(--shell);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 8px rgba(0,0,0,.35))}
+.intro .label h2,.intro .prod h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,4.4vw,54px);line-height:1.06;letter-spacing:-.02em;text-wrap:balance;
+  text-shadow:0 2px 24px rgba(30,22,14,.55),0 1px 2px rgba(30,22,14,.4)}
+.intro .label .sub{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--shell-dim);text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.intro .label .stem{width:1px;height:64px;background:var(--shell);transform-origin:top;transform:scaleY(var(--grow,0));opacity:.85}
+.intro .label .chev{width:44px;height:44px;border:1px solid var(--shell);border-radius:50%;display:grid;place-items:center;
+  animation:bob 2.2s ease-in-out infinite}
+.intro .label .chev svg{width:18px;height:18px;stroke:var(--shell);fill:none;stroke-width:1.4}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+#intro{opacity:1;left:max(20px,env(safe-area-inset-left,0px),7vw);top:50%;transform:translateY(-50%);align-items:flex-start;text-align:left;gap:18px;width:min(52vw,640px)}
+#intro::before{inset:-80px -80px;background:radial-gradient(closest-side,rgba(38,26,16,.38),rgba(38,26,16,0))}
+#intro .rule{width:56px;height:1px;background:var(--shell);opacity:.7}
+#intro .hint{display:flex;align-items:center;gap:14px;margin-top:6px}
+@media (max-width:700px),(max-aspect-ratio:1/1){#intro{top:auto;bottom:calc(9vh + env(safe-area-inset-bottom,0px));transform:none;width:auto;right:max(20px,env(safe-area-inset-right,0px))}}
+#intro h1{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(44px,6.4vw,92px);line-height:1;letter-spacing:-.02em;text-wrap:balance;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.intro .mouse{width:24px;height:38px;border:1.3px solid var(--shell);border-radius:14px;position:relative}
+.intro .mouse::after{content:"";position:absolute;left:50%;top:7px;width:2px;height:7px;margin-left:-1px;border-radius:2px;background:var(--shell);animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+
+#outro .cta{pointer-events:auto;margin-top:6px;font-family:var(--ui);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
+  background:var(--shell);border:0;padding:14px 26px;border-radius:999px;cursor:pointer}
+#outro .cta:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+.intro .prod{position:absolute;z-index:4;left:0;top:0;opacity:0;visibility:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+  width:max-content;max-width:min(84vw,440px);pointer-events:none;isolation:isolate;will-change:opacity,transform}
+.intro .prod::before{content:"";position:absolute;inset:-50px -60px;z-index:-1;background:radial-gradient(closest-side,rgba(38,28,18,.3),rgba(38,28,18,0))}
+.intro .prod svg.icon{width:34px;height:34px;stroke:var(--shell);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.intro .prod h2{text-shadow:0 2px 20px rgba(30,22,14,.55),0 1px 2px rgba(30,22,14,.35)}
+.intro .prod .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--shell-dim);font-variant-numeric:tabular-nums;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+#callouts{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible;filter:drop-shadow(0 0 1.5px rgba(30,20,10,.75)) drop-shadow(0 1px 6px rgba(30,20,10,.45))}
+#callouts .ln,#callouts .hd{fill:none;stroke:var(--shell);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#callouts .dot{fill:var(--shell);stroke:rgba(30,20,10,.35);stroke-width:1}
+#callouts .ring{fill:none;stroke:var(--shell);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.35);opacity:.95}100%{transform:scale(1.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){#callouts .ring{animation:none;opacity:.6}}
+.intro .rail{position:absolute;z-index:5;right:max(16px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;pointer-events:none}
+.intro .rail div{display:flex;align-items:center;gap:10px;justify-content:flex-end;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--shell-dim);transition:color .4s}
+.intro .rail div span{font-variant-numeric:tabular-nums;opacity:.6}
+.intro .rail div i{width:14px;height:1px;background:var(--hair);transition:width .4s,background .4s}
+.intro .rail div.on{color:var(--shell)}
+.intro .rail div.on i{width:34px;background:var(--brass)}
+.intro .rail b{font-weight:400}
+.intro .bar{position:absolute;left:0;bottom:0;height:2px;background:var(--brass);z-index:5;width:0}
+@media (max-width:640px){.intro .rail b{display:none}.intro .rail{gap:10px}}
+@media (prefers-reduced-motion:reduce){.intro .label .chev,.intro .mouse::after{animation:none}}
+
+.statement .st-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,110px);align-items:center}
+.statement .st-text{display:flex;flex-direction:column;gap:22px}
+.statement blockquote{margin:18px 0 0;padding-left:22px;border-left:1px solid var(--brass);font-size:var(--s2);font-weight:300;line-height:1.3;letter-spacing:-.015em;max-width:24ch}
+.st-img .ph{aspect-ratio:4/3}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:clamp(56px,7vw,100px) 0 0;border-top:1px solid var(--line)}
+.stats div{padding:26px 20px 0 0;border-right:1px solid var(--line);padding-left:20px}
+.stats div:first-child{padding-left:0}.stats div:last-child{border-right:0}
+.stats dt{font-size:var(--s-1);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.stats dd{margin:8px 0 0;font-size:var(--s4);font-weight:300;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stats small{font-size:var(--s0);letter-spacing:0;margin-left:8px;color:var(--muted)}
+@media (max-width:820px){.statement .st-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats div{padding:22px 0 22px 0;border-right:0;border-bottom:1px solid var(--line)}}
+
+.cat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.5vw,40px)}
+.cat .ph.tall{display:block;aspect-ratio:4/5;margin-bottom:22px}
+.cat .eyebrow{margin-bottom:8px}
+.cat h3{font-size:var(--s2);font-weight:300;letter-spacing:-.02em;margin-bottom:10px}
+.cat h3 a{text-decoration:none}
+.cat>p:not(.eyebrow){color:var(--muted);max-width:42ch}
+.sublinks{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.sublinks a{display:inline-block;text-decoration:none;font-size:13px;border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px;transition:background .25s,color .25s}
+.sublinks a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+@media (max-width:900px){.cat-grid{grid-template-columns:1fr}.cat .ph.tall{aspect-ratio:4/3}}
+
+.pgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2vw,28px) clamp(14px,1.6vw,24px)}
+.pcard{text-decoration:none;display:flex;flex-direction:column;gap:6px}
+.pcard .ph{aspect-ratio:3/4;margin-bottom:12px}
+.pcard h3{font-size:17px}
+.pcard p{font-size:14px;color:var(--muted);line-height:1.5}
+@media (max-width:1100px){.pgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.pcard p{display:none}}
+
+.rk-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,100px);align-items:center}
+.rk-main .ph{aspect-ratio:4/5;background:#3a2e25}
+.rk-img{transition:opacity .45s}
+.rk-text{display:flex;flex-direction:column;gap:20px}
+.fins{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.fin{background:none;border:1px solid rgba(243,235,223,.18);padding:6px 6px 10px;color:var(--cream);cursor:pointer;display:flex;flex-direction:column;gap:8px;font:400 12px var(--font);text-align:left;transition:border-color .3s}
+.fin img{aspect-ratio:1;object-fit:cover;width:100%;filter:saturate(.85)}
+.fin[aria-pressed="true"]{border-color:var(--cream)}
+.fin:hover{border-color:rgba(243,235,223,.6)}
+.row-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+@media (max-width:900px){.rk-grid{grid-template-columns:1fr}.fins{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.fin span{font-size:11px}}
+
+.dv-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,100px);align-items:center}
+.dv-imgs{display:grid;grid-template-columns:5fr 6fr;gap:16px;align-items:end}
+.dv-imgs .a .ph{aspect-ratio:3/4}
+.dv-imgs .b{margin-bottom:-48px}.dv-imgs .b .ph{aspect-ratio:4/5}
+.dv-text{display:flex;flex-direction:column;gap:22px}
+.dv-list{list-style:none;padding:0;margin:12px 0 0;border-top:1px solid var(--line)}
+.dv-list a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.dv-list a::after{content:"→";grid-row:1/3;grid-column:2;align-self:center;transition:transform .3s}
+.dv-list a:hover::after{transform:translateX(6px)}
+.dv-list span{font-size:17px}
+.dv-list small{font-size:14px;color:var(--muted)}
+@media (max-width:900px){.dv-grid{grid-template-columns:1fr}.dv-imgs .b{margin-bottom:0}}
+
+.pj-feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);align-items:center}
+.pj-main{display:block;aspect-ratio:4/5}
+.pj-text{display:flex;flex-direction:column;gap:22px}
+.pj-meta{display:flex;flex-wrap:wrap;gap:12px 36px;margin:0}
+.pj-meta dt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.pj-meta dd{margin:4px 0 0;font-size:15px}
+.pj-title{font-size:var(--s3);font-weight:300;letter-spacing:-.03em}
+.pj-title a{text-decoration:none}
+.pj-text>p{color:#3f342b;max-width:56ch}
+.pj-thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pj-thumbs .ph{aspect-ratio:1}
+.pj-more{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,72px)}
+.pj-soon{display:flex;flex-direction:column;gap:10px;text-decoration:none;padding:clamp(24px,3vw,40px);border:1px solid var(--line-strong);transition:background .3s,color .3s}
+.pj-soon h3{font-size:var(--s2);font-weight:300}
+.pj-soon p{color:var(--muted);font-size:14px}
+.pj-soon:hover{background:var(--ink);color:var(--cream)}
+@media (max-width:900px){.pj-feature,.pj-more{grid-template-columns:1fr}}
+
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,48px);counter-reset:s}
+.steps li{border-top:1px solid var(--ink);padding-top:22px;display:flex;flex-direction:column;gap:12px}
+.steps .n{font-size:13px;letter-spacing:.14em;color:var(--brass);font-variant-numeric:tabular-nums;font-weight:500}
+.steps p{color:var(--muted);font-size:15px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+.masonry{columns:4 260px;column-gap:16px}
+.gi{display:block;margin-bottom:16px;break-inside:avoid;overflow:hidden;cursor:zoom-in}
+.gi img{width:100%;transition:transform 1.2s var(--ease)}
+.gi:hover img{transform:scale(1.04)}
+
+.faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,100px);align-items:start}
+.areas{margin-top:40px}
+.areas ul{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.areas li{font-size:13px;border:1px solid var(--line-strong);border-radius:999px;padding:7px 13px}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+
+.ct-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,100px);align-items:start}
+.qform{display:flex;flex-direction:column;gap:18px;margin-top:36px}
+.qform .f2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.qform label{display:flex;flex-direction:column;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.qform input,.qform select,.qform textarea{font:400 16px var(--font);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line-strong);padding:10px 0;border-radius:0;letter-spacing:0;text-transform:none}
+.qform input:focus,.qform select:focus,.qform textarea:focus{outline:none;border-bottom-color:var(--ink)}
+.form-status{font-size:14px;color:var(--brown);min-height:1em}
+.ct-info{display:flex;flex-direction:column;gap:24px}
+.ct-info .ph{aspect-ratio:4/3}
+.ct-info dl{margin:0;display:grid;gap:16px}
+.ct-info dt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.ct-info dd{margin:4px 0 0}
+.ct-info dd a{text-decoration:none}
+@media (max-width:900px){.ct-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.qform .f2{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://beyperde.com/#isletme", "name": "Bey Perde", "url": "https://beyperde.com/", "logo": "https://beyperde.com/logo.png", "image": "https://beyperde.com/ana-sayfa.jpg", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": ["Çekmeköy", "Şile", "Ağva", "Riva", "Beykoz", "İstanbul"], "sameAs": ["https://www.instagram.com/beyperdee/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Bey Perde", "url": "https://beyperde.com/", "inLanguage": "tr-TR"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Siparişler ne kadar sürede hazırlanır?", "acceptedAnswer": {"@type": "Answer", "text": "Ölçü alınıp kumaş seçildikten sonra siparişler 3–8 iş günü içinde kendi atölyemizde hazırlanır. Montajı kendi ekibimiz yapar."}}, {"@type": "Question", "name": "Ürünleriniz garantili mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Perde, duvar kağıdı ve halı dahil tüm ürünlerimiz 3 yıl garantilidir; teslimden sonra yıkama ve bakım desteğimiz sürer."}}, {"@type": "Question", "name": "Mevcut rayıma yeni perde diktirebilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Ölçüye geldiğimizde rayınızın durumuna ve perdenin ağırlığını taşıyıp taşıyamayacağına bakarız. Uygunsa yeni perdenizi mevcut rayınıza göre dikeriz."}}, {"@type": "Question", "name": "Jaluzi mi seçmeliyim, stor perde mi?", "acceptedAnswer": {"@type": "Answer", "text": "Işığı gün içinde açısıyla ayarlamak istiyorsanız jaluzi daha esnektir. Sade, tek parça bir kumaş yüzey ya da tam karartma arıyorsanız stor perde daha uygun olabilir. Pencerenizi ve odanın kullanımını görerek hangisinin daha doğru olacağını birlikte belirleriz."}}, {"@type": "Question", "name": "Bir oda için kaç rulo duvar kağıdı gerekir?", "acceptedAnswer": {"@type": "Answer", "text": "Bu; duvarların ölçüsüne, rulonun enine ve boyuna ve desenin tekrar aralığına göre değişir. Ölçüyü mekânınızda alır, gereken miktarı fireyi de hesaba katarak kendimiz çıkarırız; böylece ne eksik kalır ne de gereksiz rulo alırsınız."}}, {"@type": "Question", "name": "Hangi bölgelere hizmet veriyorsunuz?", "acceptedAnswer": {"@type": "Answer", "text": "Çekmeköy'deki atölyemizden Anadolu yakasının kuzeyine; Çekmeköy, Şile, Ağva, Riva, Beykoz ve çevresindeki ev ve villalara hizmet veriyoruz."}}]}</script>
+
+</head>
+<body>
+<a class="sr" href="#icerik">İçeriğe geç</a>
+<header class="site-header">
+  <div class="bar-in">
+    <a class="logo" href="./" aria-label="Bey Perde ana sayfa">
+      <img class="light" src="img/logo-cream.png" width="420" height="416" alt="Bey Perde logosu">
+      <img class="dark" src="img/logo-brown.png" width="420" height="416" alt="" aria-hidden="true">
+    </a>
+    <nav class="site-nav" id="menu" aria-label="Ana menü">
+      <a href="./#urunler">Ürünler</a>
+      <a href="./#projeler">Projeler</a>
+      <a href="./#galeri">Galeri</a>
+      <a href="./#hakkimizda">Hakkımızda</a>
+      <a href="./#iletisim">İletişim</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="lang" title="Dil seçenekleri">TR · EN · AR</span>
+      <a class="tel" href="tel:+905535962614">0553 596 26 14</a>
+      <a class="btn" href="./#iletisim">Teklif alın</a>
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menü</button>
+  </div>
+</header>
+<main id="icerik">
+<section class="intro" id="giris" aria-label="Bey Perde giriş">
+  <div class="stage">
+    <canvas id="stage" aria-hidden="true"></canvas>
+    <div id="veil"></div>
+    <div class="label" id="intro">
+      <h1><span class="sub">Perde, tül ve duvar kağıdı · Çekmeköy, İstanbul</span><span class="big">Evinize<br>hoş geldiniz</span></h1>
+      <div class="rule"></div>
+      <div class="hint"><div class="mouse" aria-hidden="true"></div><div class="sub" style="letter-spacing:.2em">Kapıyı açmak için kaydırın</div></div>
+    </div>
+    <svg id="callouts" aria-hidden="true"></svg>
+    <div class="prod" id="l1" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 48 48"><ellipse cx="13" cy="15" rx="6" ry="9"/><ellipse cx="13" cy="15" rx="2" ry="3"/><path d="M13 6h22c3.3 0 6 4 6 9s-2.7 9-6 9H13"/><path d="M41 15v27H19V24"/><path d="M24 30h12M24 35h12"/></svg>
+      <div class="eyebrow">02 · Duvar</div>
+      <h2>Tekstil<br>Duvar Kağıdı</h2>
+    </div>
+    <div class="prod" id="l2" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 48 48"><path d="M5 7h38"/><circle cx="44" cy="7" r="1.6"/><path d="M8 7v34M40 7v34"/><path d="M8 7c2 10 6 17 12 20-4 4-7 9-8 14"/><path d="M40 7c-2 10-6 17-12 20 4 4 7 9 8 14"/><path d="M12 7v3M16 7v6M32 7v6M36 7v3"/></svg>
+      <div class="eyebrow">03 · Pencere</div>
+      <h2>Rustik Perde</h2>
+    </div>
+    <div class="label" id="outro">
+      <div class="sub">Tek salonda tüm dokular</div>
+      <h2>Evinize uygun dokuyu<br>birlikte seçelim</h2>
+      <button class="cta" id="cta" type="button">Koleksiyonu incele</button>
+    </div>
+    <div class="rail" aria-hidden="true">
+      <div data-i="0"><b>Giriş</b><span>01</span><i></i></div>
+      <div data-i="1"><b>Duvar Kağıdı</b><span>02</span><i></i></div>
+      <div data-i="2"><b>Perde</b><span>03</span><i></i></div>
+      <div data-i="3"><b>Salon</b><span>04</span><i></i></div>
+    </div>
+    <div class="bar" id="bar"></div>
+  </div>
+</section>
+
+<section class="band statement" id="hakkimizda" aria-labelledby="h-isik">
+  <div class="wrap st-grid">
+    <div class="st-text">
+      <p class="eyebrow">Bey Perde · 2017'den beri Çekmeköy</p>
+      <h2 id="h-isik">Işık, doku ve ölçü</h2>
+      <p class="lead">Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.</p>
+      <blockquote>Perde bir dekorasyon detayı değil, mekânın ışığını yöneten parçadır. Biz de işe hep ışıktan başlıyoruz.</blockquote>
+    </div>
+    <figure class="st-img">
+      <div class="ph"><img src="img/hakkimizda-isik.webp" width="1400" height="1050" alt="Tavandan inen tülden süzülen gün ışığı" loading="lazy" decoding="async"></div>
+      <figcaption>Bir oda, üzerine düşen ışıkla ve dokunduğunuz yüzeylerle hatırlanır.</figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <dl class="stats">
+      <div><dt>Kuruluş</dt><dd>2017</dd></div>
+      <div><dt>Deneyim</dt><dd>9+<small>yıl</small></dd></div>
+      <div><dt>Teslim</dt><dd>3–8<small>iş günü</small></dd></div>
+      <div><dt>Garanti</dt><dd>3<small>yıl</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band cats" id="urunler" aria-labelledby="h-urun">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Ürünler</p><h2 id="h-urun">Bir odanın üç yumuşak yüzeyi</h2></div>
+      <p class="lead">Pencere, duvar ve zemin. Perdeyi, duvar kağıdını ve halıyı ayrı ayrı değil, birlikte düşünüyoruz; üçünü de aynı ekip, aynı özenle tamamlar.</p>
+    </div>
+    <div class="cat-grid">
+      <article class="cat">
+        <a href="#perde" class="ph tall"><img src="img/u-perde-kapak.webp" width="1400" height="1050" alt="Salonda tavandan inen tül ve fon perde" loading="lazy" decoding="async"></a>
+        <p class="eyebrow">Pencere</p>
+        <h3><a href="#perde">Perde Sistemleri</a></h3>
+        <p>Pencerenin ışığını, sesini ve mahremiyetini ayarlayan katman. Ölçü, dikim ve montaj tek elden.</p>
+        <ul class="sublinks"><li><a href="#" data-proto>Tül Perdeler</a></li><li><a href="#" data-proto>Fon Perdeler</a></li><li><a href="#" data-proto>Stor Perdeler</a></li><li><a href="#" data-proto>Ahşap & Metal Jaluziler</a></li><li><a href="#" data-proto>Dikey Perdeler</a></li><li><a href="#" data-proto>Katlamalı Perdeler</a></li><li><a href="#perde">Tümü →</a></li></ul>
+      </article>
+      <article class="cat">
+        <a href="#duvar" class="ph tall"><img src="img/u-tekstil-1.webp" width="1050" height="1400" alt="Kemerli panellerde tekstil duvar kağıdı" loading="lazy" decoding="async"></a>
+        <p class="eyebrow">Duvar</p>
+        <h3><a href="#duvar">Duvar Kağıtları</a></h3>
+        <p>Duvarın dokusu. Tekstilden vinile, non-woven tabandan dijital baskıya.</p>
+        <ul class="sublinks"><li><a href="#" data-proto>Tekstil Duvar Kağıdı</a></li><li><a href="#" data-proto>Vinil (Silinebilir) Duvar Kağıdı</a></li><li><a href="#" data-proto>Non-Woven Duvar Kağıdı</a></li><li><a href="#" data-proto>Ahşap Baskılı</a></li><li><a href="#" data-proto>Kumaş Baskılı</a></li></ul>
+      </article>
+      <article class="cat">
+        <a href="#" data-proto class="ph tall"><img src="img/u-hali-kapak.webp" width="1050" height="1400" alt="Salonda açık tonlu dekoratif halı" loading="lazy" decoding="async"></a>
+        <p class="eyebrow">Zemin</p>
+        <h3><a href="#" data-proto>Dekoratif Halılar</a></h3>
+        <p>Zeminin sıcaklığı ve sesi. Sisal, el dokuma ve özel ölçü.</p>
+        <ul class="sublinks"><li><a href="#" data-proto>Sisal Halı</a></li><li><a href="#" data-proto>Özel Ölçü Halı</a></li><li><a href="#" data-proto>El Dokuma Halı</a></li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band linen" id="perde" aria-labelledby="h-perde">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Pencere</p><h2 id="h-perde">Perde sistemleri</h2></div>
+      <p class="lead">Tül ve fon perdeden motorlu sistemlere; seçtiğiniz kumaş kendi atölyemizde, pencerenizin ölçüsüne göre dikilir.</p>
+    </div>
+    <div class="pgrid">
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-tul-perde-3.webp" width="787" height="1400" alt="Tül Perdeler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Tül Perdeler</h3><p>Gün ışığını süzen ince kumaş; mahremiyeti korurken odayı aydınlık tutar.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-fon-perde-salon.webp" width="1050" height="1400" alt="Fon Perdeler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Fon Perdeler</h3><p>Pencereyi çerçeveleyen kalın kumaş; karartma ve ısı yalıtımı seçenekleriyle.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-stor-perde-kose-salon.webp" width="1050" height="1400" alt="Stor Perdeler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Stor Perdeler</h3><p>Tek parça kumaş rulo hâlinde toplanır; zebra seçeneğiyle kademeli ışık.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-jaluzi-perde-ceviz.webp" width="1050" height="1400" alt="Ahşap &amp; Metal Jaluziler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Ahşap & Metal Jaluziler</h3><p>Yatay kanatlar; ışığı açısını değiştirerek yönlendirir.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-dikey-perde-film.webp" width="787" height="1400" alt="Dikey Perdeler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Dikey Perdeler</h3><p>Dikey bantlar döner ve yana toplanır; geniş camlar ve ofisler için.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-katlamali-perde-salon.webp" width="1050" height="1400" alt="Katlamalı Perdeler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Katlamalı Perdeler</h3><p>Yukarı toplandıkça düzgün katlar oluşturan sade duruş.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-plicell-perde-1.webp" width="1050" height="1400" alt="Plise &amp; Plicell Sistemler uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Plise & Plicell Sistemler</h3><p>Petek yapısı ısıyı tutar; dar ve alışılmadık ölçülerde çalışır.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-motorlu-perde-2.webp" width="1050" height="1400" alt="Motorlu Perde Sistemleri uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Motorlu Perde Sistemleri</h3><p>Kumanda ya da telefonla; geniş cepheler ve ulaşılması zor pencereler için.</p>
+      </a>
+      <a class="pcard" href="rustik-perde.html">
+        <div class="ph"><img src="img/u-rustik-perde-kose.webp" width="1050" height="1400" alt="Rustik Perde uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Rustik Perde</h3><p>Ahşap ya da metal boru üzerinde halkalı, klasik kurulum.</p>
+      </a>
+      <a class="pcard" href="#" data-proto>
+        <div class="ph"><img src="img/u-perde-aksesuarlari-tutucu-bej.webp" width="1050" height="1400" alt="Dekoratif Ray &amp; Aksesuarlar uygulaması" loading="lazy" decoding="async"></div>
+        <h3>Dekoratif Ray & Aksesuarlar</h3><p>Dekoratif ray, korniş ve rustik boru; tutucu, püskül ve motor donanımları.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="band dark rustik" aria-labelledby="h-rustik">
+  <div class="wrap rk-grid">
+    <figure class="rk-main">
+      <div class="ph"><img class="rk-img" src="img/u-rustik-perde-altin-yaprak.webp" width="1050" height="1400" alt="Yivli altın bir borunun ucunda yaprak motifli altın başlık; klasik bir salona yakışır." loading="lazy" decoding="async"></div>
+      <figcaption id="rk-cap">Yivli altın bir borunun ucunda yaprak motifli altın başlık; klasik bir salona yakışır.</figcaption>
+    </figure>
+    <div class="rk-text">
+      <p class="eyebrow">Öne çıkan · Rustik Perde</p>
+      <h2 id="h-rustik">Boru da perdenin parçası</h2>
+      <p class="lead">Ray tavanda gizlenirken rustik boru göz önündedir; uç başlıkları ve rengiyle odanın bir parçası olur. Bu yüzden kumaş kadar borunun malzemesine, kalınlığına ve tonuna da birlikte karar veririz.</p>
+      <p class="eyebrow" style="margin-top:36px">Başlığı seçin</p>
+      <div class="fins" role="group" aria-label="Rustik boru başlıkları"><button type="button" class="fin" aria-pressed="true" data-src="img/u-rustik-perde-altin-yaprak.webp" data-cap="Yivli altın bir borunun ucunda yaprak motifli altın başlık; klasik bir salona yakışır."><img src="img/u-rustik-perde-altin-yaprak.webp" width="1050" height="1400" alt="Altın yaprak başlık" loading="lazy" decoding="async"><span>Altın yaprak</span></button><button type="button" class="fin" aria-pressed="false" data-src="img/u-rustik-perde-mermer-top.webp" data-cap="Siyah bir borunun ucunda mermer görünümlü top başlık; boruda gri dokulu fon perde."><img src="img/u-rustik-perde-mermer-top.webp" width="1050" height="1400" alt="Mermer top başlık" loading="lazy" decoding="async"><span>Mermer top</span></button><button type="button" class="fin" aria-pressed="false" data-src="img/u-rustik-perde-kristal.webp" data-cap="Altın renkli halkalarla boruya geçirilmiş krem fon perde; borunun ucunda kristal top başlık."><img src="img/u-rustik-perde-kristal.webp" width="1050" height="1400" alt="Kristal başlık" loading="lazy" decoding="async"><span>Kristal</span></button><button type="button" class="fin" aria-pressed="false" data-src="img/u-rustik-perde-yelpaze.webp" data-cap="Yelpaze biçimli başlıkları olan bronz bir boruda halkalı gri fon perde, yanında tül."><img src="img/u-rustik-perde-yelpaze.webp" width="1400" height="1050" alt="Yelpaze başlık" loading="lazy" decoding="async"><span>Yelpaze</span></button><button type="button" class="fin" aria-pressed="false" data-src="img/u-rustik-perde-cift-boru.webp" data-cap="Yivli silindir başlıkları olan vizon renkli çift boru; alttaki boruda beyaz tül."><img src="img/u-rustik-perde-cift-boru.webp" width="1050" height="1400" alt="Yivli silindir başlık" loading="lazy" decoding="async"><span>Yivli silindir</span></button></div>
+      <div class="row-btns"><a class="btn light" href="rustik-perde.html">Rustik perdeyi inceleyin</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="band duvar" id="duvar" aria-labelledby="h-duvar">
+  <div class="wrap dv-grid">
+    <div class="dv-imgs">
+      <figure class="a"><div class="ph"><img src="img/u-tekstil-2.webp" width="1050" height="1400" alt="Tekstil duvar kağıdının dokusu yakından" loading="lazy" decoding="async"></div></figure>
+      <figure class="b"><div class="ph"><img src="img/u-duvar-kagidi-3.webp" width="1400" height="1050" alt="Geometrik desenli duvar kağıdı uygulaması" loading="lazy" decoding="async"></div><figcaption>Aynı ton, ince bir dokumada ve kalın bir örgüde bambaşka görünür.</figcaption></figure>
+    </div>
+    <div class="dv-text">
+      <p class="eyebrow">Duvar</p>
+      <h2 id="h-duvar">Duvarda kumaşın derinliği</h2>
+      <p class="lead">Tekstil duvar kağıdı duvara boyanın ya da baskının veremeyeceği bir derinlik katar; ışık, kumaşın lifleri üzerinde yumuşakça dağılır, oda hem göze hem kulağa daha sakin gelir.</p>
+      <ul class="dv-list"><li><a href="#" data-proto><span>Tekstil Duvar Kağıdı</span><small>Kumaş yüzey; duvarda derinlik ve sesin yumuşaması.</small></a></li><li><a href="#" data-proto><span>Vinil (Silinebilir) Duvar Kağıdı</span><small>Silinebilir yüzey; mutfak, koridor ve yoğun kullanım alanları.</small></a></li><li><a href="#" data-proto><span>Non-Woven Duvar Kağıdı</span><small>Nefes alan taban; kolay uygulanır, sökerken duvarı yormaz.</small></a></li><li><a href="#" data-proto><span>Ahşap Baskılı</span><small>Ahşap dokusunun dijital baskısı; ölçüye göre eksiz uygulama.</small></a></li><li><a href="#" data-proto><span>Kumaş Baskılı</span><small>Kumaş dokusunun dijital baskısı; desen ve ölçü size göre.</small></a></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="band linen" id="projeler" aria-labelledby="h-proje">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Projeler</p><h2 id="h-proje">Villa ve konut işlerinden bir seçki</h2></div>
+      <p class="lead">Her projenin fotoğrafları ve fotoğraf altı bilgilendirmeleri kendi sayfasında.</p>
+    </div>
+    <article class="pj-feature">
+      <a class="ph pj-main" href="erenkoy-hk-evi.html"><img src="img/p-erenkoy-pencere.webp" width="1050" height="1400" alt="Erenköy H.K Evi: tavandan yere keten dokulu tül ve toprak tonunda fon perde" loading="lazy" decoding="async"></a>
+      <div class="pj-text">
+        <dl class="pj-meta"><div><dt>Konum</dt><dd>Erenköy, Kadıköy</dd></div><div><dt>Yıl</dt><dd>2026</dd></div><div><dt>Uygulama</dt><dd>Tül ve fon perde, jaluzi</dd></div></dl>
+        <h3 class="pj-title"><a href="erenkoy-hk-evi.html">Erenköy H.K Evi</a></h3>
+        <p>Pencereleri tavandan yere keten dokulu tül ve toprak tonunda fonla giydirdik; çalışma odasında ve mutfakta ışığı jaluzi ayarlıyor. Üç tonla çalıştık: tülde keten, fonda toprak, jaluzide ceviz.</p>
+        <div class="pj-thumbs">
+          <div class="ph"><img src="img/p-erenkoy-doku.webp" width="1400" height="1050" alt="Keten dokulu tül ile dokulu fon perde yan yana" loading="lazy" decoding="async"></div>
+          <div class="ph"><img src="img/p-erenkoy-etek.webp" width="1400" height="1050" alt="Tülün geniş bantlı etekleri ahşap parkenin üzerinde" loading="lazy" decoding="async"></div>
+          <div class="ph"><img src="img/p-erenkoy-jaluzi.webp" width="1400" height="1050" alt="Kumaş bantlı koyu ahşap jaluzinin açık kanatları" loading="lazy" decoding="async"></div>
+        </div>
+        <a class="arrow-link" href="erenkoy-hk-evi.html">Projeyi inceleyin</a>
+      </div>
+    </article>
+    <div class="pj-more">
+      <a href="#" data-proto class="pj-soon"><span class="eyebrow">Villa</span><h3>Reşadiye N.B.Ö Villa</h3><p>Fotoğraflar hazırlanıyor.</p></a>
+      <a href="#" data-proto class="pj-soon"><span class="eyebrow">Villa</span><h3>Şile Evi O.F.Ç Villa</h3><p>Fotoğraflar hazırlanıyor.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="band process" aria-labelledby="h-surec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Süreç</p><h2 id="h-surec">Nasıl çalışıyoruz</h2></div>
+      <p class="lead">Kumaşı kendi ışığınızda, kendi mobilyalarınızın yanında seçersiniz. Dikimi atölyemiz, montajı kendi ekibimiz yapar.</p>
+    </div>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Ofisimizde birebir görüşme</h3><p>Randevu alarak Çekmeköy'deki ofisimize gelebilirsiniz. Kumaş kartelalarını, numuneleri ve sistemleri birlikte inceleriz.</p></li>
+      <li><span class="n">02</span><h3>Yerinde ölçü</h3><p>Mekânınıza gelir, ölçüyü, pencere yönünü ve günün ışığını not ederiz. Kartelalarımızı yanımızda getiririz.</p></li>
+      <li><span class="n">03</span><h3>Atölyede dikim</h3><p>Seçtiğiniz kumaş kendi atölyemizde ölçünüze göre dikilir. Siparişler 3–8 iş günü içinde hazırlanır.</p></li>
+      <li><span class="n">04</span><h3>Montaj ve bakım</h3><p>Ray, korniş ve motorlu sistem montajını kendi ekibimizle yaparız. Tüm ürünler 3 yıl garantilidir.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="band tight gallery" id="galeri" aria-labelledby="h-galeri">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Galeri</p><h2 id="h-galeri">Uygulamalardan kareler</h2></div>
+      <p class="lead">Tamamlanmış işlerimizden bir seçki. Atölyeden ve yeni gelen kumaşlardan kareler için <a href="https://www.instagram.com/beyperdee/" rel="noopener" target="_blank">@beyperdee</a>.</p>
+    </div>
+    <div class="masonry"><a class="gi" href="img/galeri-1.webp" data-lb="g"><img src="img/galeri-1.webp" width="1400" height="1050" alt="Asma tavanlı geniş salonda tavandan inen tül ve koyu fon perde" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-2.webp" data-lb="g"><img src="img/galeri-2.webp" width="1050" height="1400" alt="Havuz manzaralı pencerede toplanmış ince tül" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-4.webp" data-lb="g"><img src="img/galeri-4.webp" width="1050" height="1400" alt="Kanepenin arkasındaki pencerede tül ve fon perde" loading="lazy" decoding="async"></a><a class="gi" href="img/gonderi-3.webp" data-lb="g"><img src="img/gonderi-3.webp" width="1400" height="1050" alt="Uzun bir duvar boyunca tavandan inen tül" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-6.webp" data-lb="g"><img src="img/galeri-6.webp" width="1050" height="1400" alt="Kemerli nişlerde ışıklı dekoratif duvar uygulaması" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-3.webp" data-lb="g"><img src="img/galeri-3.webp" width="1050" height="1400" alt="Sarkıt lambalı odada tavandan yere tül ve fon" loading="lazy" decoding="async"></a><a class="gi" href="img/gonderi-1.webp" data-lb="g"><img src="img/gonderi-1.webp" width="1400" height="1050" alt="Mutfakta koyu tonlu ahşap jaluzi" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-5.webp" data-lb="g"><img src="img/galeri-5.webp" width="1050" height="1400" alt="Kış bahçesinde yemek alanı ve perde uygulaması" loading="lazy" decoding="async"></a><a class="gi" href="img/gonderi-2.webp" data-lb="g"><img src="img/gonderi-2.webp" width="1400" height="1050" alt="Fon perdenin kıvrımları yakından" loading="lazy" decoding="async"></a><a class="gi" href="img/galeri-7.webp" data-lb="g"><img src="img/galeri-7.webp" width="1050" height="1400" alt="Lazer kesim desenli dekoratif duvar paneli" loading="lazy" decoding="async"></a></div>
+  </div>
+</section>
+
+<section class="band linen faq-band" aria-labelledby="h-sss">
+  <div class="wrap faq-grid">
+    <div><p class="eyebrow">Sıkça sorulan sorular</p><h2 id="h-sss">Merak edilenler</h2>
+      <p class="lead" style="margin-top:20px">Sorunuz burada yoksa WhatsApp'tan yazın; kumaş, ölçü ya da fiyat, hangisi olursa.</p>
+      <div class="areas"><p class="eyebrow">Hizmet bölgeleri</p><ul><li>Çekmeköy</li><li>Şile</li><li>Ağva</li><li>Riva</li><li>Beykoz</li><li>Anadolu yakası</li></ul></div>
+    </div>
+    <div class="faq"><details><summary>Siparişler ne kadar sürede hazırlanır?</summary><p>Ölçü alınıp kumaş seçildikten sonra siparişler 3–8 iş günü içinde kendi atölyemizde hazırlanır. Montajı kendi ekibimiz yapar.</p></details><details><summary>Ürünleriniz garantili mi?</summary><p>Evet. Perde, duvar kağıdı ve halı dahil tüm ürünlerimiz 3 yıl garantilidir; teslimden sonra yıkama ve bakım desteğimiz sürer.</p></details><details><summary>Mevcut rayıma yeni perde diktirebilir miyim?</summary><p>Evet. Ölçüye geldiğimizde rayınızın durumuna ve perdenin ağırlığını taşıyıp taşıyamayacağına bakarız. Uygunsa yeni perdenizi mevcut rayınıza göre dikeriz.</p></details><details><summary>Jaluzi mi seçmeliyim, stor perde mi?</summary><p>Işığı gün içinde açısıyla ayarlamak istiyorsanız jaluzi daha esnektir. Sade, tek parça bir kumaş yüzey ya da tam karartma arıyorsanız stor perde daha uygun olabilir. Pencerenizi ve odanın kullanımını görerek hangisinin daha doğru olacağını birlikte belirleriz.</p></details><details><summary>Bir oda için kaç rulo duvar kağıdı gerekir?</summary><p>Bu; duvarların ölçüsüne, rulonun enine ve boyuna ve desenin tekrar aralığına göre değişir. Ölçüyü mekânınızda alır, gereken miktarı fireyi de hesaba katarak kendimiz çıkarırız; böylece ne eksik kalır ne de gereksiz rulo alırsınız.</p></details><details><summary>Hangi bölgelere hizmet veriyorsunuz?</summary><p>Çekmeköy'deki atölyemizden Anadolu yakasının kuzeyine; Çekmeköy, Şile, Ağva, Riva, Beykoz ve çevresindeki ev ve villalara hizmet veriyoruz.</p></details></div>
+  </div>
+</section>
+
+<section class="band contact" id="iletisim" aria-labelledby="h-iletisim">
+  <div class="wrap ct-grid">
+    <div>
+      <p class="eyebrow">İletişim</p>
+      <h2 id="h-iletisim">Projeniz için teklif alın</h2>
+      <p class="lead" style="margin-top:20px">Kaç pencere, hangi mekân, hangi tarih? Kısaca yazın, ölçü için gün verelim.</p>
+      <form class="qform" data-quote novalidate>
+        <div class="f2">
+          <label>Adınız<input id="q-ad" name="ad" autocomplete="name" required></label>
+          <label>Telefon<input id="q-tel" name="tel" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="f2">
+          <label>E-posta<input id="q-mail" name="eposta" type="email" autocomplete="email"></label>
+          <label>Mekân<select id="q-mekan" name="mekan"><option>Daire</option><option>Villa</option><option>Ofis</option><option>Otel / proje</option></select></label>
+        </div>
+        <label>Pencere sayısı<input id="q-pencere" name="pencere" inputmode="numeric" placeholder="ör. 4"></label>
+        <label>Kısaca ne istiyorsunuz?<textarea id="q-not" name="not" rows="4" placeholder="ör. Salona tül ve fon, yatak odasına karartma stor"></textarea></label>
+        <div class="row-btns"><button class="btn" type="submit">Teklif isteğini gönder</button><a class="btn ghost" href="https://wa.me/905535962614" target="_blank" rel="noopener">WhatsApp'tan yazın</a></div>
+        <p class="form-status" role="status"></p>
+      </form>
+    </div>
+    <aside class="ct-info">
+      <div class="ph"><img src="img/iletisim-ofis.webp" width="1400" height="1050" alt="Bey Perde Çekmeköy ofisi ve kumaş kartelaları" loading="lazy" decoding="async"></div>
+      <dl>
+        <div><dt>Telefon & WhatsApp</dt><dd><a href="tel:+905535962614">+90 553 596 26 14</a></dd></div>
+        <div><dt>E-posta</dt><dd><a href="mailto:info@beyperde.com">info@beyperde.com</a></dd></div>
+        <div><dt>Adres</dt><dd>Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12, 34794 Çekmeköy/İstanbul</dd></div>
+        <div><dt>Çalışma saatleri</dt><dd>Pazartesi – Cumartesi, 09:00 – 18:00</dd></div>
+      </dl>
+      <a class="arrow-link" href="https://www.google.com/maps/search/?api=1&query=Bey+Perde+%C3%87ekmek%C3%B6y" target="_blank" rel="noopener">Yol tarifi</a>
+    </aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="img/logo-cream.png" width="420" height="416" alt="Bey Perde" loading="lazy">
+        <p>Perde, duvar kağıdı ve halı; ölçü, üretim ve montaj tek elden. 2017'den beri Çekmeköy'deki atölyemizden.</p>
+      </div>
+      <nav aria-label="Perde sistemleri"><h2>Perde sistemleri</h2><ul><li><a href="#" data-proto>Tül Perdeler</a></li><li><a href="#" data-proto>Fon Perdeler</a></li><li><a href="#" data-proto>Stor Perdeler</a></li><li><a href="#" data-proto>Ahşap & Metal Jaluziler</a></li><li><a href="#" data-proto>Dikey Perdeler</a></li><li><a href="#" data-proto>Katlamalı Perdeler</a></li><li><a href="#" data-proto>Plise & Plicell Sistemler</a></li><li><a href="#" data-proto>Motorlu Perde Sistemleri</a></li><li><a href="rustik-perde.html">Rustik Perde</a></li><li><a href="#" data-proto>Dekoratif Ray & Aksesuarlar</a></li></ul></nav>
+      <nav aria-label="Duvar kağıtları"><h2>Duvar kağıtları</h2><ul><li><a href="#" data-proto>Tekstil Duvar Kağıdı</a></li><li><a href="#" data-proto>Vinil (Silinebilir) Duvar Kağıdı</a></li><li><a href="#" data-proto>Non-Woven Duvar Kağıdı</a></li><li><a href="#" data-proto>Ahşap Baskılı</a></li><li><a href="#" data-proto>Kumaş Baskılı</a></li></ul></nav>
+      <nav aria-label="Halılar ve kurumsal"><h2>Halılar</h2><ul><li><a href="#" data-proto>Sisal Halı</a></li><li><a href="#" data-proto>Özel Ölçü Halı</a></li><li><a href="#" data-proto>El Dokuma Halı</a></li></ul>
+        <h2 style="margin-top:28px">Bey Perde</h2><ul><li><a href="./#hakkimizda">Hakkımızda</a></li><li><a href="./#projeler">Projeler</a></li><li><a href="./#galeri">Galeri</a></li><li><a href="./#iletisim">İletişim</a></li></ul></nav>
+      <div><h2>Bize ulaşın</h2>
+        <address class="ft-nap">
+          <strong style="color:var(--cream);font-weight:500">Bey Perde</strong><br>
+          Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12, 34794 Çekmeköy/İstanbul<br><br>
+          <a href="tel:+905535962614">+90 553 596 26 14</a><br>
+          <a href="mailto:info@beyperde.com">info@beyperde.com</a><br>
+          Pazartesi – Cumartesi, 09:00 – 18:00
+        </address>
+      </div>
+    </div>
+    <div class="ft-bottom"><span>© 2026 Bey Perde. Tüm hakları saklıdır.</span><span>Çekmeköy · Şile · Ağva · Riva · Beykoz</span></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>(() => {
+const T = THREE;
+if (T.ColorManagement) T.ColorManagement.legacyMode = false;
+const canvas = document.getElementById('stage');
+const renderer = new T.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.outputEncoding = T.sRGBEncoding;
+renderer.toneMapping = T.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = T.PCFSoftShadowMap;
+
+const scene = new T.Scene();
+scene.background = new T.Color(0x14110e);
+const camera = new T.PerspectiveCamera(50, 1, 0.05, 80);
+
+/* ---------- procedural textures ---------- */
+const rnd = (a,b)=>a+Math.random()*(b-a);
+function tex(w,h,draw,rx=1,ry=1,srgb=true){
+  const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');draw(g,w,h);
+  const t=new T.CanvasTexture(c);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(rx,ry);
+  if(srgb)t.encoding=T.sRGBEncoding;t.anisotropy=renderer.capabilities.getMaxAnisotropy();return t;
+}
+// grasscloth: horizontal fibres
+const grass = tex(512,1024,(g,w,h)=>{
+  g.fillStyle='#b3aa9d';g.fillRect(0,0,w,h);
+  for(let i=0;i<9000;i++){
+    const y=Math.random()*h, x=Math.random()*w, l=rnd(20,220), v=Math.floor(rnd(140,225));
+    g.strokeStyle=`rgba(${v},${v-6},${v-16},${rnd(.25,.6)})`;g.lineWidth=rnd(.6,2.2);
+    g.beginPath();g.moveTo(x,y);g.lineTo(x+l,y+rnd(-1.5,1.5));g.stroke();
+    if(x+l>w){g.beginPath();g.moveTo(x-w,y);g.lineTo(x+l-w,y);g.stroke();}
+  }
+  for(let i=0;i<1400;i++){const y=Math.random()*h,x=Math.random()*w;g.fillStyle=`rgba(70,62,52,${rnd(.15,.4)})`;g.fillRect(x,y,rnd(10,80),rnd(.6,1.4));}
+},1.1,1.1);
+// linen / bouclé noise
+function weave(base,var1){return tex(256,256,(g,w,h)=>{
+  g.fillStyle=base;g.fillRect(0,0,w,h);
+  for(let i=0;i<5000;i++){const v=Math.random()<.5?255:0;g.fillStyle=`rgba(${v},${v},${v},${rnd(.02,var1)})`;
+    if(Math.random()<.5)g.fillRect(Math.random()*w,Math.random()*h,rnd(2,7),1);else g.fillRect(Math.random()*w,Math.random()*h,1,rnd(2,7));}
+});}
+const linen = weave('#ddd3c4',.09); linen.repeat.set(3,3);
+const boucle = weave('#ece5da',.12); boucle.repeat.set(4,2);
+const stone = tex(256,256,(g,w,h)=>{g.fillStyle='#cbbfae';g.fillRect(0,0,w,h);
+  for(let i=0;i<900;i++){g.fillStyle=`rgba(${Math.random()<.5?255:90},${Math.random()<.5?250:80},${Math.random()<.5?240:70},${rnd(.03,.12)})`;
+    g.beginPath();g.ellipse(Math.random()*w,Math.random()*h,rnd(1,9),rnd(.5,3),0,0,7);g.fill();}},1,1);
+const floorTex = tex(1024,1024,(g,w,h)=>{
+  const pw=128;
+  for(let x=0;x<w;x+=pw){let y=-Math.random()*400;
+    while(y<h){const l=rnd(300,520);const v=rnd(-14,14);
+      g.fillStyle=`rgb(${150+v},${112+v},${80+v})`;g.fillRect(x,y,pw,l);
+      for(let k=0;k<26;k++){g.strokeStyle=`rgba(80,52,30,${rnd(.05,.18)})`;g.lineWidth=rnd(.5,1.6);const gx=x+rnd(4,pw-4);
+        g.beginPath();g.moveTo(gx,y);g.bezierCurveTo(gx+rnd(-6,6),y+l*.3,gx+rnd(-6,6),y+l*.6,gx+rnd(-3,3),y+l);g.stroke();}
+      g.fillStyle='rgba(50,32,20,.55)';g.fillRect(x,y,pw,2);y+=l;}
+    g.fillStyle='rgba(50,32,20,.5)';g.fillRect(x,0,2,h);}
+},4.2,4.2);
+const outside = tex(1024,640,(g,w,h)=>{
+  const s=g.createLinearGradient(0,0,0,h*.6);s.addColorStop(0,'#7fb0dc');s.addColorStop(1,'#e6eef0');g.fillStyle=s;g.fillRect(0,0,w,h);
+  g.filter='blur(5px)';
+  for(let i=0;i<260;i++){const x=Math.random()*w,y=h*rnd(.3,.62),r=rnd(10,34);
+    g.fillStyle=`rgb(${Math.floor(rnd(70,120))},${Math.floor(rnd(110,150))},${Math.floor(rnd(55,80))})`;g.beginPath();g.arc(x,y,r,0,7);g.fill();}
+  g.filter='none';g.fillStyle='#9bb56a';g.fillRect(0,h*.62,w,h*.38);
+  g.fillStyle='#c9c2b3';g.fillRect(0,h*.78,w,h*.06);
+},1,1);
+
+/* ---------- materials ---------- */
+const M = {
+  wall: new T.MeshStandardMaterial({color:0xece5da,roughness:.92}),
+  hall: new T.MeshStandardMaterial({color:0x8c786a,roughness:.9}),
+  trim: new T.MeshStandardMaterial({color:0xf1ebe1,roughness:.6}),
+  paper: new T.MeshStandardMaterial({map:grass,bumpMap:grass,bumpScale:.012,roughness:.85,color:0xffffff}),
+  floor: new T.MeshStandardMaterial({map:floorTex,roughness:.55}),
+  door: new T.MeshStandardMaterial({color:0x5a3e2a,roughness:.5}),
+  doorPanel: new T.MeshStandardMaterial({color:0x4d3423,roughness:.45}),
+  metal: new T.MeshStandardMaterial({color:0x2a2622,roughness:.35,metalness:.6}),
+  brass: new T.MeshStandardMaterial({color:0xc19a5b,roughness:.3,metalness:.45}),
+  black: new T.MeshStandardMaterial({color:0x1c1b1a,roughness:.4,metalness:.3}),
+  fon: new T.MeshStandardMaterial({map:linen,color:0xf2ebe0,roughness:.95,side:T.DoubleSide}),
+  tul: new T.MeshLambertMaterial({color:0xfffaf2,emissive:0xfff1dc,emissiveIntensity:.42,transparent:true,opacity:.5,side:T.DoubleSide,depthWrite:false}),
+  boucle: new T.MeshStandardMaterial({map:boucle,bumpMap:boucle,bumpScale:.02,roughness:1}),
+  pillowB: new T.MeshStandardMaterial({color:0x8a5634,roughness:.95,map:boucle}),
+  stone: new T.MeshStandardMaterial({map:stone,roughness:.5}),
+  rug: new T.MeshStandardMaterial({map:boucle,color:0xf2ede4,roughness:1}),
+  leaf: new T.MeshStandardMaterial({color:0x56663a,roughness:.8,flatShading:true}),
+  pot: new T.MeshStandardMaterial({color:0xbfb4a3,roughness:.9}),
+  sky: new T.MeshBasicMaterial({map:outside})
+};
+
+function add(geo,mat,x,y,z,o={}){const m=new T.Mesh(geo,mat);m.position.set(x,y,z);
+  if(o.rx)m.rotation.x=o.rx;if(o.ry)m.rotation.y=o.ry;if(o.rz)m.rotation.z=o.rz;
+  m.castShadow=o.cast!==false;m.receiveShadow=true;(o.parent||scene).add(m);return m;}
+const box=(w,h,d)=>new T.BoxGeometry(w,h,d);
+
+/* ---------- room shell: x -6..5, z -5..5, h 3.2 ---------- */
+const H=3.2;
+add(new T.PlaneGeometry(11,10),M.floor,-0.5,0,0,{rx:-Math.PI/2,cast:false});
+add(new T.PlaneGeometry(11,10),new T.MeshStandardMaterial({color:0xece5da,roughness:.95,emissive:0x5a5048,emissiveIntensity:.35}),-0.5,H,0,{rx:Math.PI/2,cast:false});
+add(new T.PlaneGeometry(11,H),M.wall,-0.5,H/2,-5,{cast:false});           // back (wallpaper) wall
+add(new T.PlaneGeometry(10,H),M.wall,-6,H/2,0,{ry:Math.PI/2,cast:false});  // left wall
+// right wall with window opening z -3..2, y 0..2.75
+add(box(.2,H,2),M.wall,5.1,H/2,-4); add(box(.2,H,3),M.wall,5.1,H/2,3.5); add(box(.2,.45,5),M.wall,5.1,2.975,-0.5);
+// front wall with door opening x -0.55..0.55, y 0..2.3
+const FW=[M.wall,M.wall,M.wall,M.wall,M.hall,M.wall];
+add(box(5.45,H,.15),FW,-3.275,H/2,5.075); add(box(4.45,H,.15),FW,2.775,H/2,5.075); add(box(1.1,.9,.15),FW,0,2.75,5.075);
+// hallway outside the door
+add(new T.PlaneGeometry(6,6.2),new T.MeshStandardMaterial({color:0x6e5f53,roughness:.95}),0,H,8,{rx:Math.PI/2,cast:false});
+add(new T.PlaneGeometry(6,6),M.floor,0,0,8,{rx:-Math.PI/2,cast:false});
+add(new T.PlaneGeometry(6,H),new T.MeshStandardMaterial({color:0x4a4038,roughness:.9}),0,H/2,11,{ry:Math.PI,cast:false});
+// door casing (both faces)
+for(const z of [5.17,4.98]){
+  add(box(.09,2.38,.04),M.trim,-0.6,1.19,z); add(box(.09,2.38,.04),M.trim,0.6,1.19,z); add(box(1.29,.09,.04),M.trim,0,2.345,z);
+}
+// skirting + crown
+add(box(11,.12,.03),M.trim,-0.5,.06,-4.985); add(box(11,.08,.06),M.trim,-0.5,H-.04,-4.97);
+add(box(.03,.12,10),M.trim,-5.985,.06,0); add(box(.06,.08,10),M.trim,-5.97,H-.04,0);
+
+/* ---------- arched wallpaper panels ---------- */
+function arch(p,w,h,y0){const r=w/2;p.moveTo(-r,y0);p.lineTo(r,y0);p.lineTo(r,y0+h-r);p.absarc(0,y0+h-r,r,0,Math.PI,false);p.lineTo(-r,y0);return p;}
+const pw=.82, ph=2.42, py=.28, t=.09;
+const paperGeo=new T.ShapeGeometry(arch(new T.Shape(),pw,ph,py),32);
+const outer=arch(new T.Shape(),pw+2*t,ph+2*t,py-t); outer.holes.push(arch(new T.Path(),pw,ph,py));
+const frameGeo=new T.ExtrudeGeometry(outer,{depth:.035,bevelEnabled:true,bevelThickness:.01,bevelSize:.008,bevelSegments:2,curveSegments:32});
+for(let i=0;i<8;i++){const x=-5.35+i*1.25;
+  const p=add(paperGeo,M.paper,x,0,-4.994,{cast:false});
+  add(frameGeo,M.trim,x,0,-4.998);
+}
+
+/* ---------- window, view, curtains ---------- */
+add(new T.PlaneGeometry(18,11),M.sky,8.5,2.2,-0.5,{ry:-Math.PI/2,cast:false});
+for(const z of [-3,-0.5,2]) add(box(.06,2.75,.06),M.black,5.02,1.375,z);
+for(const y of [.03,.95,2.72]) add(box(.06,.06,5),M.black,5.02,y,-0.5);
+
+function pleat(w,h,folds,amp,segs){
+  const g=new T.PlaneGeometry(w,h,segs,8),p=g.attributes.position;
+  for(let i=0;i<p.count;i++){const x=p.getX(i),y=p.getY(i);const k=1+.35*(.5-y/h);
+    p.setZ(i,amp*k*Math.sin((x/w+.5)*folds*Math.PI*2)+amp*.25*Math.sin((x/w)*folds*Math.PI*.7));}
+  g.computeVertexNormals();return g;
+}
+const curtainH=2.95, cy=curtainH/2+.03;
+add(pleat(5.6,curtainH,24,.035,480),M.tul,4.9,cy,-0.5,{ry:-Math.PI/2,cast:false});
+for(const z of [-3.45,2.45]) add(pleat(1.25,curtainH,7,.075,200),M.fon,4.74,cy,z,{ry:-Math.PI/2});
+const rodGeo=new T.CylinderGeometry(.018,.018,7.3,16);
+add(rodGeo,M.black,4.72,3.02,-0.5,{rx:Math.PI/2}); add(rodGeo,M.black,4.87,3.02,-0.5,{rx:Math.PI/2});
+for(const z of [-4.15,3.15]){
+  add(new T.SphereGeometry(.065,24,16),new T.MeshStandardMaterial({color:0xe9e2d3,roughness:.4}),4.72,3.02,z);
+  add(new T.CylinderGeometry(.024,.024,.04,16),M.black,4.72,3.02,z+(z<0?.07:-.07),{rx:Math.PI/2});
+  add(new T.CylinderGeometry(.022,.022,.03,16),M.black,4.87,3.02,z+(z<0?.06:-.06),{rx:Math.PI/2});
+}
+for(const z of [-3.9,-0.5,2.9]) add(box(.32,.03,.03),M.black,4.86,3.02,z);
+// rings on fon
+for(const z0 of [-3.45,2.45]) for(let i=0;i<8;i++) add(new T.TorusGeometry(.03,.006,8,20),M.black,4.72,3.02,z0-.6+i*.17,{ry:Math.PI/2,cast:false});
+
+/* ---------- furniture ---------- */
+const sofa=new T.Group();sofa.position.set(-1.4,0,-4.05);scene.add(sofa);
+const cap=(r,l)=>new T.CapsuleGeometry(r,l,8,24);
+let s=add(cap(.27,2.35),M.boucle,0,.3,.05,{rz:Math.PI/2,parent:sofa});s.scale.set(1.15,1,1.75);
+s=add(cap(.22,2.55),M.boucle,0,.66,-.33,{rz:Math.PI/2,parent:sofa});s.scale.set(1,1.15,1);
+for(const x of [-1.42,1.42]){s=add(new T.SphereGeometry(.3,24,16),M.boucle,x,.45,0,{parent:sofa});s.scale.set(.75,1.05,1.65);}
+const pil=new T.SphereGeometry(.22,24,16);
+[[-.85,M.boucle,.1],[-.15,M.pillowB,-.05],[.6,M.boucle,.08]].forEach(([x,m,r])=>{s=add(pil,m,x,.78,-.12,{rz:r,parent:sofa});s.scale.set(1.15,1,.38);});
+// throw
+s=add(box(.6,.04,1.0),new T.MeshStandardMaterial({color:0xe3cfae,map:linen,roughness:1}),-.3,.53,.1,{rz:.04,parent:sofa});
+// coffee table + objects
+add(new T.CylinderGeometry(.64,.6,.38,64),M.stone,-1.15,.19,-2.3);
+add(box(.36,.05,.26),new T.MeshStandardMaterial({color:0xe8e1d4,roughness:.8}),-1.4,.405,-2.2,{ry:.3});
+add(box(.32,.04,.24),new T.MeshStandardMaterial({color:0x9a8c78,roughness:.8}),-1.38,.45,-2.21,{ry:.18});
+add(new T.CylinderGeometry(.09,.08,.2,24),new T.MeshStandardMaterial({color:0xdde6e2,transparent:true,opacity:.35,roughness:.05}),-0.95,.48,-2.4,{cast:false});
+const bloom=new T.MeshStandardMaterial({color:0xf7f3ea,roughness:.9});
+for(let i=0;i<9;i++)add(new T.IcosahedronGeometry(rnd(.07,.1),1),bloom,-0.95+rnd(-.13,.13),.66+rnd(-.04,.06),-2.4+rnd(-.13,.13));
+add(new T.CylinderGeometry(.05,.05,.08,20),new T.MeshStandardMaterial({color:0xb87a2c,emissive:0x8a4a10,emissiveIntensity:.6,transparent:true,opacity:.85}),-0.7,.42,-2.0);
+const candle=new T.PointLight(0xffa64d,.35,2.2);candle.position.set(-0.7,.55,-2.0);scene.add(candle);
+// rug
+add(new T.PlaneGeometry(5,3.4),M.rug,-1.2,.006,-2.7,{rx:-Math.PI/2,cast:false});
+// arc floor lamp
+const arc=new T.QuadraticBezierCurve3(new T.Vector3(-3.95,.03,-3.75),new T.Vector3(-3.95,3.1,-3.5),new T.Vector3(-2.75,2.1,-3.15));
+add(new T.TubeGeometry(arc,48,.016,8),M.brass,0,0,0);
+add(new T.CylinderGeometry(.17,.19,.03,32),M.brass,-3.95,.015,-3.75);
+const shade=add(new T.SphereGeometry(.2,32,16,0,Math.PI*2,0,Math.PI/2),new T.MeshStandardMaterial({color:0xc19a5b,roughness:.3,metalness:.45,side:T.DoubleSide}),-2.75,2.0,-3.15);
+add(new T.SphereGeometry(.05,16,8),new T.MeshBasicMaterial({color:0xfff0cf}),-2.75,1.93,-3.15,{cast:false});
+const lampL=new T.PointLight(0xffc98a,.75,6,1.6);lampL.position.set(-2.75,1.85,-3.15);scene.add(lampL);
+// olive tree
+add(new T.CylinderGeometry(.3,.24,.6,32),M.pot,-5.25,.3,-4.25);
+add(new T.CylinderGeometry(.02,.035,1.6,8),new T.MeshStandardMaterial({color:0x5b4a39}),-5.25,1.3,-4.25);
+for(let i=0;i<34;i++){const a=Math.random()*6.28,r=rnd(.05,.45),y=rnd(1.3,2.35);
+  add(new T.IcosahedronGeometry(rnd(.08,.17),0),M.leaf,-5.25+Math.cos(a)*r,y,-4.25+Math.sin(a)*r*.8);}
+
+/* ---------- door ---------- */
+const hinge=new T.Group();hinge.position.set(-0.55,0,5.06);scene.add(hinge);
+add(box(1.1,2.3,.05),M.door,.55,1.15,0,{parent:hinge});
+for(const z of [.03,-.03]){ add(box(.8,1.05,.012),M.doorPanel,.55,1.68,z,{parent:hinge}); add(box(.8,.8,.012),M.doorPanel,.55,.6,z,{parent:hinge}); }
+for(const z of [.06,-.06]){ add(box(.2,.025,.025),M.brass,.9,1.02,z,{parent:hinge}); add(new T.CylinderGeometry(.03,.03,.03,16),M.brass,1.0,1.02,z*.75,{rx:Math.PI/2,parent:hinge}); }
+
+/* ---------- lights ---------- */
+scene.add(new T.HemisphereLight(0xfff3e2,0x6b5644,.5));
+const sun=new T.DirectionalLight(0xffd6a0,2.5);
+sun.position.set(15,6.6,7.5);sun.target.position.set(0,0,-4);scene.add(sun,sun.target);
+sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-11,right:11,top:11,bottom:-11,near:1,far:45});
+sun.shadow.bias=-.0004;sun.shadow.normalBias=.025;sun.shadow.radius=3;
+const bounce=new T.PointLight(0xfff0dc,.55,12,1.5);bounce.position.set(2.5,2.4,-1);scene.add(bounce);
+const hall=new T.PointLight(0xffd7a8,.7,7,1.4);hall.position.set(0,2.7,7.6);scene.add(hall);
+
+/* ---------- camera path ---------- */
+const K=[
+ {p:0.00,pos:[0,1.58,7.8], look:[0,1.3,0],     fov:46},
+ {p:0.15,pos:[0,1.6,6.3],  look:[-0.15,1.4,-2],fov:50},
+ {p:0.25,pos:[0,1.62,3.7], look:[-0.9,1.55,-5],fov:52},
+ {p:0.35,pos:[-1.0,1.66,0.7],look:[-1.4,1.6,-5],fov:50},
+ {p:0.46,pos:[-1.9,1.78,-2.25],look:[-2.0,1.95,-5],fov:45},
+ {p:0.57,pos:[0.5,1.68,-1.3],look:[5,1.95,0.2],fov:50},
+ {p:0.70,pos:[2.75,1.45,-0.75],look:[5,2.35,1.4],fov:41},
+ {p:0.80,pos:[2.1,1.62,0.3],look:[5,1.85,0.7],fov:48},
+ {p:0.94,pos:[-4.55,1.78,4.25],look:[1.4,1.1,-3.2],fov:55},
+ {p:1.00,pos:[-4.65,1.8,4.35],look:[1.4,1.1,-3.2],fov:55}
+];
+const V=a=>new T.Vector3(...a);
+let cPos,cLook;
+function buildPath(){if(camera.aspect>1){K[0].pos=[-1.15,1.58,7.8];K[0].look=[-1.15,1.3,0];}else{K[0].pos=[0,1.5,9.3];K[0].look=[0,0.7,0];}
+  cPos=new T.CatmullRomCurve3(K.map(k=>V(k.pos)),false,'centripetal');cLook=new T.CatmullRomCurve3(K.map(k=>V(k.look)),false,'centripetal');}
+buildPath();
+const ease=t=>.5-.5*Math.cos(Math.PI*t);
+const sm=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+const lookV=new T.Vector3();
+function placeCamera(p){
+  let i=0;while(i<K.length-2&&p>=K[i+1].p)i++;
+  const t=ease(Math.min(1,Math.max(0,(p-K[i].p)/(K[i+1].p-K[i].p))));
+  const u=(i+t)/(K.length-1);
+  camera.position.copy(cPos.getPoint(u));cLook.getPoint(u,lookV);camera.lookAt(lookV);
+  let fov=K[i].fov+(K[i+1].fov-K[i].fov)*t;
+  if(camera.aspect<1)fov*=1.38;
+  if(Math.abs(camera.fov-fov)>.01){camera.fov=fov;camera.updateProjectionMatrix();}
+  hinge.rotation.y=ease(sm(.025,.19,p))*1.72;
+}
+
+/* ---------- overlay ---------- */
+const el=id=>document.getElementById(id);
+const L={intro:el('intro'),l1:el('l1'),l2:el('l2'),outro:el('outro')};
+const rail=[...document.querySelectorAll('.rail div')];const bar=el('bar'),railEl=document.querySelector('.rail');
+const NS='http://www.w3.org/2000/svg',svgEl=el('callouts');
+function mk(){const g=document.createElementNS(NS,'g');g.innerHTML='<path class="ln"/><path class="hd"/><g class="tg"><circle class="ring" r="15"/><circle class="dot" r="3.5"/></g>';
+  svgEl.appendChild(g);return {g,ln:g.querySelector('.ln'),hd:g.querySelector('.hd'),tg:g.querySelector('.tg'),ring:g.querySelector('.ring'),dot:g.querySelector('.dot')};}
+const C1=mk(),C2=mk();
+const A1d=new T.Vector3(-2.85,1.7,-4.99),A1m=new T.Vector3(-1.6,1.75,-4.99),A2=new T.Vector3(4.72,1.9,2.0);
+const pv=new T.Vector3();
+function callout(node,c,anchor,o,draw,ot,pos){
+  node.style.opacity=ot.toFixed(3);node.style.visibility=ot<.01?'hidden':'visible';c.g.style.opacity=o.toFixed(3);
+  if(o<.01&&ot<.01)return;
+  const w=innerWidth,h=innerHeight,P=(w<700||camera.aspect<1)?pos.m:pos.d;
+  node.style.transform=`translate(${(P[0]*w).toFixed(1)}px,${(P[1]*h).toFixed(1)}px)`;
+  const hh=node.querySelector('h2');hh.style.transform=`translateY(${((1-ot)*10).toFixed(1)}px)`;
+  pv.copy(anchor).project(camera);
+  const vis=pv.z>1?0:sm(1.08,.92,Math.abs(pv.x))*sm(1.08,.92,Math.abs(pv.y));c.g.style.opacity=(o*vis).toFixed(3);if(vis<.01)return;
+  const tx=(pv.x+1)/2*w,ty=(1-pv.y)/2*h,r=node.querySelector('h2').getBoundingClientRect(),stub=34;
+  let sx,sy,ex,ey;
+  if(tx<r.left-24){sx=r.left-16;sy=r.top+r.height/2;ex=sx-stub;ey=sy;}
+  else if(tx>r.right+24){sx=r.right+16;sy=r.top+r.height/2;ex=sx+stub;ey=sy;}
+  else if(ty>r.bottom){sx=Math.min(Math.max(tx,r.left),r.right);sy=r.bottom+14;ex=sx;ey=sy+stub;}
+  else{sx=Math.min(Math.max(tx,r.left),r.right);sy=r.top-14;ex=sx;ey=sy-stub;}
+  const dx=tx-ex,dy=ty-ey,L2=Math.hypot(dx,dy)||1,ux=dx/L2,uy=dy/L2,gap=12;
+  const fx=tx-ux*gap,fy=ty-uy*gap,L1=Math.hypot(ex-sx,ey-sy),Lb=Math.max(1,L2-gap),d=draw*(L1+Lb);
+  let path=`M${sx.toFixed(1)},${sy.toFixed(1)}`;
+  if(d<=L1){const k=d/L1;path+=` L${(sx+(ex-sx)*k).toFixed(1)},${(sy+(ey-sy)*k).toFixed(1)}`;}
+  else{const k=(d-L1)/Lb;path+=` L${ex.toFixed(1)},${ey.toFixed(1)} L${(ex+(fx-ex)*k).toFixed(1)},${(ey+(fy-ey)*k).toFixed(1)}`;}
+  c.ln.setAttribute('d',path);
+  const hv=sm(.9,1,draw),s=11,bx=fx-ux*s,by=fy-uy*s,nx=-uy*s*.5,ny=ux*s*.5;
+  c.hd.setAttribute('d',`M${(bx+nx).toFixed(1)},${(by+ny).toFixed(1)} L${fx.toFixed(1)},${fy.toFixed(1)} L${(bx-nx).toFixed(1)},${(by-ny).toFixed(1)}`);
+  c.hd.style.opacity=hv;c.tg.style.opacity=hv;
+  for(const n of [c.ring,c.dot]){n.setAttribute('cx',tx.toFixed(1));n.setAttribute('cy',ty.toFixed(1));}
+}
+function band(p,a,b,f=.035){return Math.min(sm(a-f,a,p),1-sm(b,b+f,p));}
+function show(node,o,grow){node.style.opacity=o.toFixed(3);node.style.transform=`translate(-50%,calc(-50% + ${(1-o)*18}px))`;
+  if(grow!==undefined){const st=node.querySelector('.stem');if(st)st.style.setProperty('--grow',grow.toFixed(3));}
+  node.style.visibility=o<.01?'hidden':'visible';}
+function overlay(p){
+  {const o=1-sm(.01,.06,p);L.intro.style.opacity=o.toFixed(3);L.intro.style.visibility=o<.01?'hidden':'visible';L.intro.style.marginTop=(-(1-o)*24).toFixed(1)+'px';}
+  const mob=innerWidth<700||camera.aspect<1;
+  callout(L.l1,C1,mob?A1m:A1d,band(p,.30,.47,.012),sm(.30,.36,p),band(p,.39,.47),{d:[.56,.15],m:[.07,.15]});
+  callout(L.l2,C2,A2,band(p,.63,.79,.012),sm(.63,.69,p),band(p,.72,.79),{d:[.08,.15],m:[.07,.14]});
+  show(L.outro,sm(.9,.96,p));
+  const idx=p<.28?0:p<.56?1:p<.86?2:3;rail.forEach((r,i)=>r.classList.toggle('on',i===idx));
+  bar.style.width=(p*100).toFixed(2)+'%';railEl.style.opacity=sm(.03,.09,p).toFixed(3);
+}
+
+/* ---------- loop ---------- */
+let target=0,cur=0;
+const introEl=document.getElementById('giris');let introVisible=true;
+function readScroll(){const r=introEl.getBoundingClientRect();const max=r.height-innerHeight;introVisible=r.bottom>0&&r.top<innerHeight;target=max>0?Math.min(1,Math.max(0,-r.top/max)):0;}
+addEventListener('scroll',readScroll,{passive:true});
+function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();buildPath();placeCamera(cur);}
+addEventListener('resize',resize);
+el('cta').addEventListener('click',()=>document.getElementById('urunler').scrollIntoView({behavior:'smooth'}));
+const clock=new T.Clock();
+function frame(){
+  cur+=(target-cur)*.085; if(Math.abs(target-cur)<1e-5)cur=target;
+  placeCamera(cur);overlay(cur);
+  const tt=clock.getElapsedTime();candle.intensity=.3+Math.sin(tt*9)*.04+Math.sin(tt*23)*.03;
+  if(introVisible)renderer.render(scene,camera);requestAnimationFrame(frame);
+}
+readScroll();cur=target;resize();frame();
+})();
+</script>
+
+<script>
+(() => {
+  const img = document.querySelector('.rk-img'), cap = document.getElementById('rk-cap');
+  document.querySelectorAll('.fin').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.fin').forEach(x => x.setAttribute('aria-pressed', x === b));
+    img.style.opacity = 0;
+    setTimeout(() => { img.src = b.dataset.src; img.alt = b.dataset.cap; cap.textContent = b.dataset.cap; img.onload = () => img.style.opacity = 1; }, 250);
+  }));
+})();
+</script>
+<script src="site.js"></script>
+
+</body>
+</html>
