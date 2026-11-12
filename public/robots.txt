@@ -1,3 +1,5 @@
-# Önizleme sürümü: arama motorlarına kapalı
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /api/
+
+Sitemap: https://beyperde.com/sitemap.xml

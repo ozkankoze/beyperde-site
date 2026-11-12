@@ -1,0 +1,1997 @@
+{
+"ana-sayfa.webp": {
+"avg": [
+94,
+85,
+82
+],
+"h": 972,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"galeri/1.webp": {
+"avg": [
+154,
+144,
+126
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"galeri/2.webp": {
+"avg": [
+121,
+130,
+123
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"galeri/3.webp": {
+"avg": [
+145,
+137,
+122
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"galeri/4.webp": {
+"avg": [
+118,
+113,
+110
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"galeri/5.webp": {
+"avg": [
+119,
+122,
+120
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"galeri/6.webp": {
+"avg": [
+145,
+140,
+128
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"galeri/7.webp": {
+"avg": [
+158,
+153,
+139
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"gonderi/1.webp": {
+"avg": [
+113,
+106,
+99
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"gonderi/2.webp": {
+"avg": [
+159,
+142,
+117
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"gonderi/3.webp": {
+"avg": [
+133,
+127,
+119
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"hakkimizda/isik.webp": {
+"avg": [
+128,
+119,
+114
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"iletisim/ofis.webp": {
+"avg": [
+128,
+110,
+75
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"logo-brown.png": {
+"h": 416,
+"png": true,
+"w": 420,
+"widths": []
+},
+"logo-cream.png": {
+"h": 416,
+"png": true,
+"w": 420,
+"widths": []
+},
+"projeler/erenkoy-hk-evi/calisma-odasi.webp": {
+"avg": [
+117,
+120,
+116
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"projeler/erenkoy-hk-evi/doku.webp": {
+"avg": [
+156,
+137,
+110
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/erenkoy-hk-evi/duvar.webp": {
+"avg": [
+132,
+123,
+105
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"projeler/erenkoy-hk-evi/etek.webp": {
+"avg": [
+179,
+168,
+155
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/erenkoy-hk-evi/jaluzi.webp": {
+"avg": [
+115,
+106,
+93
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/erenkoy-hk-evi/kose.webp": {
+"avg": [
+126,
+106,
+81
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"projeler/erenkoy-hk-evi/mutfak.webp": {
+"avg": [
+86,
+73,
+60
+],
+"h": 1600,
+"w": 1199,
+"widths": [
+480,
+960,
+1199
+]
+},
+"projeler/erenkoy-hk-evi/oda.webp": {
+"avg": [
+141,
+127,
+108
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/erenkoy-hk-evi/pencere.webp": {
+"avg": [
+169,
+167,
+158
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/dikey-perde/doku.webp": {
+"avg": [
+185,
+152,
+111
+],
+"h": 1600,
+"w": 900,
+"widths": [
+480,
+900
+]
+},
+"urunler/dikey-perde/etek.webp": {
+"avg": [
+186,
+184,
+185
+],
+"h": 810,
+"w": 1080,
+"widths": [
+480,
+960,
+1080
+]
+},
+"urunler/dikey-perde/film.webp": {
+"avg": [
+143,
+140,
+131
+],
+"h": 1600,
+"w": 900,
+"widths": [
+480,
+900
+]
+},
+"urunler/dikey-perde/manzara.webp": {
+"avg": [
+139,
+127,
+110
+],
+"h": 1344,
+"w": 756,
+"widths": [
+480,
+756
+]
+},
+"urunler/dikey-perde/ray.webp": {
+"avg": [
+158,
+148,
+140
+],
+"h": 810,
+"w": 1080,
+"widths": [
+480,
+960,
+1080
+]
+},
+"urunler/dikey-perde/toplanti-odasi.webp": {
+"avg": [
+114,
+111,
+97
+],
+"h": 687,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/dikey-perde/zincir.webp": {
+"avg": [
+126,
+113,
+95
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/duvar-kagidi-1.webp": {
+"avg": [
+155,
+150,
+139
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/duvar-kagidi-2.webp": {
+"avg": [
+166,
+155,
+139
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/duvar-kagidi-3.webp": {
+"avg": [
+151,
+140,
+127
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/duvar-kagidi-4.webp": {
+"avg": [
+145,
+135,
+121
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/ahsap-bag.webp": {
+"avg": [
+143,
+141,
+129
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/ahududu.webp": {
+"avg": [
+164,
+73,
+99
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/altin-doku.webp": {
+"avg": [
+114,
+99,
+75
+],
+"h": 1600,
+"w": 900,
+"widths": [
+480,
+900
+]
+},
+"urunler/fon-perde/berjer.webp": {
+"avg": [
+149,
+140,
+138
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/chester.webp": {
+"avg": [
+141,
+139,
+130
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/dalga-pile.webp": {
+"avg": [
+124,
+118,
+107
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/fon-perde/kenar-bandi.webp": {
+"avg": [
+149,
+134,
+110
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/klasik-pile.webp": {
+"avg": [
+122,
+117,
+103
+],
+"h": 900,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/fon-perde/kristal-avize.webp": {
+"avg": [
+138,
+134,
+121
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/manzarali-salon.webp": {
+"avg": [
+154,
+144,
+126
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/fon-perde/salon.webp": {
+"avg": [
+163,
+163,
+155
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/turuncu-duvar.webp": {
+"avg": [
+200,
+180,
+155
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/tutucu.webp": {
+"avg": [
+99,
+91,
+88
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/yatak-odasi.webp": {
+"avg": [
+174,
+158,
+127
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/fon-perde/yemek-odasi.webp": {
+"avg": [
+139,
+132,
+116
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/fon-perde/zeytin-doku.webp": {
+"avg": [
+117,
+105,
+82
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/hali-kapak.webp": {
+"avg": [
+167,
+141,
+123
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/bal-tonu.webp": {
+"avg": [
+176,
+157,
+138
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/beyaz.webp": {
+"avg": [
+129,
+127,
+120
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/ceviz.webp": {
+"avg": [
+146,
+146,
+140
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/fon-perde.webp": {
+"avg": [
+140,
+132,
+120
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/metal.webp": {
+"avg": [
+114,
+119,
+108
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/mutfak-beyaz.webp": {
+"avg": [
+197,
+197,
+190
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/jaluzi-perde/mutfak-koyu.webp": {
+"avg": [
+101,
+89,
+85
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/jaluzi-perde/oluklu-dolap.webp": {
+"avg": [
+105,
+97,
+85
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/jaluzi-perde/siyah-salon.webp": {
+"avg": [
+72,
+73,
+69
+],
+"h": 1600,
+"w": 1334,
+"widths": [
+480,
+960,
+1334
+]
+},
+"urunler/katlamali-perde/inik.webp": {
+"avg": [
+146,
+139,
+117
+],
+"h": 1600,
+"w": 1298,
+"widths": [
+480,
+960,
+1298
+]
+},
+"urunler/katlamali-perde/mutfak.webp": {
+"avg": [
+141,
+137,
+125
+],
+"h": 854,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/katlamali-perde/salon.webp": {
+"avg": [
+157,
+148,
+119
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/katlamali-perde/toplanmis.webp": {
+"avg": [
+177,
+177,
+167
+],
+"h": 1572,
+"w": 1270,
+"widths": [
+480,
+960,
+1270
+]
+},
+"urunler/motorlu-perde-1.webp": {
+"avg": [
+139,
+143,
+138
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/motorlu-perde-2.webp": {
+"avg": [
+178,
+184,
+181
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/motorlu-perde-3.webp": {
+"avg": [
+146,
+148,
+143
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/motorlu-perde-4.webp": {
+"avg": [
+81,
+86,
+86
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/motorlu-perde-5.webp": {
+"avg": [
+146,
+147,
+142
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/alinlik-profili.webp": {
+"avg": [
+155,
+154,
+146
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/bronz-alinlik.webp": {
+"avg": [
+172,
+167,
+153
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/cift-kat.webp": {
+"avg": [
+154,
+153,
+149
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/dalga-ray.webp": {
+"avg": [
+138,
+132,
+119
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/koyu-alinlik.webp": {
+"avg": [
+104,
+97,
+83
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/ray-yakindan.webp": {
+"avg": [
+149,
+146,
+137
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/sacak.webp": {
+"avg": [
+189,
+187,
+180
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/tutucu-bej.webp": {
+"avg": [
+137,
+129,
+120
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-aksesuarlari/tutucu-gri.webp": {
+"avg": [
+109,
+107,
+100
+],
+"h": 1520,
+"w": 1140,
+"widths": [
+480,
+960,
+1140
+]
+},
+"urunler/perde-aksesuarlari/tutucu-siyah.webp": {
+"avg": [
+127,
+124,
+116
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/perde-kapak.webp": {
+"avg": [
+128,
+115,
+105
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/plicell-perde-1.webp": {
+"avg": [
+159,
+160,
+154
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/plicell-perde-2.webp": {
+"avg": [
+142,
+149,
+150
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/plicell-perde-3.webp": {
+"avg": [
+145,
+145,
+136
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/altin-yaprak.webp": {
+"avg": [
+143,
+132,
+106
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/avize.webp": {
+"avg": [
+122,
+111,
+84
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/cati-kati.webp": {
+"avg": [
+152,
+147,
+138
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/cift-boru.webp": {
+"avg": [
+132,
+128,
+116
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/klasik-oda.webp": {
+"avg": [
+164,
+163,
+154
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/kose.webp": {
+"avg": [
+107,
+91,
+68
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/kristal.webp": {
+"avg": [
+143,
+135,
+118
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/mermer-top.webp": {
+"avg": [
+143,
+144,
+142
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/mutfak.webp": {
+"avg": [
+140,
+141,
+127
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/rustik-perde/sehir.webp": {
+"avg": [
+120,
+107,
+93
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/siyah-pencere.webp": {
+"avg": [
+114,
+117,
+110
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/turuncu.webp": {
+"avg": [
+194,
+161,
+109
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/rustik-perde/yelpaze.webp": {
+"avg": [
+96,
+90,
+79
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/stor-perde/balkon-kapisi.webp": {
+"avg": [
+159,
+145,
+117
+],
+"h": 1024,
+"w": 1152,
+"widths": [
+480,
+960,
+1152
+]
+},
+"urunler/stor-perde/cocuk-odasi.webp": {
+"avg": [
+165,
+164,
+149
+],
+"h": 1147,
+"w": 1152,
+"widths": [
+480,
+960,
+1152
+]
+},
+"urunler/stor-perde/desen-bahce.webp": {
+"avg": [
+152,
+154,
+143
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/desen-havuz.webp": {
+"avg": [
+135,
+138,
+127
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/desen-koridor.webp": {
+"avg": [
+160,
+160,
+155
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/keten-doku.webp": {
+"avg": [
+164,
+150,
+131
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/kose-salon.webp": {
+"avg": [
+131,
+105,
+84
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/nis.webp": {
+"avg": [
+206,
+198,
+184
+],
+"h": 1600,
+"w": 1214,
+"widths": [
+480,
+960,
+1214
+]
+},
+"urunler/stor-perde/ofis.webp": {
+"avg": [
+169,
+172,
+167
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/profil.webp": {
+"avg": [
+181,
+173,
+155
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/stor-perde/yatak-odasi.webp": {
+"avg": [
+153,
+149,
+135
+],
+"h": 1372,
+"w": 1152,
+"widths": [
+480,
+960,
+1152
+]
+},
+"urunler/stor-perde/yemek-alani.webp": {
+"avg": [
+152,
+157,
+150
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/stor-perde/yemek-odasi.webp": {
+"avg": [
+125,
+121,
+117
+],
+"h": 1600,
+"w": 1326,
+"widths": [
+480,
+960,
+1326
+]
+},
+"urunler/stor-perde/zincir.webp": {
+"avg": [
+119,
+112,
+106
+],
+"h": 1200,
+"w": 1600,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/tekstil-1.webp": {
+"avg": [
+188,
+177,
+156
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/tekstil-2.webp": {
+"avg": [
+148,
+142,
+126
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/tul-perde-1.webp": {
+"avg": [
+170,
+171,
+162
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/tul-perde-2.webp": {
+"avg": [
+128,
+126,
+119
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/tul-perde-3.webp": {
+"avg": [
+172,
+177,
+178
+],
+"h": 1600,
+"w": 900,
+"widths": [
+480,
+900
+]
+},
+"urunler/vinyl/alfa/3708-4.webp": {
+"avg": [
+145,
+137,
+122
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/alfa/3714.webp": {
+"avg": [
+156,
+145,
+128
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/alfa/3718.webp": {
+"avg": [
+111,
+107,
+105
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23201-5.webp": {
+"avg": [
+132,
+123,
+110
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23202-5.webp": {
+"avg": [
+81,
+71,
+52
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23204-4.webp": {
+"avg": [
+115,
+99,
+83
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23205-3.webp": {
+"avg": [
+141,
+137,
+133
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23206-5.webp": {
+"avg": [
+128,
+121,
+115
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23207-1.webp": {
+"avg": [
+207,
+202,
+194
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23208-5.webp": {
+"avg": [
+161,
+141,
+113
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23209-3.webp": {
+"avg": [
+151,
+147,
+140
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23210-4.webp": {
+"avg": [
+166,
+153,
+131
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23211-1.webp": {
+"avg": [
+118,
+110,
+95
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23212-2.webp": {
+"avg": [
+147,
+152,
+141
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/omega/23213-5.webp": {
+"avg": [
+111,
+105,
+100
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1501-5.webp": {
+"avg": [
+99,
+83,
+79
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1503-5.webp": {
+"avg": [
+106,
+87,
+66
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1504-4.webp": {
+"avg": [
+124,
+114,
+101
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1505-2.webp": {
+"avg": [
+142,
+140,
+122
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1506-5.webp": {
+"avg": [
+180,
+175,
+167
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1507-3.webp": {
+"avg": [
+103,
+116,
+80
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1508-4.webp": {
+"avg": [
+124,
+105,
+81
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1509-4.webp": {
+"avg": [
+157,
+137,
+104
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1510-4.webp": {
+"avg": [
+144,
+127,
+99
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1511-4.webp": {
+"avg": [
+173,
+169,
+164
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1512-5.webp": {
+"avg": [
+164,
+147,
+124
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1513-5.webp": {
+"avg": [
+91,
+87,
+82
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+},
+"urunler/vinyl/vera/1514-3.webp": {
+"avg": [
+179,
+177,
+169
+],
+"h": 1600,
+"w": 1200,
+"widths": [
+480,
+960,
+1200
+]
+}
+}
