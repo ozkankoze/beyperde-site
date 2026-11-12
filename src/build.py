@@ -233,7 +233,12 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
     wa = wa_text or ui('wa_general', lang)
     font_pre = ('<link rel="preload" href="/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>' if lang == 'ar'
                 else '<link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>')
-    js = ''.join(f'<script src="/assets/{s}?v={VERSION}" defer></script>' for s in ('site.js',) + tuple(scripts))
+    def _src(s):
+        if s == 'intro-data':
+            v = int(os.path.getmtime(os.path.join(ROOT, 'src', 'static', 'intro', 'data.js'))) if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro', 'data.js')) else 0
+            return f'/intro/data.js?v={v}'
+        return f'/assets/{s}?v={VERSION}'
+    js = ''.join(f'<script src="{_src(s)}" defer></script>' for s in ('site.js',) + tuple(scripts) if s != 'intro-data' or os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro', 'data.js')))
     # LCP görseli için ön yükleme (ilk fetchpriority="high" görselin AVIF kaynağı)
     m = re.search(r'<picture><source type="image/avif" srcset="([^"]+)" sizes="([^"]+)">(?:(?!</picture>).)*fetchpriority="high"', body, re.S)
     if m and 'data-intro' not in body:
@@ -394,13 +399,17 @@ from pages_misc import render_misc          # noqa: E402
 
 
 def copy_static():
-    for sub in ('assets', 'fonts', 'js'):
+    for sub in ('assets', 'fonts', 'js', 'intro'):
         d = os.path.join(PUB, sub)
         if os.path.exists(d):
             shutil.rmtree(d)
     shutil.copytree(os.path.join(ROOT, 'src', 'assets'), os.path.join(PUB, 'assets'))
     shutil.copytree(os.path.join(ROOT, 'src', 'static', 'fonts'), os.path.join(PUB, 'fonts'))
     shutil.copytree(os.path.join(ROOT, 'src', 'static', 'js'), os.path.join(PUB, 'js'))
+    if os.path.exists(os.path.join(PUB, 'intro')):
+        shutil.rmtree(os.path.join(PUB, 'intro'))
+    if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro')):
+        shutil.copytree(os.path.join(ROOT, 'src', 'static', 'intro'), os.path.join(PUB, 'intro'))
     for f in os.listdir(os.path.join(ROOT, 'src', 'static')):
         p = os.path.join(ROOT, 'src', 'static', f)
         if os.path.isfile(p):

@@ -44,6 +44,23 @@ def quiz_block(G, lang, hid='oda-rehberi'):
 </section>'''
 
 
+def intro_static(G, alt):
+    """Animasyonun ilk karesi (yatay/dikey); kareler henüz yoksa salon fotoğrafı."""
+    IMG, e = G['IMG'], G['e']
+    if 'intro/kapi-d.webp' not in IMG:
+        return G['picture']('ana-sayfa', alt, '100vw', eager=True)
+    def ss(k):
+        m = IMG[k + '.webp']
+        return ', '.join(f'/img/{k}-{w}.webp {w}w' for w in m['widths']), m
+    d, md = ss('intro/kapi-d')
+    out = '<picture>'
+    if 'intro/kapi-m.webp' in IMG:
+        mm, _ = ss('intro/kapi-m')
+        out += f'<source media="(max-aspect-ratio: 1/1)" srcset="{mm}" sizes="100vw">'
+    out += f'<source srcset="{d}" sizes="100vw"><img src="/img/intro/kapi-d-{md["widths"][-1]}.webp" width="{md["w"]}" height="{md["h"]}" alt="{e(alt)}" fetchpriority="high" loading="eager" decoding="async"></picture>'
+    return out
+
+
 def compare_block(G, lang, items):
     """Öncesi/sonrası sürgüsü. Yalnızca gerçek fotoğraf çifti varsa çıktı üretir."""
     if not items:
@@ -106,7 +123,7 @@ def render_home(G, catalog):
         body = f'''
 <section class="intro" id="giris" data-intro aria-label="{tx(H['brand_h'], lang)}">
   <div class="stage">
-    <div class="intro-static">{picture('ana-sayfa', h('static_alt'), '100vw', eager=True)}</div>
+    <div class="intro-static">{intro_static(G, h('static_alt'))}</div>
     <canvas id="stage" aria-hidden="true"></canvas>
     <div class="veil" aria-hidden="true"></div>
     <div class="ilabel" id="ihero">
@@ -230,6 +247,6 @@ def render_home(G, catalog):
                     'inLanguage': lang, 'publisher': {'@id': D.SITE + '/#isletme'}},
                    G['faq_schema'](faq_items)]
         page = G['layout'](lang, '', h('title'), h('desc'), body, schemas=schemas,
-                           scripts=('intro.js', 'quiz.js', 'forms.js', 'compare.js') if G['COMPARE'] else ('intro.js', 'quiz.js', 'forms.js'),
+                           scripts=(('intro-data', 'intro.js', 'quiz.js', 'forms.js') + (('compare.js',) if G['COMPARE'] else ())),
                            body_cls='home', head_extra='<link rel="preload" href="/js/three-0.149.0.min.js" as="script" media="(min-width: 1px)" data-three>' if False else '')
         G['write'](lang, '', page)
