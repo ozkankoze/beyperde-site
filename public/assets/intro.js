@@ -37,8 +37,10 @@
 
   // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
   const KEYS = {
-    a1: [[5, 0.4, 0.4], [7, 0.27, 0.4], [8, 0.25, 0.45], [9, 0.26, 0.43], [10, 0.27, 0.4]],
-    a2: [[8, 0.93, 0.42], [15, 0.935, 0.42]],   // sağdaki kalın rustik fon perde
+    // Okların başladığı halka ekranda sabit durur (kamera hareketiyle oynamaz); nokta, bölüm boyunca
+    // hep ürünün üstünde kalacak şekilde seçildi.
+    a1: [[0, 0.2, 0.42]],    // duvar kağıdı
+    a2: [[0, 0.935, 0.42]],  // sağdaki kalın rustik fon perde
   };
   function keyAt(keys, t) {
     if (t <= keys[0][0]) return keys[0].slice(1);
