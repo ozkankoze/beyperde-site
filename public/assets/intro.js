@@ -24,13 +24,14 @@
 
   const canvas = document.getElementById('stage');
   const ctx = canvas.getContext('2d', { alpha: false });
-  const portrait = () => innerWidth / innerHeight < 1;
-  let mode = portrait() ? 'm' : 'd';
-  intro.classList.toggle('mobile', mode === 'm');
   const DATA = window.BP_INTRO || {};
+  const portrait = () => innerWidth / innerHeight < 1;
+  const pick = () => (portrait() && DATA.m ? 'm' : 'd');   // dikey dizi yoksa yatay dizi kırpılarak oynar
+  let mode = pick();
+  intro.classList.toggle('mobile', mode === 'm');
   let meta = DATA[mode];
   if (!meta) { goStatic(); return; }
-  const base = `/intro/${mode}/`;
+  let base = `/intro/${mode}/`;
   let frames = new Array(meta.n);
 
   function loadFrames() {
@@ -159,8 +160,8 @@
     const w = intro.clientWidth, h = window.innerHeight;
     if (!force && w === lw && Math.abs(h - lh) < 140) return;
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
-    const m2 = portrait() ? 'm' : 'd';
-    if (m2 !== mode && DATA[m2]) { mode = m2; meta = DATA[mode]; intro.classList.toggle('mobile', mode === 'm'); loadFramesFor(); }
+    const m2 = pick();
+    if (m2 !== mode && DATA[m2]) { mode = m2; meta = DATA[mode]; base = `/intro/${mode}/`; intro.classList.toggle('mobile', mode === 'm'); loadFrames(); }
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     const s = Math.max(canvas.width / meta.w, canvas.height / meta.h);
@@ -168,7 +169,6 @@
     ctx.imageSmoothingQuality = 'high';
     dirty = true; wake();
   }
-  function loadFramesFor() { loadFrames(); }
   addEventListener('scroll', readScroll, { passive: true });
   addEventListener('resize', () => resize(false));
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) wake(); }).observe(intro);

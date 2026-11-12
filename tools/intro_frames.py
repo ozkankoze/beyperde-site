@@ -24,9 +24,9 @@ def run(mode, frames_dir, anchors_path):
 
 data = {}
 args = sys.argv[1:]
-for mode, (fd, an) in zip(('d', 'm'), (args[0:2], args[2:4])):
-    if fd and an:
-        data[mode] = run(mode, fd, an)
+for mode, pair in zip(('d', 'm'), (args[0:2], args[2:4])):
+    if len(pair) == 2:
+        data[mode] = run(mode, *pair)
 old = os.path.join(OUT, 'data.js')
 if os.path.exists(old):  # önceki modu koru
     prev = json.loads(open(old).read().split('=', 1)[1].rstrip(';\n'))
