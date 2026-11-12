@@ -24,7 +24,9 @@
   });
 
   /* ---------- video ---------- */
-  const SRC = vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
+  // Büyük/retina ekranda 2K, diğerlerinde 1080p sürüm (görüntü ekranı kaplayacak genişlikte piksele göre seçilir)
+  const needPx = Math.max(innerWidth, innerHeight * 16 / 9) * Math.min(devicePixelRatio || 1, 2);
+  const SRC = (vid.dataset.srcHd && needPx > 2100) ? vid.dataset.srcHd : vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
   let ready = false;
   // Video (≈6 MB) sayfa açılışını yavaşlatmasın: ilk etkileşimde ya da sayfa yüklendikten sonra boşta indirilir.
   // O ana kadar videonun ilk karesiyle aynı olan statik görsel görünür.

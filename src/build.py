@@ -37,7 +37,13 @@ def _asset_version():
 VERSION = _asset_version()
 SITE_CSS = open(os.path.join(ROOT, 'src', 'assets', 'site.css')).read().strip()
 _iv = os.path.join(ROOT, 'src', 'static', 'intro', 'giris.mp4')
-INTRO_V = __import__('hashlib').sha1(open(_iv, 'rb').read()).hexdigest()[:10] if os.path.exists(_iv) else '0'
+_ih = os.path.join(ROOT, 'src', 'static', 'intro', 'giris-2k.mp4')
+INTRO_HD = os.path.exists(_ih)
+_h = __import__('hashlib').sha1()
+for _f in (_iv, _ih):
+    if os.path.exists(_f):
+        _h.update(open(_f, 'rb').read())
+INTRO_V = _h.hexdigest()[:10]
 
 e = html.escape
 LANGS = D.LANGS
@@ -136,6 +142,19 @@ def header(lang, path, avail, nav=''):
     items = [('urunler', 'nav_products'), ('katalog', 'nav_catalog'), ('projeler', 'nav_projects'),
              ('hakkimizda', 'nav_about'), ('iletisim', 'nav_contact')]
     links = ''.join(f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items)
+    # Masaüstü menüde "Ürünler" altında açılan kategori paneli
+    def mcol(cat):
+        c = D.CATS[cat]
+        lis = ''.join(f'<li><a href="{url(lang, f"urunler/{cat}/{s}")}">{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in c['items'])
+        return f'<div class="mega-col"><a class="mega-h" href="{url(lang, f"urunler/{cat}")}">{tx(c["name"], lang)}</a><ul>{lis}</ul></div>'
+    mega = f'<div class="mega" id="mega-urunler"><div class="mega-in">{mcol("perde")}<div class="mega-stack">{mcol("duvar-kagidi")}{mcol("hali")}</div><div class="mega-col mega-more"><a class="mega-h" href="{url(lang, "katalog")}">{ui("nav_catalog", lang)}</a><a class="mega-h" href="{url(lang, "urunler")}">{ui("nav_products", lang)}</a></div></div></div>'
+    dlinks = ''.join(
+        (f'<li class="has-mega"><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""} aria-haspopup="true">{ui(k, lang)}<svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>{mega}</li>' if p == 'urunler'
+         else f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>') for p, k in items)
+    mcats = ''.join(f'<li><a href="{url(lang, f"urunler/{c}")}">{tx(D.CATS[c]["name"], lang)}</a></li>' for c in ('perde', 'duvar-kagidi', 'hali'))
+    mlinks = ''.join(
+        (f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a><ul class="mmenu-sub">{mcats}</ul></li>' if p == 'urunler'
+         else f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>') for p, k in items)
     langs = ''.join(
         f'<li><a href="{url(l, path)}" hreflang="{l}" lang="{l}"{" aria-current=\"true\"" if l == lang else ""}>{l.upper()}</a></li>'
         for l in LANGS if l in avail)
@@ -147,7 +166,7 @@ def header(lang, path, avail, nav=''):
       <img class="logo-l" src="/brand/logo-cream-96.webp" srcset="/brand/logo-cream-96.webp 1x, /brand/logo-cream-192.webp 2x" width="96" height="95" alt="">
       <img class="logo-d" src="/brand/logo-brown-96.webp" srcset="/brand/logo-brown-96.webp 1x, /brand/logo-brown-192.webp 2x" width="96" height="95" alt="">
     </a>
-    <nav class="nav" aria-label="{ui('nav_main', lang)}"><ul>{links}</ul></nav>
+    <nav class="nav" aria-label="{ui('nav_main', lang)}"><ul>{dlinks}</ul></nav>
     <div class="hdr-end">
       {lang_block}
       <a class="hdr-tel" href="tel:{D.TEL}">{ltr(D.PHONE_DISPLAY)}</a>
@@ -158,7 +177,7 @@ def header(lang, path, avail, nav=''):
 </header>
 <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="{ui('menu', lang)}" hidden>
   <div class="mmenu-top"><img src="/brand/logo-cream-96.webp" srcset="/brand/logo-cream-96.webp 1x, /brand/logo-cream-192.webp 2x" width="96" height="95" alt="" class="mmenu-logo" loading="lazy"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
-  <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{links}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li></ul></nav>
+  <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{mlinks}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li></ul></nav>
   <div class="mmenu-foot">
     {f'<ul class="mmenu-lang" aria-label="{ui("language", lang)}">{mlangs}</ul>' if len(avail) > 1 else ''}
     <div class="mmenu-actions"><a class="btn btn-light" href="tel:{D.TEL}">{ICON['phone']}<span>{ltr(D.PHONE_DISPLAY)}</span></a>{btn_wa(lang, ui('wa_general', lang), ui('whatsapp_short', lang), 'btn btn-wa')}</div>
