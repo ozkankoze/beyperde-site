@@ -154,7 +154,10 @@
     "/urunler/fon-perde/dalga-pile.jpg",
     "/urunler/fon-perde/tutucu.jpg",
     "/urunler/fon-perde/ahsap-bag.jpg",
-    "/urunler/fon-perde/chester.jpg"
+    "/urunler/fon-perde/chester.jpg",
+    "/urunler/fon-perde/tv-duvari.jpg",
+    "/urunler/fon-perde/yemek-alani.jpg",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg"
    ],
    "alts": {
     "/urunler/fon-perde/manzarali-salon.jpg": "Havuza ve bahçeye bakan geniş bir salonda iki pencere; iki yana toplanmış tülleri koyu kahverengi fon perdeler çerçeveliyor",
@@ -171,7 +174,10 @@
     "/urunler/fon-perde/dalga-pile.jpg": "Tavanın hemen altındaki bir raydan düzenli dalgalarla inen gri fon perde; alttan",
     "/urunler/fon-perde/tutucu.jpg": "Beyaz bir tutucuyla yana toplanmış gri fon perde, arkasında tül",
     "/urunler/fon-perde/ahsap-bag.jpg": "Ahşap boncuklu bir bağla toplanmış çizgili fon perde; yakından",
-    "/urunler/fon-perde/chester.jpg": "Chester bir kanepenin arkasında, bir tutucuyla yana toplanmış desenli kahverengi fon perde ve tül"
+    "/urunler/fon-perde/chester.jpg": "Chester bir kanepenin arkasında, bir tutucuyla yana toplanmış desenli kahverengi fon perde ve tül",
+    "/urunler/fon-perde/tv-duvari.jpg": "Televizyon duvarının yanında tavandan inen gri fon perde ve beyaz tül, önünde açık renk koltuk",
+    "/urunler/fon-perde/yemek-alani.jpg": "Yemek masasının arkasında, gizli ışıklı tavandan inen gri fon perdeler ve beyaz tül",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg": "Köşe koltuklu bir salonda tavandan yere gri fon perde ve beyaz tül"
    },
    "h1": "Fon Perdeler",
    "lead": "Tülün iki yanında pencereyi çerçeveler; akşam kapandığında ışığı ve bakışları keser. Rengi ve dokusuyla odanın havasını belirler. Aşağıdaki fotoğraflar uyguladığımız fon perdelerden.",
@@ -261,7 +267,10 @@
     "/urunler/fon-perde/dalga-pile.jpg",
     "/urunler/fon-perde/tutucu.jpg",
     "/urunler/fon-perde/ahsap-bag.jpg",
-    "/urunler/fon-perde/chester.jpg"
+    "/urunler/fon-perde/chester.jpg",
+    "/urunler/fon-perde/tv-duvari.jpg",
+    "/urunler/fon-perde/yemek-alani.jpg",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg"
    ],
    "alts": {
     "/urunler/fon-perde/manzarali-salon.jpg": "Two windows in a large living room looking over a pool and garden; dark brown drapes frame sheers gathered to either side",
@@ -278,7 +287,10 @@
     "/urunler/fon-perde/dalga-pile.jpg": "A grey drape falling in even waves from a track just under the ceiling, seen from below",
     "/urunler/fon-perde/tutucu.jpg": "A grey drape gathered to the side by a white holdback, a sheer behind",
     "/urunler/fon-perde/ahsap-bag.jpg": "A striped drape gathered by a tieback of wooden beads, close up",
-    "/urunler/fon-perde/chester.jpg": "A patterned brown drape held aside by a holdback behind a Chesterfield sofa, and a sheer"
+    "/urunler/fon-perde/chester.jpg": "A patterned brown drape held aside by a holdback behind a Chesterfield sofa, and a sheer",
+    "/urunler/fon-perde/tv-duvari.jpg": "Grey drape and white sheer falling from the ceiling beside the TV wall, a light sofa in front",
+    "/urunler/fon-perde/yemek-alani.jpg": "Grey drapes and white sheer hanging from a lit ceiling recess behind the dining table",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg": "Floor-to-ceiling grey drapes and white sheer in a living room with a corner sofa"
    },
    "h1": "Drapes",
    "lead": "It frames the window on either side of the sheer and, drawn in the evening, shuts out the light and passing eyes. Its colour and texture set the mood of the room. The photographs below are drapes we have fitted.",
@@ -368,7 +380,10 @@
     "/urunler/fon-perde/dalga-pile.jpg",
     "/urunler/fon-perde/tutucu.jpg",
     "/urunler/fon-perde/ahsap-bag.jpg",
-    "/urunler/fon-perde/chester.jpg"
+    "/urunler/fon-perde/chester.jpg",
+    "/urunler/fon-perde/tv-duvari.jpg",
+    "/urunler/fon-perde/yemek-alani.jpg",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg"
    ],
    "alts": {
     "/urunler/fon-perde/manzarali-salon.jpg": "نافذتان في غرفة معيشة واسعة تطلان على مسبح وحديقة، وستائر قماشية بنية داكنة تؤطّر التول المجموع إلى الجانبين",
@@ -385,7 +400,10 @@
     "/urunler/fon-perde/dalga-pile.jpg": "ستارة قماشية رمادية تنزل في موجات منتظمة من سكة تحت السقف مباشرة، من الأسفل",
     "/urunler/fon-perde/tutucu.jpg": "ستارة قماشية رمادية مجموعة إلى الجانب بماسك أبيض، وخلفها تول",
     "/urunler/fon-perde/ahsap-bag.jpg": "ستارة قماشية مقلّمة مجموعة بمشبك من خرز خشبي، عن قرب",
-    "/urunler/fon-perde/chester.jpg": "ستارة قماشية بنية منقوشة مجموعة إلى الجانب بماسك خلف أريكة تشسترفيلد، وتول"
+    "/urunler/fon-perde/chester.jpg": "ستارة قماشية بنية منقوشة مجموعة إلى الجانب بماسك خلف أريكة تشسترفيلد، وتول",
+    "/urunler/fon-perde/tv-duvari.jpg": "ستارة رمادية وتول أبيض ينسدلان من السقف بجانب جدار التلفاز، وأمامهما كنبة فاتحة",
+    "/urunler/fon-perde/yemek-alani.jpg": "ستائر رمادية وتول أبيض تنسدل من تجويف سقف مضاء خلف طاولة الطعام",
+    "/urunler/fon-perde/kose-koltuklu-salon.jpg": "ستائر رمادية وتول أبيض من السقف إلى الأرض في غرفة معيشة بكنبة زاوية"
    },
    "h1": "الستائر القماشية",
    "lead": "تؤطّر النافذة على جانبي التول، وحين تُسدل مساءً تحجب الضوء والأنظار. ويحدّد لونها وملمسها جوّ الغرفة. الصور أدناه لستائر قماشية ركّبناها.",
@@ -1326,12 +1344,16 @@
     "/urunler/katlamali-perde/salon.jpg",
     "/urunler/katlamali-perde/mutfak.jpg",
     "/urunler/katlamali-perde/toplanmis.jpg",
-    "/urunler/katlamali-perde/inik.jpg"
+    "/urunler/katlamali-perde/inik.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg"
    ],
    "alts": {
     "/urunler/katlamali-perde/mutfak.jpg": "Beyaz dolaplı bir mutfakta, kenarlarında siyah bant olan krem rengi katlamalı perde, yarıya kadar toplanmış",
     "/urunler/katlamali-perde/toplanmis.jpg": "Bir çalışma odasında yukarı toplanmış tül dokulu katlamalı perde, altında ağaçlara bakan pencere",
-    "/urunler/katlamali-perde/inik.jpg": "Aynı pencerede yarıya inmiş tül dokulu katlamalı perde ve arkasında camı örten ikinci bir perde"
+    "/urunler/katlamali-perde/inik.jpg": "Aynı pencerede yarıya inmiş tül dokulu katlamalı perde ve arkasında camı örten ikinci bir perde",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg": "Krem rengi, kenarlarında siyah bant olan katlamalı perde; pencerenin üstünde katlar hâlinde toplanmış",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg": "Beyaz mutfak dolaplarının yanında, siyah kenar bantlı krem katlamalı perde"
    },
    "h1": "Katlamalı Perdeler",
    "lead": "Tek parça kumaş yukarı çekildikçe düzgün katlar hâlinde toplanır: inikken sakin bir kumaş yüzeyidir, kalktığında pencerenin üstünde yumuşak bir bant olarak durur. Aşağıdaki fotoğraflar bir salonda, bir mutfakta ve bir çalışma odasında uyguladığımız katlamalı perdelerden.",
@@ -1409,12 +1431,16 @@
     "/urunler/katlamali-perde/salon.jpg",
     "/urunler/katlamali-perde/mutfak.jpg",
     "/urunler/katlamali-perde/toplanmis.jpg",
-    "/urunler/katlamali-perde/inik.jpg"
+    "/urunler/katlamali-perde/inik.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg"
    ],
    "alts": {
     "/urunler/katlamali-perde/mutfak.jpg": "A cream Roman blind with black bands along its edges, half raised, in a kitchen with white cupboards",
     "/urunler/katlamali-perde/toplanmis.jpg": "A sheer Roman blind drawn up in a study, with the window below looking out onto trees",
-    "/urunler/katlamali-perde/inik.jpg": "The same window with the sheer Roman blind half lowered and a second blind behind it covering the glass"
+    "/urunler/katlamali-perde/inik.jpg": "The same window with the sheer Roman blind half lowered and a second blind behind it covering the glass",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg": "Cream Roman blind with black edge bands, gathered in folds above the window",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg": "Cream Roman blind with black edge bands beside white kitchen cabinets"
    },
    "h1": "Roman Blinds",
    "lead": "A single piece of fabric gathers into neat folds as it is drawn up: lowered, it is a quiet surface of cloth; raised, it sits above the window as a soft band. The photographs below are of Roman blinds we have fitted in a living room, a kitchen and a study.",
@@ -1492,12 +1518,16 @@
     "/urunler/katlamali-perde/salon.jpg",
     "/urunler/katlamali-perde/mutfak.jpg",
     "/urunler/katlamali-perde/toplanmis.jpg",
-    "/urunler/katlamali-perde/inik.jpg"
+    "/urunler/katlamali-perde/inik.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg"
    ],
    "alts": {
     "/urunler/katlamali-perde/mutfak.jpg": "ستارة رومانية بلون الكريم بشريطين أسودين على حافتيها، مرفوعة إلى النصف، في مطبخ بخزائن بيضاء",
     "/urunler/katlamali-perde/toplanmis.jpg": "ستارة رومانية شفافة مرفوعة في غرفة مكتب، وتحتها نافذة تطل على الأشجار",
-    "/urunler/katlamali-perde/inik.jpg": "النافذة نفسها والستارة الرومانية الشفافة منخفضة إلى النصف، وخلفها ستارة ثانية تغطي الزجاج"
+    "/urunler/katlamali-perde/inik.jpg": "النافذة نفسها والستارة الرومانية الشفافة منخفضة إلى النصف، وخلفها ستارة ثانية تغطي الزجاج",
+    "/urunler/katlamali-perde/kenar-bantli-pencere.jpg": "ستارة رومانية بلون كريمي بأشرطة سوداء على الحواف، مطويّة فوق النافذة",
+    "/urunler/katlamali-perde/kenar-bantli-mutfak.jpg": "ستارة رومانية كريمية بأشرطة سوداء على الحواف بجانب خزائن مطبخ بيضاء"
    },
    "h1": "ستائر رومانية",
    "lead": "قطعة قماش واحدة تتجمّع في طيات مرتبة كلما رُفعت: إذا أُنزلت صارت سطحاً قماشياً هادئاً، وإذا رُفعت استقرّت فوق النافذة شريطاً ناعماً. الصور أدناه لستائر رومانية ركّبناها في صالة ومطبخ وغرفة مكتب.",
@@ -3615,6 +3645,268 @@
      "ننصح بذلك. فبطانة السجاد تمنع انزلاقه، وتحمي الأرضية والسجادة معاً، وتجعلها أنعم تحت القدم. وننظر معاً عند القياس في نوع البطانة المناسب لسجادتك وأرضيتك."
     ]
    ]
+  }
+ },
+ "perde/blackout-perde": {
+  "tr": {
+   "h1": "Blackout Perdeler",
+   "lead": "Işığı geçirmeyen sık dokulu kumaş: gündüz de odayı karartır, gece sokak ışığını dışarıda bırakır. Aşağıdaki fotoğraflar uyguladığımız blackout perdelerden.",
+   "h2": "Gün ortasında bile karanlık",
+   "intro": "Blackout perde, ışığı geçirmeyecek biçimde dokunmuş ya da kaplanmış bir fon perde kumaşıdır. Yatak odası, çocuk odası ve ev sineması gibi karanlığın istendiği yerlerde kullanılır. Önüne ya da arkasına bir tül eklendiğinde gündüz yumuşak bir ışık, istendiğinde tam karanlık elde edilir.",
+   "sections": [
+    [
+     "Nerede kullanılır",
+     "Gündüz uyunan ya da sabah erken güneş alan yatak odalarında, çocuk odalarında, ekran ve projektörün kullanıldığı odalarda blackout perde rahatlık sağlar. Sokak lambasının ya da karşı binanın ışığının girdiği pencerelerde gece de işe yarar."
+    ],
+    [
+     "Montaj tam karanlığı belirler",
+     "Kumaş ışığı keser; odanın ne kadar karardığını ise montaj belirler. Ray tavana ve pencereden geniş kurulduğunda, perde yere kadar indiğinde kenarlardan ve üstten sızan ışık azalır. Keşifte pencerenize göre ray yerini ve perde ölçüsünü birlikte belirliyoruz."
+    ],
+    [
+     "Tülle birlikte",
+     "Fotoğraflardaki uygulamalarda olduğu gibi blackout perde çoğunlukla bir tülle aynı rayda ya da çift rayda kullanılır. Gündüz tül kapalı, blackout açık durur; akşam blackout kapatılır."
+    ],
+    [
+     "Asma biçimi",
+     "Blackout perde tavan rayında pileli ya da dalgalı dikilebilir, metal veya ahşap boru üzerinde kuşgözlü (halkalı) olarak da asılabilir. Seçimi odanın stiline ve tavanın durumuna göre birlikte yaparız."
+    ]
+   ],
+   "faq": [
+    [
+     "Blackout perde odayı tamamen karartır mı?",
+     "Kumaş ışığı geçirmez; kenarlardan ve üstten sızan ışık ise rayın yeri ve perdenin genişliğiyle ilgilidir. Tavana ve pencereden geniş kurulan, yere kadar inen bir perde odayı büyük ölçüde karartır."
+    ],
+    [
+     "Blackout perdeyle tül birlikte kullanılabilir mi?",
+     "Evet. Çift raylı bir kurulumda tül ve blackout perde ayrı ayrı açılıp kapanır; gündüz tül, gece blackout kullanılır."
+    ]
+   ],
+   "imgs": [
+    "/urunler/blackout-perde/tavan-rayi.jpg",
+    "/urunler/blackout-perde/halkali-boru.jpg",
+    "/urunler/blackout-perde/tul-ile.jpg",
+    "/urunler/blackout-perde/cati-kati.jpg"
+   ],
+   "alts": {
+    "/urunler/blackout-perde/tavan-rayi.jpg": "Tavan rayından yere kadar inen, kapalı hâlde bej-gri blackout perde",
+    "/urunler/blackout-perde/halkali-boru.jpg": "Metal boru üzerinde halkalı (metal kuşgözlü) blackout perdenin yakından görünümü",
+    "/urunler/blackout-perde/tul-ile.jpg": "Kemerli pencerenin iki yanında bej blackout perdeler, ortada beyaz tül",
+    "/urunler/blackout-perde/cati-kati.jpg": "Eğimli tavanlı bir odada gri blackout perde ve beyaz tül"
+   }
+  },
+  "en": {
+   "h1": "Blackout Curtains",
+   "lead": "A dense fabric that lets no light through: it darkens the room by day and keeps street light out at night. The photographs below are blackout curtains we have fitted.",
+   "h2": "Dark, even at midday",
+   "intro": "A blackout curtain is a drape fabric woven or coated so that light does not pass through. It is used wherever darkness is wanted: bedrooms, children’s rooms, home cinemas. Paired with a sheer, it gives soft light by day and full darkness when you need it.",
+   "sections": [
+    [
+     "Where it is used",
+     "Blackout curtains bring comfort in bedrooms that catch the early sun or where someone sleeps by day, in children’s rooms and in rooms with a screen or projector. On windows that face a street lamp or a lit building they work at night too."
+    ],
+    [
+     "Fitting decides how dark it gets",
+     "The fabric stops the light; how dark the room becomes depends on the fitting. A track mounted on the ceiling and wider than the window, with the curtain reaching the floor, cuts the light that leaks around the edges. At the survey we decide the track position and the curtain size for your window together."
+    ],
+    [
+     "With a sheer",
+     "As in the photographs, a blackout curtain is usually hung with a sheer, on the same track or a double one. By day the sheer is drawn and the blackout open; in the evening the blackout is closed."
+    ],
+    [
+     "How it hangs",
+     "A blackout curtain can be sewn pleated or in waves on a ceiling track, or hung with eyelets on a metal or wooden pole. We choose together, according to the room and the ceiling."
+    ]
+   ],
+   "faq": [
+    [
+     "Does a blackout curtain make the room completely dark?",
+     "The fabric lets no light through; the light that leaks around it depends on where the track is and how wide the curtain is. A curtain hung from the ceiling, wider than the window and down to the floor, darkens the room to a large degree."
+    ],
+    [
+     "Can a blackout curtain be used with a sheer?",
+     "Yes. On a double track the sheer and the blackout open and close separately: the sheer by day, the blackout at night."
+    ]
+   ],
+   "imgs": [
+    "/urunler/blackout-perde/tavan-rayi.jpg",
+    "/urunler/blackout-perde/halkali-boru.jpg",
+    "/urunler/blackout-perde/tul-ile.jpg",
+    "/urunler/blackout-perde/cati-kati.jpg"
+   ],
+   "alts": {
+    "/urunler/blackout-perde/tavan-rayi.jpg": "Beige-grey blackout curtain drawn closed, hanging from a ceiling track to the floor",
+    "/urunler/blackout-perde/halkali-boru.jpg": "Close-up of a blackout curtain with metal eyelets on a metal pole",
+    "/urunler/blackout-perde/tul-ile.jpg": "Beige blackout curtains on either side of an arched window, with a white sheer between",
+    "/urunler/blackout-perde/cati-kati.jpg": "Grey blackout curtain and white sheer in a room with a sloping ceiling"
+   }
+  },
+  "ar": {
+   "h1": "ستائر بلاك أوت",
+   "lead": "قماش كثيف لا يمرّر الضوء: يعتّم الغرفة نهاراً ويحجب ضوء الشارع ليلاً. الصور أدناه لستائر بلاك أوت ركّبناها.",
+   "h2": "عتمة حتى في منتصف النهار",
+   "intro": "ستارة البلاك أوت قماش ستائر منسوج أو مطلي بحيث لا يمر الضوء من خلاله. تُستخدم حيث تُطلب العتمة: غرف النوم وغرف الأطفال وغرف السينما المنزلية. ومع تول أمامها أو خلفها تحصل على ضوء ناعم نهاراً وعتمة تامة عند الحاجة.",
+   "sections": [
+    [
+     "أين تُستخدم",
+     "تمنح ستائر البلاك أوت الراحة في غرف النوم التي تستقبل شمس الصباح الباكر أو التي يُنام فيها نهاراً، وفي غرف الأطفال والغرف التي فيها شاشة أو جهاز عرض. وتفيد ليلاً أيضاً في النوافذ المطلة على أعمدة الإنارة أو مبانٍ مضاءة."
+    ],
+    [
+     "التركيب يحدد درجة العتمة",
+     "القماش يحجب الضوء، أما مقدار عتمة الغرفة فيحدده التركيب. حين تُركّب السكة في السقف وأعرض من النافذة وتصل الستارة إلى الأرض يقل الضوء المتسرب من الحواف. نحدد معاً عند المعاينة موضع السكة ومقاس الستارة بحسب نافذتك."
+    ],
+    [
+     "مع التول",
+     "كما في الصور، تُعلّق ستارة البلاك أوت غالباً مع تول على السكة نفسها أو على سكة مزدوجة. نهاراً يُسدل التول وتبقى البلاك أوت مفتوحة، ومساءً تُغلق البلاك أوت."
+    ],
+    [
+     "طريقة التعليق",
+     "يمكن خياطة ستارة البلاك أوت بطيات أو بتموجات على سكة السقف، أو تعليقها بحلقات على قضيب معدني أو خشبي. نختار معاً بحسب طابع الغرفة وحالة السقف."
+    ]
+   ],
+   "faq": [
+    [
+     "هل تعتّم ستارة البلاك أوت الغرفة تماماً؟",
+     "القماش لا يمرّر الضوء، أما الضوء المتسرب من الحواف فيتعلق بموضع السكة وعرض الستارة. الستارة المعلقة من السقف والأعرض من النافذة والواصلة إلى الأرض تعتّم الغرفة إلى حد كبير."
+    ],
+    [
+     "هل يمكن استخدام البلاك أوت مع التول؟",
+     "نعم. على سكة مزدوجة يُفتح التول والبلاك أوت ويُغلقان كلٌّ على حدة: التول نهاراً والبلاك أوت ليلاً."
+    ]
+   ],
+   "imgs": [
+    "/urunler/blackout-perde/tavan-rayi.jpg",
+    "/urunler/blackout-perde/halkali-boru.jpg",
+    "/urunler/blackout-perde/tul-ile.jpg",
+    "/urunler/blackout-perde/cati-kati.jpg"
+   ],
+   "alts": {
+    "/urunler/blackout-perde/tavan-rayi.jpg": "ستارة بلاك أوت بلون بيج رمادي مسدلة بالكامل من سكة السقف حتى الأرض",
+    "/urunler/blackout-perde/halkali-boru.jpg": "لقطة قريبة لستارة بلاك أوت بحلقات معدنية على قضيب معدني",
+    "/urunler/blackout-perde/tul-ile.jpg": "ستائر بلاك أوت بيج على جانبي نافذة مقوّسة وبينهما تول أبيض",
+    "/urunler/blackout-perde/cati-kati.jpg": "ستارة بلاك أوت رمادية وتول أبيض في غرفة بسقف مائل"
+   }
+  }
+ },
+ "perde/motorlu-jaluzi": {
+  "tr": {
+   "h1": "Motorlu Jaluziler",
+   "lead": "Jaluzinin kanat açısı ve yüksekliği kumandayla ayarlanır: ulaşılması zor, yüksek ve geniş pencerelerde ip ya da çubukla uğraşmadan. Aşağıdaki fotoğraflar çift yükseklikte bir pencereye uyguladığımız motorlu jaluziden.",
+   "h2": "Kumandada ışık ayarı",
+   "intro": "Motorlu jaluzi, bildiğimiz yatay kanatlı jaluzinin bir motorla çalışan hâlidir. Kanatlar kumandayla döndürülerek ışık ayarlanır, jaluzi aynı kumandayla yukarı toplanır ya da indirilir. Özellikle çift yükseklikteki, merdiven boşluğundaki ve mobilyanın arkasında kalan pencerelerde elle kullanımı zor olan jaluziyi pratik hâle getirir.",
+   "sections": [
+    [
+     "Hangi pencerelere uygun",
+     "Elin yetişmediği yüksek pencereler, çatı ve galeri boşlukları, önünde dolap ya da tezgâh bulunan pencereler ve aynı anda açılıp kapanması istenen pencere dizileri motorlu jaluzi için uygun yerlerdir."
+    ],
+    [
+     "Kanat ve renk",
+     "Fotoğraflardaki uygulamada koyu renk metal kanatlar kullanıldı. Kanat malzemesini, rengini ve genişliğini pencerenin ölçüsüne ve odanın tonlarına göre birlikte seçiyoruz."
+    ],
+    [
+     "Elektrik ve montaj",
+     "Motorun nasıl besleneceği, pencerenin yanında elektrik hattı olup olmadığına bağlıdır. Keşifte pencereyi ve tesisatı görüp kurulumu buna göre planlıyoruz."
+    ]
+   ],
+   "faq": [
+    [
+     "Motorlu jaluzinin kanat açısı da kumandayla ayarlanır mı?",
+     "Evet. Kumandayla hem jaluziyi yukarı toplayıp indirebilir hem de kanatları döndürerek içeri giren ışığı ayarlayabilirsiniz."
+    ],
+    [
+     "Mevcut pencereme motorlu jaluzi takılabilir mi?",
+     "Çoğu pencereye takılabilir; motorun beslenmesi ve montaj yeri pencereye göre değişir. Keşifte yerinde bakıp size uygun kurulumu öneriyoruz."
+    ]
+   ],
+   "imgs": [
+    "/urunler/motorlu-jaluzi/kumanda.jpg",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg"
+   ],
+   "alts": {
+    "/urunler/motorlu-jaluzi/kumanda.jpg": "Yüksek bir pencerede koyu renk metal kanatlı motorlu jaluzi, elde uzaktan kumanda",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg": "Motorlu jaluzinin açık kanatları arasından süzülen gün ışığı",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg": "Çift yükseklikte bir pencerede koyu renk metal kanatlı motorlu jaluzi"
+   }
+  },
+  "en": {
+   "h1": "Motorised Venetian Blinds",
+   "lead": "The slat angle and the height of the blind are set by remote: no cords or wands on tall, wide or hard-to-reach windows. The photographs below are a motorised blind we fitted on a double-height window.",
+   "h2": "Light, on the remote",
+   "intro": "A motorised venetian blind is the familiar horizontal-slat blind driven by a motor. The slats turn by remote to adjust the light, and the same remote raises and lowers the blind. It makes a blind practical on windows that are hard to work by hand: double-height glazing, stairwells, windows behind furniture.",
+   "sections": [
+    [
+     "Which windows suit it",
+     "High windows out of reach, roof and gallery voids, windows behind a cabinet or worktop, and rows of windows you want to open and close together are good places for a motorised blind."
+    ],
+    [
+     "Slats and colour",
+     "The installation in the photographs uses dark metal slats. We choose the slat material, colour and width together, according to the window size and the tones of the room."
+    ],
+    [
+     "Power and fitting",
+     "How the motor is powered depends on whether there is a supply near the window. At the survey we look at the window and the wiring and plan the installation accordingly."
+    ]
+   ],
+   "faq": [
+    [
+     "Can the slat angle be adjusted by remote too?",
+     "Yes. With the remote you can raise and lower the blind and also turn the slats to adjust the light coming in."
+    ],
+    [
+     "Can a motorised blind be fitted to my existing window?",
+     "It can be fitted to most windows; the power supply and the fixing position depend on the window. We look on site at the survey and suggest the right installation."
+    ]
+   ],
+   "imgs": [
+    "/urunler/motorlu-jaluzi/kumanda.jpg",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg"
+   ],
+   "alts": {
+    "/urunler/motorlu-jaluzi/kumanda.jpg": "Motorised venetian blind with dark metal slats on a tall window, remote control in hand",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg": "Daylight passing between the open slats of a motorised venetian blind",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg": "Motorised venetian blind with dark metal slats on a double-height window"
+   }
+  },
+  "ar": {
+   "h1": "جالوزي كهربائي",
+   "lead": "تُضبط زاوية الشرائح وارتفاع الجالوزي بجهاز التحكم: بلا حبال ولا عصي على النوافذ العالية والواسعة وصعبة الوصول. الصور أدناه لجالوزي كهربائي ركّبناه على نافذة بارتفاع مزدوج.",
+   "h2": "الضوء في جهاز التحكم",
+   "intro": "الجالوزي الكهربائي هو الجالوزي المعروف بشرائحه الأفقية ولكن بمحرك. تدور الشرائح بجهاز التحكم لضبط الضوء، ويُرفع الجالوزي ويُنزل بالجهاز نفسه. وهو يجعل الجالوزي عملياً على النوافذ التي يصعب تشغيلها باليد: الواجهات بارتفاع مزدوج وبيوت الدرج والنوافذ خلف الأثاث.",
+   "sections": [
+    [
+     "النوافذ المناسبة",
+     "النوافذ العالية التي لا تصلها اليد، وفراغات السقف والميزانين، والنوافذ خلف خزانة أو سطح عمل، وصفوف النوافذ التي يُراد فتحها وإغلاقها معاً، كلها أماكن مناسبة للجالوزي الكهربائي."
+    ],
+    [
+     "الشرائح واللون",
+     "استُخدمت في التركيب الظاهر في الصور شرائح معدنية داكنة. نختار معاً مادة الشرائح ولونها وعرضها بحسب مقاس النافذة وألوان الغرفة."
+    ],
+    [
+     "الكهرباء والتركيب",
+     "طريقة تغذية المحرك تتوقف على وجود خط كهرباء قرب النافذة. نعاين النافذة والتمديدات عند الزيارة ونخطط التركيب على أساسها."
+    ]
+   ],
+   "faq": [
+    [
+     "هل تُضبط زاوية الشرائح بجهاز التحكم أيضاً؟",
+     "نعم. بجهاز التحكم يمكنك رفع الجالوزي وإنزاله وتدوير الشرائح لضبط الضوء الداخل."
+    ],
+    [
+     "هل يمكن تركيب جالوزي كهربائي على نافذتي الحالية؟",
+     "يمكن تركيبه على معظم النوافذ، وتختلف تغذية المحرك وموضع التثبيت بحسب النافذة. نعاين في الموقع ونقترح التركيب المناسب."
+    ]
+   ],
+   "imgs": [
+    "/urunler/motorlu-jaluzi/kumanda.jpg",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg"
+   ],
+   "alts": {
+    "/urunler/motorlu-jaluzi/kumanda.jpg": "جالوزي كهربائي بشرائح معدنية داكنة على نافذة عالية، وجهاز التحكم في اليد",
+    "/urunler/motorlu-jaluzi/kanat-acisi.jpg": "ضوء النهار يتسلل بين الشرائح المفتوحة لجالوزي كهربائي",
+    "/urunler/motorlu-jaluzi/yuksek-pencere.jpg": "جالوزي كهربائي بشرائح معدنية داكنة على نافذة بارتفاع مزدوج"
+   }
   }
  }
 }

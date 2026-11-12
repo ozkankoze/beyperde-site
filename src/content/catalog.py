@@ -16,6 +16,8 @@ TYPE_DEFAULTS = {
     'fon-perde': ([], [], ['keser']),
     'stor-perde': ([], ['modern'], []),
     'jaluzi-perde': ([], [], ['ayarlanir']),
+    'motorlu-jaluzi': ([], ['modern'], ['ayarlanir']),
+    'blackout-perde': ([], [], ['keser']),
     'dikey-perde': ([], ['modern'], ['ayarlanir']),
     'katlamali-perde': ([], [], ['ayarlanir']),
     'plicell-perde': ([], ['modern'], ['ayarlanir']),

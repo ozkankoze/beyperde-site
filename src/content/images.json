@@ -333,6 +333,216 @@
 1200
 ]
 },
+"projeler/sile-akcekese/ahsap-jaluzi.webp": {
+"avg": [
+143,
+111,
+83
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/ahsap-tutucu.webp": {
+"avg": [
+139,
+136,
+124
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/keten-tul-bahce.webp": {
+"avg": [
+140,
+143,
+126
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/mutfak-sisal-genel.webp": {
+"avg": [
+186,
+183,
+172
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/sile-akcekese/mutfak-yuvarlak-sisal.webp": {
+"avg": [
+152,
+147,
+132
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/pencere-tul.webp": {
+"avg": [
+152,
+155,
+152
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/sile-akcekese/pile-detay.webp": {
+"avg": [
+141,
+138,
+126
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/salon-tul-fon.webp": {
+"avg": [
+172,
+174,
+169
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/sile-akcekese/salon-yemek.webp": {
+"avg": [
+153,
+151,
+143
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
+"projeler/sile-akcekese/tutucu-detay.webp": {
+"avg": [
+153,
+150,
+137
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"projeler/sile-akcekese/yatak-odasi-sisal.webp": {
+"avg": [
+157,
+151,
+141
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/blackout-perde/cati-kati.webp": {
+"avg": [
+163,
+160,
+151
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/blackout-perde/halkali-boru.webp": {
+"avg": [
+156,
+150,
+134
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/blackout-perde/tavan-rayi.webp": {
+"avg": [
+132,
+128,
+111
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/blackout-perde/tul-ile.webp": {
+"avg": [
+192,
+191,
+182
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
 "urunler/dikey-perde/doku.webp": {
 "avg": [
 185,
@@ -595,6 +805,20 @@
 1600
 ]
 },
+"urunler/fon-perde/kose-koltuklu-salon.webp": {
+"avg": [
+157,
+153,
+139
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
 "urunler/fon-perde/kristal-avize.webp": {
 "avg": [
 138,
@@ -665,6 +889,20 @@
 1200
 ]
 },
+"urunler/fon-perde/tv-duvari.webp": {
+"avg": [
+123,
+117,
+105
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
 "urunler/fon-perde/yatak-odasi.webp": {
 "avg": [
 174,
@@ -677,6 +915,20 @@
 480,
 960,
 1200
+]
+},
+"urunler/fon-perde/yemek-alani.webp": {
+"avg": [
+150,
+148,
+137
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
 ]
 },
 "urunler/fon-perde/yemek-odasi.webp": {
@@ -861,6 +1113,34 @@
 1298
 ]
 },
+"urunler/katlamali-perde/kenar-bantli-mutfak.webp": {
+"avg": [
+150,
+146,
+133
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
+"urunler/katlamali-perde/kenar-bantli-pencere.webp": {
+"avg": [
+192,
+187,
+170
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+480,
+960,
+1600
+]
+},
 "urunler/katlamali-perde/mutfak.webp": {
 "avg": [
 141,
@@ -901,6 +1181,48 @@
 480,
 960,
 1270
+]
+},
+"urunler/motorlu-jaluzi/kanat-acisi.webp": {
+"avg": [
+115,
+122,
+113
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/motorlu-jaluzi/kumanda.webp": {
+"avg": [
+112,
+115,
+111
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
+]
+},
+"urunler/motorlu-jaluzi/yuksek-pencere.webp": {
+"avg": [
+111,
+116,
+112
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+480,
+960,
+1500
 ]
 },
 "urunler/motorlu-perde-1.webp": {
