@@ -25,9 +25,21 @@ def render_misc(G, catalog):
     {G['arrow_link'](url(lang, 'projeler/erenkoy-hk-evi'), tx(P.HOME['project_cta'], lang))}
   </div>
 </article>'''
+        for pj in G['PJ'].PROJECTS:
+            pprods = ''.join(f'<li><a href="{url(lang, f"urunler/{D.PRODUCTS[s][0]}/{s}")}">{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in pj['products'])
+            card += f'''<article class="pj-card pj-card-alt">
+  <a class="ph" href="{url(lang, 'projeler/' + pj['slug'])}" tabindex="-1" aria-hidden="true">{picture(pj['hero'], '', '(max-width: 900px) 100vw, 50vw')}</a>
+  <div class="pj-card-b">
+    <dl class="meta"><div><dt>{tx(PP['location'], lang)}</dt><dd>{e(tx(pj['location'], lang))}</dd></div></dl>
+    <h2 class="h2"><a href="{url(lang, 'projeler/' + pj['slug'])}">{e(tx(pj['h1'], lang))}</a></h2>
+    <p>{e(tx(pj['lead'], lang))}</p>
+    <p class="kicker">{tx(PP['work'], lang)}</p><ul class="chips">{pprods}</ul>
+    {G['arrow_link'](url(lang, 'projeler/' + pj['slug']), tx(P.HOME['project_cta'], lang))}
+  </div>
+</article>'''
         crumbs, cs = G['breadcrumbs'](lang, [(tx(PP['h1'], lang), 'projeler')])
         body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(PP['h1'], lang)}</h1><p class="lead">{tx(PP['lead'], lang)}</p></div></section>
-<section class="band tight"><div class="wrap">{card}{compare_block(G, lang, G['COMPARE'])}<p class="note">{tx(PP['more'], lang)}</p></div></section>
+<section class="band tight"><div class="wrap pj-list">{card}{compare_block(G, lang, G['COMPARE'])}<p class="note">{tx(PP['more'], lang)}</p></div></section>
 {G['cta_band'](lang, ui('wa_general', lang), 'projeler/erenkoy-hk-evi/doku')}'''
         G['write'](lang, 'projeler', G['layout'](lang, 'projeler', tx(PP['title'], lang), tx(PP['lead'], lang), body, nav='projeler', schemas=[cs],
                                                  scripts=('compare.js',) if G['COMPARE'] else (), og_image=G['og_src']('projeler/erenkoy-hk-evi/pencere')))
@@ -70,6 +82,45 @@ def render_misc(G, catalog):
         G['write'](lang, path, G['layout'](lang, path, {'tr': f'{ep["h1"]} — Tül, Fon ve Jaluzi Uygulaması | Bey Perde', 'en': f'{ep["h1"]} — Sheers, Drapes and Venetian Blinds | Bey Perde', 'ar': f'{ep["h1"]} — تول وستائر وجالوزي | باي بردة'}[lang],
                                            {'tr': ep['lead'], 'en': 'A house in Erenköy, Kadıköy: floor-to-ceiling linen-textured sheers, earth-toned drapes and wooden Venetian blinds.', 'ar': ep['lead']}[lang], body, nav='projeler', schemas=[cs, cw], wa_text=wa_text, body_cls='has-hero',
                                            og_image=G['og_src']('projeler/erenkoy-hk-evi/pencere')))
+
+        # ---------------- fotoğraflarla eklenen projeler
+        for pj in G['PJ'].PROJECTS:
+            path = 'projeler/' + pj['slug']
+            name = tx(pj['h1'], lang)
+            crumbs, cs = G['breadcrumbs'](lang, [(tx(PP['h1'], lang), 'projeler'), (name, path)])
+            pprods = ''.join(f'<li><a href="{url(lang, f"urunler/{D.PRODUCTS[s][0]}/{s}")}">{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in pj['products'])
+            groups = []
+            for gi, g in enumerate(pj['groups']):
+                n = len(g['items'])
+                figs = ''.join(f'<figure class="pf {"pf" + str(i % 4) if n > 1 else "pf-solo"}"><a class="ph" href="{G["big_src"](f"projeler/{pj["slug"]}/{k}")}" data-lb="pj" data-cap="{e(tx(c, lang))}">{picture(f"projeler/{pj["slug"]}/{k}", tx(c, lang), "(max-width: 900px) 100vw, 50vw")}</a><figcaption>{e(tx(c, lang))}</figcaption></figure>' for i, (k, c) in enumerate(g['items']))
+                groups.append(f'''<section class="band {'linen' if gi % 2 == 0 else ''}" aria-labelledby="pg{gi}">
+  <div class="wrap">
+    <div class="two"><div><p class="kicker">0{gi + 1}</p><h2 class="h2" id="pg{gi}">{e(tx(g['h'], lang))}</h2></div><div class="prose"><p>{e(tx(g['p'], lang))}</p></div></div>
+    <div class="pgal">{figs}</div>
+  </div>
+</section>''')
+            wa_text = ui('wa_project', lang, x=name)
+            body = f'''<section class="pj-hero">
+  {picture(pj['hero'], tx(pj['groups'][0]['items'][0][1], lang), '100vw', eager=True)}
+  <div class="wrap pj-hero-in">
+    {crumbs}
+    <h1 class="h1">{e(name)}</h1>
+    <p class="lead">{e(tx(pj['lead'], lang))}</p>
+    <dl class="meta meta-light"><div><dt>{tx(PP['location'], lang)}</dt><dd>{e(tx(pj['location'], lang))}</dd></div><div><dt>{tx(PP['work'], lang)}</dt><dd><ul class="chips chips-light">{pprods}</ul></dd></div></dl>
+  </div>
+</section>
+<section class="band"><div class="wrap two">
+  <div><h2 class="h2">{e(tx(pj['h2'], lang))}</h2></div>
+  <div class="prose"><p class="lead-ink">{e(tx(pj['intro'], lang))}</p></div>
+</div></section>
+{''.join(groups)}
+<section class="band dark tight"><div class="wrap two"><div><h2 class="h2">{ui('get_quote', lang)}</h2></div><div><div class="row">{G['btn_wa'](lang, wa_text)}<a class="btn btn-ghost-light" href="{url(lang, 'iletisim')}#teklif">{ui('get_quote', lang)}</a></div></div></div></section>'''
+            cw = {'@context': 'https://schema.org', '@type': 'CreativeWork', 'name': name, 'description': tx(pj['lead'], lang), 'creator': {'@id': D.SITE + '/#isletme'},
+                  'locationCreated': {'@type': 'Place', 'name': pj['location']['tr']},
+                  'image': [G['og_src'](f"projeler/{pj['slug']}/{k}") for g in pj['groups'] for k, _ in g['items']][:6]}
+            title = {'tr': f'{name} — Tül, Fon, Jaluzi ve Sisal Halı | Bey Perde', 'en': f'{name} — Sheers, Drapes, Blinds and Sisal Rugs | Bey Perde', 'ar': f'{name} — تول وستائر وجالوزي وسجاد سيزال | باي بردة'}[lang]
+            G['write'](lang, path, G['layout'](lang, path, title, tx(pj['lead'], lang), body, nav='projeler', schemas=[cs, cw], wa_text=wa_text, body_cls='has-hero',
+                                               og_image=G['og_src'](pj['hero'])))
 
         # ---------------- galeri
         GP = P.PAGES['gallery']

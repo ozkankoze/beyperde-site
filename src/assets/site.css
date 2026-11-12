@@ -273,6 +273,9 @@ body.locked{overflow:hidden}
 .palette span{flex:1}
 .pgal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(14px,2vw,28px);margin-top:clamp(40px,5vw,72px);align-items:end}
 .pf .ph{cursor:zoom-in}
+.pf-solo{grid-column:3/11}.pf-solo .ph{aspect-ratio:3/4;max-block-size:80vh;margin-inline:auto}
+.pj-list{display:grid;gap:clamp(56px,8vw,120px)}
+@media (min-width:861px){.pj-card-alt .ph{order:2}}
 .pf0{grid-column:1/8}.pf0 .ph{aspect-ratio:4/3}
 .pf1{grid-column:8/13}.pf1 .ph{aspect-ratio:3/4}
 .pf2{grid-column:2/6}.pf2 .ph{aspect-ratio:3/4}

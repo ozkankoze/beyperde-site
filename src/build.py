@@ -16,6 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src'))
 from content import data as D          # noqa: E402
 from content import pages as P         # noqa: E402
+from content import projects as PJ     # noqa: E402
 from content import local as LOC       # noqa: E402
 from content.catalog import build_catalog  # noqa: E402
 
