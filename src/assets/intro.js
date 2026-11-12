@@ -38,7 +38,7 @@
   // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
   const KEYS = {
     a1: [[5, 0.4, 0.4], [7, 0.27, 0.4], [8, 0.25, 0.45], [9, 0.26, 0.43], [10, 0.27, 0.4]],
-    a2: [[8, 0.62, 0.45], [9, 0.63, 0.45], [10, 0.645, 0.4], [15, 0.645, 0.4]],
+    a2: [[8, 0.93, 0.42], [15, 0.935, 0.42]],   // sağdaki kalın rustik fon perde
   };
   function keyAt(keys, t) {
     if (t <= keys[0][0]) return keys[0].slice(1);
@@ -64,7 +64,7 @@
 
   // ürün bölümleri, kaydırma oranı (p) cinsinden
   const S1 = { key: 'a1', a: 0.36, b: 0.6, pos: { d: [0.56, 0.15], m: [0.07, 0.15] } };    // Tekstil Duvar Kağıdı
-  const S2 = { key: 'a2', a: 0.655, b: 0.875, pos: { d: [0.08, 0.15], m: [0.07, 0.14] } }; // Rustik Perde
+  const S2 = { key: 'a2', a: 0.655, b: 0.875, pos: { d: [0.5, 0.15], m: [0.07, 0.14] } };  // Rustik Perde
 
   function anchor(p, key) {
     const [x, y] = keyAt(KEYS[key], p * DUR);
@@ -136,12 +136,16 @@
     target = max > 0 ? clamp(-r.top / max) : 0; wake();
   }
   function wake() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  // Konumlama: önceki atlama bitmeden yenisi istenmez; biter bitmez (seeked) en güncel konuma hemen geçilir.
+  // Böylece bir sonraki kareyi beklemeden kod çözücünün izin verdiği en yüksek hızda kare yenilenir.
+  let want = 0;
   function seek(p) {
     if (!ready) return false;
-    const t = p * (Math.min(DUR, vid.duration || DUR) - 0.05);
-    if (Math.abs(vid.currentTime - t) > 0.004) { if (!vid.seeking) vid.currentTime = t; return true; }
+    want = p * (Math.min(DUR, vid.duration || DUR) - 0.05);
+    if (Math.abs(vid.currentTime - want) > 0.004) { if (!vid.seeking) vid.currentTime = want; return true; }
     return false;
   }
+  vid.addEventListener('seeked', () => { if (ready && Math.abs(vid.currentTime - want) > 0.004) vid.currentTime = want; });
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
