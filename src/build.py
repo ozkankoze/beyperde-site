@@ -34,6 +34,8 @@ def _asset_version():
 
 
 VERSION = _asset_version()
+_iv = os.path.join(ROOT, 'src', 'static', 'intro', 'giris.mp4')
+INTRO_V = __import__('hashlib').sha1(open(_iv, 'rb').read()).hexdigest()[:10] if os.path.exists(_iv) else '0'
 
 e = html.escape
 LANGS = D.LANGS

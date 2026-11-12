@@ -124,7 +124,7 @@ def render_home(G, catalog):
 <section class="intro" id="giris" data-intro aria-label="{tx(H['brand_h'], lang)}">
   <div class="stage">
     <div class="intro-static">{intro_static(G, h('static_alt'))}</div>
-    <canvas id="stage" aria-hidden="true"></canvas>
+    <video id="stage" muted playsinline preload="none" disablepictureinpicture data-src="/intro/giris.mp4?v={G['INTRO_V']}" data-dur="15.04" aria-hidden="true"></video>
     <div class="veil" aria-hidden="true"></div>
     <div class="ilabel" id="ihero">
       <h1><span class="isub">{h('h1_sub')}</span><span class="ibig">{h('h1')}</span></h1>
@@ -247,6 +247,6 @@ def render_home(G, catalog):
                     'inLanguage': lang, 'publisher': {'@id': D.SITE + '/#isletme'}},
                    G['faq_schema'](faq_items)]
         page = G['layout'](lang, '', h('title'), h('desc'), body, schemas=schemas,
-                           scripts=(('intro-data', 'intro.js', 'quiz.js', 'forms.js') + (('compare.js',) if G['COMPARE'] else ())),
+                           scripts=(('intro.js', 'quiz.js', 'forms.js') + (('compare.js',) if G['COMPARE'] else ())),
                            body_cls='home', head_extra='<link rel="preload" href="/js/three-0.149.0.min.js" as="script" media="(min-width: 1px)" data-three>' if False else '')
         G['write'](lang, '', page)

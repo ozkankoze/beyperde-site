@@ -1,6 +1,6 @@
-/* Bey Perde — giriş animasyonu: Blender'da render edilmiş kare dizisi, kaydırmayla oynatılır.
-   Masaüstünde yatay, telefonda dikey dizi yüklenir. Kareler sırayla, arka planda yüklenir;
-   hareket azaltma, veri tasarrufu ve düşük güçlü cihazlarda yalnızca ilk kare (statik görsel) gösterilir. */
+/* Bey Perde — giriş animasyonu: tek parça video, sayfa kaydırıldıkça ileri/geri oynatılır.
+   Video bir kez belleğe (blob) alınır; böylece her konuma anında atlanır.
+   Hareket azaltma, veri tasarrufu ve düşük güçlü cihazlarda yalnızca ilk kare (statik görsel) gösterilir. */
 (() => {
   'use strict';
   const intro = document.querySelector('[data-intro]');
@@ -10,9 +10,10 @@
   const mqReduce = matchMedia('(prefers-reduced-motion: reduce)');
   const lowEnd = (nav.deviceMemory && nav.deviceMemory <= 2) || conn.saveData || /2g/.test(conn.effectiveType || '');
   const skip = intro.querySelector('[data-skip]');
+  const vid = document.getElementById('stage');
 
   function goStatic() { intro.classList.add('static'); intro.classList.remove('ready'); document.dispatchEvent(new CustomEvent('bp:intro-static')); }
-  if (mqReduce.matches || lowEnd) { goStatic(); return; }
+  if (!vid || mqReduce.matches || lowEnd) { goStatic(); return; }
 
   skip && skip.addEventListener('click', (ev) => {
     ev.preventDefault();
@@ -22,81 +23,27 @@
     if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
   });
 
-  const canvas = document.getElementById('stage');
-  const ctx = canvas.getContext('2d', { alpha: false });
-  const DATA = window.BP_INTRO || {};
-  const portrait = () => innerWidth / innerHeight < 1;
-  const pick = () => (portrait() && DATA.m ? 'm' : 'd');   // dikey dizi yoksa yatay dizi kırpılarak oynar
-  let mode = pick();
-  intro.classList.toggle('mobile', mode === 'm');
-  let meta = DATA[mode];
-  if (!meta) { goStatic(); return; }
-  let base = `/intro/${mode}/`;
-  let frames = new Array(meta.n);
-  // kare başına kaydırma konumu (hareketin hızlı olduğu yerlerde kareler sıklaştırılmıştır)
-  function fidx(p) {
-    const P = meta.ps, n = meta.n;
-    if (!P) return p * (n - 1);
-    if (p <= 0) return 0; if (p >= 1) return n - 1;
-    let lo = 0, hi = n - 1;
-    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (P[m] <= p) lo = m; else hi = m; }
-    return lo + (p - P[lo]) / ((P[hi] - P[lo]) || 1);
-  }
+  /* ---------- video ---------- */
+  const SRC = vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
+  let ready = false;
+  fetch(SRC).then((r) => { if (!r.ok) throw 0; return r.blob(); })
+    .then((b) => URL.createObjectURL(b))
+    .catch(() => SRC)
+    .then((url) => {
+      vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); }, { once: true });
+      vid.addEventListener('error', goStatic, { once: true });
+      vid.src = url; vid.load();
+    });
 
-  function loadFrames() {
-    frames = new Array(meta.n);
-    let next = 0, active = 0;
-    const order = [], seen = new Set(), push = (i) => { if (i < meta.n && !seen.has(i)) { seen.add(i); order.push(i); } };
-    // önce baştaki kareler sırayla, sonra her 8. kare (hızlı kaydırmada kaba önizleme), sonra kalanlar
-    for (let i = 0; i < 12; i++) push(i);
-    for (let st = 8; st >= 1; st >>= 1) for (let i = 0; i < meta.n; i += st) push(i);
-    const want = mode;
-    const decode = (url) => fetch(url).then((r) => { if (!r.ok) throw 0; return r.blob(); })
-      .then((b) => ('createImageBitmap' in window ? createImageBitmap(b) : new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = URL.createObjectURL(b); })));
-    const pump = () => {
-      while (active < 4 && next < order.length) {
-        const i = order[next++]; active++;
-        decode(`${base}f_${String(i).padStart(3, '0')}.webp?v=${meta.v}`).then((bmp) => {
-          if (want !== mode) return;
-          frames[i] = bmp;
-          if (i === 0) intro.classList.add('ready');
-          const cf = Math.round(fidx(cur));
-          if (Math.abs(cf - i) <= 1) { dirty = true; wake(); }
-        }).catch(() => {}).finally(() => { active--; pump(); });
-      }
-    };
-    pump();
-  }
-
-  /* ---------- çizim ---------- */
-  let VW = 1, VH = 1, fit = { s: 1, ox: 0, oy: 0 }, lastDraw = '';
-  function nearest(i) {
-    if (frames[i]) return i;
-    for (let d = 1; d < meta.n; d++) { if (frames[i - d]) return i - d; if (frames[i + d]) return i + d; }
-    return -1;
-  }
-  function draw(p) {
-    const fi = fidx(p), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1);
-    const t = Math.round((fi - a) * 8) / 8;       // geçişi 8 adımla sınırla: gereksiz yeniden çizim yok
-    const ia = nearest(a);
-    if (ia < 0) return;
-    const key = ia + ':' + (frames[b] && ia === a ? t : 0);
-    if (key === lastDraw) return;
-    lastDraw = key;
-    ctx.globalAlpha = 1;
-    ctx.drawImage(frames[ia], 0, 0);
-    if (t > 0 && frames[b] && ia === a) {   // iki kare arasında yumuşak geçiş
-      ctx.globalAlpha = t;
-      ctx.drawImage(frames[b], 0, 0);
-      ctx.globalAlpha = 1;
-    }
-  }
-  function anchor(p, key) {
-    const A = meta.anchors, fi = fidx(p), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1), t = fi - a;
-    const pa = A[a][key], pb = A[b][key];
-    if (!pa[2] || !pb[2]) return null;
-    const x = pa[0] + (pb[0] - pa[0]) * t, y = pa[1] + (pb[1] - pa[1]) * t;
-    return [fit.ox + x * meta.w * fit.s, fit.oy + y * meta.h * fit.s];
+  // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
+  const KEYS = {
+    a1: [[5, 0.4, 0.4], [7, 0.27, 0.4], [8, 0.25, 0.45], [9, 0.26, 0.43], [10, 0.27, 0.4]],
+    a2: [[8, 0.62, 0.45], [9, 0.63, 0.45], [10, 0.645, 0.4], [15, 0.645, 0.4]],
+  };
+  function keyAt(keys, t) {
+    if (t <= keys[0][0]) return keys[0].slice(1);
+    for (let i = 1; i < keys.length; i++) if (t <= keys[i][0]) { const [t0, x0, y0] = keys[i - 1], [t1, x1, y1] = keys[i], k = (t - t0) / (t1 - t0); return [x0 + (x1 - x0) * k, y0 + (y1 - y0) * k]; }
+    return keys[keys.length - 1].slice(1);
   }
 
   /* ---------- metin ve oklar ---------- */
@@ -111,22 +58,31 @@
   const sm = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
   const band = (p, a, b, f = 0.035) => Math.min(sm(a - f, a, p), 1 - sm(b, b + f, p));
   const fx = (n) => n.toFixed(1);
-  let isMob = false;
+  let VW = 1, VH = 1, isMob = false, panX = 0.5;
   const size = new Map();
   const measure = () => [L.l1, L.l2].forEach((n) => size.set(n, [n.offsetWidth, n.offsetHeight]));
-  function callout(node, c, key, p, oArrow, draw_, oText, pos) {
+
+  // ürün bölümleri, kaydırma oranı (p) cinsinden
+  const S1 = { key: 'a1', a: 0.36, b: 0.6, pos: { d: [0.56, 0.15], m: [0.07, 0.15] } };    // Tekstil Duvar Kağıdı
+  const S2 = { key: 'a2', a: 0.655, b: 0.875, pos: { d: [0.08, 0.15], m: [0.07, 0.14] } }; // Rustik Perde
+
+  function anchor(p, key) {
+    const [x, y] = keyAt(KEYS[key], p * DUR);
+    const w = vid.videoWidth || 1920, h = vid.videoHeight || 1080, s = Math.max(VW / w, VH / h);
+    return [(VW - w * s) * panX + x * w * s, (VH - h * s) / 2 + y * h * s];
+  }
+  function callout(node, c, S, p) {
+    const oArrow = band(p, S.a, S.b, 0.012), draw_ = sm(S.a, S.a + 0.06, p), oText = band(p, S.a + 0.045, S.b);
     node.style.opacity = oText.toFixed(3);
     node.style.visibility = oText < 0.01 ? 'hidden' : 'visible';
     node.style.setProperty('--ty', ((1 - sm(0, 1, oText)) * 105).toFixed(1) + '%');
     c.g.style.opacity = oArrow.toFixed(3);
     if (oArrow < 0.01 && oText < 0.01) return;
-    const P = isMob ? pos.m : pos.d;
+    const P = isMob ? S.pos.m : S.pos.d;
     const [nw, nh] = size.get(node) || [0, 0];
     let lx = P[0] * VW; if (rtl) lx = VW - lx - nw;
     node.style.transform = `translate3d(${fx(lx)}px,${fx(P[1] * VH)}px,0)`;
-    const tp = anchor(p, key);
-    if (!tp) { c.g.style.opacity = 0; return; }
-    const [tx, ty] = tp;
+    const [tx, ty] = anchor(p, S.key);
     const vis = sm(-0.04, 0.04, tx / VW) * sm(1.04, 0.96, tx / VW) * sm(-0.04, 0.04, ty / VH) * sm(1.04, 0.96, ty / VH);
     c.g.style.opacity = (oArrow * vis).toFixed(3);
     if (vis < 0.01) return;
@@ -148,16 +104,23 @@
     c.hd.style.opacity = hv; c.tg.style.opacity = hv;
     c.ring.setAttribute('cx', fx(tx)); c.ring.setAttribute('cy', fx(ty)); c.dot.setAttribute('cx', fx(tx)); c.dot.setAttribute('cy', fx(ty));
   }
+  // dar ekranda video yanlardan kırpılır: işaret edilen ürün ekranda kalsın diye görüntü yatayda kayar
+  function pan(p) {
+    let want = 0.5;
+    [S1, S2].forEach((S) => { const w = Math.min(sm(S.a - 0.08, S.a, p), 1 - sm(S.b, S.b + 0.08, p)); if (w > 0) want = 0.5 + (keyAt(KEYS[S.key], p * DUR)[0] - 0.5) * w * 1.15; });
+    panX = clamp(want);
+    vid.style.objectPosition = `${(panX * 100).toFixed(2)}% 50%`;
+  }
   let lastIdx = -1;
   function overlay(p) {
     const o = 1 - sm(0.01, 0.06, p);
     L.hero.style.opacity = o.toFixed(3); L.hero.style.visibility = o < 0.01 ? 'hidden' : 'visible';
     L.hero.style.translate = `0 ${fx(-(1 - o) * 24)}px`;
-    callout(L.l1, C1, isMob ? 'a1m' : 'a1d', p, band(p, 0.30, 0.47, 0.012), sm(0.30, 0.36, p), band(p, 0.385, 0.47), { d: [0.56, 0.15], m: [0.07, 0.15] });
-    callout(L.l2, C2, 'a2', p, band(p, 0.63, 0.79, 0.012), sm(0.63, 0.69, p), band(p, 0.715, 0.79), { d: [0.08, 0.15], m: [0.07, 0.14] });
+    callout(L.l1, C1, S1, p);
+    callout(L.l2, C2, S2, p);
     const oo = sm(0.9, 0.96, p);
     L.out.style.opacity = oo.toFixed(3); L.out.style.translate = `0 ${fx((1 - oo) * 18)}px`;
-    const idx = p < 0.28 ? 0 : p < 0.56 ? 1 : p < 0.86 ? 2 : 3;
+    const idx = p < 0.3 ? 0 : p < 0.62 ? 1 : p < 0.89 ? 2 : 3;
     if (idx !== lastIdx) { railLi.forEach((r, i) => r.classList.toggle('on', i === idx)); lastIdx = idx; }
     rail.style.opacity = sm(0.03, 0.09, p).toFixed(3);
     bar.style.transform = `scaleX(${p.toFixed(4)})`;
@@ -171,24 +134,26 @@
     target = max > 0 ? clamp(-r.top / max) : 0; wake();
   }
   function wake() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  function seek(p) {
+    if (!ready) return false;
+    const t = p * (Math.min(DUR, vid.duration || DUR) - 0.05);
+    if (Math.abs(vid.currentTime - t) > 0.004) { if (!vid.seeking) vid.currentTime = t; return true; }
+    return false;
+  }
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
     cur += (target - cur) * (1 - Math.exp(-dt * 9));
     if (Math.abs(target - cur) < 0.0002) cur = target;
-    draw(cur); overlay(cur);
-    if (cur !== target || dirty) { dirty = false; raf = requestAnimationFrame(frame); }
+    pan(cur); const pending = seek(cur); overlay(cur);
+    if (cur !== target || dirty || pending) { dirty = false; raf = requestAnimationFrame(frame); }
   }
   let lw = 0, lh = 0;
   function resize(force) {
     const w = intro.clientWidth, h = window.innerHeight;
     if (!force && w === lw && Math.abs(h - lh) < 140) return;
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
-    const m2 = pick();
-    if (m2 !== mode && DATA[m2]) { mode = m2; meta = DATA[mode]; base = `/intro/${mode}/`; intro.classList.toggle('mobile', mode === 'm'); loadFrames(); }
-    if (canvas.width !== meta.w || canvas.height !== meta.h) { canvas.width = meta.w; canvas.height = meta.h; lastDraw = ''; }
-    const s = Math.max(w / meta.w, h / meta.h);   // tuval CSS ile "cover" ölçeklenir
-    fit = { s, ox: (w - meta.w * s) / 2, oy: (h - meta.h * s) / 2 };
+    intro.classList.toggle('mobile', isMob);
     measure();
     dirty = true; wake();
   }
@@ -196,7 +161,6 @@
   addEventListener('resize', () => resize(false));
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) wake(); }).observe(intro);
   mqReduce.addEventListener && mqReduce.addEventListener('change', (ev) => { if (ev.matches) goStatic(); });
-  loadFrames();
   resize(true); readScroll(); cur = target;
   document.fonts && document.fonts.ready.then(() => { measure(); dirty = true; wake(); });
   document.dispatchEvent(new CustomEvent('bp:intro-ready'));
