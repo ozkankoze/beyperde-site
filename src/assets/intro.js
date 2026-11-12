@@ -32,7 +32,7 @@
     .then((url) => {
       vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); }, { once: true });
       vid.addEventListener('error', goStatic, { once: true });
-      vid.src = url; vid.load();
+      vid.preload = 'auto'; vid.src = url; vid.load();
     });
 
   // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
