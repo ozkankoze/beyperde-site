@@ -138,10 +138,10 @@
 
   /* ---------- döngü ---------- */
   let target = 0, cur = 0, visible = true, dirty = true, raf = 0, last = 0;
-  function readScroll() {
-    const r = intro.getBoundingClientRect(); const max = r.height - innerHeight;
-    target = max > 0 ? clamp(-r.top / max) : 0; wake();
-  }
+  // Kaydırma konumu zorunlu düzen hesabı (getBoundingClientRect) yapmadan, önbellekteki ölçülerle okunur
+  let top0 = 0, span = 1;
+  function geom() { let y = 0, n = intro; while (n) { y += n.offsetTop; n = n.offsetParent; } top0 = y; span = Math.max(1, intro.offsetHeight - innerHeight); }
+  function readScroll() { target = clamp((window.scrollY - top0) / span); wake(); }
   function wake() { if (!raf && visible) { last = performance.now(); raf = requestAnimationFrame(frame); } }
   // Konumlama: önceki atlama bitmeden yenisi istenmez; biter bitmez (seeked) en güncel konuma hemen geçilir.
   // Böylece bir sonraki kareyi beklemeden kod çözücünün izin verdiği en yüksek hızda kare yenilenir.
@@ -156,6 +156,7 @@
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
+    target = clamp((window.scrollY - top0) / span);
     cur += (target - cur) * (1 - Math.exp(-dt * 9));
     if (Math.abs(target - cur) < 0.0002) cur = target;
     pan(cur); const pending = seek(cur); overlay(cur);
@@ -167,7 +168,7 @@
     if (!force && w === lw && Math.abs(h - lh) < 140) return;
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
     intro.classList.toggle('mobile', isMob);
-    measure();
+    measure(); geom(); readScroll();
     dirty = true; wake();
   }
   addEventListener('scroll', readScroll, { passive: true });
@@ -175,6 +176,6 @@
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) wake(); }).observe(intro);
   mqReduce.addEventListener && mqReduce.addEventListener('change', (ev) => { if (ev.matches) goStatic(); });
   resize(true); readScroll(); cur = target;
-  document.fonts && document.fonts.ready.then(() => { measure(); dirty = true; wake(); });
+  document.fonts && document.fonts.ready.then(() => { measure(); geom(); dirty = true; wake(); });
   document.dispatchEvent(new CustomEvent('bp:intro-ready'));
 })();
