@@ -92,16 +92,18 @@
     else if (tx > rr + 24) { sx = rr + 16; sy = rt + rh * 0.62; ex = sx + stub; ey = sy; }
     else if (ty > rb) { sx = Math.min(Math.max(tx, rl), rr); sy = rb + 14; ex = sx; ey = sy + stub; }
     else { sx = Math.min(Math.max(tx, rl), rr); sy = rt - 14; ex = sx; ey = sy - stub; }
-    const dx = tx - ex, dy = ty - ey, L2 = Math.hypot(dx, dy) || 1, ux = dx / L2, uy = dy / L2, gap = 12;
-    const qx = tx - ux * gap, qy = ty - uy * gap, L1 = Math.hypot(ex - sx, ey - sy), Lb = Math.max(1, L2 - gap), d = draw_ * (L1 + Lb);
-    let path = `M${fx(sx)},${fx(sy)}`;
-    if (d <= L1) { const k = d / L1; path += ` L${fx(sx + (ex - sx) * k)},${fx(sy + (ey - sy) * k)}`; }
-    else { const k = (d - L1) / Lb; path += ` L${fx(ex)},${fx(ey)} L${fx(ex + (qx - ex) * k)},${fx(ey + (qy - ey) * k)}`; }
+    // ok üründen (halkadan) başlar, yazıya doğru çizilir; ok ucu yazının yanında
+    const dx = ex - tx, dy = ey - ty, L2 = Math.hypot(dx, dy) || 1, ux = dx / L2, uy = dy / L2, gap = 16;
+    const ox_ = tx + ux * gap, oy_ = ty + uy * gap, Lb = Math.max(1, L2 - gap), L1 = Math.hypot(sx - ex, sy - ey) || 1, d = draw_ * (Lb + L1);
+    let path = `M${fx(ox_)},${fx(oy_)}`, hx, hy, hux, huy;
+    if (d <= Lb) { const k = d / Lb; hx = ox_ + (ex - ox_) * k; hy = oy_ + (ey - oy_) * k; hux = ux; huy = uy; }
+    else { const k = (d - Lb) / L1; path += ` L${fx(ex)},${fx(ey)}`; hx = ex + (sx - ex) * k; hy = ey + (sy - ey) * k; hux = (sx - ex) / L1; huy = (sy - ey) / L1; }
+    path += ` L${fx(hx)},${fx(hy)}`;
     c.ln.setAttribute('d', path); c.lh.setAttribute('d', path);
-    const hv = sm(0.9, 1, draw_), s = 11, bx = qx - ux * s, by = qy - uy * s, nx = -uy * s * 0.5, ny = ux * s * 0.5;
-    const hd = `M${fx(bx + nx)},${fx(by + ny)} L${fx(qx)},${fx(qy)} L${fx(bx - nx)},${fx(by - ny)}`;
+    const hv = sm(0.06, 0.2, draw_), s = 11, bx = hx - hux * s, by = hy - huy * s, nx = -huy * s * 0.5, ny = hux * s * 0.5;
+    const hd = `M${fx(bx + nx)},${fx(by + ny)} L${fx(hx)},${fx(hy)} L${fx(bx - nx)},${fx(by - ny)}`;
     c.hd.setAttribute('d', hd); c.hh.setAttribute('d', hd); c.hh.style.opacity = hv;
-    c.hd.style.opacity = hv; c.tg.style.opacity = hv;
+    c.hd.style.opacity = hv; c.tg.style.opacity = sm(0, 0.12, draw_);
     c.ring.setAttribute('cx', fx(tx)); c.ring.setAttribute('cy', fx(ty)); c.dot.setAttribute('cx', fx(tx)); c.dot.setAttribute('cy', fx(ty));
   }
   // dar ekranda video yanlardan kırpılır: işaret edilen ürün ekranda kalsın diye görüntü yatayda kayar
