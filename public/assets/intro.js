@@ -37,37 +37,48 @@
   function loadFrames() {
     frames = new Array(meta.n);
     let next = 0, active = 0;
-    const order = [];
-    // önce her 8. kare (hızlı kaba önizleme), sonra aradakiler
-    for (let s = 8; s >= 1; s = s >> 1) for (let i = 0; i < meta.n; i += s) if (!order.includes(i)) order.push(i);
+    const order = [], seen = new Set(), push = (i) => { if (i < meta.n && !seen.has(i)) { seen.add(i); order.push(i); } };
+    // önce baştaki kareler sırayla, sonra her 8. kare (hızlı kaydırmada kaba önizleme), sonra kalanlar
+    for (let i = 0; i < 12; i++) push(i);
+    for (let st = 8; st >= 1; st >>= 1) for (let i = 0; i < meta.n; i += st) push(i);
+    const want = mode;
+    const decode = (url) => fetch(url).then((r) => { if (!r.ok) throw 0; return r.blob(); })
+      .then((b) => ('createImageBitmap' in window ? createImageBitmap(b) : new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = URL.createObjectURL(b); })));
     const pump = () => {
-      while (active < 6 && next < order.length) {
+      while (active < 4 && next < order.length) {
         const i = order[next++]; active++;
-        const im = new Image(); im.decoding = 'async';
-        im.onload = () => { frames[i] = im; active--; if (i === 0 && !intro.classList.contains('ready')) { intro.classList.add('ready'); } dirty = true; wake(); pump(); };
-        im.onerror = () => { active--; pump(); };
-        im.src = `${base}f_${String(i).padStart(3, '0')}.webp?v=${meta.v}`;
+        decode(`${base}f_${String(i).padStart(3, '0')}.webp?v=${meta.v}`).then((bmp) => {
+          if (want !== mode) return;
+          frames[i] = bmp;
+          if (i === 0) intro.classList.add('ready');
+          const cf = Math.round(cur * (meta.n - 1));
+          if (Math.abs(cf - i) <= 1) { dirty = true; wake(); }
+        }).catch(() => {}).finally(() => { active--; pump(); });
       }
     };
     pump();
   }
 
   /* ---------- çizim ---------- */
-  let VW = 1, VH = 1, dpr = 1, fit = { s: 1, ox: 0, oy: 0 };
+  let VW = 1, VH = 1, fit = { s: 1, ox: 0, oy: 0 }, lastDraw = '';
   function nearest(i) {
     if (frames[i]) return i;
     for (let d = 1; d < meta.n; d++) { if (frames[i - d]) return i - d; if (frames[i + d]) return i + d; }
     return -1;
   }
   function draw(p) {
-    const fi = p * (meta.n - 1), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1), t = fi - a;
+    const fi = p * (meta.n - 1), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1);
+    const t = Math.round((fi - a) * 8) / 8;       // geçişi 8 adımla sınırla: gereksiz yeniden çizim yok
     const ia = nearest(a);
     if (ia < 0) return;
+    const key = ia + ':' + (frames[b] && ia === a ? t : 0);
+    if (key === lastDraw) return;
+    lastDraw = key;
     ctx.globalAlpha = 1;
-    ctx.drawImage(frames[ia], fit.ox, fit.oy, meta.w * fit.s, meta.h * fit.s);
-    if (t > 0.02 && frames[b] && ia === a) {   // iki kare arasında yumuşak geçiş
+    ctx.drawImage(frames[ia], 0, 0);
+    if (t > 0 && frames[b] && ia === a) {   // iki kare arasında yumuşak geçiş
       ctx.globalAlpha = t;
-      ctx.drawImage(frames[b], fit.ox, fit.oy, meta.w * fit.s, meta.h * fit.s);
+      ctx.drawImage(frames[b], 0, 0);
       ctx.globalAlpha = 1;
     }
   }
@@ -76,7 +87,7 @@
     const pa = A[a][key], pb = A[b][key];
     if (!pa[2] || !pb[2]) return null;
     const x = pa[0] + (pb[0] - pa[0]) * t, y = pa[1] + (pb[1] - pa[1]) * t;
-    return [(fit.ox + x * meta.w * fit.s) / dpr, (fit.oy + y * meta.h * fit.s) / dpr];
+    return [fit.ox + x * meta.w * fit.s, fit.oy + y * meta.h * fit.s];
   }
 
   /* ---------- metin ve oklar ---------- */
@@ -85,13 +96,15 @@
   const rail = intro.querySelector('.rail'), railLi = [...intro.querySelectorAll('.rail li')];
   const bar = intro.querySelector('.ibar span');
   const NS = 'http://www.w3.org/2000/svg', svgEl = $('callouts');
-  function mk() { const g = document.createElementNS(NS, 'g'); g.innerHTML = '<path class="ln"/><path class="hd"/><g class="tg"><circle class="ring" r="15"/><circle class="dot" r="3.5"/></g>'; svgEl.appendChild(g); return { g, ln: g.querySelector('.ln'), hd: g.querySelector('.hd'), tg: g.querySelector('.tg'), ring: g.querySelector('.ring'), dot: g.querySelector('.dot') }; }
+  function mk() { const g = document.createElementNS(NS, 'g'); g.innerHTML = '<path class="halo lh"/><path class="halo hh"/><path class="ln"/><path class="hd"/><g class="tg"><circle class="ring" r="13"/><circle class="dot" r="3.5"/></g>'; svgEl.appendChild(g); return { g, ln: g.querySelector('.ln'), hd: g.querySelector('.hd'), lh: g.querySelector('.lh'), hh: g.querySelector('.hh'), tg: g.querySelector('.tg'), ring: g.querySelector('.ring'), dot: g.querySelector('.dot') }; }
   const C1 = mk(), C2 = mk();
   const clamp = (x) => Math.min(1, Math.max(0, x));
   const sm = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
   const band = (p, a, b, f = 0.035) => Math.min(sm(a - f, a, p), 1 - sm(b, b + f, p));
   const fx = (n) => n.toFixed(1);
   let isMob = false;
+  const size = new Map();
+  const measure = () => [L.l1, L.l2].forEach((n) => size.set(n, [n.offsetWidth, n.offsetHeight]));
   function callout(node, c, key, p, oArrow, draw_, oText, pos) {
     node.style.opacity = oText.toFixed(3);
     node.style.visibility = oText < 0.01 ? 'hidden' : 'visible';
@@ -99,7 +112,8 @@
     c.g.style.opacity = oArrow.toFixed(3);
     if (oArrow < 0.01 && oText < 0.01) return;
     const P = isMob ? pos.m : pos.d;
-    let lx = P[0] * VW; if (rtl) lx = VW - lx - node.offsetWidth;
+    const [nw, nh] = size.get(node) || [0, 0];
+    let lx = P[0] * VW; if (rtl) lx = VW - lx - nw;
     node.style.transform = `translate3d(${fx(lx)}px,${fx(P[1] * VH)}px,0)`;
     const tp = anchor(p, key);
     if (!tp) { c.g.style.opacity = 0; return; }
@@ -107,7 +121,7 @@
     const vis = sm(-0.04, 0.04, tx / VW) * sm(1.04, 0.96, tx / VW) * sm(-0.04, 0.04, ty / VH) * sm(1.04, 0.96, ty / VH);
     c.g.style.opacity = (oArrow * vis).toFixed(3);
     if (vis < 0.01) return;
-    const rl = lx, rt = P[1] * VH, rw = node.offsetWidth, rh = node.offsetHeight, rr = rl + rw, rb = rt + rh, stub = 34;
+    const rl = lx, rt = P[1] * VH, rw = nw, rh = nh, rr = rl + rw, rb = rt + rh, stub = 34;
     let sx, sy, ex, ey;
     if (tx < rl - 24) { sx = rl - 16; sy = rt + rh * 0.62; ex = sx - stub; ey = sy; }
     else if (tx > rr + 24) { sx = rr + 16; sy = rt + rh * 0.62; ex = sx + stub; ey = sy; }
@@ -118,9 +132,10 @@
     let path = `M${fx(sx)},${fx(sy)}`;
     if (d <= L1) { const k = d / L1; path += ` L${fx(sx + (ex - sx) * k)},${fx(sy + (ey - sy) * k)}`; }
     else { const k = (d - L1) / Lb; path += ` L${fx(ex)},${fx(ey)} L${fx(ex + (qx - ex) * k)},${fx(ey + (qy - ey) * k)}`; }
-    c.ln.setAttribute('d', path);
+    c.ln.setAttribute('d', path); c.lh.setAttribute('d', path);
     const hv = sm(0.9, 1, draw_), s = 11, bx = qx - ux * s, by = qy - uy * s, nx = -uy * s * 0.5, ny = ux * s * 0.5;
-    c.hd.setAttribute('d', `M${fx(bx + nx)},${fx(by + ny)} L${fx(qx)},${fx(qy)} L${fx(bx - nx)},${fx(by - ny)}`);
+    const hd = `M${fx(bx + nx)},${fx(by + ny)} L${fx(qx)},${fx(qy)} L${fx(bx - nx)},${fx(by - ny)}`;
+    c.hd.setAttribute('d', hd); c.hh.setAttribute('d', hd); c.hh.style.opacity = hv;
     c.hd.style.opacity = hv; c.tg.style.opacity = hv;
     c.ring.setAttribute('cx', fx(tx)); c.ring.setAttribute('cy', fx(ty)); c.dot.setAttribute('cx', fx(tx)); c.dot.setAttribute('cy', fx(ty));
   }
@@ -150,8 +165,8 @@
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
-    cur += (target - cur) * (1 - Math.exp(-dt * 8));
-    if (Math.abs(target - cur) < 0.00005) cur = target;
+    cur += (target - cur) * (1 - Math.exp(-dt * 12));
+    if (Math.abs(target - cur) < 0.0002) cur = target;
     draw(cur); overlay(cur);
     if (cur !== target || dirty) { dirty = false; raf = requestAnimationFrame(frame); }
   }
@@ -162,11 +177,10 @@
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
     const m2 = pick();
     if (m2 !== mode && DATA[m2]) { mode = m2; meta = DATA[mode]; base = `/intro/${mode}/`; intro.classList.toggle('mobile', mode === 'm'); loadFrames(); }
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-    const s = Math.max(canvas.width / meta.w, canvas.height / meta.h);
-    fit = { s, ox: (canvas.width - meta.w * s) / 2, oy: (canvas.height - meta.h * s) / 2 };
-    ctx.imageSmoothingQuality = 'high';
+    if (canvas.width !== meta.w || canvas.height !== meta.h) { canvas.width = meta.w; canvas.height = meta.h; lastDraw = ''; }
+    const s = Math.max(w / meta.w, h / meta.h);   // tuval CSS ile "cover" ölçeklenir
+    fit = { s, ox: (w - meta.w * s) / 2, oy: (h - meta.h * s) / 2 };
+    measure();
     dirty = true; wake();
   }
   addEventListener('scroll', readScroll, { passive: true });
@@ -175,5 +189,6 @@
   mqReduce.addEventListener && mqReduce.addEventListener('change', (ev) => { if (ev.matches) goStatic(); });
   loadFrames();
   resize(true); readScroll(); cur = target;
+  document.fonts && document.fonts.ready.then(() => { measure(); dirty = true; wake(); });
   document.dispatchEvent(new CustomEvent('bp:intro-ready'));
 })();
