@@ -49,6 +49,11 @@
   }
 
   /* ---------- metin ve oklar ---------- */
+  // Stil/özellik yazımlarını önbellekle: değer değişmediyse DOM'a dokunma (gereksiz yeniden çizim videonun kare atlamasına yol açıyordu)
+  const _c = new WeakMap();
+  const memo = (el) => { let m = _c.get(el); if (!m) _c.set(el, m = {}); return m; };
+  const st = (el, k, v) => { const m = memo(el); if (m[k] === v) return; m[k] = v; if (k[0] === '-') el.style.setProperty(k, v); else el.style[k] = v; };
+  const sa = (el, k, v) => { const m = memo(el); const kk = '@' + k; if (m[kk] === v) return; m[kk] = v; el.setAttribute(k, v); };
   const $ = (id) => document.getElementById(id);
   const L = { hero: $('ihero'), l1: $('l1'), l2: $('l2'), out: $('ioutro') };
   const rail = intro.querySelector('.rail'), railLi = [...intro.querySelectorAll('.rail li')];
@@ -75,18 +80,18 @@
   }
   function callout(node, c, S, p) {
     const oArrow = band(p, S.a, S.b, 0.012), draw_ = sm(S.a, S.a + 0.06, p), oText = band(p, S.a + 0.045, S.b);
-    node.style.opacity = oText.toFixed(3);
-    node.style.visibility = oText < 0.01 ? 'hidden' : 'visible';
-    node.style.setProperty('--ty', ((1 - sm(0, 1, oText)) * 105).toFixed(1) + '%');
-    c.g.style.opacity = oArrow.toFixed(3);
+    st(node, 'opacity', String(oText.toFixed(3)));
+    st(node, 'visibility', String(oText < 0.01 ? 'hidden' : 'visible'));
+    st(node, '--ty', ((1 - sm(0, 1, oText)) * 105).toFixed(1) + '%');
+    st(c.g, 'opacity', String(oArrow.toFixed(3)));
     if (oArrow < 0.01 && oText < 0.01) return;
     const P = isMob ? S.pos.m : S.pos.d;
     const [nw, nh] = size.get(node) || [0, 0];
     let lx = P[0] * VW; if (rtl) lx = VW - lx - nw;
-    node.style.transform = `translate3d(${fx(lx)}px,${fx(P[1] * VH)}px,0)`;
+    st(node, 'transform', String(`translate3d(${fx(lx)}px,${fx(P[1] * VH)}px,0)`));
     const [tx, ty] = anchor(p, S.key);
     const vis = sm(-0.04, 0.04, tx / VW) * sm(1.04, 0.96, tx / VW) * sm(-0.04, 0.04, ty / VH) * sm(1.04, 0.96, ty / VH);
-    c.g.style.opacity = (oArrow * vis).toFixed(3);
+    st(c.g, 'opacity', String((oArrow * vis).toFixed(3)));
     if (vis < 0.01) return;
     const rl = lx, rt = P[1] * VH, rw = nw, rh = nh, rr = rl + rw, rb = rt + rh, stub = 34;
     let sx, sy, ex, ey;
@@ -101,34 +106,34 @@
     if (d <= Lb) { const k = d / Lb; hx = ox_ + (ex - ox_) * k; hy = oy_ + (ey - oy_) * k; hux = ux; huy = uy; }
     else { const k = (d - Lb) / L1; path += ` L${fx(ex)},${fx(ey)}`; hx = ex + (sx - ex) * k; hy = ey + (sy - ey) * k; hux = (sx - ex) / L1; huy = (sy - ey) / L1; }
     path += ` L${fx(hx)},${fx(hy)}`;
-    c.ln.setAttribute('d', path); c.lh.setAttribute('d', path);
+    sa(c.ln, 'd', String(path)); sa(c.lh, 'd', String(path));
     const hv = sm(0.06, 0.2, draw_), s = 11, bx = hx - hux * s, by = hy - huy * s, nx = -huy * s * 0.5, ny = hux * s * 0.5;
     const hd = `M${fx(bx + nx)},${fx(by + ny)} L${fx(hx)},${fx(hy)} L${fx(bx - nx)},${fx(by - ny)}`;
-    c.hd.setAttribute('d', hd); c.hh.setAttribute('d', hd); c.hh.style.opacity = hv;
-    c.hd.style.opacity = hv; c.tg.style.opacity = sm(0, 0.12, draw_);
-    c.ring.setAttribute('cx', fx(tx)); c.ring.setAttribute('cy', fx(ty)); c.dot.setAttribute('cx', fx(tx)); c.dot.setAttribute('cy', fx(ty));
+    sa(c.hd, 'd', String(hd)); sa(c.hh, 'd', String(hd)); st(c.hh, 'opacity', String(hv));
+    st(c.hd, 'opacity', String(hv)); st(c.tg, 'opacity', String(sm(0, 0.12, draw_)));
+    sa(c.ring, 'cx', String(fx(tx))); sa(c.ring, 'cy', String(fx(ty))); sa(c.dot, 'cx', String(fx(tx))); sa(c.dot, 'cy', String(fx(ty)));
   }
   // dar ekranda video yanlardan kırpılır: işaret edilen ürün ekranda kalsın diye görüntü yatayda kayar
   function pan(p) {
     let want = 0.5;
     [S1, S2].forEach((S) => { const w = Math.min(sm(S.a - 0.08, S.a, p), 1 - sm(S.b, S.b + 0.08, p)); if (w > 0) want = 0.5 + (keyAt(KEYS[S.key], p * DUR)[0] - 0.5) * w * 1.15; });
     panX = clamp(want);
-    vid.style.objectPosition = `${(panX * 100).toFixed(2)}% 50%`;
+    st(vid, 'objectPosition', String(`${(panX * 100).toFixed(2)}% 50%`));
   }
   let lastIdx = -1;
   function overlay(p) {
     const o = 1 - sm(0.01, 0.06, p);
-    L.hero.style.opacity = o.toFixed(3); L.hero.style.visibility = o < 0.01 ? 'hidden' : 'visible';
-    L.hero.style.translate = `0 ${fx(-(1 - o) * 24)}px`;
+    st(L.hero, 'opacity', String(o.toFixed(3))); st(L.hero, 'visibility', String(o < 0.01 ? 'hidden' : 'visible'));
+    st(L.hero, 'translate', String(`0 ${fx(-(1 - o) * 24)}px`));
     callout(L.l1, C1, S1, p);
     callout(L.l2, C2, S2, p);
     const oo = sm(0.9, 0.96, p);
-    L.out.style.opacity = oo.toFixed(3); L.out.style.translate = `0 ${fx((1 - oo) * 18)}px`;
+    st(L.out, 'opacity', String(oo.toFixed(3))); st(L.out, 'translate', String(`0 ${fx((1 - oo) * 18)}px`));
     const idx = p < 0.3 ? 0 : p < 0.62 ? 1 : p < 0.89 ? 2 : 3;
     if (idx !== lastIdx) { railLi.forEach((r, i) => r.classList.toggle('on', i === idx)); lastIdx = idx; }
-    rail.style.opacity = sm(0.03, 0.09, p).toFixed(3);
-    bar.style.transform = `scaleX(${p.toFixed(4)})`;
-    if (skip) { const so = 1 - sm(0.9, 0.97, p); skip.style.opacity = so.toFixed(3); skip.style.visibility = so < 0.02 ? 'hidden' : 'visible'; }
+    st(rail, 'opacity', String(sm(0.03, 0.09, p).toFixed(3)));
+    st(bar, 'transform', String(`scaleX(${p.toFixed(3)})`));
+    if (skip) { const so = 1 - sm(0.9, 0.97, p); st(skip, 'opacity', String(so.toFixed(3))); st(skip, 'visibility', String(so < 0.02 ? 'hidden' : 'visible')); }
   }
 
   /* ---------- döngü ---------- */
