@@ -33,6 +33,15 @@
   if (!meta) { goStatic(); return; }
   let base = `/intro/${mode}/`;
   let frames = new Array(meta.n);
+  // kare başına kaydırma konumu (hareketin hızlı olduğu yerlerde kareler sıklaştırılmıştır)
+  function fidx(p) {
+    const P = meta.ps, n = meta.n;
+    if (!P) return p * (n - 1);
+    if (p <= 0) return 0; if (p >= 1) return n - 1;
+    let lo = 0, hi = n - 1;
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (P[m] <= p) lo = m; else hi = m; }
+    return lo + (p - P[lo]) / ((P[hi] - P[lo]) || 1);
+  }
 
   function loadFrames() {
     frames = new Array(meta.n);
@@ -51,7 +60,7 @@
           if (want !== mode) return;
           frames[i] = bmp;
           if (i === 0) intro.classList.add('ready');
-          const cf = Math.round(cur * (meta.n - 1));
+          const cf = Math.round(fidx(cur));
           if (Math.abs(cf - i) <= 1) { dirty = true; wake(); }
         }).catch(() => {}).finally(() => { active--; pump(); });
       }
@@ -67,7 +76,7 @@
     return -1;
   }
   function draw(p) {
-    const fi = p * (meta.n - 1), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1);
+    const fi = fidx(p), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1);
     const t = Math.round((fi - a) * 8) / 8;       // geçişi 8 adımla sınırla: gereksiz yeniden çizim yok
     const ia = nearest(a);
     if (ia < 0) return;
@@ -83,7 +92,7 @@
     }
   }
   function anchor(p, key) {
-    const A = meta.anchors, fi = p * (meta.n - 1), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1), t = fi - a;
+    const A = meta.anchors, fi = fidx(p), a = Math.floor(fi), b = Math.min(meta.n - 1, a + 1), t = fi - a;
     const pa = A[a][key], pb = A[b][key];
     if (!pa[2] || !pb[2]) return null;
     const x = pa[0] + (pb[0] - pa[0]) * t, y = pa[1] + (pb[1] - pa[1]) * t;
@@ -165,7 +174,7 @@
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
-    cur += (target - cur) * (1 - Math.exp(-dt * 12));
+    cur += (target - cur) * (1 - Math.exp(-dt * 9));
     if (Math.abs(target - cur) < 0.0002) cur = target;
     draw(cur); overlay(cur);
     if (cur !== target || dirty) { dirty = false; raf = requestAnimationFrame(frame); }
