@@ -24,7 +24,16 @@ IMG = json.load(open(os.path.join(ROOT, 'src', 'content', 'images.json')))
 RAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'products.raw.json')))
 PRAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'pages.raw.json')))
 COMPARE = json.load(open(os.path.join(ROOT, 'src', 'content', 'compare.json')))
-VERSION = open(os.path.join(ROOT, 'src', 'VERSION')).read().strip()
+def _asset_version():
+    # içerik özeti: dosyalar her değiştiğinde adres değişir, tarayıcı önbelleği eski sürümü kullanamaz
+    import hashlib
+    h = hashlib.sha1()
+    for f in sorted(os.listdir(os.path.join(ROOT, 'src', 'assets'))):
+        h.update(open(os.path.join(ROOT, 'src', 'assets', f), 'rb').read())
+    return h.hexdigest()[:10]
+
+
+VERSION = _asset_version()
 
 e = html.escape
 LANGS = D.LANGS
