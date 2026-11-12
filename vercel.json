@@ -1,35 +1,119 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "echo 'public/ depoda hazır, derleme gerekmiyor'",
+  "installCommand": "echo 'bağımlılık yok'",
+  "framework": null,
   "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/", "destination": "/tr", "permanent": false },
-    { "source": "/iletisim", "destination": "/tr/iletisim", "permanent": true },
-    { "source": "/:lang(tr|en|ar)/projeler/resadiye-nbo-villa", "destination": "/:lang/projeler", "permanent": false },
-    { "source": "/:lang(tr|en|ar)/projeler/sile-evi-ofc-villa", "destination": "/:lang/projeler", "permanent": false },
-    { "source": "/:lang(en|ar)/hizmet-bolgeleri/:path*", "destination": "/tr/hizmet-bolgeleri/:path*", "permanent": false },
-    { "source": "/:lang(en|ar)/:page(kvkk|gizlilik-politikasi|cerez-politikasi)", "destination": "/tr/:page", "permanent": false }
+    {
+      "source": "/",
+      "destination": "/tr",
+      "permanent": false
+    },
+    {
+      "source": "/iletisim",
+      "destination": "/tr/iletisim",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(tr|en|ar)/projeler/resadiye-nbo-villa",
+      "destination": "/:lang/projeler",
+      "permanent": false
+    },
+    {
+      "source": "/:lang(tr|en|ar)/projeler/sile-evi-ofc-villa",
+      "destination": "/:lang/projeler",
+      "permanent": false
+    },
+    {
+      "source": "/:lang(en|ar)/hizmet-bolgeleri/:path*",
+      "destination": "/tr/hizmet-bolgeleri/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:lang(en|ar)/:page(kvkk|gizlilik-politikasi|cerez-politikasi)",
+      "destination": "/tr/:page",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me; object-src 'none'" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me; object-src 'none'"
+        }
       ]
     },
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "(?<sub>.*)\\.vercel\\.app" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<sub>.*)\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
-    { "source": "/img/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/fonts/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/js/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }] }
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }
