@@ -35,6 +35,7 @@ def _asset_version():
 
 
 VERSION = _asset_version()
+SITE_CSS = open(os.path.join(ROOT, 'src', 'assets', 'site.css')).read().strip()
 _iv = os.path.join(ROOT, 'src', 'static', 'intro', 'giris.mp4')
 INTRO_V = __import__('hashlib').sha1(open(_iv, 'rb').read()).hexdigest()[:10] if os.path.exists(_iv) else '0'
 
@@ -143,8 +144,8 @@ def header(lang, path, avail, nav=''):
     return f'''<header class="site-header" data-header>
   <div class="hdr">
     <a class="logo" href="{url(lang)}" aria-label="{ui('brand', lang)} — {ui('nav_home', lang)}">
-      <img class="logo-l" src="/img/logo-cream.png" width="420" height="416" alt="">
-      <img class="logo-d" src="/img/logo-brown.png" width="420" height="416" alt="">
+      <img class="logo-l" src="/brand/logo-cream-128.webp" srcset="/brand/logo-cream-128.webp 1x, /brand/logo-cream-256.webp 2x" width="128" height="127" alt="">
+      <img class="logo-d" src="/brand/logo-brown-128.webp" srcset="/brand/logo-brown-128.webp 1x, /brand/logo-brown-256.webp 2x" width="128" height="127" alt="">
     </a>
     <nav class="nav" aria-label="{ui('nav_main', lang)}"><ul>{links}</ul></nav>
     <div class="hdr-end">
@@ -156,7 +157,7 @@ def header(lang, path, avail, nav=''):
   </div>
 </header>
 <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="{ui('menu', lang)}" hidden>
-  <div class="mmenu-top"><img src="/img/logo-cream.png" width="420" height="416" alt="" class="mmenu-logo"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
+  <div class="mmenu-top"><img src="/brand/logo-cream-128.webp" srcset="/brand/logo-cream-128.webp 1x, /brand/logo-cream-256.webp 2x" width="128" height="127" alt="" class="mmenu-logo" loading="lazy"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
   <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{links}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li></ul></nav>
   <div class="mmenu-foot">
     {f'<ul class="mmenu-lang" aria-label="{ui("language", lang)}">{mlangs}</ul>' if len(avail) > 1 else ''}
@@ -177,7 +178,7 @@ def footer(lang, avail):
   <div class="wrap">
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="/img/logo-cream.png" width="420" height="416" alt="{ui('brand', lang)}" loading="lazy">
+        <img src="/brand/logo-cream-256.webp" width="256" height="254" alt="{ui('brand', lang)}" loading="lazy">
         <p>{ui('footer_about', lang)}</p>
         <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
       </div>
@@ -271,7 +272,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 <meta property="og:image" content="{og}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {font_pre}
-<link rel="stylesheet" href="/assets/site.css?v={VERSION}">
+<style>{SITE_CSS}</style>
 <script>window.BP={cfg};document.documentElement.classList.add('js')</script>
 {head_extra}
 {''.join(ld(s) for s in (LOCALBIZ,) + tuple(schemas))}
@@ -411,13 +412,14 @@ from pages_misc import render_misc          # noqa: E402
 
 
 def copy_static():
-    for sub in ('assets', 'fonts', 'js', 'intro'):
+    for sub in ('assets', 'fonts', 'js', 'intro', 'brand'):
         d = os.path.join(PUB, sub)
         if os.path.exists(d):
             shutil.rmtree(d)
     shutil.copytree(os.path.join(ROOT, 'src', 'assets'), os.path.join(PUB, 'assets'))
     shutil.copytree(os.path.join(ROOT, 'src', 'static', 'fonts'), os.path.join(PUB, 'fonts'))
     shutil.copytree(os.path.join(ROOT, 'src', 'static', 'js'), os.path.join(PUB, 'js'))
+    shutil.copytree(os.path.join(ROOT, 'src', 'static', 'brand'), os.path.join(PUB, 'brand'))
     if os.path.exists(os.path.join(PUB, 'intro')):
         shutil.rmtree(os.path.join(PUB, 'intro'))
     if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro')):

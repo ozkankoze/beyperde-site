@@ -16,7 +16,7 @@
       steps.forEach((s, k) => s.classList.toggle('on', k === i));
       res.hidden = i < steps.length;
       back.hidden = i === 0 || i >= steps.length;
-      bar.style.inlineSize = (Math.min(i, steps.length) / steps.length * 100) + '%';
+      bar.style.transform = `scaleX(${Math.min(i, steps.length) / steps.length})`;
       if (i < steps.length) { const first = steps[i].querySelector('input:checked') || steps[i].querySelector('input'); first && first.focus({ preventScroll: true }); }
     }
     function result() {

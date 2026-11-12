@@ -26,14 +26,26 @@
   /* ---------- video ---------- */
   const SRC = vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
   let ready = false;
-  fetch(SRC).then((r) => { if (!r.ok) throw 0; return r.blob(); })
-    .then((b) => URL.createObjectURL(b))
-    .catch(() => SRC)
-    .then((url) => {
-      vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); }, { once: true });
-      vid.addEventListener('error', goStatic, { once: true });
-      vid.preload = 'auto'; vid.src = url; vid.load();
-    });
+  // Video (≈6 MB) sayfa açılışını yavaşlatmasın: ilk etkileşimde ya da sayfa yüklendikten sonra boşta indirilir.
+  // O ana kadar videonun ilk karesiyle aynı olan statik görsel görünür.
+  let started = false;
+  const EV = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'];
+  function start() {
+    if (started) return; started = true;
+    EV.forEach((t) => removeEventListener(t, start, { passive: true }));
+    fetch(SRC).then((r) => { if (!r.ok) throw 0; return r.blob(); })
+      .then((b) => URL.createObjectURL(b))
+      .catch(() => SRC)
+      .then((url) => {
+        vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); }, { once: true });
+        vid.addEventListener('error', goStatic, { once: true });
+        vid.preload = 'auto'; vid.src = url; vid.load();
+      });
+  }
+  EV.forEach((t) => addEventListener(t, start, { passive: true }));
+  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+  const later = () => setTimeout(() => idle(start, { timeout: 2000 }), 2500);
+  if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
 
   // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
   const KEYS = {
