@@ -194,6 +194,19 @@
 960
 ]
 },
+"intro/kapi-m.webp": {
+"avg": [
+78,
+52,
+34
+],
+"h": 960,
+"w": 540,
+"widths": [
+480,
+540
+]
+},
 "logo-brown.png": {
 "h": 416,
 "png": true,
