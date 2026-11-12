@@ -144,8 +144,8 @@ def header(lang, path, avail, nav=''):
     return f'''<header class="site-header" data-header>
   <div class="hdr">
     <a class="logo" href="{url(lang)}" aria-label="{ui('brand', lang)} — {ui('nav_home', lang)}">
-      <img class="logo-l" src="/brand/logo-cream-128.webp" srcset="/brand/logo-cream-128.webp 1x, /brand/logo-cream-256.webp 2x" width="128" height="127" alt="">
-      <img class="logo-d" src="/brand/logo-brown-128.webp" srcset="/brand/logo-brown-128.webp 1x, /brand/logo-brown-256.webp 2x" width="128" height="127" alt="">
+      <img class="logo-l" src="/brand/logo-cream-96.webp" srcset="/brand/logo-cream-96.webp 1x, /brand/logo-cream-192.webp 2x" width="96" height="95" alt="">
+      <img class="logo-d" src="/brand/logo-brown-96.webp" srcset="/brand/logo-brown-96.webp 1x, /brand/logo-brown-192.webp 2x" width="96" height="95" alt="">
     </a>
     <nav class="nav" aria-label="{ui('nav_main', lang)}"><ul>{links}</ul></nav>
     <div class="hdr-end">
@@ -157,7 +157,7 @@ def header(lang, path, avail, nav=''):
   </div>
 </header>
 <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="{ui('menu', lang)}" hidden>
-  <div class="mmenu-top"><img src="/brand/logo-cream-128.webp" srcset="/brand/logo-cream-128.webp 1x, /brand/logo-cream-256.webp 2x" width="128" height="127" alt="" class="mmenu-logo" loading="lazy"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
+  <div class="mmenu-top"><img src="/brand/logo-cream-96.webp" srcset="/brand/logo-cream-96.webp 1x, /brand/logo-cream-192.webp 2x" width="96" height="95" alt="" class="mmenu-logo" loading="lazy"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
   <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{links}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li></ul></nav>
   <div class="mmenu-foot">
     {f'<ul class="mmenu-lang" aria-label="{ui("language", lang)}">{mlangs}</ul>' if len(avail) > 1 else ''}
@@ -178,7 +178,7 @@ def footer(lang, avail):
   <div class="wrap">
     <div class="ft-top">
       <div class="ft-brand">
-        <img src="/brand/logo-cream-256.webp" width="256" height="254" alt="{ui('brand', lang)}" loading="lazy">
+        <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="{ui('brand', lang)}" loading="lazy">
         <p>{ui('footer_about', lang)}</p>
         <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
       </div>
