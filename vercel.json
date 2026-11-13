@@ -10,7 +10,7 @@
     {
       "source": "/",
       "destination": "/tr",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/:lang(tr|en|ar)/urunler",

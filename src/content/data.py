@@ -7,7 +7,7 @@ Her metin üç dilde: (tr, en, ar).
 """
 
 LANGS = ['tr', 'en', 'ar']
-SITE = 'https://beyperde.com'
+SITE = 'https://www.beyperde.com'
 PHONE = '+90 553 596 26 14'
 PHONE_DISPLAY = '0553 596 26 14'
 TEL = '+905535962614'

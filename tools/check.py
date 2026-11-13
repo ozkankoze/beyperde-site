@@ -12,7 +12,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlparse
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'public')
-SITE = 'https://beyperde.com'
+SITE = 'https://www.beyperde.com'
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 
 

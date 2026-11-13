@@ -113,9 +113,18 @@ def big_src(rel):
 
 
 def og_src(rel):
+    """Paylaşım önizlemesi: 1200×630 JPG (WhatsApp, Facebook, LinkedIn webp'yi her zaman göstermiyor)."""
     k = img_key(rel)
     ws = IMG[k + '.webp']['widths']
     w = 1600 if 1600 in ws else ws[-1]
+    src = os.path.join(PUB, 'img', f'{k}-{w}.webp')
+    dst = os.path.join(PUB, 'img', 'og', k + '.jpg')
+    if os.path.exists(src) and (not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src)):
+        from PIL import Image, ImageOps
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        ImageOps.fit(Image.open(src).convert('RGB'), (1200, 630), Image.LANCZOS).save(dst, quality=82, optimize=True, progressive=True)
+    if os.path.exists(dst):
+        return f'{D.SITE}/img/og/{k}.jpg'
     return f'{D.SITE}/img/{k}-{w}.webp'
 
 
@@ -291,7 +300,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 <meta name="theme-color" content="#2a2019">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Bey Perde"><meta property="og:locale" content="{locale}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">{'' if noindex else f'<meta property="og:url" content="{abs_url(lang, path)}">'}
-<meta property="og:image" content="{og}"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{og}">{'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' if og.endswith('.jpg') else ''}<meta property="og:image:alt" content="{e(title)}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {font_pre}
 <style>{SITE_CSS}</style>
