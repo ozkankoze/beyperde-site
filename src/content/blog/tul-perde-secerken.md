@@ -3,6 +3,11 @@ baslik: Tül perde seçerken dikkat edilmesi gereken 6 şey
 tarih: 2026-11-13
 aciklama: Tül perde alırken kumaş, boy, pile, ray ve bakım konusunda bilmeniz gerekenler; doğru tülü seçmek için kısa bir rehber.
 kapak: urunler/tul-perde-1
+kategori: perde-rehberi
+yazar: Bey Perde
+urunler: tul-perde, fon-perde, motorlu-perde
+seo_baslik: Tül Perde Nasıl Seçilir? Dikkat Edilmesi Gereken 6 Şey
+dil: tr
 etiketler: Tül perde, Perde seçimi
 ---
 

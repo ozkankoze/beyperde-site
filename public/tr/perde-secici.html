@@ -842,41 +842,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
   .acard,.acard .aph img,.acheck,.aseg::before,.aalt,.apv-curtain i{transition:none}
   .acard:hover,.aalt:hover{transform:none}
 }
-/* Blog */
-.bgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(32px,3.4vw,52px) clamp(18px,2vw,30px)}
-.bcard a{display:flex;flex-direction:column;gap:10px;text-decoration:none;block-size:100%}
-.bcard .ph{aspect-ratio:4/3;border-radius:10px;margin-bottom:8px}
-.bcard .ph-swatch{display:block;aspect-ratio:4/3;border-radius:10px}
-.bcard a:hover .ph img{transform:scale(1.04)}
-.bcard p{font-size:15px;color:var(--muted);line-height:1.55}
-.bcard-m{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
-.bcard-t{font-weight:400}
-.bcard a:hover .pcard-more{opacity:1;gap:12px}
-.bwrap{max-width:860px}
-.bh1{font-size:clamp(36px,4.6vw,64px)}
-.bhero{padding-bottom:clamp(28px,3vw,44px)}
-.bhero .chips{margin-top:22px}
-.bhero-ph{aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--paper-2)}
-.bhero-ph picture,.bhero-ph img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
-.bprose{font-size:17.5px;line-height:1.75}
-.bprose p,.bprose li{color:var(--ink-2);max-width:none}
-.bprose h2.h3{margin-top:1.9em}
-.bprose h3.h3{font-size:var(--t-h4);font-weight:500;margin-top:1.6em}
-.bprose ul,.bprose ol{padding-inline-start:1.3em;display:grid;gap:.45em}
-.bprose ul{list-style:disc}.bprose ol{list-style:decimal}
-.bprose a{color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:3px}
-.bprose blockquote{border-inline-start:2px solid var(--brass);padding-inline-start:20px;font-size:1.08em;color:var(--ink)}
-.bprose strong{font-weight:600;color:var(--ink)}
-.bprose .bfig{margin-block:1.8em}
-.bprose .bfig picture,.bprose .bfig img{display:block;inline-size:100%;block-size:auto;border-radius:10px}
-.bprose table{inline-size:100%;border-collapse:collapse;font-size:15px}
-.bprose th,.bprose td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:start}
-.bnext{margin-top:clamp(36px,4vw,56px);padding-top:24px;border-top:1px solid var(--line)}
-.bmore{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
-.bmore a{display:grid;gap:8px;padding:22px;border:1px solid var(--line-2);border-radius:12px;text-decoration:none;background:var(--card);block-size:100%;transition:border-color .3s}
-.bmore a:hover{border-color:var(--ink)}
-@media (max-width:1000px){.bgrid,.bmore{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.bgrid,.bmore{grid-template-columns:1fr}.bprose{font-size:16.5px}}
 /* Hakkımızda — editoryal sayfa (yalnızca .ab içinde) */
 .ab{--ab-gap:clamp(28px,5vw,88px)}
 .ab-hero{padding-top:calc(118px + env(safe-area-inset-top,0px));padding-bottom:clamp(40px,5vw,72px)}
@@ -1004,6 +969,133 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
   .js .ab [data-rv],.js .ab-rise{opacity:1;transform:none;animation:none;transition:none}
   .ab-tl::after{transition:none}
   .ab-card-ph img,.ab-vg img{transition:none}
+}
+/* Journal (blog) — yalnızca .page-journal */
+.page-journal .jhero{padding-top:calc(118px + env(safe-area-inset-top,0px));padding-bottom:clamp(28px,3.5vw,48px)}
+.jhero .kicker{margin-top:clamp(24px,3vw,44px)}
+.jh1{font-size:clamp(40px,5.8vw,88px);font-weight:300;letter-spacing:-.035em;line-height:1.02;margin-block:12px 16px;text-wrap:balance}
+.jh-l{font-size:clamp(26px,2.6vw,38px);font-weight:300;letter-spacing:-.02em;line-height:1.15;margin-bottom:clamp(24px,3vw,40px);text-wrap:balance}
+.jh-xl{font-size:clamp(32px,3.9vw,58px);font-weight:300;letter-spacing:-.03em;line-height:1.08;text-wrap:balance;max-width:20ch}
+.js .jrise{animation:abRise .9s var(--ease) both}.js .jhero .jrise:nth-of-type(2){animation-delay:.06s}.js .jhero .jrise:nth-of-type(3){animation-delay:.12s}
+.jcat{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass);font-weight:500}
+.jcat a{text-decoration:none;color:inherit}
+.jmeta{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:13.5px;color:var(--muted)}
+.jread{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--ink);transition:gap .35s var(--ease)}
+.jread svg{inline-size:16px;block-size:16px}
+.jread-lg{font-size:14px;padding-bottom:6px;border-bottom:1px solid var(--line-2)}
+.jfeat-s{padding-bottom:clamp(48px,6vw,96px)}
+.jfeat a{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,72px);align-items:center;text-decoration:none;color:inherit}
+.jfeat-ph{display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--paper-2)}
+.jfeat-ph picture,.jfeat-ph img,.jcard-ph picture,.jcard-ph img{display:block;inline-size:100%;block-size:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.jfeat a:hover .jfeat-ph img,.jcard a:hover .jcard-ph img{transform:scale(1.035)}
+.jfeat-b{display:grid;gap:16px;justify-items:start}
+.jfeat-t{font-size:clamp(30px,3.4vw,52px);font-weight:300;letter-spacing:-.03em;line-height:1.1;text-wrap:balance;transition:color .3s}
+.jfeat-d{font-size:var(--t-1);color:var(--muted);line-height:1.55;max-width:44ch}
+.jfeat a:hover .jread,.jcard a:hover .jread{gap:12px}
+.jfeat a:hover .jfeat-t,.jcard a:hover .jcard-t{color:var(--brown)}
+.jlist{padding-bottom:clamp(56px,7vw,112px)}
+.jfilter{margin-bottom:clamp(28px,3vw,44px);border-top:1px solid var(--line);padding-top:22px}
+.jfilter ul{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut)}
+.jfilter ul::-webkit-scrollbar{display:none}
+.jchip{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;border:1px solid var(--line-2);border-radius:999px;font-size:14px;text-decoration:none;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
+.jchip:hover{border-color:var(--ink)}
+.jchip[aria-current]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.jgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(36px,4vw,60px) clamp(18px,2vw,32px)}
+.jcard a{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;block-size:100%}
+.jcard-ph{display:block;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:var(--paper-2);margin-bottom:6px}
+.jcard-ph .ph-swatch{display:block;block-size:100%}
+.jcard-t{font-size:clamp(21px,1.7vw,25px);font-weight:400;letter-spacing:-.015em;line-height:1.25;transition:color .3s}
+.jcard-d{font-size:15px;color:var(--muted);line-height:1.55}
+.jcard .jread{margin-top:auto;padding-top:4px}
+.js .jcard.jin{animation:abRise .6s var(--ease) both}
+.jmore-s{padding-bottom:clamp(64px,8vw,120px)}
+.jmore-s .kicker{margin-bottom:18px}
+.jmore{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.jmore a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:24px clamp(0px,1.5vw,24px) 24px 0;text-decoration:none;color:inherit;border-bottom:1px solid var(--line);block-size:100%}
+.jmore li+li a{padding-inline-start:clamp(16px,2vw,28px);border-inline-start:1px solid var(--line)}
+.jmore-t{font-size:clamp(20px,1.6vw,24px);font-weight:300}
+.jmore-d{grid-row:2;font-size:14px;color:var(--muted)}
+.jmore svg{grid-row:1/3;grid-column:2;inline-size:18px;block-size:18px;transition:transform .35s var(--ease)}
+.jmore a:hover svg{transform:translateX(4px)}
+[dir="rtl"] .jmore svg,[dir="rtl"] .jread svg{transform:scaleX(-1)}
+.jempty{padding-block:clamp(24px,3vw,48px) clamp(64px,8vw,120px)}
+.jempty .wrap{display:grid;gap:12px;justify-items:start}
+.jempty p{color:var(--muted)}
+.jend{background:var(--paper-2);padding-block:clamp(80px,10vw,144px)}
+.jend-in{display:grid;gap:18px;justify-items:start}
+.jend-in>p{max-width:50ch;color:var(--muted);font-size:var(--t-1)}
+.jend .row{margin-top:8px}
+/* yazı sayfası */
+.jprog{position:fixed;inset:0 0 auto;block-size:2px;z-index:70;pointer-events:none}
+.jprog span{display:block;block-size:100%;background:var(--brass);transform:scaleX(0);transform-origin:left;will-change:transform}
+[dir="rtl"] .jprog span{transform-origin:right}
+.jpost-h{padding-top:calc(118px + env(safe-area-inset-top,0px));padding-bottom:clamp(32px,4vw,56px)}
+.jnarrow-w{max-width:calc(900px + var(--gut) + var(--gut-e))}
+.jpost-h .jcat{margin-top:clamp(24px,3vw,44px)}
+.jh1-post{font-size:clamp(36px,4.8vw,70px)}
+.jpost-h .lead{max-width:60ch}
+.jmeta-post{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.jmeta-post strong{font-weight:500;color:var(--ink)}
+.jcover{margin:0;aspect-ratio:16/8;border-radius:16px;overflow:hidden;background:var(--paper-2)}
+.jcover picture,.jcover img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
+.jbody{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,680px) minmax(0,1fr);gap:clamp(24px,4vw,64px);padding-block:clamp(48px,6vw,88px) clamp(56px,7vw,104px)}
+.jside{grid-column:1;display:grid;gap:28px;align-content:start;position:sticky;top:96px;align-self:start;max-width:260px}
+.jprose{grid-column:2;min-inline-size:0;font-size:clamp(17px,1.2vw,18.5px);line-height:1.78;color:var(--ink-2)}
+.jprose>*+*{margin-top:1.15em}
+.jprose p,.jprose li{max-width:68ch}
+.jprose .jh2{font-size:clamp(25px,2.2vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1.2;color:var(--ink);margin-top:2.1em;scroll-margin-top:96px}
+.jprose .jh3{font-size:clamp(19px,1.5vw,22px);font-weight:500;color:var(--ink);margin-top:1.7em;scroll-margin-top:96px}
+.janchor{margin-inline-start:.35em;color:var(--brass);text-decoration:none;opacity:0;font-weight:300;transition:opacity .2s}
+.jprose h2:hover .janchor,.jprose h3:hover .janchor,.janchor:focus-visible{opacity:1}
+.jprose ul,.jprose ol{padding-inline-start:1.3em;display:grid;gap:.5em}
+.jprose ul{list-style:disc}.jprose ol{list-style:decimal}
+.jprose li::marker{color:var(--brass)}
+.jprose a{color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:3px}
+.jprose strong{font-weight:600;color:var(--ink)}
+.jprose blockquote{margin-block:1.8em;padding-inline-start:24px;border-inline-start:2px solid var(--brass);font-size:clamp(20px,1.7vw,25px);font-weight:300;line-height:1.45;color:var(--ink)}
+.jprose .jfig{margin-block:2em;margin-inline:clamp(-80px,-6vw,0px)}
+.jprose .jfig picture{display:block}
+.jprose .jfig img{display:block;inline-size:auto;max-inline-size:100%;block-size:auto;max-block-size:min(78vh,760px);margin-inline:auto;border-radius:12px}
+.jprose .jfig figcaption{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.jprose table{inline-size:100%;border-collapse:collapse;font-size:15px}
+.jprose th,.jprose td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:start}
+.jtoc ol{display:grid;gap:2px;margin-top:12px;counter-reset:t;border-inline-start:1px solid var(--line)}
+.jtoc a{display:block;padding:6px 0 6px 14px;margin-inline-start:-1px;border-inline-start:1px solid transparent;font-size:14px;line-height:1.4;color:var(--muted);text-decoration:none;transition:color .2s,border-color .2s}
+[dir="rtl"] .jtoc a{padding:6px 14px 6px 0}
+.jtoc a:hover,.jtoc a[aria-current]{color:var(--ink);border-color:var(--ink)}
+.jshare{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.jshare-l{inline-size:100%;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.jshare-b{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;background:transparent;color:var(--ink);font:inherit;font-size:13.5px;text-decoration:none;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.jshare-b svg{inline-size:17px;block-size:17px}
+.jshare-b:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.jpost-end{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-top:clamp(44px,5vw,72px);padding-top:28px;border-top:1px solid var(--line)}
+.jshare-end .jshare-l{inline-size:auto;margin-inline-end:6px}
+.jside .jshare{display:none}
+.jprod{padding-block:clamp(64px,8vw,112px);background:var(--paper-2)}
+.jrel{padding-block:clamp(64px,8vw,112px)}
+@media (min-width:1101px){.jside .jshare{display:flex}.jshare-end{display:none}}
+@media (max-width:1100px){
+  .jbody{grid-template-columns:minmax(0,1fr);max-width:calc(760px + var(--gut) + var(--gut-e))}
+  .jside{grid-column:1;position:static;max-width:none}
+  .jprose{grid-column:1}
+  .jtoc{padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  .jtoc ol{border:0}.jtoc a{padding-inline:0;border:0}
+  .jprose .jfig{margin-inline:0}
+  .jgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jmore{grid-template-columns:1fr}
+  .jmore li+li a{padding-inline-start:0;border-inline-start:0}
+}
+@media (max-width:900px){
+  .jfeat a{grid-template-columns:1fr}
+  .jcover{aspect-ratio:4/3;border-radius:12px}
+}
+@media (max-width:640px){
+  .jgrid{grid-template-columns:1fr}
+  .jend .row{inline-size:100%}.jend .row .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .jrise,.js .jcard.jin{animation:none}
+  .jfeat-ph img,.jcard-ph img{transition:none}
 }</style>
 <script>window.BP={"lang": "tr", "wa": "905535962614", "consent": {"analytics": false}};document.documentElement.classList.add('js')</script>
 <link rel="preload" as="image" type="image/avif" imagesrcset="/img/urunler/fon-perde/salon-240.avif 240w, /img/urunler/fon-perde/salon-480.avif 480w, /img/urunler/fon-perde/salon-720.avif 720w, /img/urunler/fon-perde/salon-960.avif 960w, /img/urunler/fon-perde/salon-1200.avif 1200w" imagesizes="(max-width: 900px) 0px, 34vw" fetchpriority="high">
@@ -1164,7 +1256,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
       <p class="fnote">Bu öneriler bir başlangıç. Pencerenizin yönü ve ölçüsü kararı değiştirebilir; ölçü sırasında birlikte netleştiririz.</p>
       <div class="ares-actions"><button type="button" class="btn btn-ghost" data-edit>Seçimlerimi Düzenle</button><button type="button" class="btn btn-ghost" data-restart>Yeniden Başla</button></div>
     </div>
-    <script type="application/json" data-adv-data>{"scores": [["room", "salon", {"tul-perde": 3, "fon-perde": 3, "rustik-perde": 2, "motorlu-perde": 1, "perde-aksesuarlari": 1}], ["room", "yatak", {"fon-perde": 3, "tul-perde": 2, "stor-perde": 2, "plicell-perde": 1}], ["room", "cocuk", {"stor-perde": 3, "katlamali-perde": 2, "fon-perde": 2, "plicell-perde": 1}], ["room", "mutfak", {"jaluzi-perde": 3, "stor-perde": 3, "katlamali-perde": 2, "plicell-perde": 1}], ["room", "calisma", {"jaluzi-perde": 3, "stor-perde": 2, "dikey-perde": 2, "katlamali-perde": 1}], ["room", "genis", {"motorlu-perde": 3, "dikey-perde": 3, "plicell-perde": 2, "tul-perde": 1}], ["light", "suzulmus", {"tul-perde": 3, "katlamali-perde": 1, "stor-perde": 1}], ["light", "ayarli", {"jaluzi-perde": 3, "dikey-perde": 2, "plicell-perde": 2, "stor-perde": 1}], ["light", "karanlik", {"fon-perde": 3, "stor-perde": 2, "plicell-perde": 1}], ["style", "modern", {"stor-perde": 2, "motorlu-perde": 2, "dikey-perde": 1, "plicell-perde": 1, "tul-perde": 1}], ["style", "klasik", {"rustik-perde": 3, "fon-perde": 2, "perde-aksesuarlari": 2}], ["style", "dogal", {"jaluzi-perde": 2, "katlamali-perde": 2, "tul-perde": 1, "rustik-perde": 1}], ["color", "acik", {"tul-perde": 1, "stor-perde": 1}], ["color", "toprak", {"fon-perde": 1, "jaluzi-perde": 1}], ["color", "koyu", {"jaluzi-perde": 1, "fon-perde": 1}]], "p": {"perde-aksesuarlari": {"n": "Dekoratif Ray & Aksesuarlar", "d": "Dekoratif ray, korniş ve rustik boru; tutucu, püskül ve motor donanımları.", "u": "/tr/urunler/perde/perde-aksesuarlari", "i": "/img/urunler/perde-aksesuarlari/koyu-alinlik-1200.webp", "is": "/img/urunler/perde-aksesuarlari/koyu-alinlik-480.webp", "a": "Dekoratif Ray & Aksesuarlar"}, "plicell-perde": {"n": "Plise & Plicell Sistemler", "d": "Petek yapısı ısıyı tutar; dar ve alışılmadık ölçülerde çalışır.", "u": "/tr/urunler/perde/plicell-perde", "i": "/img/urunler/plicell-perde-1-1200.webp", "is": "/img/urunler/plicell-perde-1-480.webp", "a": "Plise & Plicell Sistemler"}, "rustik-perde": {"n": "Rustik Perde", "d": "Ahşap ya da metal boru üzerinde halkalı, klasik kurulum.", "u": "/tr/urunler/perde/rustik-perde", "i": "/img/urunler/rustik-perde/kose-1200.webp", "is": "/img/urunler/rustik-perde/kose-480.webp", "a": "Rustik Perde"}, "motorlu-perde": {"n": "Motorlu Perde Sistemleri", "d": "Kumanda ya da telefonla; geniş cepheler ve ulaşılması zor pencereler için.", "u": "/tr/urunler/perde/motorlu-perde", "i": "/img/urunler/motorlu-perde-1-1200.webp", "is": "/img/urunler/motorlu-perde-1-480.webp", "a": "Motorlu Perde Sistemleri"}, "jaluzi-perde": {"n": "Ahşap & Metal Jaluziler", "d": "Yatay kanatlar; ışığı açısını değiştirerek yönlendirir.", "u": "/tr/urunler/perde/jaluzi-perde", "i": "/img/urunler/jaluzi-perde/siyah-salon-1334.webp", "is": "/img/urunler/jaluzi-perde/siyah-salon-480.webp", "a": "Ahşap & Metal Jaluziler"}, "stor-perde": {"n": "Stor Perdeler", "d": "Tek parça kumaş rulo hâlinde toplanır; zebra seçeneğiyle kademeli ışık.", "u": "/tr/urunler/perde/stor-perde", "i": "/img/urunler/stor-perde/yemek-odasi-1326.webp", "is": "/img/urunler/stor-perde/yemek-odasi-480.webp", "a": "Stor Perdeler"}, "tul-perde": {"n": "Tül Perdeler", "d": "Gün ışığını süzen ince kumaş; mahremiyeti korurken odayı aydınlık tutar.", "u": "/tr/urunler/perde/tul-perde", "i": "/img/urunler/tul-perde-1-1200.webp", "is": "/img/urunler/tul-perde-1-480.webp", "a": "Tül Perdeler"}, "katlamali-perde": {"n": "Katlamalı Perdeler", "d": "Yukarı toplandıkça düzgün katlar oluşturan sade duruş.", "u": "/tr/urunler/perde/katlamali-perde", "i": "/img/urunler/katlamali-perde/salon-1200.webp", "is": "/img/urunler/katlamali-perde/salon-480.webp", "a": "Katlamalı Perdeler"}, "dikey-perde": {"n": "Dikey Perdeler", "d": "Dikey bantlar döner ve yana toplanır; geniş camlar ve ofisler için.", "u": "/tr/urunler/perde/dikey-perde", "i": "/img/urunler/dikey-perde/zincir-1200.webp", "is": "/img/urunler/dikey-perde/zincir-480.webp", "a": "Dikey Perdeler"}, "fon-perde": {"n": "Fon Perdeler", "d": "Pencereyi çerçeveleyen kalın kumaş; karartma ve ısı yalıtımı seçenekleriyle.", "u": "/tr/urunler/perde/fon-perde", "i": "/img/urunler/fon-perde/salon-1200.webp", "is": "/img/urunler/fon-perde/salon-480.webp", "a": "Fon Perdeler"}}, "labels": {"room": {"salon": "Salon", "yatak": "Yatak odası", "cocuk": "Çocuk odası", "mutfak": "Mutfak veya banyo", "calisma": "Çalışma odası veya ofis", "genis": "Geniş cam, kış bahçesi"}, "light": {"suzulmus": "Aydınlık ama süzülmüş", "ayarli": "Gün içinde ayarlayabileyim", "karanlik": "Gerektiğinde tam karanlık"}, "style": {"modern": "Modern ve sade", "klasik": "Klasik", "dogal": "Doğal ve sıcak"}, "color": {"acik": "Açık ve nötr", "toprak": "Sıcak toprak tonları", "koyu": "Koyu ve kontrastlı"}}, "order": ["room", "light", "style", "color"], "colors": {"acik": ["beyaz", "krem"], "toprak": ["kahve", "krem", "yesil"], "koyu": ["koyu", "gri"]}, "hex": {"beyaz": "#f4f1ea", "krem": "#ddcdb2", "gri": "#9b9893", "kahve": "#7b5a40", "koyu": "#2b2724", "yesil": "#6f7752", "renkli": "#b5523b", "metal": "#b08d4f"}, "cat": "/tr/katalog", "wa": "https://wa.me/905535962614?text=", "t": {"progress": "Perde Seçiminiz — Adım {n} / {t}", "step": "Adım {n}", "n": 4, "why": {"room": "Seçtiğiniz mekâna uygun", "light": "Işık ihtiyacınızı karşılıyor", "style": "Dekorasyon stilinizle uyumlu", "color": "Renk tercihinizi tamamlıyor"}, "say": {"light": {"suzulmus": "gün ışığını yumuşatarak içeri alır", "ayarli": "ışığı gün içinde istediğiniz gibi ayarlamanızı sağlar", "karanlik": "gerektiğinde odayı karartır"}, "style": {"modern": "sade ve modern çizgilerle uyum sağlar", "klasik": "klasik dekorasyonun zarif karakterini tamamlar", "dogal": "doğal ve sıcak bir atmosfer yaratır"}, "room": "{room} için", "and": " ve "}, "wa": "Merhaba Bey Perde, web sitenizdeki Perde Seçici'yi tamamladım.\n\nOda: {room}\nIşık Tercihi: {light}\nDekorasyon Stili: {style}\nRenk Tercihi: {color}\n\nBana {prods} önerildi. Bu ürünler hakkında bilgi ve fiyat teklifi almak istiyorum.", "ours": "Önerimiz", "detail": "Ürünü incele", "plus": " + "}, "pairs": [["tul-perde", "fon-perde"], ["tul-perde", "rustik-perde"]]}</script>
+    <script type="application/json" data-adv-data>{"scores": [["room", "salon", {"tul-perde": 3, "fon-perde": 3, "rustik-perde": 2, "motorlu-perde": 1, "perde-aksesuarlari": 1}], ["room", "yatak", {"fon-perde": 3, "tul-perde": 2, "stor-perde": 2, "plicell-perde": 1}], ["room", "cocuk", {"stor-perde": 3, "katlamali-perde": 2, "fon-perde": 2, "plicell-perde": 1}], ["room", "mutfak", {"jaluzi-perde": 3, "stor-perde": 3, "katlamali-perde": 2, "plicell-perde": 1}], ["room", "calisma", {"jaluzi-perde": 3, "stor-perde": 2, "dikey-perde": 2, "katlamali-perde": 1}], ["room", "genis", {"motorlu-perde": 3, "dikey-perde": 3, "plicell-perde": 2, "tul-perde": 1}], ["light", "suzulmus", {"tul-perde": 3, "katlamali-perde": 1, "stor-perde": 1}], ["light", "ayarli", {"jaluzi-perde": 3, "dikey-perde": 2, "plicell-perde": 2, "stor-perde": 1}], ["light", "karanlik", {"fon-perde": 3, "stor-perde": 2, "plicell-perde": 1}], ["style", "modern", {"stor-perde": 2, "motorlu-perde": 2, "dikey-perde": 1, "plicell-perde": 1, "tul-perde": 1}], ["style", "klasik", {"rustik-perde": 3, "fon-perde": 2, "perde-aksesuarlari": 2}], ["style", "dogal", {"jaluzi-perde": 2, "katlamali-perde": 2, "tul-perde": 1, "rustik-perde": 1}], ["color", "acik", {"tul-perde": 1, "stor-perde": 1}], ["color", "toprak", {"fon-perde": 1, "jaluzi-perde": 1}], ["color", "koyu", {"jaluzi-perde": 1, "fon-perde": 1}]], "p": {"tul-perde": {"n": "Tül Perdeler", "d": "Gün ışığını süzen ince kumaş; mahremiyeti korurken odayı aydınlık tutar.", "u": "/tr/urunler/perde/tul-perde", "i": "/img/urunler/tul-perde-1-1200.webp", "is": "/img/urunler/tul-perde-1-480.webp", "a": "Tül Perdeler"}, "katlamali-perde": {"n": "Katlamalı Perdeler", "d": "Yukarı toplandıkça düzgün katlar oluşturan sade duruş.", "u": "/tr/urunler/perde/katlamali-perde", "i": "/img/urunler/katlamali-perde/salon-1200.webp", "is": "/img/urunler/katlamali-perde/salon-480.webp", "a": "Katlamalı Perdeler"}, "dikey-perde": {"n": "Dikey Perdeler", "d": "Dikey bantlar döner ve yana toplanır; geniş camlar ve ofisler için.", "u": "/tr/urunler/perde/dikey-perde", "i": "/img/urunler/dikey-perde/zincir-1200.webp", "is": "/img/urunler/dikey-perde/zincir-480.webp", "a": "Dikey Perdeler"}, "plicell-perde": {"n": "Plise & Plicell Sistemler", "d": "Petek yapısı ısıyı tutar; dar ve alışılmadık ölçülerde çalışır.", "u": "/tr/urunler/perde/plicell-perde", "i": "/img/urunler/plicell-perde-1-1200.webp", "is": "/img/urunler/plicell-perde-1-480.webp", "a": "Plise & Plicell Sistemler"}, "motorlu-perde": {"n": "Motorlu Perde Sistemleri", "d": "Kumanda ya da telefonla; geniş cepheler ve ulaşılması zor pencereler için.", "u": "/tr/urunler/perde/motorlu-perde", "i": "/img/urunler/motorlu-perde-1-1200.webp", "is": "/img/urunler/motorlu-perde-1-480.webp", "a": "Motorlu Perde Sistemleri"}, "rustik-perde": {"n": "Rustik Perde", "d": "Ahşap ya da metal boru üzerinde halkalı, klasik kurulum.", "u": "/tr/urunler/perde/rustik-perde", "i": "/img/urunler/rustik-perde/kose-1200.webp", "is": "/img/urunler/rustik-perde/kose-480.webp", "a": "Rustik Perde"}, "fon-perde": {"n": "Fon Perdeler", "d": "Pencereyi çerçeveleyen kalın kumaş; karartma ve ısı yalıtımı seçenekleriyle.", "u": "/tr/urunler/perde/fon-perde", "i": "/img/urunler/fon-perde/salon-1200.webp", "is": "/img/urunler/fon-perde/salon-480.webp", "a": "Fon Perdeler"}, "jaluzi-perde": {"n": "Ahşap & Metal Jaluziler", "d": "Yatay kanatlar; ışığı açısını değiştirerek yönlendirir.", "u": "/tr/urunler/perde/jaluzi-perde", "i": "/img/urunler/jaluzi-perde/siyah-salon-1334.webp", "is": "/img/urunler/jaluzi-perde/siyah-salon-480.webp", "a": "Ahşap & Metal Jaluziler"}, "stor-perde": {"n": "Stor Perdeler", "d": "Tek parça kumaş rulo hâlinde toplanır; zebra seçeneğiyle kademeli ışık.", "u": "/tr/urunler/perde/stor-perde", "i": "/img/urunler/stor-perde/yemek-odasi-1326.webp", "is": "/img/urunler/stor-perde/yemek-odasi-480.webp", "a": "Stor Perdeler"}, "perde-aksesuarlari": {"n": "Dekoratif Ray & Aksesuarlar", "d": "Dekoratif ray, korniş ve rustik boru; tutucu, püskül ve motor donanımları.", "u": "/tr/urunler/perde/perde-aksesuarlari", "i": "/img/urunler/perde-aksesuarlari/koyu-alinlik-1200.webp", "is": "/img/urunler/perde-aksesuarlari/koyu-alinlik-480.webp", "a": "Dekoratif Ray & Aksesuarlar"}}, "labels": {"room": {"salon": "Salon", "yatak": "Yatak odası", "cocuk": "Çocuk odası", "mutfak": "Mutfak veya banyo", "calisma": "Çalışma odası veya ofis", "genis": "Geniş cam, kış bahçesi"}, "light": {"suzulmus": "Aydınlık ama süzülmüş", "ayarli": "Gün içinde ayarlayabileyim", "karanlik": "Gerektiğinde tam karanlık"}, "style": {"modern": "Modern ve sade", "klasik": "Klasik", "dogal": "Doğal ve sıcak"}, "color": {"acik": "Açık ve nötr", "toprak": "Sıcak toprak tonları", "koyu": "Koyu ve kontrastlı"}}, "order": ["room", "light", "style", "color"], "colors": {"acik": ["beyaz", "krem"], "toprak": ["kahve", "krem", "yesil"], "koyu": ["koyu", "gri"]}, "hex": {"beyaz": "#f4f1ea", "krem": "#ddcdb2", "gri": "#9b9893", "kahve": "#7b5a40", "koyu": "#2b2724", "yesil": "#6f7752", "renkli": "#b5523b", "metal": "#b08d4f"}, "cat": "/tr/katalog", "wa": "https://wa.me/905535962614?text=", "t": {"progress": "Perde Seçiminiz — Adım {n} / {t}", "step": "Adım {n}", "n": 4, "why": {"room": "Seçtiğiniz mekâna uygun", "light": "Işık ihtiyacınızı karşılıyor", "style": "Dekorasyon stilinizle uyumlu", "color": "Renk tercihinizi tamamlıyor"}, "say": {"light": {"suzulmus": "gün ışığını yumuşatarak içeri alır", "ayarli": "ışığı gün içinde istediğiniz gibi ayarlamanızı sağlar", "karanlik": "gerektiğinde odayı karartır"}, "style": {"modern": "sade ve modern çizgilerle uyum sağlar", "klasik": "klasik dekorasyonun zarif karakterini tamamlar", "dogal": "doğal ve sıcak bir atmosfer yaratır"}, "room": "{room} için", "and": " ve "}, "wa": "Merhaba Bey Perde, web sitenizdeki Perde Seçici'yi tamamladım.\n\nOda: {room}\nIşık Tercihi: {light}\nDekorasyon Stili: {style}\nRenk Tercihi: {color}\n\nBana {prods} önerildi. Bu ürünler hakkında bilgi ve fiyat teklifi almak istiyorum.", "ours": "Önerimiz", "detail": "Ürünü incele", "plus": " + "}, "pairs": [["tul-perde", "fon-perde"], ["tul-perde", "rustik-perde"]]}</script>
   </form>
 </section><section class="cta-band" aria-labelledby="cta-h">
   <picture><source type="image/avif" srcset="/img/urunler/perde-kapak-240.avif 240w, /img/urunler/perde-kapak-480.avif 480w, /img/urunler/perde-kapak-720.avif 720w, /img/urunler/perde-kapak-960.avif 960w, /img/urunler/perde-kapak-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/img/urunler/perde-kapak-240.webp 240w, /img/urunler/perde-kapak-480.webp 480w, /img/urunler/perde-kapak-720.webp 720w, /img/urunler/perde-kapak-960.webp 960w, /img/urunler/perde-kapak-1600.webp 1600w" sizes="100vw"><img class="cta-bg" src="/img/urunler/perde-kapak-960.webp" width="1600" height="1200" alt="Bey Perde" loading="lazy" decoding="async"></picture>
@@ -1200,6 +1292,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Merhaba%2C%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener nofollow" aria-label="WhatsApp'tan yazın" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Çerez Politikası"><p>Bu site yalnızca çalışması için gerekli yerel depolamayı kullanır; reklam ya da takip çerezi kullanmaz. <a href="/tr/cerez-politikasi" title="Ayrıntılar">Ayrıntılar</a></p><button class="btn btn-sm" type="button" data-cookie-ok>Anladım</button></div>
-<script src="/assets/site.js?v=50c972c064" defer></script><script src="/assets/secici.js?v=50c972c064" defer></script>
+<script src="/assets/site.js?v=2ea0bbf166" defer></script><script src="/assets/secici.js?v=2ea0bbf166" defer></script>
 </body>
 </html>

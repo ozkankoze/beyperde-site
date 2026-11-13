@@ -153,7 +153,7 @@ def header(lang, path, avail, nav=''):
     items = [('urunler', 'nav_products'), ('katalog', 'nav_catalog'), ('projeler', 'nav_projects'),
              ('hakkimizda', 'nav_about'), ('iletisim', 'nav_contact')]
     links = ''.join(f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items)
-    blog_li = (f'<li><a href="/tr/blog"{" aria-current=\"page\"" if nav == "blog" else ""}{"" if lang == "tr" else " hreflang=\"tr\""}>{ui("nav_blog", lang)}</a></li>'
+    blog_li = (f'<li><a href="{url(lang, "blog")}"{" aria-current=\"page\"" if nav == "blog" else ""}>{ui("nav_blog", lang)}</a></li>'
                if globals().get('BLOG_POSTS') else '')
     # Masaüstü menüde "Ürünler" altında açılan kategori paneli
     def mcol(cat):
@@ -209,7 +209,7 @@ def footer(lang, avail):
     legal = ''.join(f'<li><a href="/tr/{p}"{"" if lang == "tr" else " hreflang=\"tr\""}>{ui(k, lang)}</a></li>' for p, k in [('kvkk', 'kvkk'), ('gizlilik-politikasi', 'privacy'), ('cerez-politikasi', 'cookies')])
     company = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in [('hakkimizda', 'nav_about'), ('projeler', 'nav_projects'), ('katalog', 'nav_catalog'), ('galeri', 'nav_gallery'), ('iletisim', 'nav_contact')])
     if globals().get('BLOG_POSTS'):
-        company += f'<li><a href="/tr/blog"{"" if lang == "tr" else " hreflang=\"tr\""}>{ui("nav_blog", lang)}</a></li>'
+        company += f'<li><a href="{url(lang, "blog")}">{ui("nav_blog", lang)}</a></li>'
     return f'''<footer class="site-footer">
   <div class="wrap">
     <div class="ft-top">
@@ -293,7 +293,8 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
     if m and 'data-intro' not in body:
         head_extra += f'<link rel="preload" as="image" type="image/avif" imagesrcset="{m.group(1)}" imagesizes="{m.group(2)}" fetchpriority="high">'
     cfg = json.dumps({'lang': lang, 'wa': D.WA_NUMBER, 'consent': {'analytics': False}}, ensure_ascii=False)
-    PAGES_OUT.append((path, sorted(avail, key=LANGS.index), lang))
+    if not noindex:   # noindex sayfalar site haritasına girmez
+        PAGES_OUT.append((path, sorted(avail, key=LANGS.index), lang))
     return f'''<!doctype html>
 <html lang="{lang}" dir="{dir_}">
 <head>
