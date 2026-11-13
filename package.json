@@ -8,7 +8,7 @@
   "scripts": {
     "check": "python3 tools/check.py",
     "test": "node --test tests/*.test.js && python3 tools/check.py",
-    "lint": "node --check src/assets/site.js && node --check src/assets/intro.js && node --check src/assets/forms.js && node --check src/assets/quiz.js && node --check src/assets/catalog.js && node --check src/assets/compare.js && node --check api/teklif.js && python3 -m py_compile src/build.py src/pages_home.py src/pages_products.py src/pages_misc.py src/content/data.py src/content/pages.py src/content/local.py src/content/catalog.py tools/check.py tools/images.py tools/serve.py",
+    "lint": "node --check src/assets/site.js && node --check src/assets/intro.js && node --check src/assets/forms.js && node --check src/assets/quiz.js && node --check src/assets/secici.js && node --check src/assets/catalog.js && node --check src/assets/compare.js && node --check api/teklif.js && python3 -m py_compile src/build.py src/pages_home.py src/pages_products.py src/pages_misc.py src/pages_secici.py src/content/data.py src/content/pages.py src/content/local.py src/content/catalog.py tools/check.py tools/images.py tools/serve.py",
     "dev": "python3 tools/serve.py 8000",
     "build:site": "python3 tools/images.py && python3 src/build.py"
   }

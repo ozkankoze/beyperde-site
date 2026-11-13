@@ -699,7 +699,140 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 
 /* yazdırma */
 @media print{.site-header,.wa-float,.cookie,.mmenu,.intro{display:none!important}body{background:#fff}}
-.intro.mobile{block-size:560vh}</style>
+.intro.mobile{block-size:560vh}
+
+/* ---------------------------------------------------------------- Perde Seçici (/perde-secici) */
+.adv-intro{padding-top:calc(112px + env(safe-area-inset-top,0px));padding-bottom:clamp(22px,3vw,40px)}
+.adv-intro-in{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end}
+.adv-h1{font-size:clamp(34px,4.6vw,68px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance;margin-block:14px 18px}
+.adv-intro-t .lead{max-width:56ch}
+.adv-facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:14px;color:var(--ink-2)}
+.adv-facts li{display:inline-flex;align-items:center;gap:9px}
+.adv-facts li::before{content:"";inline-size:6px;block-size:6px;border-radius:50%;background:var(--brass-l)}
+.adv-intro-img{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--paper-2)}
+.adv-intro-img img{inline-size:100%;block-size:100%;object-fit:cover}
+@media (max-width:900px){.adv-intro-in{grid-template-columns:1fr}.adv-intro-img{display:none}}
+
+.adv{padding-bottom:var(--sp-tight)}
+.adv-form{display:grid;gap:clamp(22px,3vw,36px)}
+.adv-top{display:grid;gap:14px;padding-top:clamp(18px,2.4vw,28px);border-top:1px solid var(--line)}
+.adv-prog{margin:0;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+:root[lang="ar"] .adv-prog{letter-spacing:0;font-size:14px}
+.adv-segs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.aseg{display:block;inline-size:100%;block-size:18px;padding:7px 0;background:none;border:0;cursor:pointer}
+.aseg::before{content:"";display:block;block-size:4px;border-radius:4px;background:var(--line);transition:background .35s var(--ease)}
+.aseg.done::before{background:var(--brass-l)}
+.aseg.cur::before{background:var(--brass)}
+.aseg:disabled{cursor:default}
+.aseg:not(:disabled):hover::before{background:var(--brass)}
+
+.astep{border:0;padding:0;margin:0;min-inline-size:0}
+.astep-h{padding:0;margin:0}
+.astep-h .h2{display:block;font-size:clamp(28px,3.2vw,46px);letter-spacing:-.025em;line-height:1.08;text-wrap:balance}
+.astep-p{margin:12px 0 clamp(20px,2.6vw,32px);color:var(--muted);font-size:var(--t-1);max-width:60ch}
+.astep.in-r{animation:adv-in-r .45s var(--ease) both}
+.astep.in-l{animation:adv-in-l .45s var(--ease) both}
+@keyframes adv-in-r{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes adv-in-l{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+[dir="rtl"] .astep.in-r{animation-name:adv-in-l}[dir="rtl"] .astep.in-l{animation-name:adv-in-r}
+
+.agrid{display:grid;gap:clamp(10px,1.4vw,18px);grid-template-columns:repeat(3,minmax(0,1fr))}
+.acard{position:relative;display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:var(--card);cursor:pointer;
+  box-shadow:0 0 0 1px var(--line);transition:box-shadow .3s var(--ease),transform .35s var(--ease)}
+.acard:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--line-2),0 14px 30px rgba(42,32,25,.08)}
+.acard:has(input:checked){box-shadow:0 0 0 2px var(--brass),0 14px 30px rgba(42,32,25,.1)}
+.acard:has(input:focus-visible){outline:2px solid var(--brass);outline-offset:3px}
+.aph{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
+.aph img{inline-size:100%;block-size:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.acard:hover .aph img{transform:scale(1.04)}
+.acard-b{display:grid;gap:4px;padding:14px 16px 16px}
+.acard-t{font-size:var(--t-h4);font-weight:500;letter-spacing:-.005em}
+.acard-d{font-size:14px;color:var(--muted);line-height:1.45}
+.acheck{position:absolute;inset-block-start:12px;inset-inline-end:12px;inline-size:28px;block-size:28px;fill:var(--brass);stroke:#fff;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.6);transition:opacity .25s,transform .35s var(--ease);filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.acheck circle{stroke:none}
+.acard:has(input:checked) .acheck{opacity:1;transform:none}
+.agrid-light .aph,.agrid-style .aph{aspect-ratio:5/4}
+
+/* renk adımı */
+.astep-body.has-preview{display:grid;grid-template-columns:minmax(0,1fr) clamp(180px,22vw,280px);gap:clamp(16px,2.4vw,36px);align-items:start}
+.agrid-color .acheck{fill:var(--ink)}
+.aswatch{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;block-size:clamp(96px,10vw,140px);position:relative}
+.aswatch span{background:var(--c);position:relative}
+.aswatch::after{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 3px),
+  repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px),
+  linear-gradient(180deg,rgba(255,255,255,.12),rgba(0,0,0,.08))}
+.apreview{margin:0;position:sticky;top:110px;padding:18px 18px 0;border-radius:16px;background:linear-gradient(180deg,#eef2f2,#dfe6e4);box-shadow:0 0 0 1px var(--line);overflow:hidden;aspect-ratio:3/4;display:grid;grid-template-rows:auto 1fr auto}
+.apv-rod{block-size:5px;border-radius:3px;background:#3a332d;margin-inline:-6px}
+.apv-curtain{--pc:#ddcdb2;display:grid;grid-template-columns:repeat(9,1fr);transition:--pc .5s}
+.apv-curtain i{background:linear-gradient(90deg,color-mix(in srgb,var(--pc) 78%,#000) 0%,var(--pc) 35%,color-mix(in srgb,var(--pc) 85%,#fff) 55%,color-mix(in srgb,var(--pc) 82%,#000) 100%);transition:background .5s var(--ease)}
+.apv-sill{block-size:18px;background:#cdb79a;margin-inline:-18px}
+@supports not (color:color-mix(in srgb,red,blue)){.apv-curtain i{background:var(--pc)}}
+
+/* alt gezinme */
+.adv-nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.adv-nav [data-next]{margin-inline-start:auto}
+.adv-nav [data-next] svg{inline-size:18px;block-size:18px}
+[dir="rtl"] .adv-nav [data-next] svg{transform:scaleX(-1)}
+.adv-nav [data-next]:disabled{opacity:.35;cursor:not-allowed}
+
+/* sonuç raporu */
+.adv-res{display:grid;gap:clamp(24px,3vw,40px);animation:adv-in-r .5s var(--ease) both}
+.adv-res:focus{outline:none}
+.ares-head .h2{margin-block:10px 12px;text-wrap:balance}
+.ares-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.ares-tags li{padding:7px 14px;border-radius:999px;background:var(--paper-2);font-size:14px;color:var(--ink-2)}
+.ares-main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3.4vw,52px);align-items:center;padding:clamp(14px,1.6vw,20px);border-radius:22px;background:var(--card);box-shadow:0 0 0 1px var(--line)}
+.ares-media{display:grid;gap:10px}
+.ares-media.two{grid-template-columns:1fr 1fr}
+.ares-media .aph{aspect-ratio:4/5;border-radius:14px}
+.ares-media:not(.two) .aph{aspect-ratio:5/4}
+.ares-text{padding:clamp(4px,1vw,14px)}
+.ares-title{font-size:clamp(28px,3vw,44px);margin-block:8px 14px}
+.ares-why{color:var(--ink-2);font-size:var(--t-1);line-height:1.6;margin:0 0 18px}
+.ares-reasons{display:grid;gap:9px;margin:0 0 22px}
+.ares-reasons li{display:flex;gap:10px;align-items:center;font-size:15px}
+.ares-reasons li::before{content:"";flex:none;inline-size:18px;block-size:18px;border-radius:50%;background:var(--brass) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.4l2.6 2.6L14.2 7.4' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.ares-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.btn-lg{min-height:56px;padding:16px 30px;font-size:14px}
+.ares-alts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.aalt{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:center;padding:10px;border-radius:16px;background:var(--card);box-shadow:0 0 0 1px var(--line);text-decoration:none;color:inherit;transition:box-shadow .3s,transform .35s var(--ease)}
+.aalt:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--line-2),0 12px 26px rgba(42,32,25,.08)}
+.aalt .aph{aspect-ratio:1;border-radius:10px}
+.aalt-b{display:grid;gap:4px}
+.aalt-t{font-weight:500}
+.aalt-d{font-size:14px;color:var(--muted);line-height:1.45}
+.aalt .link-sm{justify-self:start;margin-top:4px}
+.ares-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+@media (max-width:1000px){.agrid-room{grid-template-columns:repeat(2,minmax(0,1fr))}.ares-main{grid-template-columns:1fr}}
+@media (max-width:760px){
+  .agrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .agrid-light,.agrid-style{grid-template-columns:1fr}
+  .agrid-light .acard,.agrid-style .acard{flex-direction:row;align-items:stretch}
+  .agrid-light .aph,.agrid-style .aph{flex:0 0 38%;aspect-ratio:auto;min-block-size:112px}
+  .agrid-light .acard-b,.agrid-style .acard-b{align-content:center}
+  .acard-b{padding:11px 12px 13px}
+  .acard-t{font-size:15.5px}
+  .acheck{inline-size:24px;block-size:24px;inset-block-start:8px;inset-inline-end:8px}
+  .astep-body.has-preview{grid-template-columns:1fr}
+  .apreview{display:none}
+  .agrid-color{grid-template-columns:1fr}
+  .agrid-color .acard{flex-direction:row}
+  .agrid-color .aswatch{flex:0 0 42%;block-size:auto;min-block-size:78px}
+  .adv-nav{position:sticky;bottom:0;z-index:20;margin-inline:calc(var(--gut) * -1);padding:12px var(--gut) calc(12px + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--paper) 92%,transparent);border-top:1px solid var(--line)}
+  .adv-nav .btn{min-height:46px}
+  .ares-alts{grid-template-columns:1fr}
+  .aalt{grid-template-columns:96px minmax(0,1fr)}
+  .ares-cta .btn{inline-size:100%}
+  .page-secici .wa-float{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (prefers-reduced-motion:reduce){
+  .astep.in-r,.astep.in-l,.adv-res{animation:none}
+  .acard,.acard .aph img,.acheck,.aseg::before,.aalt,.apv-curtain i{transition:none}
+  .acard:hover,.aalt:hover{transform:none}
+}</style>
 <script>window.BP={"lang": "tr", "wa": "905535962614", "consent": {"analytics": false}};document.documentElement.classList.add('js')</script>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://beyperde.com/#isletme", "name": "Bey Perde", "url": "https://beyperde.com/tr", "logo": "https://beyperde.com/img/logo-brown.png", "image": "https://beyperde.com/img/ana-sayfa-1600.webp", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "priceRange": "₺₺", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "hasMap": "https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}], "knowsLanguage": ["tr", "en", "ar"], "sameAs": ["https://www.instagram.com/beyperdee/"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://beyperde.com/tr"}, {"@type": "ListItem", "position": 2, "name": "Katalog", "item": "https://beyperde.com/tr/katalog"}, {"@type": "ListItem", "position": 3, "name": "Duvar Kağıtları", "item": "https://beyperde.com/tr/urunler/duvar-kagidi"}, {"@type": "ListItem", "position": 4, "name": "Kumaş Baskılı Duvar Kağıdı", "item": "https://beyperde.com/tr/urunler/duvar-kagidi/kumas-baskili"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Kumaş Baskılı Duvar Kağıdı", "serviceType": "Kumaş Baskılı Duvar Kağıdı", "description": "Desen ve ölçü size göre", "provider": {"@id": "https://beyperde.com/#isletme"}, "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}, {"@type": "Place", "name": "İstanbul"}], "url": "https://beyperde.com/tr/urunler/duvar-kagidi/kumas-baskili"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Kumaş baskılı duvar kağıdı ile tekstil duvar kağıdı arasındaki fark nedir?", "acceptedAnswer": {"@type": "Answer", "text": "Tekstil duvar kağıdının yüzeyi gerçek bir kumaştır. Kumaş baskılı duvar kağıdında ise kumaşın dokusu ve deseni dijital olarak basılır; bu da desende ve ölçüde tam bir serbestlik sağlar ve bakımı genellikle daha kolaydır."}}, {"@type": "Question", "name": "Kendi seçtiğim deseni bastırabilir miyim?", "acceptedAnswer": {"@type": "Answer", "text": "Evet, dijital baskıda desen ve renk size göre hazırlanır. Aklınızdaki tasarımı odanın ölçüsü ve diğer tekstillerinizle birlikte değerlendirir, baskıya geçmeden önce deseni ve ölçüleri sizinle netleştiririz."}}, {"@type": "Question", "name": "Kumaş baskılı duvar kağıdı silinebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Baskının yapıldığı taban silinebilir yüzeyliyse lekeler nemli bir bezle temizlenebilir. Bir yatak odasıyla bir koridorun duvardan beklediği farklı olduğu için tabanı odanın kullanımına göre seçeriz."}}, {"@type": "Question", "name": "Kumaş baskılı duvar kağıdı hangi odalarda kullanılır?", "acceptedAnswer": {"@type": "Answer", "text": "En çok yatak başı duvarlarında, salonlarda vurgu duvarı olarak, otel odalarında ve butik mağazalarda kullanılır. Silinebilir bir tabanla koridor ve yemek odası gibi daha yoğun kullanılan alanlara da uygulanabilir."}}]}</script>
@@ -833,6 +966,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Merhaba%2C%20Kuma%C5%9F%20Bask%C4%B1l%C4%B1%20Duvar%20Ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın" data-wa-float><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Çerez Politikası"><p>Bu site yalnızca çalışması için gerekli yerel depolamayı kullanır; reklam ya da takip çerezi kullanmaz. <a href="/tr/cerez-politikasi">Ayrıntılar</a></p><button class="btn btn-sm" type="button" data-cookie-ok>Anladım</button></div>
-<script src="/assets/site.js?v=5f16451c94" defer></script><script src="/assets/forms.js?v=5f16451c94" defer></script>
+<script src="/assets/site.js?v=2cdbf5dc29" defer></script><script src="/assets/forms.js?v=2cdbf5dc29" defer></script>
 </body>
 </html>

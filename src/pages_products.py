@@ -12,15 +12,13 @@ def render_products(G, catalog):
         # /urunler genel bakış sayfası kaldırıldı; adres vercel.json'da kataloğa yönlenir.
         PP = P.PAGES['products']
 
-        # ---------------- /perde-secici
-        name = ui('nav_quiz', lang)
-        crumbs, cs = G['breadcrumbs'](lang, [(name, 'perde-secici')])
-        body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{name}</h1><p class="lead">{tx(D.QUIZ['intro'], lang)}</p></div></section>
-{quiz_block(G, lang, 'secici', intro=False)}
-{G['cta_band'](lang, ui('wa_general', lang), 'urunler/perde-kapak')}'''
-        title = {'tr': 'Perde Seçici — Odanıza Uygun Perdeyi 4 Soruda Bulun | Bey Perde', 'en': 'Curtain Finder — The Right Curtain for Your Room in 4 Questions | Bey Perde', 'ar': 'دليل اختيار الستائر — الستارة المناسبة لغرفتك في 4 أسئلة | باي بردة'}[lang]
-        desc = {'tr': 'Oda, ışık, stil ve renk: dört kısa soruyu cevaplayın, odanıza uygun perde türlerini önerelim. Kesin kararı keşifte birlikte veririz.', 'en': "Room, light, style and colour: answer four short questions and we'll suggest the curtain types that suit your room. We decide together at the survey.", 'ar': 'الغرفة والضوء والطابع واللون: أجب عن أربعة أسئلة قصيرة ونقترح عليك أنواع الستائر المناسبة لغرفتك، والقرار النهائي معاً عند المعاينة.'}[lang]
-        G['write'](lang, 'perde-secici', G['layout'](lang, 'perde-secici', title, desc, body, nav='perde-secici', schemas=[cs], scripts=('quiz.js',), og_image=G['og_src']('urunler/perde-kapak')))
+        # ---------------- /perde-secici (görselli danışmanlık deneyimi; mantık D.QUIZ ile ortak)
+        from pages_secici import render_secici
+        body, cs = render_secici(G, lang)
+        body += G['cta_band'](lang, ui('wa_general', lang), 'urunler/perde-kapak')
+        title = {'tr': 'Perde Seçici — Evinize En Yakışan Perdeyi Birlikte Bulalım | Bey Perde', 'en': 'Curtain Finder — Find the Curtain That Suits Your Home | Bey Perde', 'ar': 'دليل اختيار الستائر — لنجد الستارة الأنسب لبيتك | باي بردة'}[lang]
+        desc = {'tr': 'Oda, ışık, stil ve renk: dört kısa adımda yaşam alanınıza en uygun perde seçeneklerini keşfedin; önerilerle WhatsApp üzerinden ücretsiz danışmanlık alın.', 'en': 'Room, light, style and colour: discover the curtains that suit your space in four short steps, then get free advice on WhatsApp.', 'ar': 'الغرفة والضوء والطراز واللون: اكتشف في أربع خطوات قصيرة الستائر الأنسب لمساحتك، واحصل على استشارة مجانية عبر واتساب.'}[lang]
+        G['write'](lang, 'perde-secici', G['layout'](lang, 'perde-secici', title, desc, body, nav='perde-secici', schemas=[cs], scripts=('secici.js',), body_cls='page-secici', og_image=G['og_src']('urunler/fon-perde/salon')))
 
         # ---------------- kategori sayfaları
         for ck, c in D.CATS.items():
