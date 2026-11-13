@@ -7,9 +7,20 @@ def quiz_block(G, lang, hid='oda-rehberi', intro=True):
     D, e, tx, url, picture, ICON = G['D'], G['e'], G['tx'], G['url'], G['picture'], G['ICON']
     Q = D.QUIZ
     fs = []
+    A = D.ADV
+    labels = {}
     for i, (qk, qlabel, opts) in enumerate(Q['questions']):
+        labels[qk] = {v: tx(lbl, lang) for v, lbl in opts}
+
+        def media(v, qk=qk):
+            # renk sorusu: palet; diğerleri: Perde Seçici'deki seçenek fotoğraflarının ilki (yalnızca Bey Perde uygulamaları)
+            if qk == 'color':
+                return '<span class="qsw" aria-hidden="true">' + ''.join(f'<span style="--c:{D.COLORS[c][1]}"></span>' for c in Q['color_map'][v]) + '</span>'
+            k = A['img'][qk][v]
+            k = k[0] if isinstance(k, list) else k
+            return f'<span class="qph">{picture(k, "", "(max-width: 520px) 45vw, 220px")}</span>'
         radios = ''.join(
-            f'<label class="qopt"><input type="radio" name="{qk}" value="{v}"><span>{tx(lbl, lang)}</span></label>'
+            f'<label class="qopt"><input type="radio" name="{qk}" value="{v}">{media(v)}<span class="qopt-t">{tx(lbl, lang)}</span></label>'
             for v, lbl in opts)
         fs.append(f'''<fieldset class="qstep" data-step="{i}"><legend><span class="qnum">{tx(Q["step"], lang).format(n=i + 1, t=len(Q["questions"]))}</span>{tx(qlabel, lang)}</legend><div class="qopts">{radios}</div></fieldset>''')
     prods = {}
@@ -19,8 +30,9 @@ def quiz_block(G, lang, hid='oda-rehberi', intro=True):
         prods[s] = {'n': tx(name, lang), 'd': tx(short, lang), 'u': url(lang, f'urunler/{cat}/{s}'),
                     'i': (f'/img/{G["img_key"](imgs[0])}-480.webp' if imgs else '')}
     data = {'scores': [[k[0], k[1], v] for k, v in Q['scores'].items()], 'p': prods,
-            'colors': Q['color_map'], 'cat': url(lang, 'katalog'),
-            't': {'match': tx(Q['match1'], lang), 'details': G['ui']('details', lang)}}
+            'colors': Q['color_map'], 'cat': url(lang, 'katalog'), 'labels': labels,
+            'wa': f'https://wa.me/{D.WA_NUMBER}?text=',
+            't': {'match': tx(Q['match1'], lang), 'details': G['ui']('details', lang), 'wa': tx(A['wa_msg'], lang)}}
     head = f'''<div class="quiz-intro">
       <p class="kicker">{tx(D.UI['nav_quiz'], lang)}</p>
       <h2 class="h2" id="{hid}-h">{tx(Q['title'], lang)}</h2>
@@ -37,6 +49,7 @@ def quiz_block(G, lang, hid='oda-rehberi', intro=True):
         <h3 class="h3">{tx(Q['result_h'], lang)}</h3>
         <ol class="qres-list"></ol>
         <p class="fnote">{tx(Q['result_note'], lang)}</p>
+        <div class="row"><a class="btn btn-wa" data-q-wa href="https://wa.me/{D.WA_NUMBER}" target="_blank" rel="noopener">{ICON['wa']}<span>{tx(A['wa_btn'], lang)}</span></a><a class="arrow-link" href="{url(lang, 'perde-secici')}"><span>{tx(Q['full'], lang)}</span>{ICON['arrow']}</a></div>
         <div class="row"><a class="arrow-link" data-q-catalog href="{url(lang, 'katalog')}"><span>{tx(Q['see_catalog'], lang)}</span>{ICON['arrow']}</a><button type="button" class="btn btn-ghost btn-sm" data-q-restart>{tx(Q['restart'], lang)}</button></div>
       </div>
       <script type="application/json" data-q-data>{json.dumps(data, ensure_ascii=False).replace('</', '<\\/')}</script>

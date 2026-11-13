@@ -510,6 +510,7 @@ QUIZ = {
     'back': T('Geri', 'Back', 'رجوع'),
     'step': T('Soru {n} / {t}', 'Question {n} of {t}', 'السؤال {n} من {t}'),
     'match1': T('En uygun', 'Best match', 'الأنسب'),
+    'full': T('Detaylı öneri raporu için Perde Seçici', 'Detailed report in the Curtain Finder', 'تقرير مفصّل في دليل اختيار الستائر'),
 }
 
 

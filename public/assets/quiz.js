@@ -32,6 +32,15 @@
       const colors = data.colors[answers.color] || [];
       const types = top.map(([s]) => s);
       cat.href = `${data.cat}?type=${types.join(',')}${colors.length ? '&color=' + colors.join(',') : ''}`;
+      // WhatsApp mesajı: seçilen cevaplar + önerilen ürünler (Perde Seçici ile aynı metin)
+      const wa = res.querySelector('[data-q-wa]');
+      if (wa) {
+        const L = (q) => data.labels[q][answers[q]] || '';
+        const sep = document.documentElement.lang === 'ar' ? '، ' : ', ';
+        const msg = data.t.wa.replace('{room}', L('room')).replace('{light}', L('light')).replace('{style}', L('style')).replace('{color}', L('color'))
+          .replace('{prods}', types.map((s) => data.p[s].n).join(sep));
+        wa.href = data.wa + encodeURIComponent(msg);
+      }
       go(steps.length);
       res.focus({ preventScroll: true });
     }
