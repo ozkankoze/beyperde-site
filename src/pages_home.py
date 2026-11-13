@@ -3,7 +3,7 @@
 import json
 
 
-def quiz_block(G, lang, hid='oda-rehberi'):
+def quiz_block(G, lang, hid='oda-rehberi', intro=True):
     D, e, tx, url, picture, ICON = G['D'], G['e'], G['tx'], G['url'], G['picture'], G['ICON']
     Q = D.QUIZ
     fs = []
@@ -21,13 +21,14 @@ def quiz_block(G, lang, hid='oda-rehberi'):
     data = {'scores': [[k[0], k[1], v] for k, v in Q['scores'].items()], 'p': prods,
             'colors': Q['color_map'], 'cat': url(lang, 'katalog'),
             't': {'match': tx(Q['match1'], lang), 'details': G['ui']('details', lang)}}
-    return f'''<section class="band quiz-band" id="{hid}" aria-labelledby="{hid}-h">
-  <div class="wrap quiz-grid">
-    <div class="quiz-intro">
-      <p class="kicker">{tx(D.UI['nav_products'], lang)}</p>
+    head = f'''<div class="quiz-intro">
+      <p class="kicker">{tx(D.UI['nav_quiz'], lang)}</p>
       <h2 class="h2" id="{hid}-h">{tx(Q['title'], lang)}</h2>
       <p class="lead">{tx(Q['intro'], lang)}</p>
-    </div>
+    </div>''' if intro else f'<h2 class="sr" id="{hid}-h">{tx(Q["title"], lang)}</h2>'
+    return f'''<section class="band quiz-band" id="{hid}" aria-labelledby="{hid}-h">
+  <div class="wrap {'quiz-grid' if intro else 'quiz-solo'}">
+    {head}
     <form class="quiz" data-quiz novalidate>
       <div class="qprog" aria-hidden="true"><span></span></div>
       {''.join(fs)}
@@ -141,6 +142,8 @@ def render_home(G, catalog):
   </div>
 </section>
 
+{quiz_block(G, lang)}
+
 <section class="band brand" id="marka" aria-labelledby="h-marka">
   <div class="wrap brand-grid">
     <div class="brand-text">
@@ -176,7 +179,6 @@ def render_home(G, catalog):
   </div>
 </section>
 
-{quiz_block(G, lang)}
 
 <section class="band tight catteaser" aria-labelledby="h-katalog">
   <div class="wrap">

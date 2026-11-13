@@ -12,6 +12,16 @@ def render_products(G, catalog):
         # /urunler genel bakış sayfası kaldırıldı; adres vercel.json'da kataloğa yönlenir.
         PP = P.PAGES['products']
 
+        # ---------------- /perde-secici
+        name = ui('nav_quiz', lang)
+        crumbs, cs = G['breadcrumbs'](lang, [(name, 'perde-secici')])
+        body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{name}</h1><p class="lead">{tx(D.QUIZ['intro'], lang)}</p></div></section>
+{quiz_block(G, lang, 'secici', intro=False)}
+{G['cta_band'](lang, ui('wa_general', lang), 'urunler/perde-kapak')}'''
+        title = {'tr': 'Perde Seçici — Odanıza Uygun Perdeyi 4 Soruda Bulun | Bey Perde', 'en': 'Curtain Finder — The Right Curtain for Your Room in 4 Questions | Bey Perde', 'ar': 'دليل اختيار الستائر — الستارة المناسبة لغرفتك في 4 أسئلة | باي بردة'}[lang]
+        desc = {'tr': 'Oda, ışık, stil ve renk: dört kısa soruyu cevaplayın, odanıza uygun perde türlerini önerelim. Kesin kararı keşifte birlikte veririz.', 'en': "Room, light, style and colour: answer four short questions and we'll suggest the curtain types that suit your room. We decide together at the survey.", 'ar': 'الغرفة والضوء والطابع واللون: أجب عن أربعة أسئلة قصيرة ونقترح عليك أنواع الستائر المناسبة لغرفتك، والقرار النهائي معاً عند المعاينة.'}[lang]
+        G['write'](lang, 'perde-secici', G['layout'](lang, 'perde-secici', title, desc, body, nav='perde-secici', schemas=[cs], scripts=('quiz.js',), og_image=G['og_src']('urunler/perde-kapak')))
+
         # ---------------- kategori sayfaları
         for ck, c in D.CATS.items():
             cards = ''.join(G['product_card'](s, lang, '(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw') for s in c['items'])
@@ -221,6 +231,10 @@ def render_catalog(G, lang, catalog):
 </a>''' for ck, c in D.CATS.items())
     body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(CP['h1'], lang)}</h1><p class="lead">{tx(CP['lead'], lang)}</p>
   <nav class="catcards" aria-label="{tx(CP['cats'], lang)}">{ccards}</nav></div></section>
+<section class="band tight"><div class="wrap"><a class="quiz-cta" href="{url(lang, 'perde-secici')}">
+  <span class="quiz-cta-t"><span class="h4">{ui('quiz_cta_h', lang)}</span><span>{ui('quiz_cta_p', lang)}</span></span>
+  <span class="btn">{ui('quiz_cta_btn', lang)}</span>
+</a></div></section>
 <section class="band tight catalog" data-catalog>
   <div class="wrap cat-layout">
     <button class="btn btn-ghost btn-sm filters-open" type="button" aria-expanded="false" aria-controls="filters" data-filters-open>{ICON['filter']}<span>{tx(CP['filters'], lang)}</span><span class="fcount" data-active-n hidden></span></button>

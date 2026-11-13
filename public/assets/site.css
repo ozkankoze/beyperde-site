@@ -406,6 +406,11 @@ body.locked{overflow:hidden}
 .catcard-h{font-size:clamp(17px,1.6vw,22px);font-weight:400;letter-spacing:-.01em}
 .catcard-n{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;white-space:nowrap}
 @media (max-width:640px){.catcards{grid-template-columns:1fr;gap:10px}.catcard{aspect-ratio:21/9}}
+.quiz-cta{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;padding:26px 30px;border:1px solid var(--line-2);border-radius:16px;background:var(--card);text-decoration:none;color:var(--ink);transition:border-color .3s,background .3s}
+.quiz-cta:hover{border-color:var(--brass);background:var(--paper-2)}
+.quiz-cta-t{display:grid;gap:6px;min-inline-size:0;flex:1 1 320px}
+.quiz-cta-t>span:last-child{color:var(--ink-2)}
+.quiz-solo{max-width:880px}
 .fsub{display:grid;gap:8px}.fsub+.fsub{margin-top:14px}
 .fsub-h{margin:0;font-size:13px;font-weight:500;color:var(--brass)}
 .fchip{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 12px;border:1px solid var(--line-2);border-radius:999px;font-size:13.5px;cursor:pointer;transition:background .2s,color .2s,border-color .2s;user-select:none}
