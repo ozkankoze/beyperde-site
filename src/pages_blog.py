@@ -25,6 +25,7 @@ Yazı dosyası (ayrıntı: docs/BLOG.md):
 Tarihi bugünden ileri olan yazılar o güne kadar yayınlanmaz. Bir yazı yalnızca yazıldığı dilde yayınlanır.
 """
 import datetime
+import html
 import os
 import re
 
@@ -56,7 +57,8 @@ def fmt_date(d, lang):
 
 def load_posts(today=None):
     """Yayında olan bütün yazılar (tüm diller), yeniden eskiye."""
-    today = today or datetime.date.today()
+    # BP_TODAY=YYYY-MM-DD: ileri tarihli yazıları önceden denemek için derleme tarihini değiştirir
+    today = today or (datetime.date.fromisoformat(os.environ['BP_TODAY']) if os.environ.get('BP_TODAY') else datetime.date.today())
     posts = []
     if not os.path.isdir(BLOG_DIR):
         return posts
@@ -124,6 +126,14 @@ def render_md(G, text, title, lang):
             raise ValueError(f'blog görseli bulunamadı: {src} (önce src/images içine koyup tools/images.py çalıştırın)')
         cap = (re.search(r'title="([^"]*)"', tag) or [None, ''])[1]
         return f'<figure class="jfig">{picture(key, alt, "(max-width: 900px) 100vw, 900px")}{f"<figcaption>{cap}</figcaption>" if cap else ""}</figure>'
+    # henüz yayında olmayan (ileri tarihli/taslak) yazılara bağlantı verme: bağlantıyı metne çevir,
+    # yazı yayına girdiğinde bir sonraki derlemede bağlantı kendiliğinden açılır
+    live = {(bp['lang'], bp['slug']) for bp in (G.get('BLOG_POSTS') or [])}
+
+    def blog_link(m):
+        l_, slug = m.group(2), m.group(3)
+        return m.group(0) if (l_, slug) in live else m.group(4)
+    out = re.sub(r'<a href="(/(tr|en|ar)/blog/([a-z0-9-]+))"[^>]*>(.*?)</a>', blog_link, out, flags=re.S)
     out = re.sub(r'<img\b[^>]*>', img, out)
     out = re.sub(r'<p>\s*(<figure class="jfig">.*?</figure>)\s*</p>', r'\1', out, flags=re.S)
     out = re.sub(r'<(/?)h1>', r'<\1h2>', out)          # sayfada tek H1 kalsın
@@ -143,6 +153,26 @@ def render_md(G, text, title, lang):
     out = re.sub(r'<h([23])>(.*?)</h\1>', head, out, flags=re.S)
     out = re.sub(r'<a href="(https?://[^"]+)"', r'<a href="\1" target="_blank" rel="noopener nofollow"', out)
     return out, toc
+
+
+FAQ_HEAD = re.compile(r'(sıkça sorulan sorular|sık sorulan sorular|frequently asked questions|الأسئلة الشائعة)', re.I)
+
+
+def faq_items(html_body):
+    """'Sıkça sorulan sorular' H2'si altındaki her H3 soru, ardından gelen paragraflar cevap olur (FAQPage şeması)."""
+    for m in re.finditer(r'<h2[^>]*>(.*?)</h2>(.*?)(?=<h2[^>]*>|$)', html_body, re.S):
+        if FAQ_HEAD.search(re.sub(r'<[^>]+>', '', m.group(1))):
+            break
+    else:
+        return []
+    items = []
+    for q in re.finditer(r'<h3[^>]*>(.*?)</h3>(.*?)(?=<h3[^>]*>|$)', m.group(2), re.S):
+        qt = html.unescape(re.sub(r'<a class="janchor".*?</a>|<[^>]+>', '', q.group(1))).strip()
+        at = html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', q.group(2)))).strip()
+        at = re.sub(r'\s+([.,;:!?])', r'\1', at)
+        if qt and at:
+            items.append((qt, at))
+    return items
 
 
 def render_blog(G):
@@ -296,5 +326,10 @@ def render_blog(G):
             ld['keywords'] = ', '.join(p['tags'])
         if p['products']:
             ld['mentions'] = [{'@type': 'Service', 'name': tx(D.PRODUCTS[s][1], lang), 'url': G['abs_url'](lang, f"urunler/{D.PRODUCTS[s][0]}/{s}")} for s in p['products'] if s in D.PRODUCTS]
+        schemas = [cs, ld]
+        faq = faq_items(html_body)
+        if faq:
+            schemas.append({'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+                {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in faq]})
         G['write'](lang, path, G['layout'](lang, path, next((t_ for t_ in (f"{p['seo_title']} | Bey Perde Journal", f"{p['seo_title']} | Bey Perde") if len(t_) <= 62), p['seo_title']), p['desc'], body, avail=set(sib), nav='blog',
-                                           schemas=[cs, ld], og_image=img_abs if img_abs.endswith('.jpg') else None, scripts=('journal.js',), body_cls='page-journal'))
+                                           schemas=schemas, og_image=img_abs if img_abs.endswith('.jpg') else None, scripts=('journal.js',), body_cls='page-journal'))

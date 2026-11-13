@@ -58,3 +58,13 @@ git add -A && git commit -m "Journal: yeni yazı" && git push
 ```
 
 Liste sayfası, öne çıkan yazı, kategori süzgeci, ilgili yazılar, site haritası ve Google için yapılandırılmış veri (BlogPosting, BreadcrumbList) otomatik güncellenir.
+
+## İleri tarihli yayın
+
+`tarih` alanı bugünden sonraki bir gün olan yazı derlenmez; o tarihte (ya da sonrasında) yapılan ilk derleme ve yayınla otomatik olarak yayına girer. Yayına girmemiş bir yazıya verilen bağlantılar o güne kadar düz metin olarak gösterilir.
+
+Belirli bir günü önceden denemek için: `BP_TODAY=2026-11-27 python3 src/build.py` (denedikten sonra normal `python3 src/build.py` ile yeniden derleyin).
+
+## SSS (Sıkça sorulan sorular)
+
+Yazının sonuna `## Sıkça sorulan sorular` başlığı ve altına her soru için `### Soru?` ve cevap paragrafı eklenirse, bu bölüm Google ve yapay zekâ aramaları için otomatik olarak FAQPage şemasına dönüştürülür.
