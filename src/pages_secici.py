@@ -33,8 +33,10 @@ def render_secici(G, lang):
                 sw = ''.join(f'<span style="--c:{D.COLORS[c][1]}"></span>' for c in Q['color_map'][v])
                 media = f'<span class="aswatch" aria-hidden="true">{sw}</span>'
             else:
-                key = A['img'][qk][v]
-                media = f'<span class="aph">{picture(key, "", "(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 300px")}</span>'
+                keys = A['img'][qk][v]
+                keys = keys if isinstance(keys, list) else [keys]
+                sz = "(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 300px" if len(keys) == 1 else "(max-width: 640px) 25vw, 160px"
+                media = f'<span class="aph{" split" if len(keys) > 1 else ""}">{"".join(picture(k, "", sz) for k in keys)}</span>'
             cards.append(f'''<label class="acard acard-{qk}">
   <input class="sr" type="radio" name="{qk}" value="{v}">
   {media}

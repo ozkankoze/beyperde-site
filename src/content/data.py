@@ -538,10 +538,11 @@ ADV = {
         'color': (T('Hangi Renkler Sizi Yansıtıyor?', 'Which Colours Feel Like You?', 'أي الألوان تعبّر عنك؟'),
                   T('Son dokunuşu birlikte seçelim. Size en yakın renk paletini belirleyin.', 'Let’s choose the finishing touch together. Pick the palette closest to you.', 'لنختر اللمسة الأخيرة معاً. حدّد لوحة الألوان الأقرب إليك.')),
     },
-    # seçenek görselleri: Bey Perde'nin kendi uygulama fotoğrafları
+    # seçenek görselleri: Bey Perde'nin kendi uygulama fotoğrafları;
+    # tek istisna secici/banyo: temsilî görsel (yapay zekâ ile üretildi), Bey Perde uygulaması değildir.
     'img': {
         'room': {'salon': 'urunler/fon-perde/kose-koltuklu-salon', 'yatak': 'urunler/fon-perde/yatak-odasi', 'cocuk': 'urunler/stor-perde/cocuk-odasi',
-                 'mutfak': 'urunler/jaluzi-perde/mutfak-beyaz', 'calisma': 'projeler/erenkoy-hk-evi/calisma-odasi', 'genis': 'urunler/motorlu-jaluzi/yuksek-pencere'},
+                 'mutfak': ['urunler/jaluzi-perde/mutfak-beyaz', 'secici/banyo'], 'calisma': 'projeler/erenkoy-hk-evi/calisma-odasi', 'genis': 'urunler/motorlu-jaluzi/yuksek-pencere'},
         'light': {'suzulmus': 'urunler/tul-perde-3', 'ayarli': 'urunler/jaluzi-perde/bal-tonu', 'karanlik': 'urunler/blackout-perde/tavan-rayi'},
         'style': {'modern': 'projeler/erenkoy-hk-evi/kose', 'klasik': 'urunler/fon-perde/kristal-avize', 'dogal': 'urunler/jaluzi-perde/fon-perde'},
     },

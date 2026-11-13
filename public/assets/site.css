@@ -730,6 +730,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .acard:has(input:focus-visible){outline:2px solid var(--brass);outline-offset:3px}
 .aph{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
 .aph img{inline-size:100%;block-size:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.aph.split{display:grid;grid-template-columns:1fr 1fr;gap:2px}.aph.split picture{display:block;min-inline-size:0;overflow:hidden}
 .acard:hover .aph img{transform:scale(1.04)}
 .acard-b{display:grid;gap:4px;padding:14px 16px 16px}
 .acard-t{font-size:var(--t-h4);font-weight:500;letter-spacing:-.005em}
