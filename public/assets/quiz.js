@@ -11,13 +11,13 @@
     const cat = res.querySelector('[data-q-catalog]');
     let i = 0;
     const answers = {};
-    function go(n) {
+    function go(n, focus = true) {
       i = n;
       steps.forEach((s, k) => s.classList.toggle('on', k === i));
       res.hidden = i < steps.length;
       back.hidden = i === 0 || i >= steps.length;
       bar.style.transform = `scaleX(${Math.min(i, steps.length) / steps.length})`;
-      if (i < steps.length) { const first = steps[i].querySelector('input:checked') || steps[i].querySelector('input'); first && first.focus({ preventScroll: true }); }
+      if (focus && i < steps.length) { const first = steps[i].querySelector('input:checked') || steps[i].querySelector('input'); first && first.focus({ preventScroll: true }); }
     }
     function result() {
       const score = {};
@@ -52,6 +52,6 @@
     back.addEventListener('click', () => go(Math.max(0, i - 1)));
     res.querySelector('[data-q-restart]').addEventListener('click', () => { form.reset(); for (const k in answers) delete answers[k]; go(0); });
     form.addEventListener('submit', (ev) => ev.preventDefault());
-    go(0);
+    go(0, false);   // ilk açılışta odak verme: telefonda sayfayı aşağı kaydırıyordu
   });
 })();

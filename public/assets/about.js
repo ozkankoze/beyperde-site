@@ -1,7 +1,7 @@
 /* Hakkımızda: bölümler görünür alana girince hafifçe belirir; zaman çizelgesi çizgisi ilerler. */
 (() => {
   'use strict';
-  const els = document.querySelectorAll('.ab [data-rv], .ab [data-tl]');
+  const els = document.querySelectorAll('.ab [data-rv], .ab [data-tl], .pp [data-rv]');
   if (!els.length) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('in')); return; }

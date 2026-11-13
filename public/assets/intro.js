@@ -5,6 +5,11 @@
   'use strict';
   const intro = document.querySelector('[data-intro]');
   if (!intro) return;
+  // ana sayfa her açılışta animasyonun başından başlasın (tarayıcının eski kaydırma konumunu geri yüklemesini engelle)
+  if (!location.hash) {
+    try { history.scrollRestoration = 'manual'; } catch (_) { /* eski tarayıcı */ }
+    window.scrollTo(0, 0);
+  }
   const rtl = document.documentElement.dir === 'rtl';
   const nav = navigator, conn = nav.connection || {};
   const mqReduce = matchMedia('(prefers-reduced-motion: reduce)');
