@@ -162,6 +162,8 @@ PAGES = {
                  'h1': T('Ürünler', 'Products', 'المنتجات'),
                  'lead': T('Bir odanın üç yumuşak yüzeyi: pencere, duvar ve zemin. Üçünü de biz yapıyoruz.', 'The three soft surfaces of a room — window, wall and floor. We handle all three.', 'الأسطح اللينة الثلاثة في الغرفة: النافذة والجدار والأرضية. نتولاها جميعاً.')},
     'catalog': {'title': T('Katalog — Uygulama Fotoğraflarıyla Perde ve Duvar Kağıdı | Bey Perde', 'Catalogue — Curtains and Wallpaper in Real Rooms | Bey Perde', 'الكتالوج — ستائر وورق جدران في غرف حقيقية | باي بردة'),
+        'types': {'tr': 'çeşit', 'en': 'types', 'ar': 'أنواع'},
+        'cats': {'tr': 'Kategoriler', 'en': 'Categories', 'ar': 'الفئات'},
                 'h1': T('Katalog', 'Catalogue', 'الكتالوج'),
                 'lead': T('Tamamladığımız işlerden ve koleksiyonlarımızdan fotoğraflar. Ürün türüne, renge, kumaşa, odaya, stile ve ışığa göre filtreleyin; beğendiğiniz için doğrudan teklif isteyin.',
                           'Photographs from finished work and our collections. Filter by product, colour, fabric, room, style and light, and ask for a quote on the one you like.',

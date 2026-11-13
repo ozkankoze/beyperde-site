@@ -157,7 +157,7 @@ def render_home(G, catalog):
 
 <section class="band linen" id="urunler" aria-labelledby="h-urunler">
   <div class="wrap">
-    {G['sec_head'](h('prod_k'), h('prod_h'), h('prod_p'), 'h-urunler', extra=G['arrow_link'](url(lang, 'urunler'), ui('all_products', lang)))}
+    {G['sec_head'](h('prod_k'), h('prod_h'), h('prod_p'), 'h-urunler', extra=G['arrow_link'](url(lang, 'katalog'), ui('all_products', lang)))}
     <div class="cat-grid">{''.join(cats)}</div>
   </div>
 </section>

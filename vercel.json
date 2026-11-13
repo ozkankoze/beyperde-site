@@ -13,6 +13,11 @@
       "permanent": false
     },
     {
+      "source": "/:lang(tr|en|ar)/urunler",
+      "destination": "/:lang/katalog",
+      "permanent": true
+    },
+    {
       "source": "/iletisim",
       "destination": "/tr/iletisim",
       "permanent": true

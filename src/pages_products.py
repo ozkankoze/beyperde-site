@@ -9,30 +9,13 @@ def render_products(G, catalog):
     from pages_home import quiz_block
 
     for lang in D.LANGS:
-        # ---------------- /urunler
+        # /urunler genel bakış sayfası kaldırıldı; adres vercel.json'da kataloğa yönlenir.
         PP = P.PAGES['products']
-        blocks = []
-        for ck, c in D.CATS.items():
-            cards = ''.join(G['product_card'](s, lang) for s in c['items'])
-            blocks.append(f'''<section class="band tight" aria-labelledby="h-{ck}">
-  <div class="wrap">
-    {G['sec_head'](tx(c['kicker'], lang), f'<a href="{url(lang, f"urunler/{ck}")}">{tx(c["name"], lang)}</a>', tx(c['short'], lang), f'h-{ck}')}
-    <div class="pgrid">{cards}</div>
-  </div>
-</section>''')
-        crumbs, cs = G['breadcrumbs'](lang, [(tx(PP['h1'], lang), 'urunler')])
-        body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(PP['h1'], lang)}</h1><p class="lead">{tx(PP['lead'], lang)}</p>
-  <div class="row">{G['arrow_link'](url(lang, 'katalog'), ui('nav_catalog', lang))}{G['arrow_link']('#oda-rehberi', tx(D.QUIZ['title'], lang))}</div></div></section>
-{''.join(blocks)}
-{quiz_block(G, lang)}
-{G['cta_band'](lang, ui('wa_general', lang), 'urunler/perde-kapak')}'''
-        G['write'](lang, 'urunler', G['layout'](lang, 'urunler', tx(PP['title'], lang), tx(PP['lead'], lang) + ' ' + {'tr': 'Perde, duvar kağıdı ve halıda ölçü, dikim ve montaj.', 'en': 'Measuring, making and fitting in one house.', 'ar': 'القياس والتصنيع والتركيب من مصدر واحد.'}[lang],
-                                                body, nav='urunler', schemas=[cs], scripts=('quiz.js',), og_image=G['og_src']('urunler/perde-kapak')))
 
         # ---------------- kategori sayfaları
         for ck, c in D.CATS.items():
             cards = ''.join(G['product_card'](s, lang, '(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw') for s in c['items'])
-            crumbs, cs = G['breadcrumbs'](lang, [(tx(PP['h1'], lang), 'urunler'), (tx(c['name'], lang), f'urunler/{ck}')])
+            crumbs, cs = G['breadcrumbs'](lang, [(ui('nav_catalog', lang), 'katalog'), (tx(c['name'], lang), f'urunler/{ck}')])
             extra = ''
             if ck == 'duvar-kagidi':
                 gl = ''.join(f'<a class="gi" href="{G["big_src"](k)}" data-lb="cat">{picture(k, tx(a, lang), "(max-width: 640px) 50vw, 25vw")}</a>' for k, a in P.GALLERY[10:14])
@@ -73,7 +56,7 @@ def render_product(G, lang, slug, ck, catalog):
     imgs = G['product_imgs'](slug)
     alt = lambda i: G['product_alt'](slug, i, lang)  # noqa: E731
     wa_text = ui('wa_product', lang, x=name)
-    crumbs, cs = G['breadcrumbs'](lang, [(tx(P.PAGES['products']['h1'], lang), 'urunler'), (tx(c['name'], lang), f'urunler/{ck}'), (name, path)])
+    crumbs, cs = G['breadcrumbs'](lang, [(ui('nav_catalog', lang), 'katalog'), (tx(c['name'], lang), f'urunler/{ck}'), (name, path)])
 
     if r.get('specs'):
         facts = '<dl class="facts facts-sm">' + ''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>' for a, b in r['specs']) + '</dl>'
@@ -196,6 +179,18 @@ def render_catalog(G, lang, catalog):
     ]
     fields = attrs_map = {'type': 'slug', 'color': 'color', 'material': 'material', 'room': 'room', 'style': 'style', 'light': 'light'}
     fs = []
+    # Ürün türü: Perde Sistemleri / Duvar Kağıtları / Halılar başlıkları altında
+    tparts = []
+    for ck, c in D.CATS.items():
+        chips = []
+        for s in c['items']:
+            n = sum(1 for i in catalog if i['slug'] == s)
+            if n:
+                chips.append(f'<label class="fchip"><input type="checkbox" name="type" value="{s}"><span>{tx(D.PRODUCTS[s][1], lang)}</span><small data-n>{n}</small></label>')
+        if chips:
+            tparts.append(f'<div class="fsub"><p class="fsub-h">{tx(c["name"], lang)}</p><div class="fchips">{"".join(chips)}</div></div>')
+    fs.append(f'<fieldset class="fgroup"><legend>{tx(D.FILTER_LABELS["type"], lang)}</legend>{"".join(tparts)}</fieldset>')
+    groups = [gr for gr in groups if gr[0] != 'type']
     for g, label, opts in groups:
         boxes = []
         for v, lbl in opts:
@@ -219,7 +214,13 @@ def render_catalog(G, lang, catalog):
   <div class="ccard-a"><a class="link-sm" href="{purl}">{ui('details', lang)}</a><a class="link-sm link-wa" href="{e(G['wa_link'](wa))}" target="_blank" rel="noopener" data-wa>{ICON['wa']}<span>{tx(CP['ask'], lang)}</span></a></div></div>
 </li>''')
     crumbs, cs = G['breadcrumbs'](lang, [(tx(CP['h1'], lang), 'katalog')])
-    body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(CP['h1'], lang)}</h1><p class="lead">{tx(CP['lead'], lang)}</p></div></section>
+    # Kategoriler: kaldırılan "Ürünler" sayfasının yerine katalogun başında kısa yol kartları
+    ccards = ''.join(f'''<a class="catcard" href="{url(lang, f"urunler/{ck}")}">
+  <span class="ph">{picture(c['cover'], '', '(max-width: 640px) 100vw, 33vw')}</span>
+  <span class="catcard-b"><span class="catcard-h">{tx(c['name'], lang)}</span><span class="catcard-n">{len(c['items'])} {tx(CP['types'], lang)}</span></span>
+</a>''' for ck, c in D.CATS.items())
+    body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(CP['h1'], lang)}</h1><p class="lead">{tx(CP['lead'], lang)}</p>
+  <nav class="catcards" aria-label="{tx(CP['cats'], lang)}">{ccards}</nav></div></section>
 <section class="band tight catalog" data-catalog>
   <div class="wrap cat-layout">
     <button class="btn btn-ghost btn-sm filters-open" type="button" aria-expanded="false" aria-controls="filters" data-filters-open>{ICON['filter']}<span>{tx(CP['filters'], lang)}</span><span class="fcount" data-active-n hidden></span></button>

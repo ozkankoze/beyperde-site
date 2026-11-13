@@ -271,7 +271,7 @@ def render_404(G):
     N = P.NOTFOUND
     blocks = []
     for lang in D.LANGS:
-        links = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in [('', 'nav_home'), ('urunler', 'nav_products'), ('katalog', 'nav_catalog'), ('projeler', 'nav_projects'), ('iletisim', 'nav_contact')])
+        links = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in [('', 'nav_home'), ('katalog', 'nav_catalog'), ('projeler', 'nav_projects'), ('iletisim', 'nav_contact')])
         blocks.append(f'<div class="nf" lang="{lang}" dir="{"rtl" if lang == "ar" else "ltr"}"><p class="kicker">404</p><{"h1" if lang == "tr" else "h2"} class="h2">{tx(N["h1"], lang)}</{"h1" if lang == "tr" else "h2"}><p class="lead">{tx(N["p"], lang)}</p><ul class="chips">{links}</ul></div>')
     body = f'<section class="page-hero nf-wrap"><div class="wrap nf-grid">{"".join(blocks)}</div></section>'
     page = G['layout']('tr', '404', tx(N['title'], 'tr'), tx(N['p'], 'tr'), body, avail={'tr'}, noindex=True)
