@@ -25,3 +25,14 @@ Search Console'dan içe aktarma en kolayıdır. Etiket yöntemi için `BING_VERI
 Gönderilen olaylar: `whatsapp_click`, `phone_click`, `email_click` (link_location: header/footer/float/content),
 `generate_lead` (detaylı teklif formu gerçekten gönderildiğinde). GA4'te `generate_lead` ve `whatsapp_click`
 "Önemli etkinlik" (dönüşüm) olarak işaretlenmelidir.
+
+## IndexNow (Bing / Yandex anlık bildirim)
+
+Sitenin kökünde `/<anahtar>.txt` dosyası yayınlanır (anahtar `src/static/` altındadır). Yeni yazı veya sayfa yayına girdikten sonra, Vercel yayını bitince:
+
+```
+python3 tools/indexnow.py                      # tüm site haritası
+python3 tools/indexnow.py /tr/blog/yeni-yazi   # yalnızca belirli adresler
+```
+
+Bing, ChatGPT'nin web aramasında kullandığı dizin olduğu için bu bildirim yapay zekâ aramalarında görünürlüğe de yardımcı olur.
