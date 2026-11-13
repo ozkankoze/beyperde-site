@@ -49,18 +49,14 @@
   const later = () => setTimeout(() => idle(start, { timeout: 2000 }), 2500);
   if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
 
-  // Ürün hedeflerinin videodaki konumu: [saniye, x, y] (0..1). Kamera ilerlediği için zamanla değişir.
-  const KEYS = {
-    // Okların başladığı halka ekranda sabit durur (kamera hareketiyle oynamaz); nokta, bölüm boyunca
-    // hep ürünün üstünde kalacak şekilde seçildi.
-    a1: [[0, 0.2, 0.42]],    // duvar kağıdı
-    a2: [[0, 0.935, 0.42]],  // sağdaki kalın rustik fon perde
-  };
-  function keyAt(keys, t) {
-    if (t <= keys[0][0]) return keys[0].slice(1);
-    for (let i = 1; i < keys.length; i++) if (t <= keys[i][0]) { const [t0, x0, y0] = keys[i - 1], [t1, x1, y1] = keys[i], k = (t - t0) / (t1 - t0); return [x0 + (x1 - x0) * k, y0 + (y1 - y0) * k]; }
-    return keys[keys.length - 1].slice(1);
-  }
+  // Ürün bölümleri: kaydırma oranı a→b arasında ok + yazı görünür. key: okun başladığı halkanın videodaki yeri (0..1);
+  // halka ekranda sabit durur. pos: yazının ekrandaki yeri (masaüstü / dar ekran). Sıra videodaki sırayla aynıdır.
+  const SECS = [
+    { id: 'l1', key: [0.30, 0.36], a: 0.30, b: 0.46, pos: { d: [0.56, 0.15], m: [0.07, 0.15] } }, // Duvar Kağıdı
+    { id: 'l2', key: [0.97, 0.45], a: 0.48, b: 0.60, pos: { d: [0.50, 0.15], m: [0.07, 0.14] } }, // Fon Perde
+    { id: 'l3', key: [0.24, 0.81], a: 0.61, b: 0.73, pos: { d: [0.08, 0.15], m: [0.07, 0.14] } }, // Dekoratif Halı
+    { id: 'l4', key: [0.55, 0.645], a: 0.76, b: 0.92, pos: { d: [0.30, 0.15], m: [0.07, 0.14] } }, // Döşemelik Kumaş
+  ];
 
   /* ---------- metin ve oklar ---------- */
   // Stil/özellik yazımlarını önbellekle: değer değişmediyse DOM'a dokunma (gereksiz yeniden çizim videonun kare atlamasına yol açıyordu)
@@ -69,30 +65,27 @@
   const st = (el, k, v) => { const m = memo(el); if (m[k] === v) return; m[k] = v; if (k[0] === '-') el.style.setProperty(k, v); else el.style[k] = v; };
   const sa = (el, k, v) => { const m = memo(el); const kk = '@' + k; if (m[kk] === v) return; m[kk] = v; el.setAttribute(k, v); };
   const $ = (id) => document.getElementById(id);
-  const L = { hero: $('ihero'), l1: $('l1'), l2: $('l2'), out: $('ioutro') };
+  const L = { hero: $('ihero'), out: $('ioutro') };
   const rail = intro.querySelector('.rail'), railLi = [...intro.querySelectorAll('.rail li')];
   const bar = intro.querySelector('.ibar span');
   const NS = 'http://www.w3.org/2000/svg', svgEl = $('callouts');
   function mk() { const g = document.createElementNS(NS, 'g'); g.innerHTML = '<path class="halo lh"/><path class="halo hh"/><path class="ln"/><path class="hd"/><g class="tg"><circle class="ring" r="13"/><circle class="dot" r="3.5"/></g>'; svgEl.appendChild(g); return { g, ln: g.querySelector('.ln'), hd: g.querySelector('.hd'), lh: g.querySelector('.lh'), hh: g.querySelector('.hh'), tg: g.querySelector('.tg'), ring: g.querySelector('.ring'), dot: g.querySelector('.dot') }; }
-  const C1 = mk(), C2 = mk();
+  SECS.forEach((S) => { S.node = $(S.id); S.c = mk(); });
   const clamp = (x) => Math.min(1, Math.max(0, x));
   const sm = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
   const band = (p, a, b, f = 0.035) => Math.min(sm(a - f, a, p), 1 - sm(b, b + f, p));
   const fx = (n) => n.toFixed(1);
   let VW = 1, VH = 1, isMob = false, panX = 0.5;
   const size = new Map();
-  const measure = () => [L.l1, L.l2].forEach((n) => size.set(n, [n.offsetWidth, n.offsetHeight]));
+  const measure = () => SECS.forEach((S) => size.set(S.node, [S.node.offsetWidth, S.node.offsetHeight]));
 
-  // ürün bölümleri, kaydırma oranı (p) cinsinden
-  const S1 = { key: 'a1', a: 0.36, b: 0.6, pos: { d: [0.56, 0.15], m: [0.07, 0.15] } };    // Tekstil Duvar Kağıdı
-  const S2 = { key: 'a2', a: 0.655, b: 0.875, pos: { d: [0.5, 0.15], m: [0.07, 0.14] } };  // Rustik Perde
-
-  function anchor(p, key) {
-    const [x, y] = keyAt(KEYS[key], p * DUR);
+  function anchor(S) {
+    const [x, y] = S.key;
     const w = vid.videoWidth || 1920, h = vid.videoHeight || 1080, s = Math.max(VW / w, VH / h);
     return [(VW - w * s) * panX + x * w * s, (VH - h * s) / 2 + y * h * s];
   }
-  function callout(node, c, S, p) {
+  function callout(S, p) {
+    const node = S.node, c = S.c;
     const oArrow = band(p, S.a, S.b, 0.012), draw_ = sm(S.a, S.a + 0.06, p), oText = band(p, S.a + 0.045, S.b);
     st(node, 'opacity', String(oText.toFixed(3)));
     st(node, 'visibility', String(oText < 0.01 ? 'hidden' : 'visible'));
@@ -103,7 +96,7 @@
     const [nw, nh] = size.get(node) || [0, 0];
     let lx = P[0] * VW; if (rtl) lx = VW - lx - nw;
     st(node, 'transform', String(`translate3d(${fx(lx)}px,${fx(P[1] * VH)}px,0)`));
-    const [tx, ty] = anchor(p, S.key);
+    const [tx, ty] = anchor(S);
     const vis = sm(-0.04, 0.04, tx / VW) * sm(1.04, 0.96, tx / VW) * sm(-0.04, 0.04, ty / VH) * sm(1.04, 0.96, ty / VH);
     st(c.g, 'opacity', String((oArrow * vis).toFixed(3)));
     if (vis < 0.01) return;
@@ -130,7 +123,7 @@
   // dar ekranda video yanlardan kırpılır: işaret edilen ürün ekranda kalsın diye görüntü yatayda kayar
   function pan(p) {
     let want = 0.5;
-    [S1, S2].forEach((S) => { const w = Math.min(sm(S.a - 0.08, S.a, p), 1 - sm(S.b, S.b + 0.08, p)); if (w > 0) want = 0.5 + (keyAt(KEYS[S.key], p * DUR)[0] - 0.5) * w * 1.15; });
+    SECS.forEach((S) => { const w = Math.min(sm(S.a - 0.06, S.a, p), 1 - sm(S.b, S.b + 0.06, p)); if (w > 0) want = 0.5 + (S.key[0] - 0.5) * w * 1.15; });
     panX = clamp(want);
     st(vid, 'objectPosition', String(`${(panX * 100).toFixed(2)}% 50%`));
   }
@@ -139,11 +132,10 @@
     const o = 1 - sm(0.01, 0.06, p);
     st(L.hero, 'opacity', String(o.toFixed(3))); st(L.hero, 'visibility', String(o < 0.01 ? 'hidden' : 'visible'));
     st(L.hero, 'translate', String(`0 ${fx(-(1 - o) * 24)}px`));
-    callout(L.l1, C1, S1, p);
-    callout(L.l2, C2, S2, p);
+    SECS.forEach((S) => callout(S, p));
     const oo = sm(0.9, 0.96, p);
     st(L.out, 'opacity', String(oo.toFixed(3))); st(L.out, 'translate', String(`0 ${fx((1 - oo) * 18)}px`));
-    const idx = p < 0.3 ? 0 : p < 0.62 ? 1 : p < 0.89 ? 2 : 3;
+    let idx = 0; SECS.forEach((S, k) => { if (p >= S.a - 0.02) idx = k + 1; }); if (p > 0.95) idx = railLi.length - 1;
     if (idx !== lastIdx) { railLi.forEach((r, i) => r.classList.toggle('on', i === idx)); lastIdx = idx; }
     st(rail, 'opacity', String(sm(0.03, 0.09, p).toFixed(3)));
     st(bar, 'transform', String(`scaleX(${p.toFixed(3)})`));

@@ -135,6 +135,8 @@ def render_home(G, catalog):
     <svg id="callouts" aria-hidden="true"></svg>
     <div class="iprod" id="l1" aria-hidden="true"><p class="ik">02 · {h('l1_k')}</p><p class="it"><span class="mask"><span>{h('l1').replace('<br>', '</span></span><span class="mask"><span>')}</span></span></p></div>
     <div class="iprod" id="l2" aria-hidden="true"><p class="ik">03 · {h('l2_k')}</p><p class="it"><span class="mask"><span>{h('l2')}</span></span></p></div>
+    <div class="iprod" id="l3" aria-hidden="true"><p class="ik">04 · {h('l3_k')}</p><p class="it"><span class="mask"><span>{h('l3')}</span></span></p></div>
+    <div class="iprod" id="l4" aria-hidden="true"><p class="ik">05 · {h('l4_k')}</p><p class="it"><span class="mask"><span>{h('l4')}</span></span></p></div>
     <div class="ilabel" id="ioutro" aria-hidden="true"><p class="isub">{h('outro_k')}</p><p class="iout">{h('outro')}</p></div>
     <ol class="rail" aria-hidden="true">{rail}</ol>
     <div class="ibar" aria-hidden="true"><span></span></div>
