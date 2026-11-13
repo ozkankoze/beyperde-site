@@ -3,6 +3,17 @@
 import json
 
 
+
+def fit_desc(lead, tail, limit=155):
+    """Arama sonucunda kesilmesin: ek cümle sığmıyorsa yalnızca ana cümle kalır."""
+    d = f'{lead} {tail}'
+    if len(d) <= limit:
+        return d
+    if len(lead) <= limit:
+        return lead
+    cut = lead[:limit - 1].rsplit(' ', 1)[0].rstrip(',;:')
+    return cut + '…'
+
 def render_products(G, catalog):
     D, P, e, tx, ui, url, picture, ICON = G['D'], G['P'], G['e'], G['tx'], G['ui'], G['url'], G['picture'], G['ICON']
     RAW = G['RAW']
@@ -43,7 +54,7 @@ def render_products(G, catalog):
 {G['cta_band'](lang, ui('wa_product', lang, x=tx(c['name'], lang)), c['cover'])}'''
             itemlist = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': tx(c['name'], lang), 'itemListElement': [
                 {'@type': 'ListItem', 'position': i + 1, 'url': G['abs_url'](lang, f'urunler/{ck}/{s}'), 'name': tx(D.PRODUCTS[s][1], lang)} for i, s in enumerate(c['items'])]}
-            G['write'](lang, f'urunler/{ck}', G['layout'](lang, f'urunler/{ck}', title, tx(c['short'], lang) + ' ' + {'tr': 'Yerinde ölçü, atölyede dikim, 3 yıl garanti.', 'en': 'Measured on site, made in our workshop, 3-year guarantee.', 'ar': 'قياس في الموقع وتصنيع في ورشتنا وضمان ٣ سنوات.'}[lang], body, nav='urunler',
+            G['write'](lang, f'urunler/{ck}', G['layout'](lang, f'urunler/{ck}', title, fit_desc(tx(c['short'], lang), {'tr': 'Yerinde ölçü, atölyede dikim, 3 yıl garanti.', 'en': 'Measured on site, made in our workshop, 3-year guarantee.', 'ar': 'قياس في الموقع وتصنيع في ورشتنا وضمان ٣ سنوات.'}[lang]), body, nav='urunler',
                                                           schemas=[cs, itemlist], scripts=('quiz.js',) if ck == 'perde' else (), og_image=G['og_src'](c['cover'])))
 
         # ---------------- ürün detay
@@ -163,7 +174,7 @@ def render_product(G, lang, slug, ck, catalog):
         lead_s = short_d
     elif len(lead_s) < 70 and short_d not in lead_s:
         lead_s = (lead_s + ' ' + short_d) if len(lead_s + short_d) < 140 else lead_s
-    desc = lead_s + ' ' + {'tr': 'Yerinde ölçü, 3 yıl garanti.', 'en': 'Measured on site, 3-year guarantee.', 'ar': 'قياس في الموقع وضمان ٣ سنوات.'}[lang]
+    desc = fit_desc(lead_s, {'tr': 'Yerinde ölçü, 3 yıl garanti.', 'en': 'Measured on site, 3-year guarantee.', 'ar': 'قياس في الموقع وضمان ٣ سنوات.'}[lang])
     service = {'@context': 'https://schema.org', '@type': 'Service', 'name': name, 'serviceType': name, 'description': r['intro'],
                'provider': {'@id': D.SITE + '/#isletme'}, 'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz', 'İstanbul']],
                'url': G['abs_url'](lang, path)}
@@ -219,7 +230,7 @@ def render_catalog(G, lang, catalog):
         cards.append(f'''<li class="ccard" {data}>
   <a class="ph" href="{G['big_src'](it['key'])}" data-lb="cat" data-cap="{e(name + ' — ' + desc)}">{picture(it['key'], desc, '(max-width: 640px) calc(50vw - 26px), (max-width: 1100px) 33vw, 22vw')}</a>
   <div class="ccard-b"><p class="kicker">{name}</p><p class="ccard-d">{e(desc)}</p><p class="ccard-code">{tx(CP['code'], lang)}: <bdi>{e(it['code'])}</bdi></p>
-  <div class="ccard-a"><a class="link-sm" href="{purl}">{ui('details', lang)}</a><a class="link-sm link-wa" href="{e(G['wa_link'](wa))}" target="_blank" rel="noopener" data-wa>{ICON['wa']}<span>{tx(CP['ask'], lang)}</span></a></div></div>
+  <div class="ccard-a"><a class="link-sm" href="{purl}">{ui('details', lang)}</a><a class="link-sm link-wa" href="{e(G['wa_link'](wa))}" target="_blank" rel="noopener nofollow" data-wa>{ICON['wa']}<span>{tx(CP['ask'], lang)}</span></a></div></div>
 </li>''')
     crumbs, cs = G['breadcrumbs'](lang, [(tx(CP['h1'], lang), 'katalog')])
     # Kategoriler: kaldırılan "Ürünler" sayfasının yerine katalogun başında kısa yol kartları

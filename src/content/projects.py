@@ -16,7 +16,7 @@ AKCEKESE = {
     'location': T('Akçekese, Şile, İstanbul', 'Akçekese, Şile, Istanbul', 'أكتشه كيسه، شيله، إسطنبول'),
     'h1': T('Şile Akçekese Projesi', 'Şile Akçekese Project', 'مشروع أكتشه كيسه في شيله'),
     'lead': T('Bahçeye bakan geniş pencerelerde keten dokulu tül ve fon perdeler, ahşap boncuklu tutucular, ahşap jaluzi ve evin farklı odalarında sisal halılar.',
-              'Linen-textured sheers and drapes on wide windows facing the garden, wooden bead holdbacks, a wooden venetian blind and sisal rugs in several rooms of the house.',
+              'Linen-textured sheers and drapes on wide garden windows, wooden bead holdbacks, a wooden Venetian blind and sisal rugs in several rooms of the house.',
               'تول وستائر بملمس الكتان على نوافذ واسعة مطلة على الحديقة، ومشابك من حبات خشبية، وجالوزي خشبي، وسجاد سيزال في عدة غرف من البيت.'),
     'h2': T('Doğal dokular, sakin tonlar', 'Natural textures, quiet tones', 'ملامس طبيعية وألوان هادئة'),
     'intro': T('Bu evde perde, halı ve aksesuarları aynı doğal doku ailesinden seçtik: keten görünümlü tüller, ince çizgili fon perdeler, ahşap tutucular ve hasır dokulu sisal halılar. Aşağıdaki fotoğraflar uygulamadan.',

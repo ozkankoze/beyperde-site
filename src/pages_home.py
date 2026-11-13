@@ -49,7 +49,7 @@ def quiz_block(G, lang, hid='oda-rehberi', intro=True):
         <h3 class="h3">{tx(Q['result_h'], lang)}</h3>
         <ol class="qres-list"></ol>
         <p class="fnote">{tx(Q['result_note'], lang)}</p>
-        <div class="row"><a class="btn btn-wa" data-q-wa href="https://wa.me/{D.WA_NUMBER}" target="_blank" rel="noopener">{ICON['wa']}<span>{tx(A['wa_btn'], lang)}</span></a><a class="arrow-link" href="{url(lang, 'perde-secici')}"><span>{tx(Q['full'], lang)}</span>{ICON['arrow']}</a></div>
+        <div class="row"><a class="btn btn-wa" data-q-wa href="https://wa.me/{D.WA_NUMBER}" target="_blank" rel="noopener nofollow">{ICON['wa']}<span>{tx(A['wa_btn'], lang)}</span></a><a class="arrow-link" href="{url(lang, 'perde-secici')}"><span>{tx(Q['full'], lang)}</span>{ICON['arrow']}</a></div>
         <div class="row"><a class="arrow-link" data-q-catalog href="{url(lang, 'katalog')}"><span>{tx(Q['see_catalog'], lang)}</span>{ICON['arrow']}</a><button type="button" class="btn btn-ghost btn-sm" data-q-restart>{tx(Q['restart'], lang)}</button></div>
       </div>
       <script type="application/json" data-q-data>{json.dumps(data, ensure_ascii=False).replace('</', '<\\/')}</script>

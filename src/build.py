@@ -146,7 +146,7 @@ def arrow_link(href, label, cls='arrow-link', attrs=''):
 
 def btn_wa(lang, text, label=None, cls='btn btn-wa'):
     label = label or ui('whatsapp', lang)
-    return f'<a class="{cls}" href="{e(wa_link(text))}" target="_blank" rel="noopener" data-wa>{ICON["wa"]}<span>{label}</span></a>'
+    return f'<a class="{cls}" href="{e(wa_link(text))}" target="_blank" rel="noopener nofollow" data-wa>{ICON["wa"]}<span>{label}</span></a>'
 
 
 def header(lang, path, avail, nav=''):
@@ -211,7 +211,7 @@ def footer(lang, avail):
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="{ui('brand', lang)}" loading="lazy">
         <p>{ui('footer_about', lang)}</p>
-        <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
+        <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
       </div>
       <div class="ft-cols">
         {col('perde')}
@@ -221,7 +221,7 @@ def footer(lang, avail):
         <div><h2>{ui('footer_contact', lang)}</h2>
           <address class="ft-nap"><strong>{ui('brand', lang)}</strong><br><span lang="tr">{e(D.ADDRESS_LINE)}</span><br><br>
             <a href="tel:{D.TEL}">{ltr(D.PHONE)}</a><br><a href="mailto:{D.EMAIL}">{D.EMAIL}</a><br>{ui('hours', lang)}</address>
-          <p class="ft-dir">{arrow_link(D.MAPS_DIR, ui('directions', lang), attrs=' target="_blank" rel="noopener"')}</p>
+          <p class="ft-dir">{arrow_link(D.MAPS_DIR, ui('directions', lang), attrs=' target="_blank" rel="noopener nofollow"')}</p>
         </div>
       </div>
     </div>
@@ -301,7 +301,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 <meta property="og:type" content="website"><meta property="og:site_name" content="Bey Perde"><meta property="og:locale" content="{locale}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">{'' if noindex else f'<meta property="og:url" content="{abs_url(lang, path)}">'}
 <meta property="og:image" content="{og}">{'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' if og.endswith('.jpg') else ''}<meta property="og:image:alt" content="{e(title)}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon"><link rel="icon" href="/favicon.png" type="image/png" sizes="64x64"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png"><link rel="manifest" href="/site.webmanifest">
 {font_pre}
 <style>{SITE_CSS}</style>
 <script>window.BP={cfg};document.documentElement.classList.add('js')</script>
@@ -315,7 +315,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 {body}
 </main>
 {footer(lang, avail)}
-<a class="wa-float" href="{e(wa_link(wa))}" target="_blank" rel="noopener" aria-label="{ui('wa_float', lang)}" data-wa-float>{ICON['wa']}<span class="wa-float-l">{ui('whatsapp_short', lang)}</span></a>
+<a class="wa-float" href="{e(wa_link(wa))}" target="_blank" rel="noopener nofollow" aria-label="{ui('wa_float', lang)}" data-wa-float>{ICON['wa']}<span class="wa-float-l">{ui('whatsapp_short', lang)}</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="{ui('cookies', lang)}"><p>{ui('cookie_note', lang)} <a href="/tr/cerez-politikasi"{'' if lang == 'tr' else ' hreflang="tr"'}>{ui('cookie_more', lang)}</a></p><button class="btn btn-sm" type="button" data-cookie-ok>{ui('cookie_ok', lang)}</button></div>
 {js}
 </body>
@@ -477,6 +477,79 @@ def sitemap():
     open(os.path.join(PUB, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {D.SITE}/sitemap.xml\n')
 
 
+_TAG = re.compile(r'<[^>]+>')
+_SCRIPT = re.compile(r'(<script\b.*?</script>)', re.S)
+
+
+def _clean(s):
+    return html.unescape(re.sub(r'\s+', ' ', _TAG.sub(' ', s))).strip()
+
+
+def postprocess():
+    """Son geçiş (SEO denetim araçları için):
+    - boş alt metinli görsellere, aynı görselin sitedeki açıklamasını (yoksa ürün/kategori adını) yazar;
+    - title niteliği olmayan bağlantılara görünen metnini (yoksa aria-label / görsel alt metnini) title olarak ekler."""
+    for lang in LANGS:
+        files = []
+        for dp, _, fs in os.walk(os.path.join(PUB, lang)):
+            files += [os.path.join(dp, f) for f in fs if f.endswith('.html')]
+        if lang == 'tr':   # kökteki 404 sayfası Türkçe
+            files += [os.path.join(PUB, f) for f in os.listdir(PUB) if f.endswith('.html')]
+        # 1) görsel anahtarı -> açıklama (sitede dolu alt ile geçtiği yerlerden)
+        alts = {}
+        for f in files:
+            for m in re.finditer(r'<img\b[^>]*>', open(f).read()):
+                t = m.group(0)
+                a, s = re.search(r'\balt="([^"]*)"', t), re.search(r'\bsrc="/img/([^"]+?)-\d+\.(?:webp|avif)"', t)
+                if a and s and a.group(1).strip():
+                    alts.setdefault(s.group(1), a.group(1))
+        names = {}
+        for slug, (cat, name, _s) in D.PRODUCTS.items():
+            names[f'urunler/{slug}'] = e(tx(name, lang))
+        brand = e(tx(D.UI['brand'], lang))
+        logo = {'tr': f'{brand} logosu', 'en': f'{brand} logo', 'ar': f'شعار {brand}'}[lang]
+
+        def fill_alt(m):
+            t = m.group(0)
+            if not re.search(r'\balt=""', t):
+                return t
+            s = re.search(r'\bsrc="/(img|brand)/([^"]+?)(?:-\d+)?\.(?:webp|avif|png|jpg)"', t)
+            if not s:
+                return t
+            key = s.group(2)
+            if s.group(1) == 'brand':
+                val = logo
+            else:
+                val = alts.get(key)
+                if not val:
+                    base = re.sub(r'-\d+$', '', key)           # urunler/tul-perde-3 -> urunler/tul-perde
+                    parts = base.split('/')
+                    val = names.get(base) or (names.get('/'.join(parts[:2])) if len(parts) > 1 else None) or brand
+            return t.replace('alt=""', f'alt="{val}"', 1)
+
+        def add_title(m):
+            t, inner = m.group(1), m.group(2)
+            if re.search(r'\btitle=', t):
+                return m.group(0)
+            label = _clean(inner)
+            if not label:
+                al = re.search(r'\baria-label="([^"]*)"', t) or re.search(r'\balt="([^"]+)"', inner)
+                label = html.unescape(al.group(1)) if al else ''
+            if not label:
+                return m.group(0)
+            return t[:-1] + f' title="{e(label[:120])}">' + inner + '</a>'
+
+        for f in files:
+            src = open(f).read()
+            parts = _SCRIPT.split(src)
+            for i in range(0, len(parts), 2):   # yalnızca script dışı kısımlar
+                p = re.sub(r'<img\b[^>]*>', fill_alt, parts[i])
+                parts[i] = re.sub(r'(<a\b[^>]*>)(.*?)</a>', add_title, p, flags=re.S)
+            out = ''.join(parts)
+            if out != src:
+                open(f, 'w').write(out)
+
+
 def main():
     # eski html'leri temizle (görseller kalır)
     for l in LANGS:
@@ -490,6 +563,7 @@ def main():
     render_products(G, catalog)
     render_misc(G, catalog)
     sitemap()
+    postprocess()
     print(f'{len(PAGES_OUT)} sayfa üretildi')
 
 

@@ -5,7 +5,7 @@ REGIONS = {
     'cekmekoy': {
         'name': 'Çekmeköy',
         'title': 'Çekmeköy Perde ve Duvar Kağıdı — Atölye ve Ofis Çekmeköy’de | Bey Perde',
-        'desc': "Çekmeköy'de tül, fon, stor ve motorlu perde, duvar kağıdı ve özel ölçü halı. Ofisimizde kartelaları inceleyin, yerinde ölçü alalım; 3–8 iş günü teslim, 3 yıl garanti.",
+        'desc': "Çekmeköy'de tül, fon, stor ve motorlu perde, duvar kağıdı ve özel ölçü halı. Kartelaları ofisimizde inceleyin, yerinde ölçü alalım; 3 yıl garanti.",
         'h1': 'Çekmeköy’de perde ve duvar kağıdı',
         'lead': "Atölyemiz ve ofisimiz Çekmeköy'de, Ekşioğlu Mahallesi'nde. Kumaşı ofisimizde görerek seçebilir, ölçü için bizi evinize çağırabilirsiniz.",
         'sections': [

@@ -128,7 +128,7 @@ def render_misc(G, catalog):
         crumbs, cs = G['breadcrumbs'](lang, [(tx(GP['h1'], lang), 'galeri')])
         body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(GP['h1'], lang)}</h1><p class="lead">{tx(GP['lead'], lang)}</p></div></section>
 <section class="band tight"><div class="wrap"><h2 class="sr">{ui('photos', lang)}</h2><div class="masonry">{gal}</div>
-<p class="center"><a class="btn btn-ghost" href="{D.INSTAGRAM}" target="_blank" rel="noopener">{ICON['insta']}<span>{tx(GP['insta'], lang)}</span></a></p></div></section>
+<p class="center"><a class="btn btn-ghost" href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow">{ICON['insta']}<span>{tx(GP['insta'], lang)}</span></a></p></div></section>
 {G['cta_band'](lang, ui('wa_general', lang), 'galeri/1')}'''
         G['write'](lang, 'galeri', G['layout'](lang, 'galeri', tx(GP['title'], lang), tx(GP['desc'], lang), body, nav='galeri', schemas=[cs], og_image=G['og_src']('galeri/1')))
 
@@ -177,7 +177,7 @@ def render_about(G, lang):
   <blockquote class="pull-quote">{e(bq)}</blockquote></div></section>
 <section class="band linen"><div class="wrap two"><div><h2 class="h2">{e(villa['h'])}</h2></div><div class="prose"><p>{e(villa_p[0])}</p><p class="kicker mt">{e(villa_p[1])}</p><p>{e(villa_p[2])}</p></div></div></section>
 <section class="band tight"><div class="wrap two"><div><h2 class="h2">{ui('areas', lang)}</h2></div><div><p class="lead">{tx(P.HOME['areas_p'], lang)}</p><ul class="chips">{''.join(f'<li><a href="/tr/hizmet-bolgeleri/{k}"{"" if lang == "tr" else " hreflang=\"tr\""}>{tx(P.AREA_NAMES[k], lang)}</a></li>' for k, _ in P.AREAS)}</ul>
-  <div class="row mt">{G['arrow_link'](url(lang, 'projeler'), ui('nav_projects', lang))}<a class="arrow-link" href="{D.INSTAGRAM}" target="_blank" rel="noopener"><span>Instagram @beyperdee</span>{ICON['arrow']}</a></div></div></div></section>
+  <div class="row mt">{G['arrow_link'](url(lang, 'projeler'), ui('nav_projects', lang))}<a class="arrow-link" href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow"><span>Instagram @beyperdee</span>{ICON['arrow']}</a></div></div></div></section>
 {G['cta_band'](lang, ui('wa_general', lang), 'iletisim/ofis')}'''
     AP = P.PAGES['about']
     G['write'](lang, 'hakkimizda', G['layout'](lang, 'hakkimizda', tx(AP['title'], lang), tx(AP['desc'], lang), body, nav='hakkimizda',
@@ -202,9 +202,9 @@ def render_contact(G, lang):
       <div><dt>{ui('email', lang)}</dt><dd><a href="mailto:{D.EMAIL}">{D.EMAIL}</a></dd></div>
       <div><dt>{ui('address', lang)}</dt><dd lang="tr">{e(D.ADDRESS_LINE)}</dd></div>
       <div><dt>{ui('hours_l', lang)}</dt><dd>{ui('hours', lang)}</dd></div>
-      <div><dt>Instagram</dt><dd><a href="{D.INSTAGRAM}" target="_blank" rel="noopener">@beyperdee</a></dd></div>
+      <div><dt>Instagram</dt><dd><a href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow">@beyperdee</a></dd></div>
     </dl>
-    <div class="row">{G['arrow_link'](D.MAPS_DIR, ui('directions', lang), attrs=' target="_blank" rel="noopener"')}{G['arrow_link'](D.MAPS, 'Google Maps', attrs=' target="_blank" rel="noopener"')}</div>
+    <div class="row">{G['arrow_link'](D.MAPS_DIR, ui('directions', lang), attrs=' target="_blank" rel="noopener nofollow"')}{G['arrow_link'](D.MAPS, 'Google Maps', attrs=' target="_blank" rel="noopener nofollow"')}</div>
   </div>
   <figure><div class="ph ph-43">{picture('iletisim/ofis', tx(CP['office_alt'], lang), '(max-width: 900px) 100vw, 50vw')}</div></figure>
 </div></section>'''

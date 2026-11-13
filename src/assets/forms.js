@@ -73,7 +73,7 @@
       const lines = [M.wa_intro, `${M.name}: ${f.ad.value.trim()}`, `${M.phone}: ${f.tel.value.trim()}`];
       const p = nameOf(f.urun); if (p) lines.push(`${M.product}: ${p}`);
       const a = document.createElement('a');
-      a.href = waUrl(lines.join('\n')); a.target = '_blank'; a.rel = 'noopener';
+      a.href = waUrl(lines.join('\n')); a.target = '_blank'; a.rel = 'noopener nofollow';
       document.body.appendChild(a); a.click(); a.remove();
     });
 
@@ -128,7 +128,7 @@
         if (f.olcu.value) lines.push(`${M.sizes}: ${f.olcu.value.trim()}`);
         if (f.not.value) lines.push(`${M.message}: ${f.not.value.trim()}`);
         const a = document.createElement('a');
-        a.className = 'btn btn-wa'; a.href = waUrl(lines.join('\n')); a.target = '_blank'; a.rel = 'noopener'; a.textContent = M.to_whatsapp;
+        a.className = 'btn btn-wa'; a.href = waUrl(lines.join('\n')); a.target = '_blank'; a.rel = 'noopener nofollow'; a.textContent = M.to_whatsapp;
         status.appendChild(document.createElement('br')); status.appendChild(a);
       }
       status.focus && status.setAttribute('tabindex', '-1'); status.focus();

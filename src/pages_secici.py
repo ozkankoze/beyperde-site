@@ -111,7 +111,7 @@ def render_secici(G, lang):
       </div>
       <article class="ares-main" data-main></article>
       <div class="ares-cta">
-        <a class="btn btn-wa btn-lg" data-wa href="https://wa.me/{D.WA_NUMBER}" target="_blank" rel="noopener">{ICON['wa']}<span>{tx(A['wa_btn'], lang)}</span></a>
+        <a class="btn btn-wa btn-lg" data-wa href="https://wa.me/{D.WA_NUMBER}" target="_blank" rel="noopener nofollow">{ICON['wa']}<span>{tx(A['wa_btn'], lang)}</span></a>
         <a class="arrow-link" data-catalog href="{url(lang, 'katalog')}"><span>{tx(Q['see_catalog'], lang)}</span>{arrow}</a>
       </div>
       <div class="ares-alt" data-alt-wrap><h3 class="h3">{tx(A['alt_h'], lang)}</h3><ul class="ares-alts" data-alts></ul></div>
