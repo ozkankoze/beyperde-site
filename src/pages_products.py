@@ -127,7 +127,7 @@ def render_product(G, lang, slug, ck, catalog):
 
     gallery = ''
     if len(imgs) > 1:
-        figs = ''.join(f'<figure class="gf"><a class="ph" href="{G["big_src"](im)}" data-lb="p" data-cap="{e(alt(im))}">{picture(im, alt(im), "(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 33vw")}</a>{f"<figcaption>{e(alt(im))}</figcaption>" if r["alts"].get(im) else ""}</figure>' for im in imgs)
+        figs = ''.join(f'<figure class="gf"><a class="ph" href="{G["big_src"](im)}" data-lb="p" data-cap="{e(alt(im))}">{picture(im, alt(im), "(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 50vw, 33vw")}</a>{f"<figcaption>{e(alt(im))}</figcaption>" if r["alts"].get(im) else ""}</figure>' for im in imgs)
         gallery = f'''<section class="band tight" aria-labelledby="h-foto"><div class="wrap">{G['sec_head'](name, ui('photos', lang), '', 'h-foto', extra=G['arrow_link'](url(lang, 'katalog') + f'?type={slug}', ui('nav_catalog', lang)))}<div class="gal3">{figs}</div></div></section>'''
 
     faq_items = [(q, a) for q, a in r['faq']]
@@ -217,14 +217,14 @@ def render_catalog(G, lang, catalog):
         wa = ui('wa_catalog', lang, x=name, c=it['code'])
         data = ' '.join(f'data-{k}="{" ".join(it[f]) if isinstance(it[f], list) else it[f]}"' for k, f in attrs_map.items())
         cards.append(f'''<li class="ccard" {data}>
-  <a class="ph" href="{G['big_src'](it['key'])}" data-lb="cat" data-cap="{e(name + ' — ' + desc)}">{picture(it['key'], desc, '(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 22vw')}</a>
+  <a class="ph" href="{G['big_src'](it['key'])}" data-lb="cat" data-cap="{e(name + ' — ' + desc)}">{picture(it['key'], desc, '(max-width: 640px) calc(50vw - 26px), (max-width: 1100px) 33vw, 22vw')}</a>
   <div class="ccard-b"><p class="kicker">{name}</p><p class="ccard-d">{e(desc)}</p><p class="ccard-code">{tx(CP['code'], lang)}: <bdi>{e(it['code'])}</bdi></p>
   <div class="ccard-a"><a class="link-sm" href="{purl}">{ui('details', lang)}</a><a class="link-sm link-wa" href="{e(G['wa_link'](wa))}" target="_blank" rel="noopener" data-wa>{ICON['wa']}<span>{tx(CP['ask'], lang)}</span></a></div></div>
 </li>''')
     crumbs, cs = G['breadcrumbs'](lang, [(tx(CP['h1'], lang), 'katalog')])
     # Kategoriler: kaldırılan "Ürünler" sayfasının yerine katalogun başında kısa yol kartları
     ccards = ''.join(f'''<a class="catcard" href="{url(lang, f"urunler/{ck}")}">
-  <span class="ph">{picture(c['cover'], '', '(max-width: 640px) 100vw, 33vw')}</span>
+  <span class="ph">{picture(c['cover'], '', '(max-width: 640px) calc(100vw - 40px), 33vw')}</span>
   <span class="catcard-b"><span class="catcard-h">{tx(c['name'], lang)}</span><span class="catcard-n">{len(c['items'])} {tx(CP['types'], lang)}</span></span>
 </a>''' for ck, c in D.CATS.items())
     body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(CP['h1'], lang)}</h1><p class="lead">{tx(CP['lead'], lang)}</p>
