@@ -38,9 +38,11 @@ VERSION = _asset_version()
 SITE_CSS = open(os.path.join(ROOT, 'src', 'assets', 'site.css')).read().strip()
 _iv = os.path.join(ROOT, 'src', 'static', 'intro', 'giris.mp4')
 _ih = os.path.join(ROOT, 'src', 'static', 'intro', 'giris-2k.mp4')
+_im = os.path.join(ROOT, 'src', 'static', 'intro', 'giris-m.mp4')
 INTRO_HD = os.path.exists(_ih)
+INTRO_M = os.path.exists(_im)  # telefona özel dikey video
 _h = __import__('hashlib').sha1()
-for _f in (_iv, _ih):
+for _f in (_iv, _ih, _im):
     if os.path.exists(_f):
         _h.update(open(_f, 'rb').read())
 INTRO_V = _h.hexdigest()[:10]

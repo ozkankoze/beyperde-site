@@ -25,8 +25,10 @@
 
   /* ---------- video ---------- */
   // Büyük/retina ekranda 2K, diğerlerinde 1080p sürüm (görüntü ekranı kaplayacak genişlikte piksele göre seçilir)
+  // Dikey ekranda (telefon) ayrı çekilmiş dikey video; yoksa yatay video kırpılarak gösterilir
+  const PORT = !!vid.dataset.srcM && innerWidth / innerHeight < 1;
   const needPx = Math.max(innerWidth, innerHeight * 16 / 9) * Math.min(devicePixelRatio || 1, 2);
-  const SRC = (vid.dataset.srcHd && needPx > 2100) ? vid.dataset.srcHd : vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
+  const SRC = PORT ? vid.dataset.srcM : (vid.dataset.srcHd && needPx > 2100) ? vid.dataset.srcHd : vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
   let ready = false;
   // Video (≈6 MB) sayfa açılışını yavaşlatmasın: ilk etkileşimde ya da sayfa yüklendikten sonra boşta indirilir.
   // O ana kadar videonun ilk karesiyle aynı olan statik görsel görünür.
@@ -50,12 +52,12 @@
   if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
 
   // Ürün bölümleri: kaydırma oranı a→b arasında ok + yazı görünür. key: okun başladığı halkanın videodaki yeri (0..1);
-  // halka ekranda sabit durur. pos: yazının ekrandaki yeri (masaüstü / dar ekran). Sıra videodaki sırayla aynıdır.
+  // halka ekranda sabit durur. pos: yazının ekrandaki yeri (masaüstü / dar ekran). v: dikey (telefon) videosundaki yer ve zaman. Sıra videodaki sırayla aynıdır.
   const SECS = [
-    { id: 'l1', key: [0.30, 0.36], a: 0.30, b: 0.46, pos: { d: [0.56, 0.15], m: [0.07, 0.15] } }, // Duvar Kağıdı
-    { id: 'l2', key: [0.97, 0.45], a: 0.48, b: 0.60, pos: { d: [0.50, 0.15], m: [0.07, 0.14] } }, // Fon Perde
-    { id: 'l3', key: [0.24, 0.81], a: 0.61, b: 0.73, pos: { d: [0.08, 0.15], m: [0.07, 0.14] } }, // Dekoratif Halı
-    { id: 'l4', key: [0.55, 0.645], a: 0.76, b: 0.92, pos: { d: [0.30, 0.15], m: [0.07, 0.14] } }, // Döşemelik Kumaş
+    { id: 'l1', key: [0.30, 0.36], a: 0.30, b: 0.46, pos: { d: [0.56, 0.15], m: [0.07, 0.15] }, v: { key: [0.30, 0.42], a: 0.28, b: 0.44 } }, // Duvar Kağıdı
+    { id: 'l2', key: [0.97, 0.45], a: 0.48, b: 0.60, pos: { d: [0.50, 0.15], m: [0.07, 0.14] }, v: { key: [0.88, 0.42], a: 0.48, b: 0.58 } }, // Fon Perde
+    { id: 'l3', key: [0.24, 0.81], a: 0.61, b: 0.73, pos: { d: [0.08, 0.15], m: [0.07, 0.14] }, v: { key: [0.30, 0.64], a: 0.60, b: 0.73 } }, // Dekoratif Halı
+    { id: 'l4', key: [0.55, 0.645], a: 0.76, b: 0.92, pos: { d: [0.30, 0.15], m: [0.07, 0.14] }, v: { key: [0.45, 0.56], a: 0.76, b: 0.92 } }, // Döşemelik Kumaş
   ];
 
   /* ---------- metin ve oklar ---------- */
@@ -70,7 +72,9 @@
   const bar = intro.querySelector('.ibar span');
   const NS = 'http://www.w3.org/2000/svg', svgEl = $('callouts');
   function mk() { const g = document.createElementNS(NS, 'g'); g.innerHTML = '<path class="halo lh"/><path class="halo hh"/><path class="ln"/><path class="hd"/><g class="tg"><circle class="ring" r="13"/><circle class="dot" r="3.5"/></g>'; svgEl.appendChild(g); return { g, ln: g.querySelector('.ln'), hd: g.querySelector('.hd'), lh: g.querySelector('.lh'), hh: g.querySelector('.hh'), tg: g.querySelector('.tg'), ring: g.querySelector('.ring'), dot: g.querySelector('.dot') }; }
-  SECS.forEach((S) => { S.node = $(S.id); S.c = mk(); });
+  // dikey videoda ürünlerin yeri ve görünme zamanı farklı: S.v (dikey) varsa onu kullan
+  SECS.forEach((S) => { if (PORT && S.v) Object.assign(S, S.v); S.node = $(S.id); S.c = mk(); });
+  intro.classList.toggle('port', PORT); // dikey videoda kapanış yazısı tavana (boş alana) alınır
   const clamp = (x) => Math.min(1, Math.max(0, x));
   const sm = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
   const band = (p, a, b, f = 0.035) => Math.min(sm(a - f, a, p), 1 - sm(b, b + f, p));

@@ -138,7 +138,7 @@ def render_home(G, catalog):
 <section class="intro" id="giris" data-intro aria-label="{tx(H['brand_h'], lang)}">
   <div class="stage">
     <div class="intro-static">{intro_static(G, h('static_alt'))}</div>
-    <video id="stage" muted playsinline preload="none" disablepictureinpicture data-src="/intro/giris.mp4?v={G['INTRO_V']}"{f' data-src-hd="/intro/giris-2k.mp4?v={G["INTRO_V"]}"' if G['INTRO_HD'] else ''} data-dur="15.04" aria-hidden="true"></video>
+    <video id="stage" muted playsinline preload="none" disablepictureinpicture data-src="/intro/giris.mp4?v={G['INTRO_V']}"{f' data-src-hd="/intro/giris-2k.mp4?v={G["INTRO_V"]}"' if G['INTRO_HD'] else ''}{f' data-src-m="/intro/giris-m.mp4?v={G["INTRO_V"]}"' if G['INTRO_M'] else ''} data-dur="15.04" aria-hidden="true"></video>
     <div class="veil" aria-hidden="true"></div>
     <div class="ilabel" id="ihero">
       <h1><span class="isub">{h('h1_sub')}</span><span class="ibig">{h('h1')}</span></h1>
