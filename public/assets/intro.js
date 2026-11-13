@@ -174,8 +174,9 @@
   }
   let lw = 0, lh = 0;
   function resize(force) {
-    const w = intro.clientWidth, h = window.innerHeight;
-    if (!force && w === lw && Math.abs(h - lh) < 140) return;
+    // sahne 100lvh: telefonda adres çubuğu görünürken innerHeight sahneden kısa kalır; oklar videonun gerçek boyutundan hesaplanmalı
+    const w = vid.clientWidth || intro.clientWidth, h = vid.clientHeight || window.innerHeight;
+    if (!force && w === lw && Math.abs(h - lh) < 2) return;
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
     intro.classList.toggle('mobile', isMob);
     measure(); geom(); readScroll();
