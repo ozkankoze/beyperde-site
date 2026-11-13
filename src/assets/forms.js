@@ -114,6 +114,22 @@
       fileIn.value = ''; drawThumbs();
     });
 
+    // ürün ailesine özel alanlar (data-extra="olcu" | "not"): mevcut gönderim alanlarına etiketiyle eklenir
+    function extras(form, kind) {
+      return [...form.querySelectorAll('[data-extra]')].filter((el) => (!kind || el.dataset.extra === kind) && el.value.trim())
+        .map((el) => [el.dataset.l, el.value.trim()]);
+    }
+    function sizesOf(form) {
+      const f = form.elements, parts = [];
+      if (f.olcu && f.olcu.value.trim()) parts.push(f.olcu.dataset.l ? `${f.olcu.dataset.l}: ${f.olcu.value.trim()}` : f.olcu.value.trim());
+      extras(form, 'olcu').forEach(([l, v]) => parts.push(`${l}: ${v}`));
+      return parts.join('; ').slice(0, 300);
+    }
+    function noteOf(form) {
+      const pre = extras(form, 'not').map(([l, v]) => `${l}: ${v}`);
+      const n = form.elements.not.value.trim();
+      return (pre.length ? pre.join('\n') + (n ? '\n\n' + n : '') : n).slice(0, 2000);
+    }
     const status = $('.fstatus', det);
     function show(kind, msg, waFallback) {
       status.className = 'fstatus ' + kind;
@@ -124,8 +140,9 @@
         if (f.eposta.value) lines.push(`${M.email}: ${f.eposta.value.trim()}`);
         lines.push(`${M.space}: ${f.mekan.value}`);
         const p = nameOf(f.urun); if (p) lines.push(`${M.product}: ${p}`);
-        if (f.pencere.value) lines.push(`${M.windows}: ${f.pencere.value}`);
-        if (f.olcu.value) lines.push(`${M.sizes}: ${f.olcu.value.trim()}`);
+        if (f.pencere && f.pencere.value) lines.push(`${M.windows}: ${f.pencere.value}`);
+        if (f.olcu && f.olcu.value) lines.push(`${(f.olcu.dataset.l || M.sizes)}: ${f.olcu.value.trim()}`);
+        extras(det).forEach(([l, v]) => lines.push(`${l}: ${v}`));
         if (f.not.value) lines.push(`${M.message}: ${f.not.value.trim()}`);
         const a = document.createElement('a');
         a.className = 'btn btn-wa'; a.href = waUrl(lines.join('\n')); a.target = '_blank'; a.rel = 'noopener nofollow'; a.textContent = M.to_whatsapp;
@@ -141,7 +158,7 @@
       const f = det.elements;
       const body = {
         ad: f.ad.value.trim(), tel: f.tel.value.trim(), eposta: f.eposta.value.trim(), mekan: f.mekan.value,
-        urun: f.urun.value, urun_adi: nameOf(f.urun), pencere: f.pencere.value, olcu: f.olcu.value.trim(), not: f.not.value.trim(),
+        urun: f.urun.value, urun_adi: nameOf(f.urun), pencere: f.pencere ? f.pencere.value : '', olcu: sizesOf(det), not: noteOf(det),
         kvkk: f.kvkk.checked, lang: f.lang.value, t: +f.t.value, website: f.website.value, sayfa: location.pathname,
         foto: photos.map((p) => ({ name: p.name, type: p.type, data: p.data })),
       };

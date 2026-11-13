@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Ürünler: genel bakış, kategori, ürün detay ve katalog sayfaları."""
 import json
-
+import re
 
 
 def fit_desc(lead, tail, limit=155):
@@ -66,104 +66,200 @@ def render_products(G, catalog):
 
 
 def render_product(G, lang, slug, ck, catalog):
+    """Ortak premium ürün sayfası. Bölümler veriye göre açılır/kapanır; ürün ailesine (ck) göre vurgu değişir:
+    perde → ışık ve kumaş, duvar-kagidi → doku ve yüzey, hali → malzeme ve ölçü."""
     D, P, e, tx, ui, url, picture, ICON = G['D'], G['P'], G['e'], G['tx'], G['ui'], G['url'], G['picture'], G['ICON']
+    Q = P.PDP
+    q = lambda k: tx(Q[k], lang)  # noqa: E731
     r = G['RAW'][f'{ck}/{slug}'][lang]
     c = D.CATS[ck]
     name = tx(D.PRODUCTS[slug][1], lang)
     path = f'urunler/{ck}/{slug}'
     X = D.EXTRA[slug]
     imgs = G['product_imgs'](slug)
+    items = [it for it in catalog if it['slug'] == slug]
     alt = lambda i: G['product_alt'](slug, i, lang)  # noqa: E731
     wa_text = ui('wa_product', lang, x=name)
+    arrow = ICON['arrow']
     crumbs, cs = G['breadcrumbs'](lang, [(ui('nav_catalog', lang), 'katalog'), (tx(c['name'], lang), f'urunler/{ck}'), (name, path)])
+    F = Q['fam'][ck]
+    sections = list(r['sections'])
+    # halıda ölçü bölümü "Malzeme ve ölçü" alanında anlatılır; teknik bilgilerde tekrar edilmez
+    size_i = next((i for i, (h, _b) in enumerate(sections) if ck == 'hali' and re.search(r'Ölçü|Size|Measur|مقاس', h)), None)
+    size_sec = tuple(sections.pop(size_i)) if size_i is not None else None
 
-    if r.get('specs'):
-        facts = '<dl class="facts facts-sm">' + ''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>' for a, b in r['specs']) + '</dl>'
-    else:
-        facts = None
-    facts = facts or f'''<dl class="facts facts-sm">
-  <div><dt>{ui('measure', lang)}</dt><dd>{ui('measure_v', lang)}</dd></div>
-  <div><dt>{ui('delivery', lang)}</dt><dd>{ui('delivery_v', lang)}</dd></div>
-  <div><dt>{ui('fitting', lang)}</dt><dd>{ui('fitting_v', lang)}</dd></div>
-  <div><dt>{ui('guarantee', lang)}</dt><dd>{ui('guarantee_v', lang)}</dd></div>
-</dl>'''
-    info = f'''<div class="p-info">
+    # fotoğrafı henüz olmayan ürünlerde h2 alanı bir yer tutucu ("Görseller hazırlanıyor."); slogan olarak intro kullanılır
+    tagline, story_h, story_p = r['h2'], r['h2'], r['intro']
+    if not imgs and len(r['intro']) < 80:
+        tagline = story_h = r['intro']
+        if sections:
+            story_p = sections.pop(0)[1]
+    # ---- 1. hero
+    has_gal = len(imgs) > (3 if ck == 'perde' else 2)
+    second = (f'<a class="arrow-link" href="#galeri"><span>{q("explore")}</span>{arrow}</a>' if has_gal
+              else (f'<a class="arrow-link" href="{url(lang, "katalog")}?type={slug}"><span>{q("explore")}</span>{arrow}</a>' if items else ''))
+    info = f'''<div class="pp-hero-t">
   {crumbs}
-  <p class="kicker"><a href="{url(lang, f'urunler/{ck}')}">{tx(c['name'], lang)}</a></p>
-  <h1 class="h1">{e(r['h1'])}</h1>
+  <p class="kicker pp-k"><a href="{url(lang, f'urunler/{ck}')}">{tx(c['name'], lang)}</a> <span aria-hidden="true">/</span> {e(name)}</p>
+  <h1 class="pp-h1">{e(r['h1'])}</h1>
+  <p class="pp-tag">{e(tagline)}</p>
   <p class="lead">{e(r['lead'])}</p>
-  {facts}
-  <div class="row">{G['btn_wa'](lang, wa_text)}<a class="btn btn-ghost" href="#teklif">{ui('quote_this', lang)}</a></div>
+  <div class="row pp-cta"><a class="btn" href="#teklif"><span>{q('quote')}</span>{arrow}</a>{G['btn_wa'](lang, wa_text, ui('whatsapp_short', lang), 'btn btn-ghost pp-wa')}{second}</div>
 </div>'''
     if imgs:
-        thumbs = ''.join(
-            f'<button type="button" class="th" aria-pressed="{"true" if i == 0 else "false"}" data-swap-src="{G["big_src"](im)}" data-swap-alt="{e(alt(im))}" aria-label="{ui("photos", lang)} {i + 1}">{picture(im, "", "80px")}</button>'
-            for i, im in enumerate(imgs)) if len(imgs) > 1 else ''
-        viewer = f'''<div class="viewer" data-swap>
-  <a class="ph viewer-main" href="{G['big_src'](imgs[0])}" data-lb-proxy aria-label="{ui('open_photo', lang)}">{picture(imgs[0], alt(imgs[0]), '(max-width: 960px) 100vw, 55vw', cls='swap-img', eager=True)}</a>
-  {f'<div class="thumbs" role="group" aria-label="{ui("photos", lang)}">{thumbs}</div>' if thumbs else ''}
-</div>'''
-        hero = f'<section class="p-hero"><div class="wrap p-grid">{info}{viewer}</div></section>'
+        hero_ph = f'<figure class="pp-hero-ph"><a href="{G["big_src"](imgs[0])}" data-lb="p" data-cap="{e(alt(imgs[0]))}" aria-label="{ui("open_photo", lang)}">{picture(imgs[0], alt(imgs[0]), "(max-width: 900px) calc(100vw - 40px), 50vw", eager=True)}</a></figure>'
     else:
-        hero = f'<section class="p-hero p-hero-solo"><div class="wrap p-grid-solo">{info}<aside class="noimg"><p>{ui("no_photos", lang)}</p></aside></div></section>'
+        hero_ph = f'<aside class="pp-noimg"><p class="kicker">{q("no_img_k")}</p><p>{ui("no_photos", lang)}</p></aside>'
+    hero = f'<section class="pp-hero pp-{ck}"><div class="wrap pp-hero-g">{info}{hero_ph}</div></section>'
 
-    rooms = ''.join(f'<li><a href="{url(lang, "katalog")}?type={slug}&amp;room={k}">{tx(D.ROOMS[k], lang)}</a></li>' if any(it['slug'] == slug and k in it['room'] for it in catalog)
-                    else f'<li><span>{tx(D.ROOMS[k], lang)}</span></li>' for k in X['rooms'])
-    mats = ''.join(f'<li>{e(m)}</li>' for m in X['materials'][lang])
-    advs = ''.join(f'<li>{ICON["check"]}<span>{e(a)}</span></li>' for a in X['adv'][lang])
-    glance = f'''<section class="band tight glance" aria-labelledby="h-glance">
-  <div class="wrap">
-    <h2 class="kicker" id="h-glance">{ui('at_a_glance', lang)}</h2>
-    <div class="glance-grid">
-      <div><h3 class="h4">{ui('uses', lang)}</h3><ul class="chips">{rooms}</ul></div>
-      <div><h3 class="h4">{ui('materials', lang)}</h3><ul class="dash">{mats}</ul></div>
-      <div><h3 class="h4">{ui('advantages', lang)}</h3><ul class="ticks">{advs}</ul></div>
-    </div>
-  </div>
-</section>'''
+    # ---- 2. hizmet şeridi (yalnızca doğrulanmış genel bilgiler ya da ürünün kendi teknik verisi)
+    if r.get('specs'):
+        strip_items = [(a, b) for a, b in r['specs']]
+    else:
+        strip_items = [(ui('measure', lang), ui('measure_v', lang)), (ui('delivery', lang), ui('delivery_v', lang)),
+                       (ui('fitting', lang), ui('fitting_v', lang)), (ui('guarantee', lang), ui('guarantee_v', lang))]
+    strip = (f'<section class="pp-strip" aria-label="{q("benefits_h")}"><div class="wrap"><dl>' +
+             ''.join(f'<div><dt>{e(a)}</dt><dd>{e(b)}</dd></div>' for a, b in strip_items) + '</dl></div></section>')
 
-    secs = ''.join(f'<section><h3 class="h3">{e(h)}</h3><p>{e(p)}</p></section>' for h, p in r['sections'])
-    toc = ''.join(f'<li><a href="#s{i}">{e(h)}</a></li>' for i, (h, _) in enumerate(r['sections']))
-    secs = ''.join(f'<section id="s{i}"><h3 class="h3">{e(h)}</h3><p>{e(p)}</p></section>' for i, (h, p) in enumerate(r['sections']))
-    article = f'''<section class="band linen" aria-labelledby="h-art">
-  <div class="wrap art">
-    <nav class="toc" aria-labelledby="h-art"><ul>{toc}</ul></nav>
-    <article class="prose">
-      <h2 class="h2" id="h-art">{e(r['h2'])}</h2>
-      <p class="lead-ink">{e(r['intro'])}</p>
-      {secs}
-    </article>
-  </div>
-</section>'''
-
-    gallery = ''
-    if len(imgs) > 1:
-        figs = ''.join(f'<figure class="gf"><a class="ph" href="{G["big_src"](im)}" data-lb="p" data-cap="{e(alt(im))}">{picture(im, alt(im), "(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 50vw, 33vw")}</a>{f"<figcaption>{e(alt(im))}</figcaption>" if r["alts"].get(im) else ""}</figure>' for im in imgs)
-        gallery = f'''<section class="band tight" aria-labelledby="h-foto"><div class="wrap">{G['sec_head'](name, ui('photos', lang), '', 'h-foto', extra=G['arrow_link'](url(lang, 'katalog') + f'?type={slug}', ui('nav_catalog', lang)))}<div class="gal3">{figs}</div></div></section>'''
-
-    faq_items = [(q, a) for q, a in r['faq']]
-    faq = f'''<section class="band linen" aria-labelledby="h-sss"><div class="wrap faq-grid">
-  <div><p class="kicker">{name}</p><h2 class="h2" id="h-sss">{ui('faq', lang)}</h2>
-    <div class="side-links"><p class="kicker">{tx(c['name'], lang)}</p><ul class="chips">{''.join(f'<li><a href="{url(lang, f"urunler/{ck}/{s}")}"{" aria-current=\"page\"" if s == slug else ""}>{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in c['items'])}</ul></div></div>
-  {G['faq_block'](faq_items, lang)}
-</div></section>''' if faq_items else ''
-
-    related = ''.join(G['product_card'](s, lang, '(max-width: 640px) 50vw, 25vw') for s in D.RELATED[slug])
-    rel = f'<section class="band tight" aria-labelledby="h-rel"><div class="wrap">{G["sec_head"](ui("related", lang), ui("related_h", lang), "", "h-rel")}<div class="pgrid pgrid-4">{related}</div></div></section>'
-
-    quote = f'''<section class="band quote-band" id="teklif" aria-labelledby="h-teklif"><div class="wrap quote-grid">
-  <div class="quote-intro"><p class="kicker">{name}</p><h2 class="h2" id="h-teklif">{ui('quote_this', lang)}</h2><p class="lead">{tx(P.FORM['p'], lang)}</p>{G['btn_wa'](lang, wa_text)}</div>
-  {G['quote_forms'](lang, slug, 'pq')}
+    # ---- 3. hikâye (editoryal; görsel varsa yanında)
+    story_img = imgs[1] if len(imgs) > 1 else None
+    story = f'''<section class="pp-sec" aria-labelledby="pp-story"><div class="wrap pp-ed{' pp-ed-solo' if not story_img else ''}">
+  {f'<figure class="pp-ed-ph" data-rv>{picture(story_img, alt(story_img), "(max-width: 900px) 100vw, 46vw")}</figure>' if story_img else ''}
+  <div class="pp-ed-t" data-rv><p class="kicker">{q('story_k')}</p><h2 class="pp-h2" id="pp-story">{e(story_h)}</h2><p class="pp-intro">{e(story_p)}</p>
+    <ul class="pp-adv">{''.join(f'<li>{e(a)}</li>' for a in X['adv'][lang])}</ul></div>
 </div></section>'''
 
-    body = hero + glance + article + gallery + faq + rel + quote
+    # ---- 4. aile vurgusu
+    mats = ''.join(f'<li>{e(m)}</li>' for m in X['materials'][lang])
+    colors = []
+    for it in items:
+        for col in it['color']:
+            if col not in colors:
+                colors.append(col)
+    sw = (f'<div class="pp-colors"><h3 class="pp-h4">{q("colors_h")}</h3><ul class="pp-sw">' +
+          ''.join(f'<li><span class="pp-sw-c" style="--c:{D.COLORS[col][1]}" aria-hidden="true"></span>{tx(D.COLORS[col][0], lang)}</li>' for col in colors) +
+          f'</ul><p class="pp-note">{q("colors_note")}</p></div>') if colors else ''
+    fam = ''
+    if ck == 'perde':
+        lights = {l for it in items for l in it['light']}
+        scale = ''
+        if lights:
+            scale = (f'<div class="pp-light"><h3 class="pp-h4">{q("light_scale")}</h3><ol class="pp-scale">' +
+                     ''.join(f'<li{" class=\"on\"" if k in lights else ""}><span class="pp-scale-b pp-l-{k}" aria-hidden="true"></span><span>{tx(D.LIGHT[k], lang)}</span>{"<span class=\"sr\"> ✓</span>" if k in lights else ""}</li>' for k in Q['light_order']) +
+                     '</ol></div>')
+        fam_img = imgs[2] if len(imgs) > 2 else None
+        fam = f'''<section class="pp-sec pp-fam pp-fam-perde" aria-labelledby="pp-fam"><div class="wrap pp-fam-g{' pp-fam-noimg' if not fam_img else ''}">
+  <div class="pp-fam-t" data-rv><p class="kicker">{tx(F['k'], lang)}</p><h2 class="pp-h2" id="pp-fam">{tx(F['h'], lang)}</h2>{scale}
+    <div><h3 class="pp-h4">{tx(F['mats'], lang)}</h3><ul class="pp-mats">{mats}</ul></div>{sw}</div>
+  {f'<figure class="pp-fam-ph" data-rv>{picture(fam_img, alt(fam_img), "(max-width: 900px) 100vw, 40vw")}</figure>' if fam_img else ''}
+</div></section>'''
+    elif ck == 'duvar-kagidi':
+        tiles = ''
+        coded = [it for it in items if re.search(r'\d', it['code']) and '/' not in it['code']]
+        if coded:   # desen kodu olan koleksiyon görselleri: kartela gibi
+            tiles = (f'<div class="pp-patterns"><h3 class="pp-h4">{q("patterns_h")}</h3><ul class="pp-pat">' +
+                     ''.join(f'<li><a href="{G["big_src"](it["key"])}" data-lb="pat" data-cap="{e(it["code"])}"><span class="pp-pat-ph">{picture(it["key"], it["code"], "(max-width: 640px) 30vw, 140px")}</span><span class="pp-pat-c">{e(it["code"])}</span></a></li>' for it in coded[:12]) +
+                     '</ul></div>')
+        elif imgs:   # yakın plan doku: aynı fotoğrafların büyütülmüş kesitleri
+            tiles = (f'<div class="pp-patterns"><h3 class="pp-h4">{q("texture_h")}</h3><ul class="pp-tex">' +
+                     ''.join(f'<li><span class="pp-tex-ph">{picture(k, alt(k), "(max-width: 640px) 45vw, 260px")}</span></li>' for k in imgs[:3]) + '</ul></div>')
+        fam = f'''<section class="pp-sec pp-fam pp-fam-duvar" aria-labelledby="pp-fam"><div class="wrap">
+  <div class="pp-fam-head" data-rv><p class="kicker">{tx(F['k'], lang)}</p><h2 class="pp-h2" id="pp-fam">{tx(F['h'], lang)}</h2></div>
+  <div class="pp-fam-cols" data-rv><div><h3 class="pp-h4">{tx(F['mats'], lang)}</h3><ul class="pp-mats pp-mats-tex">{mats}</ul>{sw}</div>{tiles}</div>
+</div></section>'''
+    elif ck == 'hali':
+        size_html = ''
+        if size_sec:
+            size_html = f'''<div class="pp-size"><h3 class="pp-h4">{q('size_h')}</h3>
+      <svg class="pp-size-svg" viewBox="0 0 320 220" role="img" aria-label="{q('size_w')} × {q('size_l')}">
+        <rect x="10" y="10" width="300" height="200" rx="4" fill="none" stroke="currentColor" stroke-opacity=".25"/>
+        <rect x="70" y="55" width="180" height="110" rx="3" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-opacity=".55"/>
+        <line x1="70" y1="185" x2="250" y2="185" stroke="currentColor" stroke-opacity=".6"/><line x1="70" y1="180" x2="70" y2="190" stroke="currentColor"/><line x1="250" y1="180" x2="250" y2="190" stroke="currentColor"/>
+        <line x1="270" y1="55" x2="270" y2="165" stroke="currentColor" stroke-opacity=".6"/><line x1="265" y1="55" x2="275" y2="55" stroke="currentColor"/><line x1="265" y1="165" x2="275" y2="165" stroke="currentColor"/>
+        <text x="160" y="205" text-anchor="middle" font-size="13" fill="currentColor">{q('size_w')}</text>
+        <text x="292" y="114" text-anchor="middle" font-size="13" fill="currentColor">{q('size_l')}</text>
+      </svg>
+      <h4 class="pp-h5">{e(size_sec[0])}</h4><p>{e(size_sec[1])}</p></div>'''
+        mat_img = imgs[1] if len(imgs) > 1 else None   # hero fotoğrafı burada tekrar edilmez
+        fam = f'''<section class="pp-sec pp-fam pp-fam-hali" aria-labelledby="pp-fam"><div class="wrap">
+  <div class="pp-fam-head" data-rv><p class="kicker">{tx(F['k'], lang)}</p><h2 class="pp-h2" id="pp-fam">{tx(F['h'], lang)}</h2></div>
+  <div class="pp-fam-cols" data-rv><div class="pp-mat-card">{f'<span class="pp-mat-ph">{picture(mat_img, alt(mat_img), "(max-width: 900px) 100vw, 40vw")}</span>' if mat_img else ''}
+    <h3 class="pp-h4">{tx(F['mats'], lang)}</h3><ul class="pp-mats">{mats}</ul>{sw}</div>{size_html}</div>
+</div></section>'''
+
+    # ---- 5. galeri (görsel sayısına göre)
+    gallery = ''
+    used = {imgs[0]} if imgs else set()
+    if story_img:
+        used.add(story_img)
+    if ck == 'perde' and len(imgs) > 2:
+        used.add(imgs[2])
+    if ck == 'duvar-kagidi':   # kartela gibi gösterilen desenler galeride tekrar etmez
+        used |= set([it['key'] for it in items if re.search(r'\d', it['code']) and '/' not in it['code']][:12])
+    if ck == 'hali' and len(imgs) > 1:
+        used.add(imgs[1])
+    gal_imgs = [im for im in imgs if im not in used]   # hikâye ve vurgu bölümündeki fotoğraflar galeride tekrar etmez
+    if gal_imgs:
+        n = len(imgs)
+        shown = gal_imgs if n <= 8 else gal_imgs[:7]
+        mode = 'g-few' if len(shown) <= 3 else 'g-ed'
+        figs = ''.join(f'<figure class="pp-gf"><a href="{G["big_src"](im)}" data-lb="p" data-cap="{e(alt(im))}">{picture(im, alt(im), "(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 50vw, 33vw")}</a></figure>' for im in shown)
+        more = (f'<a class="btn btn-ghost" href="{url(lang, "katalog")}?type={slug}"><span>{q("see_all")} ({len(items) or n})</span>{arrow}</a>' if n > 8 else '')
+        gallery = f'''<section class="pp-sec pp-gal-s" id="galeri" aria-labelledby="pp-gal"><div class="wrap">
+  <div class="pp-sec-head"><h2 class="pp-h2" id="pp-gal">{q('gallery_h')}</h2>{more}</div>
+  <div class="pp-gal {mode}">{figs}</div>
+</div></section>'''
+
+    # ---- 6. kullanım alanları (fotoğraf yalnızca o oda için gerçek uygulama fotoğrafı varsa)
+    room_cards = []
+    for k in X['rooms']:
+        it = next((it for it in items if k in it['room']), None)
+        label = tx(D.ROOMS[k], lang)
+        if it:
+            room_cards.append(f'<li class="pp-room has-ph"><a href="{url(lang, "katalog")}?type={slug}&amp;room={k}"><span class="pp-room-ph">{picture(it["key"], "", "(max-width: 640px) 45vw, 240px")}</span><span class="pp-room-l">{label}</span></a></li>')
+        else:
+            room_cards.append(f'<li class="pp-room"><span class="pp-room-l">{label}</span></li>')
+    rooms = (f'<section class="pp-sec pp-sec-tight" aria-labelledby="pp-rooms"><div class="wrap"><h2 class="pp-h3" id="pp-rooms">{q("rooms_h")}</h2>'
+             f'<ul class="pp-rooms">{"".join(room_cards)}</ul></div></section>') if room_cards else ''
+
+    # ---- 7. teknik bilgiler + SSS (akordeon; içerik HTML'de, arama motorları okur)
+    acc = ''.join(f'<details class="pp-acc"><summary><span>{e(h)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(b)}</p></div></details>' for h, b in sections)
+    acc += (f'<details class="pp-acc"><summary><span>{q("delivery_h")}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><dl class="pp-dl">'
+            f'<div><dt>{ui("measure", lang)}</dt><dd>{ui("measure_v", lang)}</dd></div><div><dt>{ui("delivery", lang)}</dt><dd>{ui("delivery_v", lang)}</dd></div>'
+            f'<div><dt>{ui("fitting", lang)}</dt><dd>{ui("fitting_v", lang)}</dd></div><div><dt>{ui("guarantee", lang)}</dt><dd>{ui("guarantee_v", lang)}</dd></div></dl></div></details>')
+    faq_items = [(qq, a) for qq, a in r['faq']]
+    faq = ''.join(f'<details class="pp-acc pp-faq"><summary><span>{e(qq)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(a)}</p></div></details>' for qq, a in faq_items)
+    info_sec = f'''<section class="pp-sec pp-info-s" aria-labelledby="pp-info"><div class="wrap pp-info">
+  <div><h2 class="pp-h2" id="pp-info">{q('info_h')}</h2>
+    <nav class="pp-side" aria-label="{tx(c['name'], lang)}"><p class="kicker">{tx(c['name'], lang)}</p><ul class="chips">{''.join(f'<li><a href="{url(lang, f"urunler/{ck}/{s_}")}"{" aria-current=\"page\"" if s_ == slug else ""}>{tx(D.PRODUCTS[s_][1], lang)}</a></li>' for s_ in c['items'])}</ul></nav></div>
+  <div class="pp-accs">{acc}{f'<h3 class="pp-h4 pp-faq-h">{ui("faq", lang)}</h3>{faq}' if faq else ''}</div>
+</div></section>'''
+
+    # ---- 8. teklif (ürün ailesine göre alanlar)
+    quote = f'''<section class="band quote-band" id="teklif" aria-labelledby="h-teklif"><div class="wrap quote-grid">
+  <div class="quote-intro"><p class="kicker">{e(name)}</p><h2 class="h2" id="h-teklif">{ui('quote_this', lang)}</h2><p class="lead">{tx(P.FORM['p'], lang)}</p>{G['btn_wa'](lang, wa_text)}</div>
+  {G['quote_forms'](lang, slug, 'pq', ck)}
+</div></section>'''
+
+    # ---- 9. ilgili ürünler (en fazla 3, D.RELATED sırası: kategori ve kullanım benzerliği)
+    related = ''.join(G['product_card'](s_, lang, '(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 33vw, 400px') for s_ in D.RELATED[slug][:3] if s_ != slug)
+    rel = f'<section class="pp-sec" aria-labelledby="pp-rel"><div class="wrap"><h2 class="pp-h2 pp-rel-h" id="pp-rel">{q("related_h")}</h2><div class="pgrid pgrid-3">{related}</div></div></section>' if related else ''
+
+    # ---- 10. kapanış
+    end_img = imgs[-1] if len(imgs) > 2 else 'ana-sayfa'   # az fotoğraflı üründe hero fotoğrafı tekrar edilmez
+    end = f'''<section class="pp-end" aria-labelledby="pp-end">
+  {picture(end_img, '', '100vw', 'pp-end-bg')}
+  <div class="wrap pp-end-in"><p class="kicker">{q('end_k')}</p><h2 class="pp-h2" id="pp-end">{q('end_h')}</h2><p>{q('end_p')}</p>
+    <div class="row"><a class="btn btn-light" href="#teklif"><span>{q('quote')}</span>{arrow}</a>{G['btn_wa'](lang, wa_text, q('end_wa'), 'btn btn-wa')}</div></div>
+</section>'''
+
+    body = f'<div class="pp pp-{ck}">' + hero + strip + story + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
     title = {'tr': f'{name} — Ölçüye Özel Dikim ve Montaj | Bey Perde',
              'en': f'{name} — Made to Measure and Fitted | Bey Perde',
              'ar': f'{name} — تفصيل حسب المقاس وتركيب | باي بردة'}[lang]
     if ck != 'perde':
         title = {'tr': f'{name} — Uygulama ve Montaj | Bey Perde', 'en': f'{name} — Supplied and Fitted | Bey Perde', 'ar': f'{name} — التوريد والتركيب | باي بردة'}[lang]
-    import re as _re
-    sents = [x for x in _re.split(r'(?<=[.!؟?])\s+', r['lead']) if not _re.search(r'Aşağıdaki|below|أدناه|التالية|الصور', x)]
+    sents = [x for x in re.split(r'(?<=[.!؟?])\s+', r['lead']) if not re.search(r'Aşağıdaki|below|أدناه|التالية|الصور', x)]
     lead_s = ''
     for x in sents:
         if len(lead_s) + len(x) > 125 and lead_s:
@@ -176,13 +272,14 @@ def render_product(G, lang, slug, ck, catalog):
         lead_s = (lead_s + ' ' + short_d) if len(lead_s + short_d) < 140 else lead_s
     desc = fit_desc(lead_s, {'tr': 'Yerinde ölçü, 3 yıl garanti.', 'en': 'Measured on site, 3-year guarantee.', 'ar': 'قياس في الموقع وضمان ٣ سنوات.'}[lang])
     service = {'@context': 'https://schema.org', '@type': 'Service', 'name': name, 'serviceType': name, 'description': r['intro'],
+               'category': tx(c['name'], lang),
                'provider': {'@id': D.SITE + '/#isletme'}, 'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz', 'İstanbul']],
                'url': G['abs_url'](lang, path)}
     if imgs:
         service['image'] = [G['og_src'](i) for i in imgs[:4]]
     schemas = [cs, service] + ([G['faq_schema'](faq_items)] if faq_items else [])
-    G['write'](lang, path, G['layout'](lang, path, title, desc, body, nav='urunler', schemas=schemas, scripts=('forms.js',),
-                                       og_image=G['og_src'](imgs[0]) if imgs else G['og_src'](c['cover']), wa_text=wa_text))
+    G['write'](lang, path, G['layout'](lang, path, title, desc, body, nav='urunler', schemas=schemas, scripts=('forms.js', 'about.js'),
+                                       body_cls='page-product', og_image=G['og_src'](imgs[0]) if imgs else G['og_src'](c['cover']), wa_text=wa_text))
 
 
 def render_catalog(G, lang, catalog):

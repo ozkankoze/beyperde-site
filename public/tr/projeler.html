@@ -508,7 +508,7 @@ body.locked{overflow:hidden}
 /* ---------- teklif formları ---------- */
 .quote-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(32px,6vw,100px);align-items:start}
 .quote-intro{display:grid;gap:20px;justify-items:start}
-@media (max-width:900px){.quote-grid{grid-template-columns:1fr}}
+@media (max-width:900px){.quote-grid{grid-template-columns:minmax(0,1fr)}.quote-grid>*{min-width:0}}
 .contact-dl{display:grid;gap:16px;margin-top:8px}
 .contact-dl dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 :root[lang="ar"] .contact-dl dt{letter-spacing:0;font-size:12px}
@@ -523,7 +523,7 @@ body.locked{overflow:hidden}
 .qf-tabs [aria-selected="true"]{background:var(--ink);color:var(--cream)}
 .qform{display:grid;gap:20px}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media (max-width:600px){.f2{grid-template-columns:1fr}}
+@media (max-width:600px){.f2{grid-template-columns:minmax(0,1fr)}}
 .field{display:grid;gap:8px;min-inline-size:0}
 .field label{font-size:13px;font-weight:500;color:var(--ink-2)}
 .field .opt{font-weight:400;color:var(--muted)}
@@ -1259,7 +1259,8 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
   .js .pp [data-rv]{opacity:1;transform:none;transition:none}
   .pp-hero-ph img,.pp-gf img,.pp-pat img{transition:none}
   .pp-acc[open] .pp-acc-b{animation:none}
-}</style>
+}
+.pp-sec-head .btn{max-inline-size:100%;white-space:normal;text-align:center}</style>
 <script>window.BP={"lang": "tr", "wa": "905535962614", "consent": {"analytics": false}};document.documentElement.classList.add('js')</script>
 <link rel="preload" as="image" type="image/avif" imagesrcset="/img/projeler/erenkoy-hk-evi/pencere-240.avif 240w, /img/projeler/erenkoy-hk-evi/pencere-480.avif 480w, /img/projeler/erenkoy-hk-evi/pencere-720.avif 720w, /img/projeler/erenkoy-hk-evi/pencere-960.avif 960w, /img/projeler/erenkoy-hk-evi/pencere-1200.avif 1200w" imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://www.beyperde.com/#isletme", "name": "Bey Perde", "url": "https://www.beyperde.com/tr", "logo": "https://www.beyperde.com/img/logo-brown.png", "image": "https://www.beyperde.com/img/ana-sayfa-1600.webp", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "priceRange": "₺₺", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "hasMap": "https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}], "knowsLanguage": ["tr", "en", "ar"], "sameAs": ["https://www.instagram.com/beyperdee/"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://www.beyperde.com/tr"}, {"@type": "ListItem", "position": 2, "name": "Projeler", "item": "https://www.beyperde.com/tr/projeler"}]}</script>
@@ -1344,6 +1345,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Merhaba%2C%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener nofollow" aria-label="WhatsApp'tan yazın" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Çerez Politikası"><p>Bu site yalnızca çalışması için gerekli yerel depolamayı kullanır; reklam ya da takip çerezi kullanmaz. <a href="/tr/cerez-politikasi" title="Ayrıntılar">Ayrıntılar</a></p><button class="btn btn-sm" type="button" data-cookie-ok>Anladım</button></div>
-<script src="/assets/site.js?v=16833f7aeb" defer></script>
+<script src="/assets/site.js?v=78ed51894c" defer></script>
 </body>
 </html>

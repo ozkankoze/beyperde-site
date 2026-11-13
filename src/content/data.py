@@ -73,7 +73,7 @@ UI = {
                    'Installation photographs for this product are on the way. We can look at samples together at our office or at the measuring visit.',
                    'صور تركيب هذا المنتج قيد التحضير. يمكننا معاينة العيّنات معاً في مكتبنا أو أثناء موعد القياس.'),
     'quote_this': T('Bu ürün için teklif alın', 'Get a quote for this product', 'اطلب عرض سعر لهذا المنتج'),
-    'wa_product': T('Merhaba, {x} için teklif almak istiyorum.', 'Hello, I would like a quote for {x}.', 'مرحباً، أرغب في عرض سعر لـ {x}.'),
+    'wa_product': T('Merhaba Bey Perde, {x} ürünleriniz hakkında bilgi ve fiyat teklifi almak istiyorum.', 'Hello Bey Perde, I would like information and a quote for your {x}.', 'مرحباً باي بردة، أرغب في معلومات وعرض سعر لمنتجاتكم من {x}.'),
     'wa_project': T('Merhaba, {x} projenizi gördüm; benzer bir iş için teklif almak istiyorum.', 'Hello, I saw your {x} project and would like a quote for similar work.', 'مرحباً، شاهدت مشروعكم {x} وأرغب في عرض سعر لعمل مشابه.'),
     'wa_catalog': T('Merhaba, katalogdaki {x} ({c}) için teklif almak istiyorum.', 'Hello, I would like a quote for {x} ({c}) from your catalogue.', 'مرحباً، أرغب في عرض سعر لـ {x} ({c}) من الكتالوج.'),
     'wa_general': T('Merhaba, perde / duvar kağıdı için teklif almak istiyorum.', 'Hello, I would like a quote for curtains / wallpaper.', 'مرحباً، أرغب في عرض سعر للستائر / ورق الجدران.'),

@@ -393,7 +393,43 @@ def product_options(lang, selected=''):
     return ''.join(out)
 
 
-def quote_forms(lang, selected='', idp='q'):
+def family_fields(lang, idp, selected, family):
+    """Detaylı formun ürün/ölçü alanları. Varsayılan: pencere sayısı + ölçüler; ürün ailesinde ona özel alanlar."""
+    F = P.FORM
+    f = lambda k: tx(F[k], lang)  # noqa: E731
+    prod = f'<div class="field"><label for="{idp}-d-urun">{f("product")}</label><select id="{idp}-d-urun" name="urun">{product_options(lang, selected)}</select></div>'
+    if not family:
+        return f'''    <div class="f2">
+      {prod}
+      <div class="field"><label for="{idp}-d-pen">{f('windows')}</label><input id="{idp}-d-pen" name="pencere" type="number" inputmode="numeric" min="1" max="200"></div>
+    </div>
+    <div class="field"><label for="{idp}-d-olcu">{f('sizes')}</label><input id="{idp}-d-olcu" name="olcu" maxlength="300" placeholder="{e(f('sizes_ph'))}"></div>'''
+    out = []
+    if family == 'perde':
+        out.append(f'<div class="f2">{prod}<div class="field"><label for="{idp}-d-pen">{f("windows")}</label><input id="{idp}-d-pen" name="pencere" type="number" inputmode="numeric" min="1" max="200"></div></div>')
+    else:
+        out.append(prod)
+    flds = []
+    for name, label, ph, typ in P.PDP['form'][family]:
+        lab = tx(label, lang)
+        attrs = f' placeholder="{e(tx(ph, lang))}"' if ph else ''
+        if typ == 'number':
+            attrs += ' type="number" inputmode="decimal" min="0" max="100000" step="any" dir="ltr"'
+        else:
+            attrs += ' maxlength="120"'
+        if name == 'olcu':
+            attrs += f' maxlength="300" data-l="{e(lab)}"'
+            flds.append(f'<div class="field"><label for="{idp}-d-{name}">{lab}</label><input id="{idp}-d-{name}" name="olcu"{attrs}></div>')
+        else:
+            kind = 'olcu' if name in ('x_en', 'x_boy', 'x_m2') else 'not'
+            flds.append(f'<div class="field"><label for="{idp}-d-{name}">{lab}</label><input id="{idp}-d-{name}" name="{name}" data-extra="{kind}" data-l="{e(lab)}"{attrs}></div>')
+    for i in range(0, len(flds), 2):
+        out.append('<div class="f2">' + ''.join(flds[i:i + 2]) + '</div>')
+    return '\n    '.join(out)
+
+
+def quote_forms(lang, selected='', idp='q', family=None):
+    """family (perde | duvar-kagidi | hali): ürün sayfasında ölçü alanları ürün ailesine göre değişir."""
     F = P.FORM
     f = lambda k: tx(F[k], lang)  # noqa: E731
     kvkk = f'<a href="/tr/kvkk" target="_blank"{"" if lang == "tr" else " hreflang=\"tr\""}>{f("consent_link")}</a>'
@@ -426,12 +462,8 @@ def quote_forms(lang, selected='', idp='q'):
       <div class="field"><label for="{idp}-d-mail">{f('email')} <span class="opt">({f('optional')})</span></label><input id="{idp}-d-mail" name="eposta" type="email" autocomplete="email" maxlength="120" dir="ltr" data-err="{e(f('err_email'))}"><p class="ferr" hidden></p></div>
       <div class="field"><label for="{idp}-d-mekan">{f('space')}</label><select id="{idp}-d-mekan" name="mekan">{spaces}</select></div>
     </div>
-    <div class="f2">
-      <div class="field"><label for="{idp}-d-urun">{f('product')}</label><select id="{idp}-d-urun" name="urun">{product_options(lang, selected)}</select></div>
-      <div class="field"><label for="{idp}-d-pen">{f('windows')}</label><input id="{idp}-d-pen" name="pencere" type="number" inputmode="numeric" min="1" max="200"></div>
-    </div>
-    <div class="field"><label for="{idp}-d-olcu">{f('sizes')}</label><input id="{idp}-d-olcu" name="olcu" maxlength="300" placeholder="{e(f('sizes_ph'))}"></div>
-    <div class="field"><label for="{idp}-d-foto">{f('photos')}</label><input id="{idp}-d-foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple data-max="4" data-err="{e(f('err_photos'))}" data-err-type="{e(f('err_photo_type'))}" aria-describedby="{idp}-d-foto-h"><p class="fhint" id="{idp}-d-foto-h">{f('photos_hint')}</p><ul class="thumbs-prev" aria-live="polite"></ul><p class="ferr" hidden></p></div>
+{family_fields(lang, idp, selected, family)}
+    <div class="field"><label for="{idp}-d-foto">{tx(P.PDP['photo_l'][family], lang) if family else f('photos')}</label><input id="{idp}-d-foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple data-max="4" data-err="{e(f('err_photos'))}" data-err-type="{e(f('err_photo_type'))}" aria-describedby="{idp}-d-foto-h"><p class="fhint" id="{idp}-d-foto-h">{f('photos_hint')}</p><ul class="thumbs-prev" aria-live="polite"></ul><p class="ferr" hidden></p></div>
     <div class="field"><label for="{idp}-d-not">{f('message')}</label><textarea id="{idp}-d-not" name="not" rows="4" maxlength="2000" placeholder="{e(f('message_ph'))}"></textarea></div>
     <div class="field check"><input id="{idp}-d-kvkk" name="kvkk" type="checkbox" required data-err="{e(f('err_consent'))}"><label for="{idp}-d-kvkk">{consent}</label><p class="ferr" hidden></p></div>
     <p class="fsummary" role="alert" hidden data-summary="{e(f('err_summary'))}"></p>
