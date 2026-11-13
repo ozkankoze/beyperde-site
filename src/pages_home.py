@@ -260,7 +260,7 @@ def render_home(G, catalog):
   </div>
 </section>'''
 
-        schemas = [{'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Bey Perde', 'url': G['abs_url'](lang),
+        schemas = [{'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Bey Perde', 'alternateName': 'beyperde.com', 'url': G['abs_url'](lang),
                     'inLanguage': lang, 'publisher': {'@id': D.SITE + '/#isletme'}},
                    G['faq_schema'](faq_items)]
         page = G['layout'](lang, '', h('title'), h('desc'), body, schemas=schemas,

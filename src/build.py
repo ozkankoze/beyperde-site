@@ -521,6 +521,26 @@ def copy_static():
             shutil.copy(p, PUB)
 
 
+def page_images(lang, path, limit=30):
+    """Üretilmiş sayfanın <main> içindeki içerik görselleri (site haritası görsel uzantısı için)."""
+    rel = abs_url(lang, path)[len(D.SITE):].strip('/')
+    for f in (os.path.join(PUB, rel + '.html'), os.path.join(PUB, rel, 'index.html')):
+        if os.path.isfile(f):
+            break
+    else:
+        return []
+    html = open(f, encoding='utf-8').read()
+    m = re.search(r'<main\b.*?</main>', html, re.S)
+    out = []
+    for src in re.findall(r'<img\b[^>]*?\ssrc="([^"]+)"', m.group(0) if m else ''):
+        if src.startswith('data:') or src.endswith('.svg') or '/logo' in src or '/img/intro/' in src:
+            continue
+        u = src if src.startswith('http') else D.SITE + ('' if src.startswith('/') else '/') + src
+        if u not in out:
+            out.append(u)
+    return out[:limit]
+
+
 def sitemap():
     seen = {}
     for path, avail, lang in PAGES_OUT:
@@ -537,9 +557,11 @@ def sitemap():
         elif path == 'blog' and globals().get('BLOG_POSTS'):
             ds = [(bp['updated'] or bp['date']) for bp in BLOG_POSTS if bp['lang'] == lang]
             lm = f"<lastmod>{max(ds).isoformat()}</lastmod>" if ds else ''
-        rows.append(f'<url><loc>{abs_url(lang, path)}</loc>{lm}{alts}</url>')
+        imgs = ''.join(f'<image:image><image:loc>{u}</image:loc></image:image>' for u in page_images(lang, path))
+        rows.append(f'<url><loc>{abs_url(lang, path)}</loc>{lm}{alts}{imgs}</url>')
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-           'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(rows) + '\n</urlset>\n')
+           'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
+           'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + '\n'.join(rows) + '\n</urlset>\n')
     open(os.path.join(PUB, 'sitemap.xml'), 'w').write(xml)
     open(os.path.join(PUB, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {D.SITE}/sitemap.xml\n')
 
@@ -631,8 +653,8 @@ def main():
     render_products(G, catalog)
     render_misc(G, catalog)
     render_blog(G)
-    sitemap()
     postprocess()
+    sitemap()
     print(f'{len(PAGES_OUT)} sayfa üretildi')
 
 
