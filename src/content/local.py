@@ -4,7 +4,7 @@
 REGIONS = {
     'cekmekoy': {
         'name': 'Çekmeköy',
-        'title': 'Çekmeköy Perde ve Duvar Kağıdı — Atölye ve Ofis Çekmeköy’de | Bey Perde',
+        'title': 'Çekmeköy Perdeci — Perde ve Duvar Kağıdı Atölyesi | Bey Perde',
         'desc': "Çekmeköy'de tül, fon, stor ve motorlu perde, duvar kağıdı ve özel ölçü halı. Kartelaları ofisimizde inceleyin, yerinde ölçü alalım; 3 yıl garanti.",
         'h1': 'Çekmeköy’de perde ve duvar kağıdı',
         'lead': "Atölyemiz ve ofisimiz Çekmeköy'de, Ekşioğlu Mahallesi'nde. Kumaşı ofisimizde görerek seçebilir, ölçü için bizi evinize çağırabilirsiniz.",
@@ -38,7 +38,7 @@ REGIONS = {
     },
     'agva': {
         'name': 'Ağva',
-        'title': 'Ağva Perde ve Duvar Kağıdı — Ev, Villa ve Konaklama İşletmeleri | Bey Perde',
+        'title': 'Ağva Perde ve Duvar Kağıdı — Ev, Villa ve Pansiyon | Bey Perde',
         'desc': "Ağva'da ev, villa ve konaklama işletmeleri için tül, fon, stor ve rustik perde; duvar kağıdı ve halı. Yerinde ölçü, atölyede dikim ve montaj.",
         'h1': 'Ağva’da perde ve duvar kağıdı',
         'lead': "Ağva'daki ev, villa ve konaklama işletmelerine perde, duvar kağıdı ve halı çözümleri sunuyoruz; ölçüden montaja kadar işi kendi ekibimizle yapıyoruz.",

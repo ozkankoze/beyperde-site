@@ -2,7 +2,7 @@
    WhatsApp düğmesi, çerez bildirimi, içindekiler vurgusu. Bağımlılık yok. */
 (() => {
   'use strict';
-  const d = document, html = d.documentElement, BP = window.BP || {};
+  const w = window, d = document, html = d.documentElement, BP = window.BP || {};
   const rtl = html.dir === 'rtl';
   const $ = (s, r = d) => r.querySelector(s), $$ = (s, r = d) => [...r.querySelectorAll(s)];
 
@@ -167,6 +167,30 @@
     $$('[data-consent]', mgr).forEach((b) => { if (b.dataset.consent === 'all') b.hidden = !analytics; b.addEventListener('click', () => { set(b.dataset.consent); render(); if (ck) ck.hidden = true; }); });
     render();
   }
-  // İstatistik kodu eklenirse yalnızca izin varsa yükleyin:
-  // if (analytics && (get() || {}).v === 'all') { /* analitik betiğini burada yükleyin */ }
+  /* ---------- ölçüm (GA4): yalnızca data.py'de GA4_ID girildiyse VE ziyaretçi istatistik izni verdiyse yüklenir ---------- */
+  let gaOn = false;
+  const loadGA = () => {
+    if (gaOn || !BP.ga || !analytics || (get() || {}).v !== 'all') return;
+    gaOn = true;
+    w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { w.dataLayer.push(arguments); };
+    w.gtag('js', new Date());
+    w.gtag('config', BP.ga, { anonymize_ip: true });
+    const sc = d.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(BP.ga);
+    d.head.appendChild(sc);
+  };
+  loadGA();
+  $$('[data-consent]').forEach((b) => b.addEventListener('click', () => setTimeout(loadGA, 0)));
+  // dönüşüm olayları: WhatsApp, telefon, e-posta tıklamaları ve gönderilen teklif formu (ölçüm kapalıysa hiçbir şey yapmaz)
+  const track = (name, params) => { if (gaOn && typeof w.gtag === 'function') w.gtag('event', name, params || {}); };
+  d.addEventListener('click', (ev) => {
+    const a = ev.target.closest && ev.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const where = { page_path: location.pathname, link_location: a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : a.classList.contains('wa-float') ? 'float' : 'content' };
+    if (/^https:\/\/wa\.me\//.test(href)) track('whatsapp_click', where);
+    else if (/^tel:/.test(href)) track('phone_click', where);
+    else if (/^mailto:/.test(href)) track('email_click', where);
+  }, { capture: true, passive: true });
+  d.addEventListener('bp:lead', (ev) => track('generate_lead', Object.assign({ page_path: location.pathname }, ev.detail || {})));
 })();

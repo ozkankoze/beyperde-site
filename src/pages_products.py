@@ -27,7 +27,7 @@ def render_products(G, catalog):
         from pages_secici import render_secici
         body, cs = render_secici(G, lang)
         body += G['cta_band'](lang, ui('wa_general', lang), 'urunler/perde-kapak')
-        title = {'tr': 'Perde Seçici — Evinize En Yakışan Perdeyi Birlikte Bulalım | Bey Perde', 'en': 'Curtain Finder — Find the Curtain That Suits Your Home | Bey Perde', 'ar': 'دليل اختيار الستائر — لنجد الستارة الأنسب لبيتك | باي بردة'}[lang]
+        title = {'tr': 'Perde Seçici — Odanıza Uygun Perdeyi Bulun | Bey Perde', 'en': 'Curtain Finder — Find the Right Curtain | Bey Perde', 'ar': 'دليل اختيار الستائر — لنجد الستارة الأنسب لبيتك | باي بردة'}[lang]
         desc = {'tr': 'Oda, ışık, stil ve renk: dört kısa adımda yaşam alanınıza en uygun perde seçeneklerini keşfedin; önerilerle WhatsApp üzerinden ücretsiz danışmanlık alın.', 'en': 'Room, light, style and colour: discover the curtains that suit your space in four short steps, then get free advice on WhatsApp.', 'ar': 'الغرفة والضوء والطراز واللون: اكتشف في أربع خطوات قصيرة الستائر الأنسب لمساحتك، واحصل على استشارة مجانية عبر واتساب.'}[lang]
         G['write'](lang, 'perde-secici', G['layout'](lang, 'perde-secici', title, desc, body, nav='perde-secici', schemas=[cs], scripts=('secici.js',), body_cls='page-secici', og_image=G['og_src']('urunler/fon-perde/salon')))
 
@@ -254,11 +254,13 @@ def render_product(G, lang, slug, ck, catalog):
 </section>'''
 
     body = f'<div class="pp pp-{ck}">' + hero + strip + story + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
-    title = {'tr': f'{name} — Ölçüye Özel Dikim ve Montaj | Bey Perde',
-             'en': f'{name} — Made to Measure and Fitted | Bey Perde',
-             'ar': f'{name} — تفصيل حسب المقاس وتركيب | باي بردة'}[lang]
-    if ck != 'perde':
-        title = {'tr': f'{name} — Uygulama ve Montaj | Bey Perde', 'en': f'{name} — Supplied and Fitted | Bey Perde', 'ar': f'{name} — التوريد والتركيب | باي بردة'}[lang]
+    if ck == 'perde':
+        opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]
+    else:
+        opts = {'tr': ['Uygulama ve Montaj', 'Uygulama'], 'en': ['Supplied and Fitted', 'Fitted'], 'ar': ['التوريد والتركيب', 'التركيب']}[lang]
+    brand = {'tr': 'Bey Perde', 'en': 'Bey Perde', 'ar': 'باي بردة'}[lang]
+    cands = [f'{name} — {o} | {brand}' for o in opts] + [f'{name} | {brand}']
+    title = next((t_ for t_ in cands if len(t_) <= 60), cands[-1])
     sents = [x for x in re.split(r'(?<=[.!؟?])\s+', r['lead']) if not re.search(r'Aşağıdaki|below|أدناه|التالية|الصور', x)]
     lead_s = ''
     for x in sents:
@@ -271,6 +273,13 @@ def render_product(G, lang, slug, ck, catalog):
     elif len(lead_s) < 70 and short_d not in lead_s:
         lead_s = (lead_s + ' ' + short_d) if len(lead_s + short_d) < 140 else lead_s
     desc = fit_desc(lead_s, {'tr': 'Yerinde ölçü, 3 yıl garanti.', 'en': 'Measured on site, 3-year guarantee.', 'ar': 'قياس في الموقع وضمان ٣ سنوات.'}[lang])
+    if len(desc) < 110:   # kısa kalan açıklamayı ürünün kendi tanıtım cümlesiyle tamamla (yeni bilgi eklenmez)
+        pool = re.split(r'(?<=[.!؟?])\s+', r['intro']) + [re.split(r'(?<=[.!؟?])\s+', b_)[0] for _h, b_ in r['sections']]
+        for x in [y.strip() for y in pool if re.search(r'[.!؟?]$', y.strip())]:
+            cand = fit_desc(lead_s + ' ' + x, {'tr': 'Yerinde ölçü, 3 yıl garanti.', 'en': 'Measured on site, 3-year guarantee.', 'ar': 'قياس في الموقع وضمان ٣ سنوات.'}[lang])
+            if len(cand) <= 158 and not cand.endswith('…') and len(x) > 20 and x not in lead_s:
+                desc = cand
+                break
     service = {'@context': 'https://schema.org', '@type': 'Service', 'name': name, 'serviceType': name, 'description': r['intro'],
                'category': tx(c['name'], lang),
                'provider': {'@id': D.SITE + '/#isletme'}, 'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz', 'İstanbul']],

@@ -8,6 +8,11 @@ Her metin üç dilde: (tr, en, ar).
 
 LANGS = ['tr', 'en', 'ar']
 SITE = 'https://www.beyperde.com'
+
+# ---------- ölçüm ve doğrulama (gerçek kod gelene kadar boş kalır; boşken siteye hiçbir şey eklenmez) ----------
+GA4_ID = None             # örn. 'G-XXXXXXXXXX' — Google Analytics 4 ölçüm kimliği (Analytics > Yönetici > Veri akışları)
+GSC_VERIFICATION = None   # Search Console HTML etiketi doğrulama kodu (content="..." içindeki değer)
+BING_VERIFICATION = None  # Bing Webmaster Tools doğrulama kodu
 PHONE = '+90 553 596 26 14'
 PHONE_DISPLAY = '0553 596 26 14'
 TEL = '+905535962614'

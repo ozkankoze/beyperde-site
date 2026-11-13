@@ -296,5 +296,5 @@ def render_blog(G):
             ld['keywords'] = ', '.join(p['tags'])
         if p['products']:
             ld['mentions'] = [{'@type': 'Service', 'name': tx(D.PRODUCTS[s][1], lang), 'url': G['abs_url'](lang, f"urunler/{D.PRODUCTS[s][0]}/{s}")} for s in p['products'] if s in D.PRODUCTS]
-        G['write'](lang, path, G['layout'](lang, path, f"{p['seo_title']} | Bey Perde Journal", p['desc'], body, avail=set(sib), nav='blog',
+        G['write'](lang, path, G['layout'](lang, path, next((t_ for t_ in (f"{p['seo_title']} | Bey Perde Journal", f"{p['seo_title']} | Bey Perde") if len(t_) <= 62), p['seo_title']), p['desc'], body, avail=set(sib), nav='blog',
                                            schemas=[cs, ld], og_image=img_abs if img_abs.endswith('.jpg') else None, scripts=('journal.js',), body_cls='page-journal'))

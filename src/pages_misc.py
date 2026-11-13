@@ -79,7 +79,7 @@ def render_misc(G, catalog):
         cw = {'@context': 'https://schema.org', '@type': 'CreativeWork', 'name': ep['h1'], 'description': ep['lead'], 'creator': {'@id': D.SITE + '/#isletme'},
               'dateCreated': '2026', 'locationCreated': {'@type': 'Place', 'name': 'Erenköy, Kadıköy, İstanbul'},
               'image': [G['og_src'](it['src']) for g in ep['groups'] for it in g['items']][:6]}
-        G['write'](lang, path, G['layout'](lang, path, {'tr': f'{ep["h1"]} — Tül, Fon ve Jaluzi Uygulaması | Bey Perde', 'en': f'{ep["h1"]} — Sheers, Drapes and Venetian Blinds | Bey Perde', 'ar': f'{ep["h1"]} — تول وستائر وجالوزي | باي بردة'}[lang],
+        G['write'](lang, path, G['layout'](lang, path, {'tr': f'{ep["h1"]} — Tül, Fon ve Jaluzi Uygulaması | Bey Perde', 'en': f'{ep["h1"]} — Sheers, Drapes, Blinds | Bey Perde', 'ar': f'{ep["h1"]} — تول وستائر وجالوزي | باي بردة'}[lang],
                                            {'tr': ep['lead'], 'en': 'A house in Erenköy, Kadıköy: floor-to-ceiling linen-textured sheers, earth-toned drapes and wooden Venetian blinds.', 'ar': ep['lead']}[lang], body, nav='projeler', schemas=[cs, cw], wa_text=wa_text, body_cls='has-hero',
                                            og_image=G['og_src']('projeler/erenkoy-hk-evi/pencere')))
 
@@ -118,7 +118,7 @@ def render_misc(G, catalog):
             cw = {'@context': 'https://schema.org', '@type': 'CreativeWork', 'name': name, 'description': tx(pj['lead'], lang), 'creator': {'@id': D.SITE + '/#isletme'},
                   'locationCreated': {'@type': 'Place', 'name': pj['location']['tr']},
                   'image': [G['og_src'](f"projeler/{pj['slug']}/{k}") for g in pj['groups'] for k, _ in g['items']][:6]}
-            title = {'tr': f'{name} — Tül, Fon, Jaluzi ve Sisal Halı | Bey Perde', 'en': f'{name} — Sheers, Drapes, Blinds and Sisal Rugs | Bey Perde', 'ar': f'{name} — تول وستائر وجالوزي وسجاد سيزال | باي بردة'}[lang]
+            title = {'tr': f'{name} — Tül, Fon, Jaluzi, Sisal | Bey Perde', 'en': f'{name} — Curtains and Sisal Rugs | Bey Perde', 'ar': f'{name} — ستائر وسجاد سيزال | باي بردة'}[lang]
             G['write'](lang, path, G['layout'](lang, path, title, tx(pj['lead'], lang), body, nav='projeler', schemas=[cs, cw], wa_text=wa_text, body_cls='has-hero',
                                                og_image=G['og_src'](pj['hero'])))
 
@@ -322,5 +322,4 @@ def render_404(G):
         blocks.append(f'<div class="nf" lang="{lang}" dir="{"rtl" if lang == "ar" else "ltr"}"><p class="kicker">404</p><{"h1" if lang == "tr" else "h2"} class="h2">{tx(N["h1"], lang)}</{"h1" if lang == "tr" else "h2"}><p class="lead">{tx(N["p"], lang)}</p><ul class="chips">{links}</ul></div>')
     body = f'<section class="page-hero nf-wrap"><div class="wrap nf-grid">{"".join(blocks)}</div></section>'
     page = G['layout']('tr', '404', tx(N['title'], 'tr'), tx(N['p'], 'tr'), body, avail={'tr'}, noindex=True)
-    G['PAGES_OUT'].pop()  # 404 site haritasına girmez
     open(G['os'].path.join(G['PUB'], '404.html'), 'w').write(page)

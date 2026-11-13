@@ -165,7 +165,7 @@
       try {
         const r = await fetch('/api/teklif', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
         let j = {}; try { j = await r.json(); } catch (_) { /* boş yanıt */ }
-        if (r.ok && j.ok) { show('ok', M.ok_detail); det.reset(); photos = []; drawThumbs(); det.elements.t.value = String(Date.now()); }
+        if (r.ok && j.ok) { document.dispatchEvent(new CustomEvent('bp:lead', { detail: { form: 'detail', product: body.urun_adi || '' } })); show('ok', M.ok_detail); det.reset(); photos = []; drawThumbs(); det.elements.t.value = String(Date.now()); }
         else if (r.status === 503 || j.error === 'not_configured' || r.status === 404 || r.status === 405) show('err', M.err_unconfigured, true);
         else show('err', M.err_server, true);
       } catch (_) { show('err', M.err_network, true); }

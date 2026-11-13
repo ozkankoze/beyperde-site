@@ -253,8 +253,9 @@ def breadcrumbs(lang, items):
 
 LOCALBIZ = {
     '@context': 'https://schema.org', '@type': 'HomeGoodsStore', '@id': D.SITE + '/#isletme',
-    'name': 'Bey Perde', 'url': D.SITE + '/tr', 'logo': D.SITE + '/img/logo-brown.png',
-    'image': D.SITE + '/img/ana-sayfa-1600.webp',
+    'name': 'Bey Perde', 'url': D.SITE + '/tr',
+    'logo': {'@type': 'ImageObject', 'url': D.SITE + '/img/logo-brown.png', 'width': 420, 'height': 416},
+    'image': D.SITE + '/img/og/ana-sayfa.jpg',
     'description': 'Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.',
     'telephone': D.PHONE, 'email': D.EMAIL, 'foundingDate': '2017', 'priceRange': '₺₺',
     'address': {'@type': 'PostalAddress', 'streetAddress': D.ADDRESS['street'], 'addressLocality': D.ADDRESS['city'],
@@ -263,12 +264,32 @@ LOCALBIZ = {
     'openingHoursSpecification': [{'@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], 'opens': '09:00', 'closes': '18:00'}],
     'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz']],
     'knowsLanguage': ['tr', 'en', 'ar'],
+    'contactPoint': [{'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': D.PHONE, 'email': D.EMAIL,
+                      'areaServed': 'TR', 'availableLanguage': ['Turkish', 'English', 'Arabic']}],
+    # sunulan hizmetler (fiyat bilgisi yok; yalnızca sitedeki gerçek ürün sayfaları)
+    'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Perde, duvar kağıdı ve halı', 'itemListElement': [
+        {'@type': 'OfferCatalog', 'name': D.CATS[ck]['name']['tr'], 'url': f'{D.SITE}/tr/urunler/{ck}',
+         'itemListElement': [{'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': D.PRODUCTS[s_][1]['tr'], 'url': f'{D.SITE}/tr/urunler/{ck}/{s_}'}}
+                             for s_ in D.CATS[ck]['items']]} for ck in D.CATS]},
     'sameAs': [D.INSTAGRAM],
 }
 
 
 def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace('</', '<\\/') + '</script>'
+
+
+OGL = {'tr': 'tr_TR', 'en': 'en_GB', 'ar': 'ar_AR'}
+
+
+def verify_meta():
+    """Search Console / Bing doğrulama etiketleri: yalnızca data.py'de gerçek kod girildiyse eklenir (kod uydurulmaz)."""
+    out = ''
+    if getattr(D, 'GSC_VERIFICATION', None):
+        out += f'<meta name="google-site-verification" content="{e(D.GSC_VERIFICATION)}">'
+    if getattr(D, 'BING_VERIFICATION', None):
+        out += f'<meta name="msvalidate.01" content="{e(D.BING_VERIFICATION)}">'
+    return out
 
 
 def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts=(), og_image=None,
@@ -292,7 +313,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
     m = re.search(r'<picture><source type="image/avif" srcset="([^"]+)" sizes="([^"]+)">(?:(?!</picture>).)*fetchpriority="high"', body, re.S)
     if m and 'data-intro' not in body:
         head_extra += f'<link rel="preload" as="image" type="image/avif" imagesrcset="{m.group(1)}" imagesizes="{m.group(2)}" fetchpriority="high">'
-    cfg = json.dumps({'lang': lang, 'wa': D.WA_NUMBER, 'consent': {'analytics': False}}, ensure_ascii=False)
+    cfg = json.dumps({'lang': lang, 'wa': D.WA_NUMBER, 'ga': D.GA4_ID or '', 'consent': {'analytics': bool(D.GA4_ID)}}, ensure_ascii=False)
     if not noindex:   # noindex sayfalar site haritasına girmez
         PAGES_OUT.append((path, sorted(avail, key=LANGS.index), lang))
     return f'''<!doctype html>
@@ -302,11 +323,11 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
-{'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{abs_url(lang, path)}">' + alts}
+{'<meta name="robots" content="noindex">' if noindex else '<meta name="robots" content="index, follow, max-image-preview:large">' + f'<link rel="canonical" href="{abs_url(lang, path)}">' + alts}
 <meta name="theme-color" content="#2a2019">
-<meta property="og:type" content="website"><meta property="og:site_name" content="Bey Perde"><meta property="og:locale" content="{locale}">
+<meta property="og:type" content="{'article' if path.startswith('blog/') else 'website'}"><meta property="og:site_name" content="Bey Perde"><meta property="og:locale" content="{locale}">{''.join(f'<meta property="og:locale:alternate" content="{OGL[l]}">' for l in LANGS if l in avail and l != lang) if not noindex else ''}
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">{'' if noindex else f'<meta property="og:url" content="{abs_url(lang, path)}">'}
-<meta property="og:image" content="{og}">{'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' if og.endswith('.jpg') else ''}<meta property="og:image:alt" content="{e(title)}"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{og}">{'<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' if og.endswith('.jpg') else ''}<meta property="og:image:alt" content="{e(title)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:description" content="{e(desc)}"><meta name="twitter:image" content="{og}"><meta name="twitter:image:alt" content="{e(title)}">{verify_meta()}
 <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon"><link rel="icon" href="/favicon.png" type="image/png" sizes="64x64"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png"><link rel="manifest" href="/site.webmanifest">
 {font_pre}
 <style>{SITE_CSS}</style>
@@ -509,7 +530,14 @@ def sitemap():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{abs_url(l, path)}"/>' for l in avail)
         if 'tr' in avail:
             alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{abs_url("tr", path)}"/>'
-        rows.append(f'<url><loc>{abs_url(lang, path)}</loc>{alts}</url>')
+        lm = ''
+        post = next((bp for bp in (globals().get('BLOG_POSTS') or []) if bp['lang'] == lang and path == f"blog/{bp['slug']}"), None)
+        if post:   # yalnızca gerçek yayın/güncelleme tarihi bilinen sayfalarda lastmod
+            lm = f"<lastmod>{(post['updated'] or post['date']).isoformat()}</lastmod>"
+        elif path == 'blog' and globals().get('BLOG_POSTS'):
+            ds = [(bp['updated'] or bp['date']) for bp in BLOG_POSTS if bp['lang'] == lang]
+            lm = f"<lastmod>{max(ds).isoformat()}</lastmod>" if ds else ''
+        rows.append(f'<url><loc>{abs_url(lang, path)}</loc>{lm}{alts}</url>')
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(rows) + '\n</urlset>\n')
     open(os.path.join(PUB, 'sitemap.xml'), 'w').write(xml)

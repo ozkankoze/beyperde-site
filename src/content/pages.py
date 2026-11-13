@@ -3,11 +3,11 @@
 from .data import T
 
 HOME = {
-    'title': T('Bey Perde — Perde, Duvar Kağıdı ve Halı · Çekmeköy, İstanbul',
-               'Bey Perde — Curtains, Wallpaper and Rugs · Istanbul',
-               'باي بردة — ستائر وورق جدران وسجاد · إسطنبول'),
-    'desc': T("Çekmeköy'deki atölyemizden tül, fon, stor ve motorlu perde; tekstil ve vinil duvar kağıdı, özel ölçü halı. Yerinde ölçü, 3–8 iş günü teslim, 3 yıl garanti.",
-              'Sheers, drapes, blinds, rustic and motorised curtains, wallpaper and rugs from our Istanbul workshop. Measured on site, 3-year guarantee.',
+    'title': T('Çekmeköy Perdeci | Özel Dikim Perde & Duvar Kağıdı – Bey Perde',
+               'Made-to-Measure Curtains & Wallpaper, Istanbul | Bey Perde',
+               'ستائر بمقاسات خاصة وورق جدران في إسطنبول | باي بردة'),
+    'desc': T("Çekmeköy'de özel dikim tül, fon, stor ve motorlu perde sistemleri. Duvar kağıdı, yerinde ölçü, üretim ve profesyonel montaj için Bey Perde'den teklif alın.",
+              'Made-to-measure sheers, drapes, roller blinds and motorised curtains from our Çekmeköy workshop in Istanbul. Wallpaper, on-site measuring and fitting.',
               'تول وستائر قماشية ورول وكهربائية، وورق جدران نسيجي وفينيل، وسجاد بمقاس خاص من ورشتنا في تشكمكوي. قياس في الموقع، تسليم خلال ٣–٨ أيام عمل، وضمان ٣ سنوات.'),
     'h1_sub': T('Perde, tül ve duvar kağıdı · Çekmeköy, İstanbul', 'Curtains, sheers and wallpaper · Istanbul', 'ستائر وتول وورق جدران · إسطنبول'),
     'h1': T('Evinize<br>hoş geldiniz', 'Welcome<br>home', 'أهلاً بك<br>في بيتك'),
@@ -165,7 +165,7 @@ PAGES = {
     'products': {'title': T('Ürünler — Perde, Duvar Kağıdı ve Halı | Bey Perde', 'Products — Curtains, Wallpaper and Rugs | Bey Perde', 'المنتجات — ستائر وورق جدران وسجاد | باي بردة'),
                  'h1': T('Ürünler', 'Products', 'المنتجات'),
                  'lead': T('Bir odanın üç yumuşak yüzeyi: pencere, duvar ve zemin. Üçünü de biz yapıyoruz.', 'The three soft surfaces of a room — window, wall and floor. We handle all three.', 'الأسطح اللينة الثلاثة في الغرفة: النافذة والجدار والأرضية. نتولاها جميعاً.')},
-    'catalog': {'title': T('Katalog — Uygulama Fotoğraflarıyla Perde ve Duvar Kağıdı | Bey Perde', 'Catalogue — Curtains and Wallpaper in Real Rooms | Bey Perde', 'الكتالوج — ستائر وورق جدران في غرف حقيقية | باي بردة'),
+    'catalog': {'title': T('Katalog — Perde ve Duvar Kağıdı Uygulamaları | Bey Perde', 'Catalogue — Curtains and Wallpaper in Real Rooms | Bey Perde', 'الكتالوج — ستائر وورق جدران في غرف حقيقية | باي بردة'),
         'types': {'tr': 'çeşit', 'en': 'types', 'ar': 'أنواع'},
         'cats': {'tr': 'Kategoriler', 'en': 'Categories', 'ar': 'الفئات'},
                 'h1': T('Katalog', 'Catalogue', 'الكتالوج'),
@@ -383,8 +383,8 @@ ABOUT2 = {
 
 # ---------------------------------------------------------------- Journal (blog) arayüz metinleri
 JOURNAL = {
-    'title': T('Bey Perde Journal — Dekorasyon, Tasarım ve İlham', 'Bey Perde Journal — Décor, Design and Inspiration', 'مجلة باي بردة — الديكور والتصميم والإلهام'),
-    'desc': T('Perde seçimi, kumaş ve dokular, duvar kağıdı ve dekorasyon üzerine Bey Perde atölyesinden yazılar.',
+    'title': T('Journal — Perde, Duvar Kağıdı ve Dekorasyon Rehberi | Bey Perde', 'Journal — Curtain, Wallpaper and Décor Notes | Bey Perde', 'المجلة — ملاحظات عن الستائر وورق الجدران والديكور | باي بردة'),
+    'desc': T('Perde nasıl seçilir, hangi kumaş hangi odaya uyar, duvar kağıdı ve dekorasyon: Bey Perde atölyesinden pratik rehberler ve uygulama notları.',
               'Notes from the Bey Perde workshop on choosing curtains, fabrics and textures, wallpaper and décor.',
               'مقالات من ورشة باي بردة عن اختيار الستائر والأقمشة والملامس وورق الجدران والديكور.'),
     'crumb': T('Journal', 'Journal', 'المجلة'),
