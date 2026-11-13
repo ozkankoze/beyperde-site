@@ -876,7 +876,135 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .bmore a{display:grid;gap:8px;padding:22px;border:1px solid var(--line-2);border-radius:12px;text-decoration:none;background:var(--card);block-size:100%;transition:border-color .3s}
 .bmore a:hover{border-color:var(--ink)}
 @media (max-width:1000px){.bgrid,.bmore{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.bgrid,.bmore{grid-template-columns:1fr}.bprose{font-size:16.5px}}</style>
+@media (max-width:640px){.bgrid,.bmore{grid-template-columns:1fr}.bprose{font-size:16.5px}}
+/* Hakkımızda — editoryal sayfa (yalnızca .ab içinde) */
+.ab{--ab-gap:clamp(28px,5vw,88px)}
+.ab-hero{padding-top:calc(118px + env(safe-area-inset-top,0px));padding-bottom:clamp(40px,5vw,72px)}
+.ab-hero-t{display:grid;gap:18px;margin-top:clamp(28px,4vw,56px);max-width:1080px}
+.ab-h1{font-size:clamp(38px,5.6vw,84px);font-weight:300;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+.ab-hero .lead{max-width:60ch}
+.ab-hero-ph{margin-top:clamp(36px,4.5vw,64px);aspect-ratio:16/7.2;border-radius:16px;overflow:hidden;background:var(--paper-2)}
+.ab-hero-ph picture,.ab-hero-ph img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
+.js .ab-rise{animation:abRise .9s var(--ease) both}
+.js .ab-hero-t .ab-rise:nth-child(2){animation-delay:.08s}.js .ab-hero-t .ab-rise:nth-child(3){animation-delay:.16s}
+.js .ab-hero-ph.ab-rise{animation-delay:.22s}
+@keyframes abRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ab-sec{padding-block:var(--sp-band)}
+.ab-sec-tight{padding-block:var(--sp-tight)}
+.ab-sec.linen{background:var(--paper-2)}
+.ab-h2{font-size:clamp(32px,3.9vw,58px);font-weight:300;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+.ab-head{display:grid;gap:14px;margin-bottom:clamp(36px,4.5vw,64px);max-width:860px}
+.ab-ed{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--ab-gap);align-items:center}
+.ab-ed-rev{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.ab-ed-ph{margin:0;display:grid;gap:12px}
+.ab-ed-ph picture{display:block;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.ab-ed-rev .ab-ed-ph picture{aspect-ratio:4/3}
+.ab-ed-ph img{inline-size:100%;block-size:100%;object-fit:cover}
+.ab-ed-ph figcaption{font-size:13px;color:var(--muted)}
+.ab-ed-t{display:grid;gap:18px;align-content:center}
+.ab-prose{display:grid;gap:1em;margin-top:6px}
+.ab-prose p{color:var(--ink-2);font-size:clamp(16.5px,1.15vw,18.5px);line-height:1.7;max-width:56ch}
+.ab-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.ab-stat{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:12px;padding:clamp(26px,3vw,40px) clamp(14px,2vw,32px);border-inline-start:1px solid var(--line)}
+.ab-stat:first-child{border-inline-start:0;padding-inline-start:0}
+.ab-stat dd{margin:0;font-size:clamp(44px,5.2vw,80px);font-weight:300;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ab-stat dt{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.ab-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.ab-card{position:relative;display:block;aspect-ratio:3/4.2;border-radius:14px;overflow:hidden;color:var(--cream);text-decoration:none;background:var(--ink);isolation:isolate}
+.ab-card-ph,.ab-card-ph picture,.ab-card-ph img{position:absolute;inset:0;display:block;inline-size:100%;block-size:100%;object-fit:cover;z-index:-2}
+.ab-card-ph img{transition:transform 1.2s var(--ease)}
+.ab-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(24,18,13,0) 38%,rgba(24,18,13,.78))}
+.ab-card:hover .ab-card-ph img,.ab-card:focus-visible .ab-card-ph img{transform:scale(1.045)}
+.ab-card-b{position:absolute;inset:auto 0 0;display:grid;gap:8px;padding:clamp(20px,2.2vw,32px)}
+.ab-card-n{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+.ab-card-t{font-size:clamp(24px,2.2vw,32px);font-weight:300;letter-spacing:-.02em;line-height:1.15}
+.ab-card-d{font-size:15px;color:var(--cream-dim);max-width:34ch}
+.ab-card-more{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;font-weight:500;letter-spacing:.06em;transition:gap .35s var(--ease)}
+.ab-card-more svg{inline-size:16px;block-size:16px}
+.ab-card:hover .ab-card-more{gap:12px}
+.ab-ws{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--ab-gap);align-items:start}
+.ab-ws-t{display:grid;gap:18px}
+.ab-ws-steps{display:grid;margin-top:14px;border-top:1px solid var(--line)}
+.ab-ws-steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding-block:18px;border-bottom:1px solid var(--line)}
+.ab-ws-n{font-size:13px;font-weight:500;letter-spacing:.12em;color:var(--brass);padding-top:3px;font-variant-numeric:tabular-nums}
+.ab-ws-steps p{color:var(--muted);font-size:15px;margin-top:4px}
+.ab-ws-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ab-ws-g figure{margin:0;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:1}
+.ab-ws-g .ab-ws-big{grid-column:1/-1;aspect-ratio:4/3.4}
+.ab-ws-g picture,.ab-ws-g img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
+.ab-ws-g .ab-note{grid-column:1/-1}
+.ab-note{font-size:13px;color:var(--muted)}
+.ab-tl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(22px,3vw,48px)}
+.ab-tl::before,.ab-tl::after{content:"";position:absolute;inset-inline:0;top:7px;block-size:1px;background:rgba(243,235,223,.22)}
+.ab-tl::after{background:var(--brass-l);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease)}
+[dir="rtl"] .ab-tl::after{transform-origin:right}
+.ab-tl.in::after,html:not(.js) .ab-tl::after{transform:scaleX(1)}
+.ab-tl li{position:relative;display:grid;gap:12px;padding-top:38px;align-content:start}
+.ab-tl-dot{position:absolute;top:0;inset-inline-start:0;inline-size:15px;block-size:15px;border-radius:50%;background:var(--ink);border:1px solid var(--brass-l)}
+.ab-tl-n{font-size:13px;letter-spacing:.14em;color:var(--brass-l);font-weight:500;font-variant-numeric:tabular-nums}
+.ab-tl p{color:var(--cream-dim);font-size:15px}
+.ab-villa{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--ab-gap);align-items:center}
+.ab-villa-t{display:grid;gap:18px;justify-items:start}
+.ab-ticks{display:grid;gap:10px;margin-block:6px 10px}
+.ab-ticks li{position:relative;padding-inline-start:22px;color:var(--ink-2);font-size:15.5px}
+.ab-ticks li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;inline-size:10px;block-size:1px;background:var(--brass)}
+.ab-vg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ab-vg a{display:block;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:3/4}
+.ab-vg .ab-vg-big{grid-column:1/-1;aspect-ratio:16/9}
+.ab-vg picture,.ab-vg img{display:block;inline-size:100%;block-size:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.ab-vg a:hover img{transform:scale(1.04)}
+.ab-areas-s{border-top:1px solid var(--line)}
+.ab-areas{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--ab-gap);align-items:end}
+.ab-areas .h3{margin-top:10px;font-weight:300}
+.ab-areas-l{display:flex;flex-wrap:wrap;gap:6px 26px;margin-bottom:12px}
+.ab-areas-l a{display:inline-flex;align-items:center;min-height:44px;font-size:clamp(18px,1.6vw,22px);font-weight:300;text-decoration:none;border-bottom:1px solid var(--line-2);transition:border-color .3s,color .3s}
+.ab-areas-l a:hover{border-color:var(--ink)}
+.ab-end{position:relative;color:var(--cream);isolation:isolate;overflow:hidden;padding-block:clamp(104px,13vw,184px)}
+.ab-end .ab-end-bg,.ab-end picture img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;z-index:-2}
+.ab-end::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(30,23,17,.86),rgba(30,23,17,.55))}
+[dir="rtl"] .ab-end::before{background:linear-gradient(270deg,rgba(30,23,17,.86),rgba(30,23,17,.55))}
+.ab-end-in{display:grid;gap:20px;justify-items:start}
+.ab-end .kicker{color:var(--cream-dim)}
+.ab-end .ab-h2{max-width:18ch}
+.ab-end-in>p{max-width:50ch;color:var(--cream-dim);font-size:var(--t-1)}
+.ab-end .row{margin-top:10px}
+.js .ab [data-rv]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .ab [data-rv].in{opacity:1;transform:none}
+.js .ab-stats [data-rv]:nth-child(2){transition-delay:.08s}.js .ab-stats [data-rv]:nth-child(3){transition-delay:.16s}.js .ab-stats [data-rv]:nth-child(4){transition-delay:.24s}
+.js .ab-cards [data-rv]:nth-child(2),.js .ab-tl [data-rv]:nth-child(2){transition-delay:.1s}
+.js .ab-cards [data-rv]:nth-child(3),.js .ab-tl [data-rv]:nth-child(3){transition-delay:.2s}
+.js .ab-tl [data-rv]:nth-child(4){transition-delay:.3s}
+@media (max-width:1000px){
+  .ab-ed,.ab-ed-rev,.ab-ws,.ab-villa,.ab-areas{grid-template-columns:1fr}
+  .ab-ed-rev .ab-ed-ph{order:-1}
+  .ab-ed-ph picture{aspect-ratio:4/3}
+  .ab-tl{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
+  .ab-tl::before,.ab-tl::after{display:none}
+}
+@media (max-width:760px){
+  .ab-hero-ph{aspect-ratio:4/3.4;border-radius:12px}
+  .ab-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ab-stat{padding:22px 16px}
+  .ab-stat:nth-child(odd){border-inline-start:0;padding-inline-start:0}
+  .ab-stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .ab-cards{grid-template-columns:1fr}
+  .ab-card{aspect-ratio:4/4.4}
+  .ab-tl{grid-template-columns:1fr;gap:0;padding-inline-start:28px}
+  .ab-tl::before,.ab-tl::after{display:block;inset-inline:auto;inset-inline-start:7px;top:8px;bottom:8px;inline-size:1px;block-size:auto;transform:scaleY(0);transform-origin:top}
+  .ab-tl::before{transform:none}
+  .ab-tl.in::after,html:not(.js) .ab-tl::after{transform:scaleY(1)}
+  .ab-tl li{padding:0 0 34px}
+  .ab-tl li:last-child{padding-bottom:0}
+  .ab-tl-dot{inset-inline-start:-28px;top:2px}
+  .ab-vg{gap:10px}
+  .ab-end .row{inline-size:100%}
+  .ab-end .row .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ab [data-rv],.js .ab-rise{opacity:1;transform:none;animation:none;transition:none}
+  .ab-tl::after{transition:none}
+  .ab-card-ph img,.ab-vg img{transition:none}
+}</style>
 <script>window.BP={"lang": "en", "wa": "905535962614", "consent": {"analytics": false}};document.documentElement.classList.add('js')</script>
 <link rel="preload" as="image" type="image/avif" imagesrcset="/img/urunler/rustik-perde/kose-240.avif 240w, /img/urunler/rustik-perde/kose-480.avif 480w, /img/urunler/rustik-perde/kose-720.avif 720w, /img/urunler/rustik-perde/kose-960.avif 960w, /img/urunler/rustik-perde/kose-1200.avif 1200w" imagesizes="(max-width: 960px) 100vw, 55vw" fetchpriority="high">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://www.beyperde.com/#isletme", "name": "Bey Perde", "url": "https://www.beyperde.com/tr", "logo": "https://www.beyperde.com/img/logo-brown.png", "image": "https://www.beyperde.com/img/ana-sayfa-1600.webp", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "priceRange": "₺₺", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "hasMap": "https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}], "knowsLanguage": ["tr", "en", "ar"], "sameAs": ["https://www.instagram.com/beyperdee/"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beyperde.com/en"}, {"@type": "ListItem", "position": 2, "name": "Catalogue", "item": "https://www.beyperde.com/en/katalog"}, {"@type": "ListItem", "position": 3, "name": "Curtain Systems", "item": "https://www.beyperde.com/en/urunler/perde"}, {"@type": "ListItem", "position": 4, "name": "Rustic Curtains", "item": "https://www.beyperde.com/en/urunler/perde/rustik-perde"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Rustic Curtains", "serviceType": "Rustic Curtains", "description": "A rustic curtain is the classic hang: the fabric runs on rings or eyelets along a wooden or metal pole fixed above the window. Where a track hides in the ceiling, a rustic pole stays in view, and with its finials and its colour it becomes part of the room. That is why we choose the pole's material, thickness and tone together with the fabric.", "provider": {"@id": "https://www.beyperde.com/#isletme"}, "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}, {"@type": "Place", "name": "İstanbul"}], "url": "https://www.beyperde.com/en/urunler/perde/rustik-perde", "image": ["https://www.beyperde.com/img/og/urunler/rustik-perde/kose.jpg", "https://www.beyperde.com/img/og/urunler/rustik-perde/avize.jpg", "https://www.beyperde.com/img/og/urunler/rustik-perde/siyah-pencere.jpg", "https://www.beyperde.com/img/og/urunler/rustik-perde/sehir.jpg"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between a rustic pole and a track?", "acceptedAnswer": {"@type": "Answer", "text": "On a rustic pole the fabric moves on rings or eyelets along a decorative pole in plain view. With a track, the carrier hides in the ceiling or a curtain recess and the curtain glides more lightly. For a classic, warm look we suggest a rustic pole; for a plain, invisible carrier, a track."}}, {"@type": "Question", "name": "Can a sheer and a drape share a rustic pole?", "acceptedAnswer": {"@type": "Answer", "text": "For two layers we use a double pole: the sheer hangs on the pole nearer the glass and the drape on a second pole in front of it. That way you can draw only the sheer by day and the drape in the evening."}}, {"@type": "Question", "name": "Should I choose rings or eyelets?", "acceptedAnswer": {"@type": "Answer", "text": "With rings the fabric falls more freely, in soft waves; with eyelets the folds are regular and deep. We weigh both with samples, according to the weight of the fabric and the character of the room."}}, {"@type": "Question", "name": "Can a rustic pole be fixed to the ceiling?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. If there is no wall above the window to carry the pole, or you want the curtain to fall from the ceiling, we hang the pole on ceiling brackets. We decide together which suits when we measure, after looking at the wall and the ceiling."}}, {"@type": "Question", "name": "Does a rustic curtain work at a kitchen window?", "acceptedAnswer": {"@type": "Answer", "text": "It does. In a kitchen we can thread a short, gathered curtain onto a slim wooden or metal pole; it frames the window without covering the glass and stays clear of the worktop. For windows very close to the hob we weigh the fabric and the curtain's position together."}}, {"@type": "Question", "name": "How long does a rustic curtain take?", "acceptedAnswer": {"@type": "Answer", "text": "Once the measure is taken and the fabric chosen, orders are ready within 3–8 working days. Our own team fits the pole and hangs the curtain."}}]}</script>
@@ -1008,6 +1136,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20Rustic%20Curtains." target="_blank" rel="noopener nofollow" aria-label="Message us on WhatsApp" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Cookie policy (Turkish)"><p>This site only uses the local storage it needs to work; it sets no advertising or tracking cookies. <a href="/tr/cerez-politikasi" hreflang="tr" title="Details">Details</a></p><button class="btn btn-sm" type="button" data-cookie-ok>OK</button></div>
-<script src="/assets/site.js?v=eaa2767859" defer></script><script src="/assets/forms.js?v=eaa2767859" defer></script>
+<script src="/assets/site.js?v=50c972c064" defer></script><script src="/assets/forms.js?v=50c972c064" defer></script>
 </body>
 </html>

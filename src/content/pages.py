@@ -264,3 +264,118 @@ NOTFOUND = {
            'The address may have changed or been mistyped. Carry on from the links below, or write to us.',
            'ربما تغيّر العنوان أو كُتب بشكل خاطئ. تابع من الروابط أدناه أو راسلنا.'),
 }
+
+
+# ---------------------------------------------------------------- Hakkımızda (editoryal tasarım)
+# Yalnızca işletmenin doğrulanmış bilgileri: 2017, Çekmeköy atölyesi, 3–8 iş günü teslim, 3 yıl garanti.
+ABOUT2 = {
+    'kicker': T('Bey Perde — 2017’den beri', 'Bey Perde — since 2017', 'باي بردة — منذ ٢٠١٧'),
+    'h1': T('Mekânlara yalnızca perde değil, karakter katıyoruz.', 'We give rooms not just curtains, but character.', 'لا نمنح الأماكن ستائر فحسب، بل نمنحها شخصية.'),
+    'lead': T('Işığın, dokunun ve ustalığın bir araya geldiği yaşam alanları tasarlıyoruz. Çekmeköy’deki atölyemizden evlere ve özel projelere uzanan bir hikâye.',
+              'We design living spaces where light, texture and craft meet. A story that runs from our workshop in Çekmeköy to homes and private projects.',
+              'نصمّم مساحات معيشة يلتقي فيها الضوء والملمس والحِرفة. حكاية تمتد من ورشتنا في تشكمكوي إلى البيوت والمشاريع الخاصة.'),
+    'hero_alt': T('Göl manzaralı geniş bir salonda tavandan inen tül ve koyu fon perdeler', 'Sheers and dark drapes falling from the ceiling in a wide living room with a lake view', 'تول وستائر داكنة تنزل من السقف في صالة واسعة تطل على بحيرة'),
+    # hikâye
+    'story_k': T('Hikâyemiz', 'Our story', 'حكايتنا'),
+    'story_h': T('Her şey doğru kumaşı seçmekle başlar.', 'It all starts with choosing the right fabric.', 'كل شيء يبدأ باختيار القماش المناسب.'),
+    'story_p': [
+        T('Bey Perde 2017’de Çekmeköy’de kuruldu. O günden bu yana aynı anlayışla çalışıyoruz: doğru ölçü, özenli dikim, temiz montaj.',
+          'Bey Perde was founded in Çekmeköy in 2017. Since then we have worked the same way: the right measurements, careful sewing, clean fitting.',
+          'تأسست باي بردة في تشكمكوي عام ٢٠١٧، ومنذ ذلك الحين نعمل بالنهج نفسه: قياس صحيح، وخياطة متقنة، وتركيب نظيف.'),
+        T('Bir perdenin nasıl duracağını kumaşı belirler. Bu yüzden işe kartelalarla, numunelerle ve sizin mekânınızın ışığıyla başlıyoruz; seçimi birlikte, kendi mobilyalarınızın yanında yapıyoruz.',
+          'The fabric decides how a curtain will hang. So we start with fabric books, samples and the light of your own room, and choose together, next to your own furniture.',
+          'القماش هو ما يحدد كيف تنسدل الستارة. لذلك نبدأ بالكتالوجات والعيّنات وضوء مكانك، ونختار معاً بجانب أثاثك.'),
+        T('Her perde, pencerenin ölçüsüne göre kendi atölyemizde dikilir. Pile aralığından etek dikişine kadar detaylar, mekânın karakterine göre kararlaştırılır.',
+          'Every curtain is sewn to the window’s measurements in our own workshop. From pleat spacing to the hem, the details follow the character of the room.',
+          'تُخاط كل ستارة في ورشتنا على مقاس النافذة، ومن تباعد الطيّات إلى خياطة الحافة تتبع التفاصيل طابع المكان.'),
+    ],
+    'story_alt': T('Bey Perde’nin Çekmeköy’deki ofisi: kumaş kartelaları ve numuneler', 'Bey Perde’s office in Çekmeköy: fabric books and samples', 'مكتب باي بردة في تشكمكوي: كتالوجات الأقمشة والعيّنات'),
+    'story_cap': T('Çekmeköy’deki ofisimiz ve kartela alanımız', 'Our office and fabric library in Çekmeköy', 'مكتبنا ومكتبة الأقمشة في تشكمكوي'),
+    'light_k': T('Işık', 'Light', 'الضوء'),
+    'light_h': T('Perde, mekânın ışığını yöneten parçadır.', 'A curtain is what governs a room’s light.', 'الستارة هي ما يتحكم في ضوء المكان.'),
+    'light_p': [
+        T('Bir oda, üzerine düşen ışıkla ve dokunduğunuz yüzeylerle hatırlanır. Biz de işe hep ışıktan başlıyoruz: pencerenin yönü, günün saati, odada ne kadar karanlık istendiği.',
+          'A room is remembered by the light that falls on it and the surfaces you touch. So we always begin with light: which way the window faces, the time of day, how dark the room should get.',
+          'يُتذكَّر المكان بالضوء الذي يسقط عليه وبالأسطح التي تلمسها. لذلك نبدأ دائماً بالضوء: اتجاه النافذة، ووقت النهار، ومقدار العتمة المطلوبة.'),
+        T('Perdeyi, duvar kağıdını ve halıyı ayrı ayrı değil, mekâna özel bir bütün olarak düşünüyoruz.',
+          'We think of curtains, wallpaper and rugs not separately but as one whole, made for the room.',
+          'نفكّر في الستائر وورق الجدران والسجاد لا كلاً على حدة، بل ككلٍّ واحد مصمَّم للمكان.'),
+    ],
+    'light_alt': T('Gün batımında balkon kapısının önünde ince keten tül', 'A fine linen sheer at a balcony door at sunset', 'تول كتان رقيق أمام باب الشرفة عند الغروب'),
+    # rakamlar
+    'stats_h': T('Kısaca Bey Perde', 'Bey Perde in brief', 'باي بردة باختصار'),
+    'stats': [
+        ('2017', T('Kuruluş', 'Founded', 'التأسيس')),
+        ('9+', T('Yıllık deneyim', 'Years of experience', 'سنوات من الخبرة')),
+        ('3–8', T('İş günü teslim', 'Working days to delivery', 'أيام عمل للتسليم')),
+        (T('3 yıl', '3 years', '٣ سنوات'), T('Garanti', 'Guarantee', 'ضمان')),
+    ],
+    # pencere / duvar / zemin
+    'pdz_k': T('Tek elden', 'Under one roof', 'من جهة واحدة'),
+    'pdz_h': T('Pencere, duvar ve zemin.', 'Window, wall and floor.', 'النافذة والجدار والأرضية.'),
+    'pdz': [
+        ('perde', '01', T('Pencere', 'Window', 'النافذة'), T('Perde sistemleri ve özel ölçü çözümleri.', 'Curtain systems and made-to-measure solutions.', 'أنظمة الستائر وحلول بمقاسات خاصة.'), 'urunler/fon-perde/kose-koltuklu-salon'),
+        ('duvar-kagidi', '02', T('Duvar', 'Wall', 'الجدار'), T('Tekstil ve dekoratif duvar kağıtları.', 'Textile and decorative wallpapers.', 'ورق جدران نسيجي وزخرفي.'), 'urunler/tekstil-1'),
+        ('hali', '03', T('Zemin', 'Floor', 'الأرضية'), T('Dekoratif halılar ve tamamlayıcı dokular.', 'Decorative rugs and finishing textures.', 'سجاد زخرفي وملامس مكمّلة.'), 'urunler/hali-kapak'),
+    ],
+    'explore': T('Keşfedin', 'Explore', 'اكتشف'),
+    # atölye
+    'ws_k': T('Atölyemiz', 'Our workshop', 'ورشتنا'),
+    'ws_h': T('Detaylarda saklı bir ustalık.', 'Craft hidden in the details.', 'حِرفة تختبئ في التفاصيل.'),
+    'ws_p': T('Her mekân farklıdır. Bu yüzden her perdeyi, kullanılacağı alanın ölçülerine ve karakterine göre hazırlıyoruz.',
+              'Every room is different. That is why we make each curtain to the measurements and character of the space it is for.',
+              'كل مكان مختلف؛ لذلك نجهّز كل ستارة وفق مقاسات المكان الذي ستُستخدم فيه وطابعه.'),
+    'ws_steps': [
+        (T('Kumaş seçimi', 'Choosing the fabric', 'اختيار القماش'), T('Kartelalar ve numuneler mekânın ışığında, birlikte değerlendirilir.', 'Fabric books and samples are looked at together, in the room’s own light.', 'نستعرض الكتالوجات والعيّنات معاً في ضوء المكان نفسه.')),
+        (T('Ölçüye özel kesim', 'Cut to measure', 'قصّ على المقاس'), T('Kumaş, yerinde alınan ölçüye ve seçilen pile oranına göre kesilir.', 'The fabric is cut to the measurements taken on site and the chosen pleat ratio.', 'يُقصّ القماش وفق المقاسات المأخوذة في الموقع ونسبة الطيّ المختارة.')),
+        (T('Dikim ve üretim', 'Sewing and making', 'الخياطة والتصنيع'), T('Pile, etek ve kenar dikişleri kendi atölyemizde yapılır.', 'Pleats, hems and side seams are sewn in our own workshop.', 'تُخاط الطيّات والحواف في ورشتنا.')),
+        (T('Kalite kontrol', 'Quality check', 'فحص الجودة'), T('Ölçü, pile aralığı ve dikişler teslimden önce kontrol edilir.', 'Measurements, pleat spacing and seams are checked before delivery.', 'نتحقق من المقاسات وتباعد الطيّات والخياطة قبل التسليم.')),
+        (T('Montaja hazırlık', 'Ready for fitting', 'التجهيز للتركيب'), T('Ray, korniş ve aksesuarlar perdeyle birlikte montaja hazırlanır.', 'Rails, poles and accessories are prepared for fitting together with the curtain.', 'تُجهَّز السكك والقضبان والإكسسوارات للتركيب مع الستارة.')),
+    ],
+    'ws_imgs': [
+        ('projeler/sile-akcekese/pile-detay', T('Ray altında düzenli dikilmiş pileler', 'Evenly sewn pleats under the rail', 'طيّات مخيطة بانتظام تحت السكة')),
+        ('urunler/fon-perde/kenar-bandi', T('Fon perdede kontrast kenar bandı detayı', 'A contrast edge band on a drape', 'شريط حافة متباين على ستارة')),
+        ('projeler/erenkoy-hk-evi/etek', T('Zemine değen keten tül eteği', 'A linen sheer hem just touching the floor', 'حافة تول كتان تلامس الأرضية')),
+    ],
+    'ws_note': T('Fotoğraflar tamamlanmış uygulamalarımızdaki dikiş ve pile detaylarıdır.', 'Photos show sewing and pleat details from our finished installations.', 'الصور لتفاصيل الخياطة والطيّات من أعمالنا المنفّذة.'),
+    # süreç
+    'how_k': T('Süreç', 'Process', 'المراحل'),
+    'how_h': T('Nasıl çalışıyoruz?', 'How we work', 'كيف نعمل؟'),
+    'how': [
+        (T('Tanışma ve danışmanlık', 'Meeting and advice', 'التعارف والاستشارة'), T('Kumaşları, renkleri ve perde sistemlerini birlikte değerlendiriyoruz; dilerseniz Çekmeköy’deki ofisimizde.', 'We go through fabrics, colours and curtain systems together — at our Çekmeköy office if you like.', 'نستعرض الأقمشة والألوان وأنظمة الستائر معاً، وفي مكتبنا في تشكمكوي إن رغبت.')),
+        (T('Yerinde ölçü ve planlama', 'Measuring and planning on site', 'القياس والتخطيط في الموقع'), T('Mekânın ölçülerini, ışık ihtiyacını ve dekorasyonunu inceliyoruz.', 'We study the room’s measurements, its light and its décor.', 'ندرس مقاسات المكان وحاجته إلى الضوء وديكوره.')),
+        (T('Özel üretim', 'Made for you', 'تصنيع خاص'), T('Seçilen ürünleri mekânın ihtiyaçlarına göre atölyemizde hazırlıyoruz; siparişler 3–8 iş günü içinde hazır.', 'We make the chosen products for the room in our workshop; orders are ready in 3–8 working days.', 'نجهّز المنتجات المختارة في ورشتنا وفق حاجة المكان، وتكون الطلبات جاهزة خلال ٣–٨ أيام عمل.')),
+        (T('Profesyonel montaj', 'Professional fitting', 'تركيب احترافي'), T('Uygulamayı kendi ekibimizle tamamlıyor, kullanım bilgilerini paylaşıyoruz. Tüm ürünler 3 yıl garantili.', 'Our own team completes the fitting and shows you how to use and care for it. Every product has a 3-year guarantee.', 'يُكمل فريقنا التركيب ويشاركك طريقة الاستخدام والعناية. جميع المنتجات مضمونة ٣ سنوات.')),
+    ],
+    # villa
+    'villa_k': T('Villa ve özel projeler', 'Villas and private projects', 'الفلل والمشاريع الخاصة'),
+    'villa_h': T('Büyük mekânlarda, aynı titizlik.', 'Large spaces, the same care.', 'مساحات كبيرة، والدقة نفسها.'),
+    'villa_p': T('Özel konutlardan geniş cam cepheli villalara kadar, her projenin mimarisine uygun çözümler geliştiriyoruz.',
+                 'From private homes to villas with wide glass façades, we develop solutions that suit each project’s architecture.',
+                 'من البيوت الخاصة إلى الفلل ذات الواجهات الزجاجية الواسعة، نطوّر حلولاً تناسب عمارة كل مشروع.'),
+    'villa_list': [
+        T('Motorlu perde ve jaluzi sistemleri', 'Motorised curtain and blind systems', 'أنظمة ستائر وجالوزي كهربائية'),
+        T('Yüksek tavan ve geniş cam cepheler', 'High ceilings and wide glass façades', 'أسقف عالية وواجهات زجاجية واسعة'),
+        T('Villa, otel, ofis ve toplu projeler', 'Villas, hotels, offices and multi-unit projects', 'فلل وفنادق ومكاتب ومشاريع جماعية'),
+        T('İç mimar ve müteahhitlerle proje bazında çalışma', 'Working project by project with interior designers and contractors', 'العمل على أساس المشروع مع مصممي الديكور والمقاولين'),
+    ],
+    'villa_imgs': [
+        ('projeler/sile-akcekese/salon-tul-fon', T('Şile Akçekese’deki evde geniş pencereler boyunca keten tül ve fon perde', 'Linen sheers and drapes along the wide windows of a house in Şile Akçekese', 'تول كتان وستائر على امتداد النوافذ الواسعة في منزل بشيلي أكتشاكسه'), 'projeler/sile-akcekese'),
+        ('projeler/sile-akcekese/salon-yemek', T('Şile Akçekese’deki evin salon ve yemek alanı', 'Living and dining area of the house in Şile Akçekese', 'صالة ومنطقة الطعام في منزل شيلي أكتشاكسه'), 'projeler/sile-akcekese'),
+        ('projeler/erenkoy-hk-evi/pencere', T('Erenköy’deki evde tavandan yere tül ve toprak tonunda fon', 'Floor-to-ceiling sheer and earth-toned drape in a house in Erenköy', 'تول من السقف إلى الأرض وستارة بلون ترابي في منزل بإرنكوي'), 'projeler/erenkoy-hk-evi'),
+    ],
+    'villa_btn': T('Projelerimizi keşfedin', 'Explore our projects', 'اكتشف مشاريعنا'),
+    # bölgeler
+    'areas_k': T('Hizmet bölgeleri', 'Where we work', 'مناطق الخدمة'),
+    'areas_h': T('Çekmeköy’den Anadolu yakasının kuzeyine.', 'From Çekmeköy to the north of the Asian side.', 'من تشكمكوي إلى شمال الجانب الآسيوي.'),
+    'langs': T('Türkçe, İngilizce ve Arapça hizmet veriyoruz.', 'We work in Turkish, English and Arabic.', 'نقدّم خدماتنا بالتركية والإنجليزية والعربية.'),
+    # kapanış
+    'end_k': T('Birlikte tasarlayalım', 'Let’s design it together', 'لنصمّمه معاً'),
+    'end_h': T('Sizin mekânınızın hikâyesi nasıl başlayacak?', 'How will your room’s story begin?', 'كيف ستبدأ حكاية مكانك؟'),
+    'end_p': T('Perde, duvar kağıdı ve halı seçimlerinizi birlikte planlayalım. Mekânınıza özel çözümler için bizimle iletişime geçin.',
+               'Let’s plan your curtains, wallpaper and rugs together. Get in touch for solutions made for your space.',
+               'لنخطط معاً لاختياراتك من الستائر وورق الجدران والسجاد. تواصل معنا لحلول مصمَّمة لمكانك.'),
+    'end_btn': T('Projenizi konuşalım', 'Let’s talk about your project', 'لنتحدث عن مشروعك'),
+    'end_wa': T('WhatsApp ile iletişim', 'Contact on WhatsApp', 'تواصل عبر واتساب'),
+    'end_alt': T('Koyu fon perdeli, avizeli bir salonda pencereye bakan bir kişi', 'A person looking out of a window in a living room with dark drapes and a chandelier', 'شخص ينظر من النافذة في صالة بستائر داكنة وثريا'),
+}

@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#2a2019">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Bey Perde"><meta property="og:locale" content="tr_TR">
 <meta property="og:title" content="Hakkımızda — 2017’den Beri Çekmeköy’de Perde Atölyesi | Bey Perde"><meta property="og:description" content="Bey Perde, 2017&#x27;den bu yana Çekmeköy&#x27;deki atölyesinden Çekmeköy, Şile, Ağva, Riva ve Beykoz&#x27;daki ev ve villalara perde, duvar kağıdı ve halı sunar."><meta property="og:url" content="https://www.beyperde.com/tr/hakkimizda">
-<meta property="og:image" content="https://www.beyperde.com/img/og/hakkimizda/isik.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Hakkımızda — 2017’den Beri Çekmeköy’de Perde Atölyesi | Bey Perde"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.beyperde.com/img/og/galeri/1.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Hakkımızda — 2017’den Beri Çekmeköy’de Perde Atölyesi | Bey Perde"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon"><link rel="icon" href="/favicon.png" type="image/png" sizes="64x64"><link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>/* Bey Perde — tasarım sistemi
@@ -876,12 +876,140 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .bmore a{display:grid;gap:8px;padding:22px;border:1px solid var(--line-2);border-radius:12px;text-decoration:none;background:var(--card);block-size:100%;transition:border-color .3s}
 .bmore a:hover{border-color:var(--ink)}
 @media (max-width:1000px){.bgrid,.bmore{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.bgrid,.bmore{grid-template-columns:1fr}.bprose{font-size:16.5px}}</style>
+@media (max-width:640px){.bgrid,.bmore{grid-template-columns:1fr}.bprose{font-size:16.5px}}
+/* Hakkımızda — editoryal sayfa (yalnızca .ab içinde) */
+.ab{--ab-gap:clamp(28px,5vw,88px)}
+.ab-hero{padding-top:calc(118px + env(safe-area-inset-top,0px));padding-bottom:clamp(40px,5vw,72px)}
+.ab-hero-t{display:grid;gap:18px;margin-top:clamp(28px,4vw,56px);max-width:1080px}
+.ab-h1{font-size:clamp(38px,5.6vw,84px);font-weight:300;letter-spacing:-.035em;line-height:1.04;text-wrap:balance}
+.ab-hero .lead{max-width:60ch}
+.ab-hero-ph{margin-top:clamp(36px,4.5vw,64px);aspect-ratio:16/7.2;border-radius:16px;overflow:hidden;background:var(--paper-2)}
+.ab-hero-ph picture,.ab-hero-ph img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
+.js .ab-rise{animation:abRise .9s var(--ease) both}
+.js .ab-hero-t .ab-rise:nth-child(2){animation-delay:.08s}.js .ab-hero-t .ab-rise:nth-child(3){animation-delay:.16s}
+.js .ab-hero-ph.ab-rise{animation-delay:.22s}
+@keyframes abRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ab-sec{padding-block:var(--sp-band)}
+.ab-sec-tight{padding-block:var(--sp-tight)}
+.ab-sec.linen{background:var(--paper-2)}
+.ab-h2{font-size:clamp(32px,3.9vw,58px);font-weight:300;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+.ab-head{display:grid;gap:14px;margin-bottom:clamp(36px,4.5vw,64px);max-width:860px}
+.ab-ed{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--ab-gap);align-items:center}
+.ab-ed-rev{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.ab-ed-ph{margin:0;display:grid;gap:12px}
+.ab-ed-ph picture{display:block;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.ab-ed-rev .ab-ed-ph picture{aspect-ratio:4/3}
+.ab-ed-ph img{inline-size:100%;block-size:100%;object-fit:cover}
+.ab-ed-ph figcaption{font-size:13px;color:var(--muted)}
+.ab-ed-t{display:grid;gap:18px;align-content:center}
+.ab-prose{display:grid;gap:1em;margin-top:6px}
+.ab-prose p{color:var(--ink-2);font-size:clamp(16.5px,1.15vw,18.5px);line-height:1.7;max-width:56ch}
+.ab-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.ab-stat{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:12px;padding:clamp(26px,3vw,40px) clamp(14px,2vw,32px);border-inline-start:1px solid var(--line)}
+.ab-stat:first-child{border-inline-start:0;padding-inline-start:0}
+.ab-stat dd{margin:0;font-size:clamp(44px,5.2vw,80px);font-weight:300;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ab-stat dt{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.ab-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
+.ab-card{position:relative;display:block;aspect-ratio:3/4.2;border-radius:14px;overflow:hidden;color:var(--cream);text-decoration:none;background:var(--ink);isolation:isolate}
+.ab-card-ph,.ab-card-ph picture,.ab-card-ph img{position:absolute;inset:0;display:block;inline-size:100%;block-size:100%;object-fit:cover;z-index:-2}
+.ab-card-ph img{transition:transform 1.2s var(--ease)}
+.ab-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(24,18,13,0) 38%,rgba(24,18,13,.78))}
+.ab-card:hover .ab-card-ph img,.ab-card:focus-visible .ab-card-ph img{transform:scale(1.045)}
+.ab-card-b{position:absolute;inset:auto 0 0;display:grid;gap:8px;padding:clamp(20px,2.2vw,32px)}
+.ab-card-n{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
+.ab-card-t{font-size:clamp(24px,2.2vw,32px);font-weight:300;letter-spacing:-.02em;line-height:1.15}
+.ab-card-d{font-size:15px;color:var(--cream-dim);max-width:34ch}
+.ab-card-more{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;font-weight:500;letter-spacing:.06em;transition:gap .35s var(--ease)}
+.ab-card-more svg{inline-size:16px;block-size:16px}
+.ab-card:hover .ab-card-more{gap:12px}
+.ab-ws{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--ab-gap);align-items:start}
+.ab-ws-t{display:grid;gap:18px}
+.ab-ws-steps{display:grid;margin-top:14px;border-top:1px solid var(--line)}
+.ab-ws-steps li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding-block:18px;border-bottom:1px solid var(--line)}
+.ab-ws-n{font-size:13px;font-weight:500;letter-spacing:.12em;color:var(--brass);padding-top:3px;font-variant-numeric:tabular-nums}
+.ab-ws-steps p{color:var(--muted);font-size:15px;margin-top:4px}
+.ab-ws-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ab-ws-g figure{margin:0;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:1}
+.ab-ws-g .ab-ws-big{grid-column:1/-1;aspect-ratio:4/3.4}
+.ab-ws-g picture,.ab-ws-g img{display:block;inline-size:100%;block-size:100%;object-fit:cover}
+.ab-ws-g .ab-note{grid-column:1/-1}
+.ab-note{font-size:13px;color:var(--muted)}
+.ab-tl{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(22px,3vw,48px)}
+.ab-tl::before,.ab-tl::after{content:"";position:absolute;inset-inline:0;top:7px;block-size:1px;background:rgba(243,235,223,.22)}
+.ab-tl::after{background:var(--brass-l);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--ease)}
+[dir="rtl"] .ab-tl::after{transform-origin:right}
+.ab-tl.in::after,html:not(.js) .ab-tl::after{transform:scaleX(1)}
+.ab-tl li{position:relative;display:grid;gap:12px;padding-top:38px;align-content:start}
+.ab-tl-dot{position:absolute;top:0;inset-inline-start:0;inline-size:15px;block-size:15px;border-radius:50%;background:var(--ink);border:1px solid var(--brass-l)}
+.ab-tl-n{font-size:13px;letter-spacing:.14em;color:var(--brass-l);font-weight:500;font-variant-numeric:tabular-nums}
+.ab-tl p{color:var(--cream-dim);font-size:15px}
+.ab-villa{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--ab-gap);align-items:center}
+.ab-villa-t{display:grid;gap:18px;justify-items:start}
+.ab-ticks{display:grid;gap:10px;margin-block:6px 10px}
+.ab-ticks li{position:relative;padding-inline-start:22px;color:var(--ink-2);font-size:15.5px}
+.ab-ticks li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;inline-size:10px;block-size:1px;background:var(--brass)}
+.ab-vg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ab-vg a{display:block;border-radius:12px;overflow:hidden;background:var(--paper-2);aspect-ratio:3/4}
+.ab-vg .ab-vg-big{grid-column:1/-1;aspect-ratio:16/9}
+.ab-vg picture,.ab-vg img{display:block;inline-size:100%;block-size:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.ab-vg a:hover img{transform:scale(1.04)}
+.ab-areas-s{border-top:1px solid var(--line)}
+.ab-areas{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--ab-gap);align-items:end}
+.ab-areas .h3{margin-top:10px;font-weight:300}
+.ab-areas-l{display:flex;flex-wrap:wrap;gap:6px 26px;margin-bottom:12px}
+.ab-areas-l a{display:inline-flex;align-items:center;min-height:44px;font-size:clamp(18px,1.6vw,22px);font-weight:300;text-decoration:none;border-bottom:1px solid var(--line-2);transition:border-color .3s,color .3s}
+.ab-areas-l a:hover{border-color:var(--ink)}
+.ab-end{position:relative;color:var(--cream);isolation:isolate;overflow:hidden;padding-block:clamp(104px,13vw,184px)}
+.ab-end .ab-end-bg,.ab-end picture img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;z-index:-2}
+.ab-end::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(30,23,17,.86),rgba(30,23,17,.55))}
+[dir="rtl"] .ab-end::before{background:linear-gradient(270deg,rgba(30,23,17,.86),rgba(30,23,17,.55))}
+.ab-end-in{display:grid;gap:20px;justify-items:start}
+.ab-end .kicker{color:var(--cream-dim)}
+.ab-end .ab-h2{max-width:18ch}
+.ab-end-in>p{max-width:50ch;color:var(--cream-dim);font-size:var(--t-1)}
+.ab-end .row{margin-top:10px}
+.js .ab [data-rv]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .ab [data-rv].in{opacity:1;transform:none}
+.js .ab-stats [data-rv]:nth-child(2){transition-delay:.08s}.js .ab-stats [data-rv]:nth-child(3){transition-delay:.16s}.js .ab-stats [data-rv]:nth-child(4){transition-delay:.24s}
+.js .ab-cards [data-rv]:nth-child(2),.js .ab-tl [data-rv]:nth-child(2){transition-delay:.1s}
+.js .ab-cards [data-rv]:nth-child(3),.js .ab-tl [data-rv]:nth-child(3){transition-delay:.2s}
+.js .ab-tl [data-rv]:nth-child(4){transition-delay:.3s}
+@media (max-width:1000px){
+  .ab-ed,.ab-ed-rev,.ab-ws,.ab-villa,.ab-areas{grid-template-columns:1fr}
+  .ab-ed-rev .ab-ed-ph{order:-1}
+  .ab-ed-ph picture{aspect-ratio:4/3}
+  .ab-tl{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}
+  .ab-tl::before,.ab-tl::after{display:none}
+}
+@media (max-width:760px){
+  .ab-hero-ph{aspect-ratio:4/3.4;border-radius:12px}
+  .ab-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ab-stat{padding:22px 16px}
+  .ab-stat:nth-child(odd){border-inline-start:0;padding-inline-start:0}
+  .ab-stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .ab-cards{grid-template-columns:1fr}
+  .ab-card{aspect-ratio:4/4.4}
+  .ab-tl{grid-template-columns:1fr;gap:0;padding-inline-start:28px}
+  .ab-tl::before,.ab-tl::after{display:block;inset-inline:auto;inset-inline-start:7px;top:8px;bottom:8px;inline-size:1px;block-size:auto;transform:scaleY(0);transform-origin:top}
+  .ab-tl::before{transform:none}
+  .ab-tl.in::after,html:not(.js) .ab-tl::after{transform:scaleY(1)}
+  .ab-tl li{padding:0 0 34px}
+  .ab-tl li:last-child{padding-bottom:0}
+  .ab-tl-dot{inset-inline-start:-28px;top:2px}
+  .ab-vg{gap:10px}
+  .ab-end .row{inline-size:100%}
+  .ab-end .row .btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .ab [data-rv],.js .ab-rise{opacity:1;transform:none;animation:none;transition:none}
+  .ab-tl::after{transition:none}
+  .ab-card-ph img,.ab-vg img{transition:none}
+}</style>
 <script>window.BP={"lang": "tr", "wa": "905535962614", "consent": {"analytics": false}};document.documentElement.classList.add('js')</script>
-<link rel="preload" as="image" type="image/avif" imagesrcset="/img/hakkimizda/isik-240.avif 240w, /img/hakkimizda/isik-480.avif 480w, /img/hakkimizda/isik-720.avif 720w, /img/hakkimizda/isik-960.avif 960w, /img/hakkimizda/isik-1600.avif 1600w" imagesizes="(max-width: 900px) 100vw, 45vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" imagesrcset="/img/galeri/1-240.avif 240w, /img/galeri/1-480.avif 480w, /img/galeri/1-720.avif 720w, /img/galeri/1-960.avif 960w, /img/galeri/1-1600.avif 1600w" imagesizes="(max-width: 1320px) calc(100vw - 40px), 1280px" fetchpriority="high">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://www.beyperde.com/#isletme", "name": "Bey Perde", "url": "https://www.beyperde.com/tr", "logo": "https://www.beyperde.com/img/logo-brown.png", "image": "https://www.beyperde.com/img/ana-sayfa-1600.webp", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "priceRange": "₺₺", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "hasMap": "https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}], "knowsLanguage": ["tr", "en", "ar"], "sameAs": ["https://www.instagram.com/beyperdee/"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Anasayfa", "item": "https://www.beyperde.com/tr"}, {"@type": "ListItem", "position": 2, "name": "Hakkımızda", "item": "https://www.beyperde.com/tr/hakkimizda"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "url": "https://www.beyperde.com/tr/hakkimizda", "about": {"@id": "https://www.beyperde.com/#isletme"}}</script>
 </head>
-<body class="">
+<body class="page-about">
 <a class="skip" href="#icerik" title="İçeriğe geç">İçeriğe geç</a>
 <header class="site-header" data-header>
   <div class="hdr">
@@ -907,26 +1035,72 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
   </div>
 </div>
 <main id="icerik">
-<section class="page-hero"><div class="wrap ph-grid">
-  <div><nav class="crumbs" aria-label="Konum"><ol><li><a href="/tr" title="Anasayfa">Anasayfa</a></li><li aria-current="page">Hakkımızda</li></ol></nav><h1 class="h1">Hakkımızda</h1><p class="lead">Bey Perde, 2017&#x27;den bu yana Çekmeköy&#x27;deki atölyesinden Anadolu yakasının kuzeyine; Çekmeköy, Şile, Ağva, Riva, Beykoz ve çevresindeki ev ve villalara perde, duvar kağıdı ve halı çözümleri sunar. 9 yılı aşkın süredir aynı anlayışla çalışıyoruz: doğru ölçü, özenli dikim, temiz montaj.</p></div>
-  <figure class="hero-ph"><div class="ph"><picture><source type="image/avif" srcset="/img/hakkimizda/isik-240.avif 240w, /img/hakkimizda/isik-480.avif 480w, /img/hakkimizda/isik-720.avif 720w, /img/hakkimizda/isik-960.avif 960w, /img/hakkimizda/isik-1600.avif 1600w" sizes="(max-width: 900px) 100vw, 45vw"><source type="image/webp" srcset="/img/hakkimizda/isik-240.webp 240w, /img/hakkimizda/isik-480.webp 480w, /img/hakkimizda/isik-720.webp 720w, /img/hakkimizda/isik-960.webp 960w, /img/hakkimizda/isik-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 45vw"><img src="/img/hakkimizda/isik-960.webp" width="1600" height="1200" alt="Denizin üzerinde gün batımını süzen tül perde" fetchpriority="high" loading="eager" decoding="async"></picture></div></figure>
+<div class="ab">
+<section class="ab-hero" aria-labelledby="ab-h1"><div class="wrap">
+  <nav class="crumbs" aria-label="Konum"><ol><li><a href="/tr" title="Anasayfa">Anasayfa</a></li><li aria-current="page">Hakkımızda</li></ol></nav>
+  <div class="ab-hero-t">
+    <p class="kicker ab-rise">Bey Perde — 2017’den beri</p>
+    <h1 class="ab-h1 ab-rise" id="ab-h1">Mekânlara yalnızca perde değil, karakter katıyoruz.</h1>
+    <p class="lead ab-rise">Işığın, dokunun ve ustalığın bir araya geldiği yaşam alanları tasarlıyoruz. Çekmeköy’deki atölyemizden evlere ve özel projelere uzanan bir hikâye.</p>
+  </div>
+  <figure class="ab-hero-ph ab-rise"><picture><source type="image/avif" srcset="/img/galeri/1-240.avif 240w, /img/galeri/1-480.avif 480w, /img/galeri/1-720.avif 720w, /img/galeri/1-960.avif 960w, /img/galeri/1-1600.avif 1600w" sizes="(max-width: 1320px) calc(100vw - 40px), 1280px"><source type="image/webp" srcset="/img/galeri/1-240.webp 240w, /img/galeri/1-480.webp 480w, /img/galeri/1-720.webp 720w, /img/galeri/1-960.webp 960w, /img/galeri/1-1600.webp 1600w" sizes="(max-width: 1320px) calc(100vw - 40px), 1280px"><img src="/img/galeri/1-960.webp" width="1600" height="1200" alt="Göl manzaralı geniş bir salonda tavandan inen tül ve koyu fon perdeler" fetchpriority="high" loading="eager" decoding="async"></picture></figure>
 </div></section>
-<section class="band dark tight"><div class="wrap"><blockquote class="big-quote"><p>Perde bir dekorasyon detayı değil, mekânın ışığını yöneten parçadır.</p><p>Biz de işe hep ışıktan başlıyoruz.</p></blockquote></div></section>
-<section class="band"><div class="wrap"><h2 class="kicker">Kısaca</h2><dl class="stats"><div><dt>Kuruluş</dt><dd>2017</dd></div><div><dt>Deneyim</dt><dd>9+<small>yıl</small></dd></div><div><dt>Teslim</dt><dd>3–8<small>iş günü</small></dd></div><div><dt>Garanti</dt><dd>3<small>yıl</small></dd></div></dl></div></section>
-<section class="band linen"><div class="wrap two"><div><h2 class="h2">Pencere, duvar ve zemin: tek elden</h2></div><div class="prose"><p>Bir oda, üzerine düşen ışıkla ve dokunduğunuz yüzeylerle hatırlanır. Bu yüzden perdeyi, duvar kağıdını ve halıyı ayrı ayrı değil, birlikte düşünüyoruz. Tül ve fon perdeden motorlu sistemlere, tekstil duvar kağıdından özel ölçü halıya kadar odanın üç yumuşak yüzeyini aynı ekip, aynı özenle tamamlar.</p><ul class="cat-links"><li><a href="/tr/urunler/perde" title="Pencere Perde Sistemleri"><span class="kicker">Pencere</span><span class="h4">Perde Sistemleri</span></a></li><li><a href="/tr/urunler/duvar-kagidi" title="Duvar Duvar Kağıtları"><span class="kicker">Duvar</span><span class="h4">Duvar Kağıtları</span></a></li><li><a href="/tr/urunler/hali" title="Zemin Dekoratif Halılar"><span class="kicker">Zemin</span><span class="h4">Dekoratif Halılar</span></a></li></ul></div></div></section>
-<section class="band" aria-labelledby="h-how"><div class="wrap"><div class="sec-head"><div><p class="kicker">Nasıl çalışıyoruz</p><h2 class="h2" id="h-how">Nasıl çalışıyoruz</h2></div><div class="sec-head-p"><p class="lead">Kumaşı kendi ışığınızda, kendi mobilyalarınızın yanında seçersiniz. Dikimi atölyemiz, montajı kendi ekibimiz yapar.</p></div></div><ol class="steps"><li><span class="n">01</span><h3 class="h4">Ofisimizde birebir görüşme</h3><p>Randevu alarak Çekmeköy'deki ofisimize gelebilirsiniz. Kumaş kartelalarını, numuneleri ve sistemleri birlikte inceler, ihtiyacınızı yüz yüze konuşuruz.</p></li><li><span class="n">02</span><h3 class="h4">Yerinde ölçü</h3><p>Mekânınıza gelir; ölçüyü, pencere yönünü ve günün ışığını not ederiz. Kartelalarımızı yanımızda getiririz; kumaşı kendi ışığınızda, kendi mobilyalarınızın yanında seçersiniz.</p></li><li><span class="n">03</span><h3 class="h4">Atölyede dikim</h3><p>Seçtiğiniz kumaş kendi atölyemizde ölçünüze göre dikilir. Siparişler 3–8 iş günü içinde hazırlanır.</p></li><li><span class="n">04</span><h3 class="h4">Montaj ve bakım</h3><p>Ray, korniş ve motorlu sistem montajını kendi ekibimizle yaparız. Tüm ürünler 3 yıl garantilidir; teslimden sonra da yıkama ve bakım desteğimiz sürer.</p></li></ol>
-  <blockquote class="pull-quote">Aynı kumaşın yüzlerce pencerede aynı durması, tek bir salonda doğru durmasından daha zor; asıl uzmanlık alanımız bu.</blockquote></div></section>
-<section class="band linen"><div class="wrap two"><div><h2 class="h2">Villa ve proje işleri</h2></div><div class="prose"><p>Konutların yanında villa, otel, ofis ve toplu proje işleri de yapıyoruz. Yüksek tavanlar, kış bahçeleri ve geniş cam cepheler için motorlu ve tavan perdesi sistemleri uyguluyoruz. İç mimarlar ve müteahhitlerle proje bazında çalışıyoruz.</p><p class="kicker mt">Türkçe · English · العربية</p><p>Müşterilerimize Türkçe, İngilizce ve Arapça hizmet veriyoruz.</p></div></div></section>
-<section class="band tight"><div class="wrap two"><div><h2 class="h2">Hizmet bölgeleri</h2></div><div><p class="lead">Çekmeköy'deki atölyemizden Anadolu yakasının kuzeyine hizmet veriyoruz.</p><ul class="chips"><li><a href="/tr/hizmet-bolgeleri/cekmekoy" title="Çekmeköy">Çekmeköy</a></li><li><a href="/tr/hizmet-bolgeleri/sile" title="Şile">Şile</a></li><li><a href="/tr/hizmet-bolgeleri/agva" title="Ağva">Ağva</a></li><li><a href="/tr/hizmet-bolgeleri/riva" title="Riva">Riva</a></li><li><a href="/tr/hizmet-bolgeleri/beykoz" title="Beykoz">Beykoz</a></li></ul>
-  <div class="row mt"><a class="arrow-link" href="/tr/projeler" title="Projeler"><span>Projeler</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="arrow-link" href="https://www.instagram.com/beyperdee/" target="_blank" rel="noopener nofollow" title="Instagram @beyperdee"><span>Instagram @beyperdee</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div></div></section>
-<section class="cta-band" aria-labelledby="cta-h">
-  <picture><source type="image/avif" srcset="/img/iletisim/ofis-240.avif 240w, /img/iletisim/ofis-480.avif 480w, /img/iletisim/ofis-720.avif 720w, /img/iletisim/ofis-960.avif 960w, /img/iletisim/ofis-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="/img/iletisim/ofis-240.webp 240w, /img/iletisim/ofis-480.webp 480w, /img/iletisim/ofis-720.webp 720w, /img/iletisim/ofis-960.webp 960w, /img/iletisim/ofis-1600.webp 1600w" sizes="100vw"><img class="cta-bg" src="/img/iletisim/ofis-960.webp" width="1600" height="1200" alt="Bey Perde ofisi: kumaş numune rafları, yuvarlak toplantı masası ve sıcak ışıklı raflar" loading="lazy" decoding="async"></picture>
-  <div class="wrap cta-in">
-    <h2 class="h2" id="cta-h">Projeniz için teklif alın</h2>
-    <p>Kaç pencere, hangi mekân, hangi tarih? Kısaca yazın, ölçü için gün verelim.</p>
-    <div class="row"><a class="btn btn-wa" href="https://wa.me/905535962614?text=Merhaba%2C%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener nofollow" data-wa title="WhatsApp&#x27;tan yazın"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span>WhatsApp'tan yazın</span></a><a class="btn btn-ghost-light" href="/tr/iletisim#teklif" title="Teklif alın">Teklif alın</a></div>
+
+<section class="ab-sec" aria-labelledby="ab-story"><div class="wrap ab-ed">
+  <figure class="ab-ed-ph" data-rv><picture><source type="image/avif" srcset="/img/iletisim/ofis-240.avif 240w, /img/iletisim/ofis-480.avif 480w, /img/iletisim/ofis-720.avif 720w, /img/iletisim/ofis-960.avif 960w, /img/iletisim/ofis-1600.avif 1600w" sizes="(max-width: 900px) 100vw, 50vw"><source type="image/webp" srcset="/img/iletisim/ofis-240.webp 240w, /img/iletisim/ofis-480.webp 480w, /img/iletisim/ofis-720.webp 720w, /img/iletisim/ofis-960.webp 960w, /img/iletisim/ofis-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw"><img src="/img/iletisim/ofis-960.webp" width="1600" height="1200" alt="Bey Perde’nin Çekmeköy’deki ofisi: kumaş kartelaları ve numuneler" loading="lazy" decoding="async"></picture><figcaption>Çekmeköy’deki ofisimiz ve kartela alanımız</figcaption></figure>
+  <div class="ab-ed-t" data-rv><p class="kicker">Hikâyemiz</p><h2 class="ab-h2" id="ab-story">Her şey doğru kumaşı seçmekle başlar.</h2><div class="ab-prose"><p>Bey Perde 2017’de Çekmeköy’de kuruldu. O günden bu yana aynı anlayışla çalışıyoruz: doğru ölçü, özenli dikim, temiz montaj.</p><p>Bir perdenin nasıl duracağını kumaşı belirler. Bu yüzden işe kartelalarla, numunelerle ve sizin mekânınızın ışığıyla başlıyoruz; seçimi birlikte, kendi mobilyalarınızın yanında yapıyoruz.</p><p>Her perde, pencerenin ölçüsüne göre kendi atölyemizde dikilir. Pile aralığından etek dikişine kadar detaylar, mekânın karakterine göre kararlaştırılır.</p></div></div>
+</div></section>
+
+<section class="ab-sec ab-sec-tight" aria-labelledby="ab-light"><div class="wrap ab-ed ab-ed-rev">
+  <div class="ab-ed-t" data-rv><p class="kicker">Işık</p><h2 class="ab-h2" id="ab-light">Perde, mekânın ışığını yöneten parçadır.</h2><div class="ab-prose"><p>Bir oda, üzerine düşen ışıkla ve dokunduğunuz yüzeylerle hatırlanır. Biz de işe hep ışıktan başlıyoruz: pencerenin yönü, günün saati, odada ne kadar karanlık istendiği.</p><p>Perdeyi, duvar kağıdını ve halıyı ayrı ayrı değil, mekâna özel bir bütün olarak düşünüyoruz.</p></div></div>
+  <figure class="ab-ed-ph" data-rv><picture><source type="image/avif" srcset="/img/hakkimizda/isik-240.avif 240w, /img/hakkimizda/isik-480.avif 480w, /img/hakkimizda/isik-720.avif 720w, /img/hakkimizda/isik-960.avif 960w, /img/hakkimizda/isik-1600.avif 1600w" sizes="(max-width: 900px) 100vw, 50vw"><source type="image/webp" srcset="/img/hakkimizda/isik-240.webp 240w, /img/hakkimizda/isik-480.webp 480w, /img/hakkimizda/isik-720.webp 720w, /img/hakkimizda/isik-960.webp 960w, /img/hakkimizda/isik-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw"><img src="/img/hakkimizda/isik-960.webp" width="1600" height="1200" alt="Gün batımında balkon kapısının önünde ince keten tül" loading="lazy" decoding="async"></picture></figure>
+</div></section>
+
+<section class="ab-sec ab-sec-tight" aria-labelledby="ab-stats"><div class="wrap"><h2 class="sr" id="ab-stats">Kısaca Bey Perde</h2><dl class="ab-stats"><div class="ab-stat" data-rv><dd>2017</dd><dt>Kuruluş</dt></div><div class="ab-stat" data-rv><dd>9+</dd><dt>Yıllık deneyim</dt></div><div class="ab-stat" data-rv><dd>3–8</dd><dt>İş günü teslim</dt></div><div class="ab-stat" data-rv><dd>3 yıl</dd><dt>Garanti</dt></div></dl></div></section>
+
+<section class="ab-sec linen" aria-labelledby="ab-pdz"><div class="wrap">
+  <div class="ab-head" data-rv><p class="kicker">Tek elden</p><h2 class="ab-h2" id="ab-pdz">Pencere, duvar ve zemin.</h2></div>
+  <ul class="ab-cards"><li data-rv><a class="ab-card" href="/tr/urunler/perde" title="01 — Pencere Perde Sistemleri Perde sistemleri ve özel ölçü çözümleri. Keşfedin">
+  <span class="ab-card-ph"><picture><source type="image/avif" srcset="/img/urunler/fon-perde/kose-koltuklu-salon-240.avif 240w, /img/urunler/fon-perde/kose-koltuklu-salon-480.avif 480w, /img/urunler/fon-perde/kose-koltuklu-salon-720.avif 720w, /img/urunler/fon-perde/kose-koltuklu-salon-960.avif 960w, /img/urunler/fon-perde/kose-koltuklu-salon-1500.avif 1500w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><source type="image/webp" srcset="/img/urunler/fon-perde/kose-koltuklu-salon-240.webp 240w, /img/urunler/fon-perde/kose-koltuklu-salon-480.webp 480w, /img/urunler/fon-perde/kose-koltuklu-salon-720.webp 720w, /img/urunler/fon-perde/kose-koltuklu-salon-960.webp 960w, /img/urunler/fon-perde/kose-koltuklu-salon-1500.webp 1500w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><img src="/img/urunler/fon-perde/kose-koltuklu-salon-960.webp" width="1500" height="2000" alt="Perde Sistemleri" loading="lazy" decoding="async"></picture></span>
+  <span class="ab-card-b"><span class="ab-card-n">01 — Pencere</span><span class="ab-card-t">Perde Sistemleri</span><span class="ab-card-d">Perde sistemleri ve özel ölçü çözümleri.</span><span class="ab-card-more">Keşfedin<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></li><li data-rv><a class="ab-card" href="/tr/urunler/duvar-kagidi" title="02 — Duvar Duvar Kağıtları Tekstil ve dekoratif duvar kağıtları. Keşfedin">
+  <span class="ab-card-ph"><picture><source type="image/avif" srcset="/img/urunler/tekstil-1-240.avif 240w, /img/urunler/tekstil-1-480.avif 480w, /img/urunler/tekstil-1-720.avif 720w, /img/urunler/tekstil-1-960.avif 960w, /img/urunler/tekstil-1-1200.avif 1200w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><source type="image/webp" srcset="/img/urunler/tekstil-1-240.webp 240w, /img/urunler/tekstil-1-480.webp 480w, /img/urunler/tekstil-1-720.webp 720w, /img/urunler/tekstil-1-960.webp 960w, /img/urunler/tekstil-1-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><img src="/img/urunler/tekstil-1-960.webp" width="1200" height="1600" alt="Duvar Kağıtları" loading="lazy" decoding="async"></picture></span>
+  <span class="ab-card-b"><span class="ab-card-n">02 — Duvar</span><span class="ab-card-t">Duvar Kağıtları</span><span class="ab-card-d">Tekstil ve dekoratif duvar kağıtları.</span><span class="ab-card-more">Keşfedin<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></li><li data-rv><a class="ab-card" href="/tr/urunler/hali" title="03 — Zemin Dekoratif Halılar Dekoratif halılar ve tamamlayıcı dokular. Keşfedin">
+  <span class="ab-card-ph"><picture><source type="image/avif" srcset="/img/urunler/hali-kapak-240.avif 240w, /img/urunler/hali-kapak-480.avif 480w, /img/urunler/hali-kapak-720.avif 720w, /img/urunler/hali-kapak-960.avif 960w, /img/urunler/hali-kapak-1200.avif 1200w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><source type="image/webp" srcset="/img/urunler/hali-kapak-240.webp 240w, /img/urunler/hali-kapak-480.webp 480w, /img/urunler/hali-kapak-720.webp 720w, /img/urunler/hali-kapak-960.webp 960w, /img/urunler/hali-kapak-1200.webp 1200w" sizes="(max-width: 760px) calc(100vw - 40px), 33vw"><img src="/img/urunler/hali-kapak-960.webp" width="1200" height="1600" alt="Dekoratif Halılar" loading="lazy" decoding="async"></picture></span>
+  <span class="ab-card-b"><span class="ab-card-n">03 — Zemin</span><span class="ab-card-t">Dekoratif Halılar</span><span class="ab-card-d">Dekoratif halılar ve tamamlayıcı dokular.</span><span class="ab-card-more">Keşfedin<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></a></li></ul>
+</div></section>
+
+<section class="ab-sec" aria-labelledby="ab-ws"><div class="wrap ab-ws">
+  <div class="ab-ws-t" data-rv><p class="kicker">Atölyemiz</p><h2 class="ab-h2" id="ab-ws">Detaylarda saklı bir ustalık.</h2><p class="lead">Her mekân farklıdır. Bu yüzden her perdeyi, kullanılacağı alanın ölçülerine ve karakterine göre hazırlıyoruz.</p><ol class="ab-ws-steps"><li><span class="ab-ws-n">01</span><div><h3 class="h4">Kumaş seçimi</h3><p>Kartelalar ve numuneler mekânın ışığında, birlikte değerlendirilir.</p></div></li><li><span class="ab-ws-n">02</span><div><h3 class="h4">Ölçüye özel kesim</h3><p>Kumaş, yerinde alınan ölçüye ve seçilen pile oranına göre kesilir.</p></div></li><li><span class="ab-ws-n">03</span><div><h3 class="h4">Dikim ve üretim</h3><p>Pile, etek ve kenar dikişleri kendi atölyemizde yapılır.</p></div></li><li><span class="ab-ws-n">04</span><div><h3 class="h4">Kalite kontrol</h3><p>Ölçü, pile aralığı ve dikişler teslimden önce kontrol edilir.</p></div></li><li><span class="ab-ws-n">05</span><div><h3 class="h4">Montaja hazırlık</h3><p>Ray, korniş ve aksesuarlar perdeyle birlikte montaja hazırlanır.</p></div></li></ol></div>
+  <div class="ab-ws-g" data-rv><figure class="ab-ws-big"><picture><source type="image/avif" srcset="/img/projeler/sile-akcekese/pile-detay-240.avif 240w, /img/projeler/sile-akcekese/pile-detay-480.avif 480w, /img/projeler/sile-akcekese/pile-detay-720.avif 720w, /img/projeler/sile-akcekese/pile-detay-960.avif 960w, /img/projeler/sile-akcekese/pile-detay-1500.avif 1500w" sizes="(max-width: 900px) 100vw, 36vw"><source type="image/webp" srcset="/img/projeler/sile-akcekese/pile-detay-240.webp 240w, /img/projeler/sile-akcekese/pile-detay-480.webp 480w, /img/projeler/sile-akcekese/pile-detay-720.webp 720w, /img/projeler/sile-akcekese/pile-detay-960.webp 960w, /img/projeler/sile-akcekese/pile-detay-1500.webp 1500w" sizes="(max-width: 900px) 100vw, 36vw"><img src="/img/projeler/sile-akcekese/pile-detay-960.webp" width="1500" height="2000" alt="Ray altında düzenli dikilmiş pileler" loading="lazy" decoding="async"></picture></figure><figure><picture><source type="image/avif" srcset="/img/urunler/fon-perde/kenar-bandi-240.avif 240w, /img/urunler/fon-perde/kenar-bandi-480.avif 480w, /img/urunler/fon-perde/kenar-bandi-720.avif 720w, /img/urunler/fon-perde/kenar-bandi-960.avif 960w, /img/urunler/fon-perde/kenar-bandi-1200.avif 1200w" sizes="(max-width: 900px) 50vw, 18vw"><source type="image/webp" srcset="/img/urunler/fon-perde/kenar-bandi-240.webp 240w, /img/urunler/fon-perde/kenar-bandi-480.webp 480w, /img/urunler/fon-perde/kenar-bandi-720.webp 720w, /img/urunler/fon-perde/kenar-bandi-960.webp 960w, /img/urunler/fon-perde/kenar-bandi-1200.webp 1200w" sizes="(max-width: 900px) 50vw, 18vw"><img src="/img/urunler/fon-perde/kenar-bandi-960.webp" width="1200" height="1600" alt="Fon perdede kontrast kenar bandı detayı" loading="lazy" decoding="async"></picture></figure><figure><picture><source type="image/avif" srcset="/img/projeler/erenkoy-hk-evi/etek-240.avif 240w, /img/projeler/erenkoy-hk-evi/etek-480.avif 480w, /img/projeler/erenkoy-hk-evi/etek-720.avif 720w, /img/projeler/erenkoy-hk-evi/etek-960.avif 960w, /img/projeler/erenkoy-hk-evi/etek-1600.avif 1600w" sizes="(max-width: 900px) 50vw, 18vw"><source type="image/webp" srcset="/img/projeler/erenkoy-hk-evi/etek-240.webp 240w, /img/projeler/erenkoy-hk-evi/etek-480.webp 480w, /img/projeler/erenkoy-hk-evi/etek-720.webp 720w, /img/projeler/erenkoy-hk-evi/etek-960.webp 960w, /img/projeler/erenkoy-hk-evi/etek-1600.webp 1600w" sizes="(max-width: 900px) 50vw, 18vw"><img src="/img/projeler/erenkoy-hk-evi/etek-960.webp" width="1600" height="1200" alt="Zemine değen keten tül eteği" loading="lazy" decoding="async"></picture></figure><p class="ab-note">Fotoğraflar tamamlanmış uygulamalarımızdaki dikiş ve pile detaylarıdır.</p></div>
+</div></section>
+
+<section class="ab-sec dark" aria-labelledby="ab-how"><div class="wrap">
+  <div class="ab-head" data-rv><p class="kicker">Süreç</p><h2 class="ab-h2" id="ab-how">Nasıl çalışıyoruz?</h2></div>
+  <ol class="ab-tl" data-tl><li data-rv><span class="ab-tl-dot" aria-hidden="true"></span><span class="ab-tl-n">01</span><h3 class="h4">Tanışma ve danışmanlık</h3><p>Kumaşları, renkleri ve perde sistemlerini birlikte değerlendiriyoruz; dilerseniz Çekmeköy’deki ofisimizde.</p></li><li data-rv><span class="ab-tl-dot" aria-hidden="true"></span><span class="ab-tl-n">02</span><h3 class="h4">Yerinde ölçü ve planlama</h3><p>Mekânın ölçülerini, ışık ihtiyacını ve dekorasyonunu inceliyoruz.</p></li><li data-rv><span class="ab-tl-dot" aria-hidden="true"></span><span class="ab-tl-n">03</span><h3 class="h4">Özel üretim</h3><p>Seçilen ürünleri mekânın ihtiyaçlarına göre atölyemizde hazırlıyoruz; siparişler 3–8 iş günü içinde hazır.</p></li><li data-rv><span class="ab-tl-dot" aria-hidden="true"></span><span class="ab-tl-n">04</span><h3 class="h4">Profesyonel montaj</h3><p>Uygulamayı kendi ekibimizle tamamlıyor, kullanım bilgilerini paylaşıyoruz. Tüm ürünler 3 yıl garantili.</p></li></ol>
+</div></section>
+
+<section class="ab-sec" aria-labelledby="ab-villa"><div class="wrap ab-villa">
+  <div class="ab-villa-t" data-rv><p class="kicker">Villa ve özel projeler</p><h2 class="ab-h2" id="ab-villa">Büyük mekânlarda, aynı titizlik.</h2><p class="lead">Özel konutlardan geniş cam cepheli villalara kadar, her projenin mimarisine uygun çözümler geliştiriyoruz.</p>
+    <ul class="ab-ticks"><li>Motorlu perde ve jaluzi sistemleri</li><li>Yüksek tavan ve geniş cam cepheler</li><li>Villa, otel, ofis ve toplu projeler</li><li>İç mimar ve müteahhitlerle proje bazında çalışma</li></ul>
+    <a class="btn" href="/tr/projeler" title="Projelerimizi keşfedin"><span>Projelerimizi keşfedin</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="ab-vg" data-rv><a class="ab-vg-big" href="/tr/projeler/sile-akcekese" title="Şile Akçekese’deki evde geniş pencereler boyunca keten tül ve fon perde"><picture><source type="image/avif" srcset="/img/projeler/sile-akcekese/salon-tul-fon-240.avif 240w, /img/projeler/sile-akcekese/salon-tul-fon-480.avif 480w, /img/projeler/sile-akcekese/salon-tul-fon-720.avif 720w, /img/projeler/sile-akcekese/salon-tul-fon-960.avif 960w, /img/projeler/sile-akcekese/salon-tul-fon-1600.avif 1600w" sizes="(max-width: 900px) 100vw, 60vw"><source type="image/webp" srcset="/img/projeler/sile-akcekese/salon-tul-fon-240.webp 240w, /img/projeler/sile-akcekese/salon-tul-fon-480.webp 480w, /img/projeler/sile-akcekese/salon-tul-fon-720.webp 720w, /img/projeler/sile-akcekese/salon-tul-fon-960.webp 960w, /img/projeler/sile-akcekese/salon-tul-fon-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 60vw"><img src="/img/projeler/sile-akcekese/salon-tul-fon-960.webp" width="2000" height="1500" alt="Şile Akçekese’deki evde geniş pencereler boyunca keten tül ve fon perde" loading="lazy" decoding="async"></picture></a><a href="/tr/projeler/sile-akcekese" title="Şile Akçekese’deki evin salon ve yemek alanı"><picture><source type="image/avif" srcset="/img/projeler/sile-akcekese/salon-yemek-240.avif 240w, /img/projeler/sile-akcekese/salon-yemek-480.avif 480w, /img/projeler/sile-akcekese/salon-yemek-720.avif 720w, /img/projeler/sile-akcekese/salon-yemek-960.avif 960w, /img/projeler/sile-akcekese/salon-yemek-1600.avif 1600w" sizes="(max-width: 900px) 50vw, 28vw"><source type="image/webp" srcset="/img/projeler/sile-akcekese/salon-yemek-240.webp 240w, /img/projeler/sile-akcekese/salon-yemek-480.webp 480w, /img/projeler/sile-akcekese/salon-yemek-720.webp 720w, /img/projeler/sile-akcekese/salon-yemek-960.webp 960w, /img/projeler/sile-akcekese/salon-yemek-1600.webp 1600w" sizes="(max-width: 900px) 50vw, 28vw"><img src="/img/projeler/sile-akcekese/salon-yemek-960.webp" width="2000" height="1500" alt="Şile Akçekese’deki evin salon ve yemek alanı" loading="lazy" decoding="async"></picture></a><a href="/tr/projeler/erenkoy-hk-evi" title="Erenköy’deki evde tavandan yere tül ve toprak tonunda fon"><picture><source type="image/avif" srcset="/img/projeler/erenkoy-hk-evi/pencere-240.avif 240w, /img/projeler/erenkoy-hk-evi/pencere-480.avif 480w, /img/projeler/erenkoy-hk-evi/pencere-720.avif 720w, /img/projeler/erenkoy-hk-evi/pencere-960.avif 960w, /img/projeler/erenkoy-hk-evi/pencere-1200.avif 1200w" sizes="(max-width: 900px) 50vw, 28vw"><source type="image/webp" srcset="/img/projeler/erenkoy-hk-evi/pencere-240.webp 240w, /img/projeler/erenkoy-hk-evi/pencere-480.webp 480w, /img/projeler/erenkoy-hk-evi/pencere-720.webp 720w, /img/projeler/erenkoy-hk-evi/pencere-960.webp 960w, /img/projeler/erenkoy-hk-evi/pencere-1200.webp 1200w" sizes="(max-width: 900px) 50vw, 28vw"><img src="/img/projeler/erenkoy-hk-evi/pencere-960.webp" width="1200" height="1600" alt="Erenköy’deki evde tavandan yere tül ve toprak tonunda fon" loading="lazy" decoding="async"></picture></a></div>
+</div></section>
+
+<section class="ab-sec ab-sec-tight ab-areas-s" aria-labelledby="ab-areas"><div class="wrap ab-areas">
+  <div><p class="kicker">Hizmet bölgeleri</p><h2 class="h3" id="ab-areas">Çekmeköy’den Anadolu yakasının kuzeyine.</h2></div>
+  <div><ul class="ab-areas-l"><li><a href="/tr/hizmet-bolgeleri/cekmekoy" title="Çekmeköy">Çekmeköy</a></li><li><a href="/tr/hizmet-bolgeleri/sile" title="Şile">Şile</a></li><li><a href="/tr/hizmet-bolgeleri/agva" title="Ağva">Ağva</a></li><li><a href="/tr/hizmet-bolgeleri/riva" title="Riva">Riva</a></li><li><a href="/tr/hizmet-bolgeleri/beykoz" title="Beykoz">Beykoz</a></li></ul><p class="ab-note">Türkçe, İngilizce ve Arapça hizmet veriyoruz.</p></div>
+</div></section>
+
+<section class="ab-end" aria-labelledby="ab-end">
+  <picture><source type="image/avif" srcset="/img/ana-sayfa-240.avif 240w, /img/ana-sayfa-480.avif 480w, /img/ana-sayfa-720.avif 720w, /img/ana-sayfa-960.avif 960w, /img/ana-sayfa-1500.avif 1500w" sizes="100vw"><source type="image/webp" srcset="/img/ana-sayfa-240.webp 240w, /img/ana-sayfa-480.webp 480w, /img/ana-sayfa-720.webp 720w, /img/ana-sayfa-960.webp 960w, /img/ana-sayfa-1500.webp 1500w" sizes="100vw"><img class="ab-end-bg" src="/img/ana-sayfa-960.webp" width="1500" height="972" alt="Koyu fon perdeli, avizeli bir salonda pencereye bakan bir kişi" loading="lazy" decoding="async"></picture>
+  <div class="wrap ab-end-in" data-rv>
+    <p class="kicker">Birlikte tasarlayalım</p>
+    <h2 class="ab-h2" id="ab-end">Sizin mekânınızın hikâyesi nasıl başlayacak?</h2>
+    <p>Perde, duvar kağıdı ve halı seçimlerinizi birlikte planlayalım. Mekânınıza özel çözümler için bizimle iletişime geçin.</p>
+    <div class="row"><a class="btn btn-light" href="/tr/iletisim" title="Projenizi konuşalım"><span>Projenizi konuşalım</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn btn-wa" href="https://wa.me/905535962614?text=Merhaba%2C%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener nofollow" data-wa title="WhatsApp ile iletişim"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span>WhatsApp ile iletişim</span></a></div>
   </div>
 </section>
+</div>
 </main>
 <footer class="site-footer">
   <div class="wrap">
@@ -953,6 +1127,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Merhaba%2C%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20i%C3%A7in%20teklif%20almak%20istiyorum." target="_blank" rel="noopener nofollow" aria-label="WhatsApp'tan yazın" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Çerez Politikası"><p>Bu site yalnızca çalışması için gerekli yerel depolamayı kullanır; reklam ya da takip çerezi kullanmaz. <a href="/tr/cerez-politikasi" title="Ayrıntılar">Ayrıntılar</a></p><button class="btn btn-sm" type="button" data-cookie-ok>Anladım</button></div>
-<script src="/assets/site.js?v=eaa2767859" defer></script>
+<script src="/assets/site.js?v=50c972c064" defer></script><script src="/assets/about.js?v=50c972c064" defer></script>
 </body>
 </html>
