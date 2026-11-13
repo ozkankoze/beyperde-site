@@ -97,7 +97,7 @@ def picture(rel, alt, sizes='(max-width: 820px) 100vw, 50vw', cls='', eager=Fals
     k = img_key(rel)
     m = IMG[k + '.webp']
     ws = m['widths']
-    src = f'/img/{k}-{ws[min(1, len(ws) - 1)]}.webp'
+    src = f'/img/{k}-{960 if 960 in ws else ws[-1]}.webp'
     avif = ', '.join(f'/img/{k}-{w}.avif {w}w' for w in ws)
     webp = ', '.join(f'/img/{k}-{w}.webp {w}w' for w in ws)
     load = 'fetchpriority="high" loading="eager"' if eager else 'loading="lazy"'

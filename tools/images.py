@@ -14,7 +14,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src', 'images')
 OUT = os.path.join(ROOT, 'public', 'img')
 MANIFEST = os.path.join(ROOT, 'src', 'content', 'images.json')
-WIDTHS = [480, 960, 1600]
+WIDTHS = [240, 480, 720, 960, 1600]
 
 
 def process(rel):
