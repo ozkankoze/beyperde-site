@@ -40,6 +40,7 @@ UI = {
     'nav_gallery': T('Galeri', 'Gallery', 'المعرض'),
     'nav_about': T('Hakkımızda', 'About', 'من نحن'),
     'nav_contact': T('İletişim', 'Contact', 'اتصل بنا'),
+    'nav_blog': T('Blog', 'Blog', 'المدونة'),
     'nav_main': T('Ana menü', 'Main menu', 'القائمة الرئيسية'),
     'menu': T('Menü', 'Menu', 'القائمة'),
     'close': T('Kapat', 'Close', 'إغلاق'),

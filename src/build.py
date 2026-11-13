@@ -153,6 +153,8 @@ def header(lang, path, avail, nav=''):
     items = [('urunler', 'nav_products'), ('katalog', 'nav_catalog'), ('projeler', 'nav_projects'),
              ('hakkimizda', 'nav_about'), ('iletisim', 'nav_contact')]
     links = ''.join(f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items)
+    blog_li = (f'<li><a href="/tr/blog"{" aria-current=\"page\"" if nav == "blog" else ""}{"" if lang == "tr" else " hreflang=\"tr\""}>{ui("nav_blog", lang)}</a></li>'
+               if globals().get('BLOG_POSTS') else '')
     # Masaüstü menüde "Ürünler" altında açılan kategori paneli
     def mcol(cat):
         c = D.CATS[cat]
@@ -161,7 +163,8 @@ def header(lang, path, avail, nav=''):
     mega = f'<div class="mega" id="mega-urunler"><div class="mega-in">{mcol("perde")}<div class="mega-stack">{mcol("duvar-kagidi")}{mcol("hali")}</div><div class="mega-col mega-more"><a class="mega-h" href="{url(lang, "katalog")}">{ui("nav_catalog", lang)}</a><a class="mega-h" href="{url(lang, "perde-secici")}">{ui("nav_quiz", lang)}</a></div></div></div>'
     dlinks = ''.join(
         (f'<li class="has-mega"><a href="{url(lang, 'katalog')}"{" aria-current=\"page\"" if nav == p else ""} aria-haspopup="true">{ui(k, lang)}<svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></a>{mega}</li>' if p == 'urunler'
-         else f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>') for p, k in items)
+         else f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>') for p, k in items[:3]) + blog_li + ''.join(
+        f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items[3:])
     mcats = ''.join(f'<li><a href="{url(lang, f"urunler/{c}")}">{tx(D.CATS[c]["name"], lang)}</a></li>' for c in ('perde', 'duvar-kagidi', 'hali'))
     mcats += f'<li><a href="{url(lang, "perde-secici")}">{ui("nav_quiz", lang)}</a></li>'
     mlinks = ''.join(
@@ -189,7 +192,7 @@ def header(lang, path, avail, nav=''):
 </header>
 <div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="{ui('menu', lang)}" hidden>
   <div class="mmenu-top"><img src="/brand/logo-cream-96.webp" srcset="/brand/logo-cream-96.webp 1x, /brand/logo-cream-192.webp 2x" width="96" height="95" alt="" class="mmenu-logo" loading="lazy"><button class="icon-btn" type="button" data-menu-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
-  <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{mlinks}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li></ul></nav>
+  <nav aria-label="{ui('nav_main', lang)}"><ul class="mmenu-links"><li><a href="{url(lang)}">{ui('nav_home', lang)}</a></li>{mlinks}<li><a href="{url(lang, 'galeri')}">{ui('nav_gallery', lang)}</a></li>{blog_li}</ul></nav>
   <div class="mmenu-foot">
     {f'<ul class="mmenu-lang" aria-label="{ui("language", lang)}">{mlangs}</ul>' if len(avail) > 1 else ''}
     <div class="mmenu-actions"><a class="btn btn-light" href="tel:{D.TEL}">{ICON['phone']}<span>{ltr(D.PHONE_DISPLAY)}</span></a>{btn_wa(lang, ui('wa_general', lang), ui('whatsapp_short', lang), 'btn btn-wa')}</div>
@@ -205,6 +208,8 @@ def footer(lang, avail):
     areas = ''.join(f'<li><a href="/tr/hizmet-bolgeleri/{k}"{"" if lang == "tr" else " hreflang=\"tr\" lang=\"tr\""}>{tx(P.AREA_NAMES[k], lang)}</a></li>' for k, _ in P.AREAS)
     legal = ''.join(f'<li><a href="/tr/{p}"{"" if lang == "tr" else " hreflang=\"tr\""}>{ui(k, lang)}</a></li>' for p, k in [('kvkk', 'kvkk'), ('gizlilik-politikasi', 'privacy'), ('cerez-politikasi', 'cookies')])
     company = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in [('hakkimizda', 'nav_about'), ('projeler', 'nav_projects'), ('katalog', 'nav_catalog'), ('galeri', 'nav_gallery'), ('iletisim', 'nav_contact')])
+    if globals().get('BLOG_POSTS'):
+        company += f'<li><a href="/tr/blog"{"" if lang == "tr" else " hreflang=\"tr\""}>{ui("nav_blog", lang)}</a></li>'
     return f'''<footer class="site-footer">
   <div class="wrap">
     <div class="ft-top">
@@ -440,6 +445,7 @@ def quote_forms(lang, selected='', idp='q'):
 from pages_home import render_home          # noqa: E402
 from pages_products import render_products  # noqa: E402
 from pages_misc import render_misc          # noqa: E402
+from pages_blog import render_blog, load_posts  # noqa: E402
 
 
 def copy_static():
@@ -559,9 +565,11 @@ def main():
     copy_static()
     catalog = build_catalog(IMG, RAW, PRAW)
     G = globals()
+    G['BLOG_POSTS'] = load_posts()
     render_home(G, catalog)
     render_products(G, catalog)
     render_misc(G, catalog)
+    render_blog(G)
     sitemap()
     postprocess()
     print(f'{len(PAGES_OUT)} sayfa üretildi')
