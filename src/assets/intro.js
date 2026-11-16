@@ -72,7 +72,7 @@
   const st = (el, k, v) => { const m = memo(el); if (m[k] === v) return; m[k] = v; if (k[0] === '-') el.style.setProperty(k, v); else el.style[k] = v; };
   const sa = (el, k, v) => { const m = memo(el); const kk = '@' + k; if (m[kk] === v) return; m[kk] = v; el.setAttribute(k, v); };
   const $ = (id) => document.getElementById(id);
-  const L = { hero: $('ihero'), out: $('ioutro') };
+  const L = { hero: $('ihero'), out: $('ioutro'), door: $('idoor') };
   const rail = intro.querySelector('.rail'), railLi = [...intro.querySelectorAll('.rail li')];
   const bar = intro.querySelector('.ibar span');
   const NS = 'http://www.w3.org/2000/svg', svgEl = $('callouts');
@@ -141,6 +141,7 @@
     const o = 1 - sm(0.01, 0.06, p);
     st(L.hero, 'opacity', String(o.toFixed(3))); st(L.hero, 'visibility', String(o < 0.01 ? 'hidden' : 'visible'));
     st(L.hero, 'translate', String(`0 ${fx(-(1 - o) * 24)}px`));
+    if (L.door) { const od = 1 - sm(0.005, 0.045, p); st(L.door, 'opacity', String(od.toFixed(3))); st(L.door, 'visibility', String(od < 0.01 ? 'hidden' : 'visible')); }
     SECS.forEach((S) => callout(S, p));
     const oo = sm(0.9, 0.96, p);
     st(L.out, 'opacity', String(oo.toFixed(3))); st(L.out, 'translate', String(`0 ${fx((1 - oo) * 18)}px`));

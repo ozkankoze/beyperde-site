@@ -140,6 +140,7 @@ def render_home(G, catalog):
     <div class="intro-static">{intro_static(G, h('static_alt'))}</div>
     <video id="stage" muted playsinline preload="none" disablepictureinpicture data-src="/intro/giris.mp4?v={G['INTRO_V']}"{f' data-src-hd="/intro/giris-2k.mp4?v={G["INTRO_V"]}"' if G['INTRO_HD'] else ''}{f' data-src-m="/intro/giris-m.mp4?v={G["INTRO_V"]}"' if G['INTRO_M'] else ''} data-dur="15.04" aria-hidden="true"></video>
     <div class="veil" aria-hidden="true"></div>
+    <div class="idoor" id="idoor" aria-hidden="true"><img src="/brand/logo-cream-420.webp" width="420" height="416" alt="" decoding="async"></div>
     <div class="ilabel" id="ihero">
       <h1><span class="isub">{h('h1_sub')}</span><span class="ibig">{h('h1')}</span></h1>
       <div class="irule" aria-hidden="true"></div>
