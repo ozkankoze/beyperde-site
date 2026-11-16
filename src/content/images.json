@@ -1526,6 +1526,22 @@
 1600
 ]
 },
+"urunler/perde-aksesuarlari/antrasit-tavan-rayi.webp": {
+"avg": [
+116,
+113,
+107
+],
+"h": 2048,
+"w": 1536,
+"widths": [
+240,
+480,
+720,
+960,
+1536
+]
+},
 "urunler/perde-aksesuarlari/bronz-alinlik.webp": {
 "avg": [
 172,
@@ -1558,6 +1574,22 @@
 1200
 ]
 },
+"urunler/perde-aksesuarlari/cok-kanalli-ray.webp": {
+"avg": [
+119,
+110,
+97
+],
+"h": 2048,
+"w": 1536,
+"widths": [
+240,
+480,
+720,
+960,
+1536
+]
+},
 "urunler/perde-aksesuarlari/dalga-ray.webp": {
 "avg": [
 138,
@@ -1588,6 +1620,22 @@
 720,
 960,
 1200
+]
+},
+"urunler/perde-aksesuarlari/ray-alttan.webp": {
+"avg": [
+135,
+133,
+124
+],
+"h": 2048,
+"w": 1536,
+"widths": [
+240,
+480,
+720,
+960,
+1536
 ]
 },
 "urunler/perde-aksesuarlari/ray-yakindan.webp": {
