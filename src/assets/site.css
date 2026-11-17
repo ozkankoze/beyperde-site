@@ -656,7 +656,7 @@ th{font-weight:500}
 #callouts .ring{fill:none;stroke:var(--shell);stroke-width:1.2;opacity:.7}
 #callouts .halo{fill:none;stroke:rgba(30,20,10,.45);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 @keyframes pulse{0%{transform:scale(.35);opacity:.95}100%{transform:scale(1.6);opacity:0}}
-#ioutro{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;display:grid;gap:16px;justify-items:center;opacity:0;inline-size:min(92vw,720px)}
+#ioutro{left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;display:grid;gap:16px;justify-items:center;opacity:0;inline-size:min(92vw,1000px)}
 [dir="rtl"] #ioutro{direction:rtl}
 .intro.port #ioutro{top:27%}
 .iout{font-size:clamp(34px,5vw,68px);font-weight:300;line-height:1.05;letter-spacing:-.03em;text-shadow:0 2px 24px rgba(30,22,14,.55)}

@@ -22,7 +22,7 @@ HOME = {
     'l4_k': T('Koltuk', 'Sofa', 'الكنبة'),
     'l4': T('Döşemelik Kumaş', 'Upholstery Fabric', 'قماش تنجيد'),
     'outro_k': T('Tek salonda tüm dokular', 'Every texture in one room', 'كل الملامس في غرفة واحدة'),
-    'outro': T('Evinize uygun dokuyu<br>birlikte seçelim', "Let's choose the right<br>texture together", 'لنختر معاً<br>الملمس المناسب لبيتك'),
+    'outro': T('Yaşam Alanınıza Özel<br>Koleksiyonları Birlikte Seçelim', "Let's choose the right<br>texture together", 'لنختر معاً<br>الملمس المناسب لبيتك'),
     'outro_cta': T('Koleksiyonu incele', 'View the collection', 'تصفّح المجموعة'),
     'rail': [T('Giriş', 'Entrance', 'المدخل'), T('Duvar kağıdı', 'Wallpaper', 'ورق الجدران'), T('Perde', 'Curtains', 'الستائر'), T('Halı', 'Rug', 'السجادة'), T('Döşeme', 'Upholstery', 'التنجيد')],
     'static_alt': T('Tül ve fon perdeli aydınlık bir salon', 'A bright living room with sheers and drapes', 'صالة مضيئة بستائر تول وقماشية'),

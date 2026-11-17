@@ -155,12 +155,13 @@
   /* ---------- otomatik oynatma ---------- */
   // Giriş karesi (başlık ve kapıdaki logo) kısa bir süre görünür, sonra video kendi hızında oynar; bitince son karede kalır.
   // Tarayıcı otomatik oynatmayı reddederse (ör. güç tasarrufu) video aynı hızda kare kare ilerletilir.
-  const HOLD = 1600;
+  const HOLD = 1600, SPEED = 1.3;   // video normal hızın 1,3 katında oynar
   let mode = '', t0 = 0, done = false;
   vid.loop = false;
   vid.addEventListener('ended', () => { done = true; dirty = true; wake(); });
   function autoplay() {
     if (mode) return;
+    vid.playbackRate = SPEED;
     const p = vid.play();
     const clock = () => { if (mode === 'play') return; mode = 'clock'; t0 = performance.now(); wake(); };
     if (p && p.then) p.then(() => { mode = 'play'; wake(); }, clock); else { mode = 'play'; wake(); }
@@ -170,7 +171,7 @@
     const len = Math.min(DUR, vid.duration || DUR) - 0.05;
     if (done) return 1;
     if (mode === 'play') return clamp(vid.currentTime / len);
-    if (mode === 'clock') { const q = clamp((now - t0) / (len * 1000)); if (q >= 1) done = true; return q; }
+    if (mode === 'clock') { const q = clamp((now - t0) * SPEED / (len * 1000)); if (q >= 1) done = true; return q; }
     return 0;
   }
 
