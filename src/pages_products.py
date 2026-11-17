@@ -294,49 +294,13 @@ def render_product(G, lang, slug, ck, catalog):
 def render_catalog(G, lang, catalog):
     D, P, e, tx, ui, url, picture, ICON = G['D'], G['P'], G['e'], G['tx'], G['ui'], G['url'], G['picture'], G['ICON']
     CP = P.PAGES['catalog']
-    groups = [
-        ('type', D.FILTER_LABELS['type'], [(s, D.PRODUCTS[s][1]) for s in D.PRODUCTS if any(i['slug'] == s for i in catalog)]),
-        ('color', D.FILTER_LABELS['color'], [(k, v[0]) for k, v in D.COLORS.items()]),
-        ('material', D.FILTER_LABELS['material'], list(D.MATERIALS.items())),
-        ('room', D.FILTER_LABELS['room'], [(k, v) for k, v in D.ROOMS.items() if any(k in i['room'] for i in catalog)]),
-        ('style', D.FILTER_LABELS['style'], list(D.STYLES.items())),
-        ('light', D.FILTER_LABELS['light'], list(D.LIGHT.items())),
-    ]
-    fields = attrs_map = {'type': 'slug', 'color': 'color', 'material': 'material', 'room': 'room', 'style': 'style', 'light': 'light'}
-    fs = []
-    # Ürün türü: Perde Sistemleri / Duvar Kağıtları / Halılar başlıkları altında
-    tparts = []
-    for ck, c in D.CATS.items():
-        chips = []
-        for s in c['items']:
-            n = sum(1 for i in catalog if i['slug'] == s)
-            if n:
-                chips.append(f'<label class="fchip"><input type="checkbox" name="type" value="{s}"><span>{tx(D.PRODUCTS[s][1], lang)}</span><small data-n>{n}</small></label>')
-        if chips:
-            tparts.append(f'<div class="fsub"><p class="fsub-h">{tx(c["name"], lang)}</p><div class="fchips">{"".join(chips)}</div></div>')
-    fs.append(f'<fieldset class="fgroup"><legend>{tx(D.FILTER_LABELS["type"], lang)}</legend>{"".join(tparts)}</fieldset>')
-    groups = [gr for gr in groups if gr[0] != 'type']
-    for g, label, opts in groups:
-        boxes = []
-        for v, lbl in opts:
-            n = sum(1 for i in catalog if (i['slug'] == v if g == 'type' else v in i[attrs_map[g]]))
-            if not n:
-                continue
-            sw = f'<span class="sw" style="--sw:{D.COLORS[v][1]}"></span>' if g == 'color' else ''
-            boxes.append(f'<label class="fchip"><input type="checkbox" name="{g}" value="{v}">{sw}<span>{tx(lbl, lang)}</span><small data-n>{n}</small></label>')
-        fs.append(f'<fieldset class="fgroup"><legend>{tx(label, lang)}</legend><div class="fchips">{"".join(boxes)}</div></fieldset>')
-
+    # Sade katalog: yalnızca fotoğraflar; dokununca büyür (lightbox)
     cards = []
     for it in catalog:
         name = tx(D.PRODUCTS[it['slug']][1], lang)
         desc = it['alt'][lang] or tx(D.PRODUCTS[it['slug']][2], lang)
-        purl = url(lang, f'urunler/{it["cat"]}/{it["slug"]}')
-        wa = ui('wa_catalog', lang, x=name, c=it['code'])
-        data = ' '.join(f'data-{k}="{" ".join(it[f]) if isinstance(it[f], list) else it[f]}"' for k, f in attrs_map.items())
-        cards.append(f'''<li class="ccard" {data}>
-  <a class="ph" href="{G['big_src'](it['key'])}" data-lb="cat" data-cap="{e(name + ' — ' + desc)}">{picture(it['key'], desc, '(max-width: 640px) calc(50vw - 26px), (max-width: 1100px) 33vw, 22vw')}</a>
-  <div class="ccard-b"><p class="kicker">{name}</p><p class="ccard-d">{e(desc)}</p><p class="ccard-code">{tx(CP['code'], lang)}: <bdi>{e(it['code'])}</bdi></p>
-  <div class="ccard-a"><a class="link-sm" href="{purl}">{ui('details', lang)}</a><a class="link-sm link-wa" href="{e(G['wa_link'](wa))}" target="_blank" rel="noopener nofollow" data-wa>{ICON['wa']}<span>{tx(CP['ask'], lang)}</span></a></div></div>
+        cards.append(f'''<li class="ccard">
+  <a class="ph" href="{G['big_src'](it['key'])}" data-lb="cat" data-cap="{e(name + ' — ' + desc)}">{picture(it['key'], desc, '(max-width: 640px) calc(50vw - 26px), (max-width: 1100px) 33vw, 25vw')}</a>
 </li>''')
     crumbs, cs = G['breadcrumbs'](lang, [(tx(CP['h1'], lang), 'katalog')])
     # Kategoriler: kaldırılan "Ürünler" sayfasının yerine katalogun başında kısa yol kartları
@@ -346,27 +310,15 @@ def render_catalog(G, lang, catalog):
 </a>''' for ck, c in D.CATS.items())
     body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(CP['h1'], lang)}</h1><p class="lead">{tx(CP['lead'], lang)}</p>
   <nav class="catcards" aria-label="{tx(CP['cats'], lang)}">{ccards}</nav></div></section>
-<section class="band tight"><div class="wrap"><a class="quiz-cta" href="{url(lang, 'perde-secici')}">
+<section class="band tight quiz-band"><div class="wrap"><a class="quiz-cta" href="{url(lang, 'perde-secici')}">
   <span class="quiz-cta-t"><span class="h4">{ui('quiz_cta_h', lang)}</span><span>{ui('quiz_cta_p', lang)}</span></span>
   <span class="btn">{ui('quiz_cta_btn', lang)}</span>
 </a></div></section>
-<section class="band tight catalog" data-catalog>
-  <div class="wrap cat-layout">
-    <button class="btn btn-ghost btn-sm filters-open" type="button" aria-expanded="false" aria-controls="filters" data-filters-open>{ICON['filter']}<span>{tx(CP['filters'], lang)}</span><span class="fcount" data-active-n hidden></span></button>
-    <form class="filters" id="filters" aria-label="{tx(CP['filters'], lang)}" data-filters>
-      <div class="filters-top"><h2 class="h4">{tx(CP['filters'], lang)}</h2><button type="button" class="icon-btn filters-close" data-filters-close>{ICON['close']}<span class="sr">{ui('close', lang)}</span></button></div>
-      {''.join(fs)}
-      <div class="filters-foot"><button type="reset" class="btn btn-ghost btn-sm">{tx(CP['reset'], lang)}</button><button type="button" class="btn btn-sm filters-apply" data-filters-close>{tx(CP['show'], lang)}</button></div>
-    </form>
-    <div class="cat-results">
-      <p class="cat-count" role="status" aria-live="polite" data-count data-tpl="{e(tx(CP['count'], lang))}">{tx(CP['count'], lang).format(n=len(catalog))}</p>
-      <ul class="cgrid">{''.join(cards)}</ul>
-      <p class="cat-empty" hidden data-empty>{tx(CP['empty'], lang)}</p>
-    </div>
-  </div>
+<section class="band tight catalog">
+  <div class="wrap"><ul class="cgrid">{''.join(cards)}</ul></div>
 </section>
 {G['cta_band'](lang, ui('wa_general', lang), 'urunler/fon-perde/zeytin-doku')}'''
     coll = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': tx(CP['h1'], lang), 'url': G['abs_url'](lang, 'katalog'),
             'description': tx(CP['desc'], lang), 'isPartOf': {'@type': 'WebSite', 'url': G['abs_url'](lang)}}
     G['write'](lang, 'katalog', G['layout'](lang, 'katalog', tx(CP['title'], lang), tx(CP['desc'], lang), body, nav='katalog',
-                                            schemas=[cs, coll], scripts=('catalog.js',), og_image=G['og_src']('urunler/fon-perde/zeytin-doku')))
+                                            schemas=[cs, coll], og_image=G['og_src']('urunler/fon-perde/zeytin-doku')))
