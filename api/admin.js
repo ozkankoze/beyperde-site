@@ -3,8 +3,9 @@
 // Gerekli ortam değişkenleri (Vercel → Project → Settings → Environment Variables):
 //   ADMIN_PASSWORD           Panel şifresi (yalnızca sunucuda tutulur)
 //   ADMIN_SESSION_SECRET     Oturum çerezini imzalamak için uzun, rastgele bir metin
-//   UPSTASH_REDIS_REST_URL   Upstash Redis REST adresi  (Vercel KV kullanılıyorsa KV_REST_API_URL)
-//   UPSTASH_REDIS_REST_TOKEN Upstash Redis REST anahtarı (Vercel KV kullanılıyorsa KV_REST_API_TOKEN)
+//   Veri deposu (biri yeterli):
+//     DATABASE_URL           Neon Postgres bağlantısı (Vercel'deki Neon entegrasyonu kendisi ekler)
+//     UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN  (ya da KV_REST_API_URL / KV_REST_API_TOKEN)
 // Bunlar eksikse fonksiyon 503 döner; panel "kurulum eksik" uyarısı gösterir, sahte veri göstermez.
 'use strict';
 
@@ -17,13 +18,16 @@ const MAX_DOC = 200 * 1024;
 const MAX_BODY = 3.5 * 1024 * 1024;
 const attempts = new Map();   // basit, örnek başına giriş denemesi sınırı
 
-/* ---------- veri deposu (Upstash Redis REST; ek kütüphane gerekmez) ---------- */
+/* ---------- veri deposu: Neon Postgres (HTTP) ya da Upstash Redis (REST); ek kütüphane gerekmez ---------- */
 function storeConfig(env) {
+  const pg = env.DATABASE_URL || env.POSTGRES_URL;
+  if (pg && /^postgres(ql)?:\/\//.test(pg)) return { kind: 'neon', conn: pg };
   const url = env.UPSTASH_REDIS_REST_URL || env.KV_REST_API_URL;
   const token = env.UPSTASH_REDIS_REST_TOKEN || env.KV_REST_API_TOKEN;
-  return url && token ? { url: url.replace(/\/$/, ''), token } : null;
+  return url && token ? { kind: 'redis', url: url.replace(/\/$/, ''), token } : null;
 }
-function makeStore(cfg, fetchImpl) {
+function makeStore(cfg, fetchImpl) { return cfg.kind === 'neon' ? makeNeonStore(cfg, fetchImpl) : makeRedisStore(cfg, fetchImpl); }
+function makeRedisStore(cfg, fetchImpl) {
   const f = fetchImpl || fetch;
   async function cmd(args) {
     const r = await f(cfg.url, { method: 'POST', headers: { Authorization: `Bearer ${cfg.token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(args) });
@@ -41,6 +45,33 @@ function makeStore(cfg, fetchImpl) {
     save: (col, doc) => cmd(['HSET', PREFIX + col, doc.id, JSON.stringify(doc)]),
     del: (col, id) => cmd(['HDEL', PREFIX + col, id]),
     clear: (col) => cmd(['DEL', PREFIX + col]),
+  };
+}
+// Neon'un HTTP SQL uç noktası (@neondatabase/serverless sürücüsünün kullandığı biçim)
+function neonEndpoint(conn) {
+  const host = new URL(conn.replace(/^postgres(ql)?:/, 'https:')).hostname;
+  return 'https://' + host.replace(/^[^.]+\./, 'api.') + '/sql';
+}
+function makeNeonStore(cfg, fetchImpl) {
+  const f = fetchImpl || fetch, url = neonEndpoint(cfg.conn);
+  let ready = null;
+  async function q(query, params = []) {
+    const r = await f(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Neon-Connection-String': cfg.conn, 'Neon-Raw-Text-Output': 'true', 'Neon-Array-Mode': 'true' }, body: JSON.stringify({ query, params }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error('store: ' + (j.message || r.status));
+    return j.rows || [];
+  }
+  const init = () => (ready = ready || q('CREATE TABLE IF NOT EXISTS bp_admin (col text NOT NULL, id text NOT NULL, doc jsonb NOT NULL, PRIMARY KEY (col, id))').catch((e) => { ready = null; throw e; }));
+  return {
+    async list(col) {
+      await init();
+      const out = [];
+      for (const row of await q('SELECT doc::text FROM bp_admin WHERE col = $1', [col])) { try { out.push(JSON.parse(row[0])); } catch (_) { /* bozuk kayıt atlanır */ } }
+      return out;
+    },
+    async save(col, doc) { await init(); return q('INSERT INTO bp_admin (col, id, doc) VALUES ($1, $2, $3::jsonb) ON CONFLICT (col, id) DO UPDATE SET doc = EXCLUDED.doc', [col, doc.id, JSON.stringify(doc)]); },
+    async del(col, id) { await init(); return q('DELETE FROM bp_admin WHERE col = $1 AND id = $2', [col, id]); },
+    async clear(col) { await init(); return q('DELETE FROM bp_admin WHERE col = $1', [col]); },
   };
 }
 
@@ -154,4 +185,4 @@ function createHandler(opts = {}) {
 
 module.exports = createHandler();
 module.exports.createHandler = createHandler;
-module.exports._t = { makeToken, validToken, makeStore, storeConfig, COLS };
+module.exports._t = { makeToken, validToken, makeStore, storeConfig, neonEndpoint, COLS };

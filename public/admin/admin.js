@@ -94,7 +94,7 @@ async function boot() {
   const me = await api({ a: 'me' });
   if (me.status === 503) {
     $('#setup').hidden = false;
-    $('#setup-list').innerHTML = (me.missing?.store ? '<li>Veri deposu (Upstash Redis) bağlı değil.</li>' : '') + (me.missing?.password ? '<li>ADMIN_PASSWORD tanımlı değil.</li>' : '');
+    $('#setup-list').innerHTML = (me.missing?.store ? '<li>Veri deposu (Neon ya da Upstash) bağlı değil.</li>' : '') + (me.missing?.password ? '<li>ADMIN_PASSWORD tanımlı değil.</li>' : '');
     return;
   }
   if (!me.ok) return showLogin();

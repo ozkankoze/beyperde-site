@@ -5,8 +5,9 @@ Resmî defter, e-fatura ya da beyanname yerine geçmez.
 
 ## Kurulum (bir kez yapılır)
 
-1. **Veri deposu:** Vercel → proje (beyperde-site) → **Storage** → **Create Database** → **Upstash for Redis** (ücretsiz plan) → projeye bağla.
-   Bağlayınca `KV_REST_API_URL` ve `KV_REST_API_TOKEN` (ya da `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`) ortam değişkenleri kendiliğinden eklenir.
+1. **Veri deposu:** Vercel → proje (beyperde-site) → **Storage** → **Neon** (ücretsiz plan, bölge Frankfurt, Auth kapalı) → projeye bağla.
+   Bağlayınca `DATABASE_URL` kendiliğinden eklenir; panel tablosunu ilk kullanımda kendisi oluşturur.
+   (Upstash for Redis da desteklenir: `KV_REST_API_URL` / `KV_REST_API_TOKEN`.)
 2. **Şifre:** Vercel → proje → **Settings → Environment Variables**:
    - `ADMIN_PASSWORD`: panel şifresi (en az 12 karakter; kimseyle paylaşmayın).
    - `ADMIN_SESSION_SECRET`: 40 karakterden uzun, rastgele bir metin (oturum çerezini imzalar).

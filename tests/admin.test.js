@@ -76,3 +76,25 @@ test('yedekten yükleme onay ister', async () => {
   const r = await call(h, { a: 'import', confirm: 'YEDEKTEN_YUKLE', data: { kalemler: [{ id: 'k1', ad: 'A' }] } }, { headers: { cookie } });
   assert.strictEqual(r.body.n, 1);
 });
+
+test('Neon: uç nokta ve SQL ile kaydet / listele / sil', async () => {
+  const conn = 'postgresql://u:p@ep-cool-name-123-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require';
+  assert.strictEqual(_t.neonEndpoint(conn), 'https://api.eu-central-1.aws.neon.tech/sql');
+  const rows = new Map(); const seen = [];
+  const f = async (url, o) => {
+    assert.strictEqual(o.headers['Neon-Connection-String'], conn);
+    const { query, params } = JSON.parse(o.body); seen.push(query);
+    let out = [];
+    if (/^INSERT/.test(query)) rows.set(params[0] + '|' + params[1], params[2]);
+    else if (/^SELECT/.test(query)) out = [...rows].filter(([k]) => k.startsWith(params[0] + '|')).map(([, v]) => [v]);
+    else if (/^DELETE.*id/.test(query)) rows.delete(params[0] + '|' + params[1]);
+    return { ok: true, json: async () => ({ rows: out }) };
+  };
+  const h = createHandler({ env: { ADMIN_PASSWORD: 'dogru-sifre', ADMIN_SESSION_SECRET: 'x'.repeat(40), DATABASE_URL: conn }, fetch: f });
+  const cookie = await login(h);
+  const s = await call(h, { a: 'save', col: 'giderler', doc: { matrah: 100 } }, { headers: { cookie } });
+  assert.strictEqual((await call(h, { a: 'list', col: 'giderler' }, { headers: { cookie } })).body.docs[0].matrah, 100);
+  await call(h, { a: 'del', col: 'giderler', id: s.body.doc.id }, { headers: { cookie } });
+  assert.strictEqual((await call(h, { a: 'list', col: 'giderler' }, { headers: { cookie } })).body.docs.length, 0);
+  assert.ok(seen[0].startsWith('CREATE TABLE IF NOT EXISTS bp_admin'));
+});
