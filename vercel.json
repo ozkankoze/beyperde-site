@@ -150,11 +150,7 @@
   "rewrites": [
     {
       "source": "/tr/admin",
-      "destination": "/admin/index.html"
-    },
-    {
-      "source": "/admin",
-      "destination": "/admin/index.html"
+      "destination": "/admin"
     }
   ]
 }
