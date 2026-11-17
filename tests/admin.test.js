@@ -13,6 +13,7 @@ function fakeFetch(db = {}) {
     db[k] = db[k] || {};
     let result = null;
     if (c === 'HGETALL') result = Object.entries(db[k]).flat();
+    if (c === 'HGET') result = db[k][a[0]] ?? null;
     if (c === 'HSET') { db[k][a[0]] = a[1]; result = 1; }
     if (c === 'HDEL') { delete db[k][a[0]]; result = 1; }
     if (c === 'DEL') { delete db[k]; result = 1; }
@@ -86,6 +87,7 @@ test('Neon: uç nokta ve SQL ile kaydet / listele / sil', async () => {
     const { query, params } = JSON.parse(o.body); seen.push(query);
     let out = [];
     if (/^INSERT/.test(query)) rows.set(params[0] + '|' + params[1], params[2]);
+    else if (/^SELECT.*AND id/.test(query)) out = rows.has(params[0] + '|' + params[1]) ? [[rows.get(params[0] + '|' + params[1])]] : [];
     else if (/^SELECT/.test(query)) out = [...rows].filter(([k]) => k.startsWith(params[0] + '|')).map(([, v]) => [v]);
     else if (/^DELETE.*id/.test(query)) rows.delete(params[0] + '|' + params[1]);
     return { ok: true, json: async () => ({ rows: out }) };
@@ -97,4 +99,33 @@ test('Neon: uç nokta ve SQL ile kaydet / listele / sil', async () => {
   await call(h, { a: 'del', col: 'giderler', id: s.body.doc.id }, { headers: { cookie } });
   assert.strictEqual((await call(h, { a: 'list', col: 'giderler' }, { headers: { cookie } })).body.docs.length, 0);
   assert.ok(seen[0].startsWith('CREATE TABLE IF NOT EXISTS bp_admin'));
+});
+
+test('fotoğraf: yalnızca resim kabul edilir, siparişe göre listelenir', async () => {
+  const h = createHandler({ env: ENV, fetch: fakeFetch() });
+  const cookie = await login(h);
+  assert.strictEqual((await call(h, { a: 'save', col: 'fotolar', doc: { satisId: 's1', data: 'javascript:alert(1)' } }, { headers: { cookie } })).code, 400);
+  await call(h, { a: 'save', col: 'fotolar', doc: { satisId: 's1', data: 'data:image/jpeg;base64,AAAA' } }, { headers: { cookie } });
+  await call(h, { a: 'save', col: 'fotolar', doc: { satisId: 's2', data: 'data:image/jpeg;base64,BBBB' } }, { headers: { cookie } });
+  const r = await call(h, { a: 'fotolar', satisId: 's1' }, { headers: { cookie } });
+  assert.strictEqual(r.body.docs.length, 1);
+  const all = await call(h, { a: 'all' }, { headers: { cookie } });
+  assert.strictEqual(all.body.data.fotolar, undefined);
+});
+test('haftalık sunucu yedeği alınır ve geri dönülebilir', async () => {
+  let t = Date.parse('2026-11-01T10:00:00Z');
+  const h = createHandler({ env: ENV, fetch: fakeFetch(), now: () => t });
+  const cookie = await login(h);
+  await call(h, { a: 'save', col: 'kalemler', doc: { id: 'k1', ad: 'Eski' } }, { headers: { cookie } });
+  await call(h, { a: 'all' }, { headers: { cookie } });
+  let y = (await call(h, { a: 'yedekler' }, { headers: { cookie } })).body.items;
+  assert.strictEqual(y.length, 1);
+  t += 6 * 3600e3; await call(h, { a: 'all' }, { headers: { cookie } });
+  assert.strictEqual((await call(h, { a: 'yedekler' }, { headers: { cookie } })).body.items.length, 1, 'bir hafta dolmadan yeni yedek alınmaz');
+  await call(h, { a: 'save', col: 'kalemler', doc: { id: 'k1', ad: 'Yeni' } }, { headers: { cookie } });
+  assert.strictEqual((await call(h, { a: 'yedege-don', id: y[0].id }, { headers: { cookie } })).code, 400, 'onaysız geri dönüş reddedilir');
+  const r = await call(h, { a: 'yedege-don', id: y[0].id, confirm: 'YEDEGE_DON' }, { headers: { cookie } });
+  assert.strictEqual(r.body.n, 1);
+  assert.strictEqual((await call(h, { a: 'list', col: 'kalemler' }, { headers: { cookie } })).body.docs[0].ad, 'Eski');
+  assert.strictEqual((await call(h, { a: 'yedekler' }, { headers: { cookie } })).body.items[0].neden, 'geri dönüş öncesi');
 });

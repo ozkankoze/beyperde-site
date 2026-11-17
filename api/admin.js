@@ -11,7 +11,11 @@
 
 const crypto = require('crypto');
 
-const COLS = ['kalemler', 'satislar', 'alislar', 'giderler', 'ayarlar'];
+const COLS = ['kalemler', 'satislar', 'alislar', 'giderler', 'ayarlar', 'virmanlar'];   // 'all' ile yüklenen ve yedeğe giren kayıtlar
+const FOTO = 'fotolar';            // sipariş fotoğrafları: yalnızca ilgili sipariş açılınca yüklenir
+const YEDEK = 'yedekler', YMETA = 'yedekmeta';
+const KEEP_SNAPSHOTS = 6, SNAPSHOT_DAYS = 7;
+const MAX_FOTO = 900 * 1024;
 const PREFIX = 'bp:admin:';
 const SESSION_HOURS = 12;
 const MAX_DOC = 200 * 1024;
@@ -42,6 +46,8 @@ function makeRedisStore(cfg, fetchImpl) {
       for (let i = 0; i < arr.length; i += 2) { try { out.push(JSON.parse(arr[i + 1])); } catch (_) { /* bozuk kayıt atlanır */ } }
       return out;
     },
+    async get(col, id) { const v = await cmd(['HGET', PREFIX + col, id]); try { return v ? JSON.parse(v) : null; } catch (_) { return null; } },
+    async listBy(col, key, val) { return (await this.list(col)).filter((d) => d[key] === val); },
     save: (col, doc) => cmd(['HSET', PREFIX + col, doc.id, JSON.stringify(doc)]),
     del: (col, id) => cmd(['HDEL', PREFIX + col, id]),
     clear: (col) => cmd(['DEL', PREFIX + col]),
@@ -67,6 +73,13 @@ function makeNeonStore(cfg, fetchImpl) {
       await init();
       const out = [];
       for (const row of await q('SELECT doc::text FROM bp_admin WHERE col = $1', [col])) { try { out.push(JSON.parse(row[0])); } catch (_) { /* bozuk kayıt atlanır */ } }
+      return out;
+    },
+    async get(col, id) { await init(); const r = await q('SELECT doc::text FROM bp_admin WHERE col = $1 AND id = $2', [col, id]); try { return r[0] ? JSON.parse(r[0][0]) : null; } catch (_) { return null; } },
+    async listBy(col, key, val) {
+      await init();
+      const out = [];
+      for (const row of await q('SELECT doc::text FROM bp_admin WHERE col = $1 AND doc->>$2 = $3', [col, key, val])) { try { out.push(JSON.parse(row[0])); } catch (_) { /* atla */ } }
       return out;
     },
     async save(col, doc) { await init(); return q('INSERT INTO bp_admin (col, id, doc) VALUES ($1, $2, $3::jsonb) ON CONFLICT (col, id) DO UPDATE SET doc = EXCLUDED.doc', [col, doc.id, JSON.stringify(doc)]); },
@@ -114,6 +127,34 @@ async function readBody(req) {
 }
 const cleanId = (s) => String(s || '').replace(/[^\w-]/g, '').slice(0, 64);
 
+/* ---------- sunucu tarafı anlık yedek (haftada bir, son 6 tanesi saklanır) ---------- */
+async function snapshot(store, data, t, why) {
+  const meta = (await store.get(YMETA, 'liste')) || { id: 'liste', items: [] };
+  const id = 'y' + t;
+  const n = COLS.reduce((a, c) => a + (data[c] || []).length, 0);
+  await store.save(YEDEK, { id, tarih: new Date(t).toISOString(), neden: why, n, data });
+  meta.items = [{ id, tarih: new Date(t).toISOString(), neden: why, n }, ...meta.items];
+  for (const old of meta.items.slice(KEEP_SNAPSHOTS)) await store.del(YEDEK, old.id);
+  meta.items = meta.items.slice(0, KEEP_SNAPSHOTS);
+  await store.save(YMETA, meta);
+  return meta.items;
+}
+async function maybeSnapshot(store, data, t) {
+  const meta = await store.get(YMETA, 'liste');
+  const last = meta && meta.items[0] ? Date.parse(meta.items[0].tarih) : 0;
+  const n = COLS.reduce((a, c) => a + (data[c] || []).length, 0);
+  if (n && t - last > SNAPSHOT_DAYS * 864e5) await snapshot(store, data, t, 'haftalık');
+}
+async function replaceAll(store, data) {
+  let n = 0;
+  for (const c of COLS) {
+    if (!Array.isArray(data[c])) continue;
+    await store.clear(c);
+    for (const d of data[c]) { if (d && cleanId(d.id) && JSON.stringify(d).length <= MAX_DOC) { await store.save(c, { ...d, id: cleanId(d.id) }); n++; } }
+  }
+  return n;
+}
+
 /* ---------- işleyici ---------- */
 function createHandler(opts = {}) {
   const env = opts.env || process.env;
@@ -150,29 +191,47 @@ function createHandler(opts = {}) {
         case 'all': {
           const data = {};
           for (const c of COLS) data[c] = await store.list(c);
+          try { await maybeSnapshot(store, data, now()); } catch (e) { console.error('snapshot', e && e.message); }
           return send(res, 200, { ok: true, data });
         }
         case 'save': {
-          if (!COLS.includes(b.col) || !b.doc || typeof b.doc !== 'object') return send(res, 400, { ok: false, error: 'doc' });
+          if (!(COLS.includes(b.col) || b.col === FOTO) || !b.doc || typeof b.doc !== 'object') return send(res, 400, { ok: false, error: 'doc' });
           const doc = { ...b.doc, id: cleanId(b.doc.id) || crypto.randomUUID(), guncelleme: new Date(now()).toISOString() };
-          if (JSON.stringify(doc).length > MAX_DOC) return send(res, 400, { ok: false, error: 'too_large' });
+          if (b.col === FOTO && (!cleanId(doc.satisId) || !/^data:image\/(jpeg|png|webp);base64,/.test(String(doc.data)))) return send(res, 400, { ok: false, error: 'foto' });
+          if (JSON.stringify(doc).length > (b.col === FOTO ? MAX_FOTO : MAX_DOC)) return send(res, 400, { ok: false, error: 'too_large' });
           await store.save(b.col, doc);
           return send(res, 200, { ok: true, doc });
         }
         case 'del': {
-          if (!COLS.includes(b.col) || !cleanId(b.id)) return send(res, 400, { ok: false, error: 'id' });
+          if (!(COLS.includes(b.col) || b.col === FOTO) || !cleanId(b.id)) return send(res, 400, { ok: false, error: 'id' });
           await store.del(b.col, cleanId(b.id));
           return send(res, 200, { ok: true });
         }
-        case 'import': {   // yedekten geri yükleme: seçilen koleksiyonlar tamamen değiştirilir
+        case 'import': {   // yedekten geri yükleme: seçilen koleksiyonlar tamamen değiştirilir (önce mevcut hâlin anlık yedeği alınır)
           if (b.confirm !== 'YEDEKTEN_YUKLE' || !b.data || typeof b.data !== 'object') return send(res, 400, { ok: false, error: 'confirm' });
-          let n = 0;
-          for (const c of COLS) {
-            if (!Array.isArray(b.data[c])) continue;
-            await store.clear(c);
-            for (const d of b.data[c]) { if (d && cleanId(d.id) && JSON.stringify(d).length <= MAX_DOC) { await store.save(c, { ...d, id: cleanId(d.id) }); n++; } }
-          }
-          return send(res, 200, { ok: true, n });
+          const cur = {}; for (const c of COLS) cur[c] = await store.list(c);
+          await snapshot(store, cur, now(), 'geri yükleme öncesi');
+          return send(res, 200, { ok: true, n: await replaceAll(store, b.data) });
+        }
+        case 'fotolar': {
+          if (!cleanId(b.satisId)) return send(res, 400, { ok: false, error: 'id' });
+          return send(res, 200, { ok: true, docs: await store.listBy(FOTO, 'satisId', cleanId(b.satisId)) });
+        }
+        case 'yedekler': {
+          const meta = await store.get(YMETA, 'liste');
+          return send(res, 200, { ok: true, items: meta ? meta.items : [] });
+        }
+        case 'yedek-al': {
+          const cur = {}; for (const c of COLS) cur[c] = await store.list(c);
+          return send(res, 200, { ok: true, items: await snapshot(store, cur, now(), 'elle') });
+        }
+        case 'yedege-don': {
+          if (b.confirm !== 'YEDEGE_DON' || !cleanId(b.id)) return send(res, 400, { ok: false, error: 'confirm' });
+          const y = await store.get(YEDEK, cleanId(b.id));
+          if (!y || !y.data) return send(res, 404, { ok: false, error: 'yok' });
+          const cur = {}; for (const c of COLS) cur[c] = await store.list(c);
+          await snapshot(store, cur, now(), 'geri dönüş öncesi');
+          return send(res, 200, { ok: true, n: await replaceAll(store, y.data) });
         }
         default: return send(res, 400, { ok: false, error: 'action' });
       }
