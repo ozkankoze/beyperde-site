@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bey Perde Yönetim Paneli</title>
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div id="app">
+  <section class="login" id="login" hidden>
+    <form class="login-card" id="login-form">
+      <img src="/brand/logo-brown-192.webp" width="96" height="96" alt="Bey Perde">
+      <h1>Yönetim Paneli</h1>
+      <label for="pw">Şifre</label>
+      <input id="pw" name="password" type="password" autocomplete="current-password" required>
+      <button class="btn" type="submit">Giriş yap</button>
+      <p class="msg" id="login-msg" role="alert"></p>
+    </form>
+  </section>
+
+  <section class="setup" id="setup" hidden>
+    <div class="login-card">
+      <img src="/brand/logo-brown-192.webp" width="96" height="96" alt="Bey Perde">
+      <h1>Kurulum tamamlanmadı</h1>
+      <p>Panelin çalışması için Vercel'de veri deposu ve şifre tanımlanmalı. Adımlar <code>docs/ADMIN.md</code> dosyasında.</p>
+      <ul id="setup-list"></ul>
+    </div>
+  </section>
+
+  <div class="shell" id="shell" hidden>
+    <aside class="side">
+      <a class="brand" href="#ozet"><img src="/brand/logo-brown-96.webp" width="40" height="40" alt="">Bey Perde</a>
+      <nav id="nav" aria-label="Panel">
+        <a href="#ozet">Özet ve rapor</a>
+        <a href="#satislar">Satışlar</a>
+        <a href="#alislar">Alışlar</a>
+        <a href="#giderler">Giderler</a>
+        <a href="#kalemler">Kalemler</a>
+        <a href="#pdf">PDF kontrol</a>
+        <a href="#etiket">Etiket yazdır</a>
+        <a href="#ayarlar">Ayarlar ve yedek</a>
+      </nav>
+      <button class="btn-ghost" id="logout" type="button">Çıkış</button>
+    </aside>
+    <main class="main" id="main" tabindex="-1"></main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="dlg"><form method="dialog" id="dlg-form"></form></dialog>
+<div id="print-area"></div>
+<script type="module" src="/admin/admin.js"></script>
+</body>
+</html>

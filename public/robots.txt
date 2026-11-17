@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /admin/
+Disallow: /tr/admin
 
 Sitemap: https://www.beyperde.com/sitemap.xml

@@ -515,6 +515,9 @@ def copy_static():
         shutil.rmtree(os.path.join(PUB, 'intro'))
     if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro')):
         shutil.copytree(os.path.join(ROOT, 'src', 'static', 'intro'), os.path.join(PUB, 'intro'))
+    if os.path.exists(os.path.join(PUB, 'admin')):
+        shutil.rmtree(os.path.join(PUB, 'admin'))
+    shutil.copytree(os.path.join(ROOT, 'src', 'admin'), os.path.join(PUB, 'admin'))   # yönetim paneli (noindex)
     for f in os.listdir(os.path.join(ROOT, 'src', 'static')):
         p = os.path.join(ROOT, 'src', 'static', f)
         if os.path.isfile(p):
@@ -563,7 +566,7 @@ def sitemap():
            'xmlns:xhtml="http://www.w3.org/1999/xhtml" '
            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + '\n'.join(rows) + '\n</urlset>\n')
     open(os.path.join(PUB, 'sitemap.xml'), 'w').write(xml)
-    open(os.path.join(PUB, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {D.SITE}/sitemap.xml\n')
+    open(os.path.join(PUB, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\nDisallow: /tr/admin\n\nSitemap: {D.SITE}/sitemap.xml\n')
 
 
 _TAG = re.compile(r'<[^>]+>')

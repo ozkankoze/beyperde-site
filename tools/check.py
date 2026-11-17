@@ -95,7 +95,8 @@ def resolve(path):
 
 def main():
     pages = {}
-    for d, _, fs in os.walk(ROOT):
+    for d, dirs, fs in os.walk(ROOT):
+        dirs[:] = [x for x in dirs if not (d == ROOT and x == 'admin')]   # yönetim paneli: tek sayfalık uygulama, site denetimi dışında
         for f in fs:
             if f.endswith('.html'):
                 p = os.path.join(d, f)
