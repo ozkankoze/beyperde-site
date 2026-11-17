@@ -1,5 +1,7 @@
 # Bey Perde Journal — yazı ekleme
 
+Günlük yayın sırası ve konular: `docs/BLOG-TAKVIM.md` (her sabah 09:00 zamanlanmış görevle yayınlanır).
+
 Yazılar `src/content/blog/` klasöründe, her biri ayrı bir `.md` (Markdown) dosyasıdır.
 Adres: `/<dil>/blog/<adres>` (adres verilmezse dosya adı kullanılır).
 

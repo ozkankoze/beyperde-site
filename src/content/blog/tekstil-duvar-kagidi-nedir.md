@@ -1,7 +1,7 @@
 ---
 baslik: Tekstil duvar kağıdı nedir? Özellikleri ve kullanım alanları
 seo_baslik: Tekstil Duvar Kağıdı Nedir? Özellikleri ve Kullanımı
-tarih: 2026-11-27
+tarih: 2026-12-08
 aciklama: Tekstil duvar kağıdı, yüzeyi gerçek kumaştan oluşan bir duvar kaplamasıdır. Doku, ses, bakım, uygulama ve hangi odalara uygun olduğu.
 kapak: urunler/tekstil-1
 kategori: duvar-kagidi

@@ -1,13 +1,13 @@
 ---
-baslik: Çekmeköy perdeci rehberi: ölçü, dikim ve montaj süreci
-seo_baslik: Çekmeköy Perdeci Rehberi: Ölçü, Dikim ve Montaj
-tarih: 2026-11-27
-aciklama: Çekmeköy'de özel dikim perde nasıl yaptırılır? Ofiste kumaş seçimi, yerinde ölçü, atölyede dikim, montaj ve bakım; adım adım süreç.
+baslik: Çekmeköy perdeci: ölçüden montaja özel dikim perde
+seo_baslik: Çekmeköy Perdeci | Ölçü, Dikim ve Montaj | Bey Perde
+tarih: 2026-11-17
+aciklama: Çekmeköy perdeci arıyorsanız: ofiste kumaş seçimi, yerinde ölçü, Çekmeköy atölyesinde dikim, kendi ekibimizle montaj ve 3 yıl garanti.
 kapak: iletisim/ofis
 kategori: atolyeden
 yazar: Bey Perde
 urunler: tul-perde, fon-perde, stor-perde
-etiketler: Çekmeköy perdeci, Perde ölçüsü, Perdeci seçimi
+etiketler: Çekmeköy perdeci, Çekmeköy perde, Perde ölçüsü, Perdeci seçimi
 dil: tr
 ---
 
@@ -94,6 +94,10 @@ Mesai saatlerinde ofisimizdeyiz; yine de kartelaları ve numuneleri sizin için 
 ### Perdeler ne kadar sürede hazırlanır?
 
 Ölçü alınıp kumaş seçildikten sonra siparişler 3–8 iş günü içinde atölyemizde hazırlanır. Montajı kendi ekibimiz yapar.
+
+### Çekmeköy'ün hangi mahallelerine ölçüye geliyorsunuz?
+
+Atölyemiz Ekşioğlu Mahallesi'nde; Çekmeköy'ün tamamında çalışıyoruz. Taşdelen, Mimar Sinan, Merkez, Hamidiye, Mehmet Akif, Çatalmeşe, Alemdağ, Ömerli ve Reşadiye gibi mahallelerdeki daire, site ve villalarda ölçüyü yerinde alıyoruz.
 
 ### Çekmeköy dışına da hizmet veriyor musunuz?
 

@@ -1,7 +1,7 @@
 ---
 baslik: Rustik perde nedir? Modern evlerde kullanım önerileri
 seo_baslik: Rustik Perde Nedir? Modern Evlerde Kullanım Önerileri
-tarih: 2026-11-20
+tarih: 2026-12-02
 aciklama: Rustik perde, kumaşın dekoratif bir borunun üzerinde halka ya da kuşgözüyle asıldığı kurulumdur. Boru, başlık ve asım seçimi; modern evlere öneriler.
 kapak: urunler/rustik-perde/siyah-pencere
 kategori: perde-rehberi

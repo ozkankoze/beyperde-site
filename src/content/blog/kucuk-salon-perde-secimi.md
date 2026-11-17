@@ -1,7 +1,7 @@
 ---
 baslik: Küçük salonlar için perde seçimi: alanı geniş gösteren modeller
 seo_baslik: Küçük Salon İçin Perde Seçimi: Ferah Gösteren Modeller
-tarih: 2026-11-20
+tarih: 2026-11-30
 aciklama: Küçük salonu geniş göstermek için tavandan yere perde, açık tonlar, ince tül, pencereden geniş ray ve sade pile. Modeller ve uygulama ipuçları.
 kapak: projeler/sile-akcekese/pencere-tul
 kategori: dekorasyon

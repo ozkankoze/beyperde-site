@@ -1,7 +1,7 @@
 ---
 baslik: Motorlu perde sistemleri nedir? Avantajları ve kullanım alanları
 seo_baslik: Motorlu Perde Sistemleri Nedir? Avantajları ve Kullanımı
-tarih: 2026-11-27
+tarih: 2026-12-04
 aciklama: Motorlu perde; tül, fon, stor ve zebrayı kumanda, duvar anahtarı ya da telefonla yönetir. Nasıl çalışır, nerede gerekir, elektrik ve montaj.
 kapak: urunler/motorlu-perde-1
 kategori: perde-rehberi

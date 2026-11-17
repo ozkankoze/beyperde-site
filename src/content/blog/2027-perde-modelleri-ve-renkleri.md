@@ -1,7 +1,7 @@
 ---
 baslik: 2027'nin trend perde modelleri ve renkleri
 seo_baslik: 2027 Trend Perde Modelleri ve Renkleri
-tarih: 2026-11-20
+tarih: 2026-11-28
 aciklama: 2027'de perdede doğal ve dokulu kumaşlar, yeşil ve toprak tonları, tavandan yere sade çizgiler, gizli raylar ve motorlu sistemler öne çıkıyor.
 kapak: urunler/fon-perde/zeytin-doku
 kategori: dekorasyon

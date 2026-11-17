@@ -1,7 +1,7 @@
 ---
 baslik: Duvar kağıdı mı boya mı? Avantajları, dezavantajları ve maliyetleri
 seo_baslik: Duvar Kağıdı mı Boya mı? Avantajlar ve Maliyet Farkı
-tarih: 2026-11-27
+tarih: 2026-12-06
 aciklama: Boya hızlı ve kolay yenilenir; duvar kağıdı doku, desen ve dayanıklılık katar. Hangi oda için hangisi, maliyeti ne belirler? Karşılaştırmalı rehber.
 kapak: urunler/duvar-kagidi-1
 kategori: duvar-kagidi

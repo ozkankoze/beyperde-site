@@ -1,7 +1,7 @@
 ---
 baslik: Villa ve lüks konutlar için perde seçimi nasıl yapılır?
 seo_baslik: Villa ve Lüks Konutlar İçin Perde Seçimi Rehberi
-tarih: 2026-11-27
+tarih: 2026-12-10
 aciklama: Yüksek tavan, geniş cam cephe, gizli ray, motorlu sistem ve kumaş seçimi. Villa ve lüks konutlarda perdeyi mimariyle birlikte planlama rehberi.
 kapak: projeler/sile-akcekese/keten-tul-bahce
 kategori: dekorasyon

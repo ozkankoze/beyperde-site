@@ -1,7 +1,7 @@
 ---
 baslik: Blackout perde nedir? Karartma perde seçim rehberi
 seo_baslik: Blackout Perde Nedir? Karartma Perde Seçim Rehberi
-tarih: 2026-11-20
+tarih: 2026-11-26
 aciklama: Blackout perde ışığı geçirmeyen sık dokulu ya da kaplamalı kumaştır. Odayı tam karartmak için kumaş kadar montaj da önemli. Seçim rehberi.
 kapak: urunler/blackout-perde/tul-ile
 kategori: perde-rehberi

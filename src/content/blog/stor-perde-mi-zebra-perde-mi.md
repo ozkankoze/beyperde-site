@@ -1,7 +1,7 @@
 ---
 baslik: Stor perde mi zebra perde mi? Avantajları ve farkları
 seo_baslik: Stor Perde mi Zebra Perde mi? Farkları ve Avantajları
-tarih: 2026-11-20
+tarih: 2026-11-24
 aciklama: Stor perde tek parça kumaştır, açık ya da kapalı kullanılır. Zebra perdede bantlar kayar, ışık kademeli ayarlanır. Hangi oda için hangisi?
 kapak: urunler/stor-perde/kose-salon
 kategori: perde-rehberi
