@@ -696,6 +696,10 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 /* yazdırma */
 @media print{.site-header,.wa-float,.cookie,.mmenu,.intro{display:none!important}body{background:#fff}}
 .intro.mobile{block-size:560vh}
+/* otomatik oynayan giriş: tek ekran yüksekliği, kaydırma ipucu gizli */
+.intro.auto,.intro.auto.mobile{block-size:100svh}
+.intro.auto .stage{position:relative;block-size:100svh}
+.intro.auto .ihint{display:none}
 /* mobil: kapalı kapının üzerindeki logo (kaydırınca kapı açılırken kaybolur) */
 .idoor{display:none;position:absolute;z-index:3;left:50%;top:21%;inline-size:min(38vw,170px);translate:-50% 0;pointer-events:none}
 .idoor img{inline-size:100%;block-size:auto;filter:sepia(.55) saturate(1.5) brightness(.92) drop-shadow(0 1px 0 rgba(20,12,6,.6)) drop-shadow(0 -1px 0 rgba(255,232,190,.18));opacity:.92}

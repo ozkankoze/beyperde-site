@@ -1,4 +1,4 @@
-/* Bey Perde — giriş animasyonu: tek parça video, sayfa kaydırıldıkça ileri/geri oynatılır.
+/* Bey Perde — giriş animasyonu: tek parça video, sayfa açılınca kendiliğinden oynar ve son karede kalır (kaydırma gerekmez).
    Video bir kez belleğe (blob) alınır; böylece her konuma anında atlanır.
    Hareket azaltma, veri tasarrufu ve düşük güçlü cihazlarda yalnızca ilk kare (statik görsel) gösterilir. */
 (() => {
@@ -19,6 +19,7 @@
 
   function goStatic() { intro.classList.add('static'); intro.classList.remove('ready'); document.dispatchEvent(new CustomEvent('bp:intro-static')); }
   if (!vid || mqReduce.matches || lowEnd) { goStatic(); return; }
+  intro.classList.add('auto');
 
   skip && skip.addEventListener('click', (ev) => {
     ev.preventDefault();
@@ -46,15 +47,14 @@
       .then((b) => URL.createObjectURL(b))
       .catch(() => SRC)
       .then((url) => {
-        vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); }, { once: true });
+        vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); setTimeout(autoplay, HOLD); }, { once: true });
         vid.addEventListener('error', goStatic, { once: true });
         vid.preload = 'auto'; vid.src = url; vid.load();
       });
   }
   EV.forEach((t) => addEventListener(t, start, { passive: true }));
-  const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
-  const later = () => setTimeout(() => idle(start, { timeout: 2000 }), 2500);
-  if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+  // otomatik oynatma: video sayfa yüklenir yüklenmez indirilir
+  if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
 
   // Ürün bölümleri: kaydırma oranı a→b arasında ok + yazı görünür. key: okun başladığı halkanın videodaki yeri (0..1);
   // halka ekranda sabit durur. pos: yazının ekrandaki yeri (masaüstü / dar ekran). v: dikey (telefon) videosundaki yer ve zaman. Sıra videodaki sırayla aynıdır.
@@ -149,7 +149,29 @@
     if (idx !== lastIdx) { railLi.forEach((r, i) => r.classList.toggle('on', i === idx)); lastIdx = idx; }
     st(rail, 'opacity', String(sm(0.03, 0.09, p).toFixed(3)));
     st(bar, 'transform', String(`scaleX(${p.toFixed(3)})`));
-    if (skip) { const so = 1 - sm(0.9, 0.97, p); st(skip, 'opacity', String(so.toFixed(3))); st(skip, 'visibility', String(so < 0.02 ? 'hidden' : 'visible')); }
+    if (skip) { const so = intro.classList.contains('auto') ? 1 : 1 - sm(0.9, 0.97, p); st(skip, 'opacity', String(so.toFixed(3))); st(skip, 'visibility', String(so < 0.02 ? 'hidden' : 'visible')); }
+  }
+
+  /* ---------- otomatik oynatma ---------- */
+  // Giriş karesi (başlık ve kapıdaki logo) kısa bir süre görünür, sonra video kendi hızında oynar; bitince son karede kalır.
+  // Tarayıcı otomatik oynatmayı reddederse (ör. güç tasarrufu) video aynı hızda kare kare ilerletilir.
+  const HOLD = 1600;
+  let mode = '', t0 = 0, done = false;
+  vid.loop = false;
+  vid.addEventListener('ended', () => { done = true; dirty = true; wake(); });
+  function autoplay() {
+    if (mode) return;
+    const p = vid.play();
+    const clock = () => { if (mode === 'play') return; mode = 'clock'; t0 = performance.now(); wake(); };
+    if (p && p.then) p.then(() => { mode = 'play'; wake(); }, clock); else { mode = 'play'; wake(); }
+    setTimeout(() => { if (mode === 'play' && vid.paused && !done && vid.currentTime < 0.05) clock(); }, 1500);
+  }
+  function progress(now) {
+    const len = Math.min(DUR, vid.duration || DUR) - 0.05;
+    if (done) return 1;
+    if (mode === 'play') return clamp(vid.currentTime / len);
+    if (mode === 'clock') { const q = clamp((now - t0) / (len * 1000)); if (q >= 1) done = true; return q; }
+    return 0;
   }
 
   /* ---------- döngü ---------- */
@@ -172,11 +194,10 @@
   function frame(now) {
     raf = 0;
     const dt = Math.min(0.1, (now - last) / 1000); last = now;
-    target = clamp((window.scrollY - top0) / span);
-    cur += (target - cur) * (1 - Math.exp(-dt * 9));
-    if (Math.abs(target - cur) < 0.0002) cur = target;
-    pan(cur); const pending = seek(cur); overlay(cur);
-    if (cur !== target || dirty || pending) { dirty = false; raf = requestAnimationFrame(frame); }
+    void dt;
+    cur = target = progress(now);
+    pan(cur); const pending = mode === 'clock' || (mode === '' && ready) ? seek(cur) : false; overlay(cur);
+    if ((mode && !done) || dirty || pending) { dirty = false; raf = requestAnimationFrame(frame); }
   }
   let lw = 0, lh = 0;
   function resize(force) {
@@ -185,14 +206,13 @@
     if (!force && w === lw && Math.abs(h - lh) < 2) return;
     lw = w; lh = h; VW = w; VH = h; isMob = w < 700 || w / h < 1;
     intro.classList.toggle('mobile', isMob);
-    measure(); geom(); readScroll();
+    measure(); geom();
     dirty = true; wake();
   }
-  addEventListener('scroll', readScroll, { passive: true });
   addEventListener('resize', () => resize(false));
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) wake(); }).observe(intro);
   mqReduce.addEventListener && mqReduce.addEventListener('change', (ev) => { if (ev.matches) goStatic(); });
-  resize(true); readScroll(); cur = target;
+  resize(true);
   document.fonts && document.fonts.ready.then(() => { measure(); geom(); dirty = true; wake(); });
   document.dispatchEvent(new CustomEvent('bp:intro-ready'));
 })();
