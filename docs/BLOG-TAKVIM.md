@@ -13,7 +13,7 @@ Hizmet bölgeleri yalnızca şunlardır: **Çekmeköy, Şile, Ağva, Riva, Beyko
 |---|---|---|---|
 | ✅ 2026-11-17 | Hazır | cekmekoy-perdeci | Çekmeköy perdeci: ölçüden montaja özel dikim perde — *çekmeköy perdeci* |
 | ✅ 2026-11-18 | Hazır | sile-perdeci | Şile perdeci: Şile'deki ev ve yazlıklar için perde — *şile perdeci, şile perde* |
-| 2026-11-19 | Yazılacak | beykoz-perdeci | Beykoz perdeci: daire, köşk ve villalar için özel dikim perde — *beykoz perdeci* |
+| ✅ 2026-11-19 | Hazır | beykoz-perdeci | Beykoz perdeci: daire, köşk ve villalar için özel dikim perde — *beykoz perdeci* |
 | 2026-11-20 | Yazılacak | riva-perdeci | Riva perdeci: deniz kenarındaki ev ve villalar için perde — *riva perdeci* |
 | 2026-11-21 | Yazılacak | agva-perdeci | Ağva perdeci: dere ve orman kenarındaki ev ve bungalovlar için perde — *ağva perdeci* |
 | 2026-11-22 | Yazılacak | cekmekoy-duvar-kagidi | Çekmeköy duvar kağıdı: seçim, ölçü ve uygulama — *çekmeköy duvar kağıdı* |
