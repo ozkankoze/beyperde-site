@@ -149,7 +149,7 @@
   /* ---------- otomatik oynatma ---------- */
   // Giriş karesi (başlık ve kapıdaki logo) kısa bir süre görünür, sonra video kendi hızında oynar; bitince son karede kalır.
   // Tarayıcı otomatik oynatmayı reddederse (ör. güç tasarrufu) video aynı hızda kare kare ilerletilir.
-  const SPEED = 1.3;   // video normal hızın 1,3 katında oynar
+  const SPEED = 1.7;   // video normal hızın 1,7 katında oynar
   let mode = '', t0 = 0, done = false;
   vid.loop = false;
   vid.addEventListener('ended', () => { done = true; dirty = true; wake(); });
