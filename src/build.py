@@ -192,14 +192,14 @@ def header(lang, path, avail, nav=''):
                     lis += mitem(tx(n, lang), url(lang, f'urunler/{cat}/{link}'), [])
                 else:
                     rows = [(tx(D.PRODUCTS[s_][1], lang), url(lang, f'urunler/{cat}/{s_}')) for s_ in (link or [])]
-                    lis += mitem(tx(n, lang), url(lang, f'urunler/{cat}') + f'#{sid}', rows)
+                    lis += mitem(tx(n, lang), url(lang, f'urunler/{cat}/{sid}') if link is None else url(lang, f'urunler/{cat}') + f'#{sid}', rows)
         else:
             lis = ''
             for s_ in c['items']:
                 if s_ == 'motorlu-perde':
-                    rows = [(tx(SUBS.find(sid)[1][1], lang), url(lang, f'urunler/{cat}/{p_}') + f'#{sid}') for p_, sid in SUBS.MOTOR]
+                    rows = [(tx(SUBS.find(sid)[1][1], lang), url(lang, f'urunler/{cat}/{SUBS.find(sid)[1][3] or p_ + "/" + sid}')) for p_, sid in SUBS.MOTOR]
                 else:
-                    rows = [(tx(n, lang), url(lang, f'urunler/{cat}/{lk}') if lk else url(lang, f'urunler/{cat}/{s_}') + f'#{sid}') for sid, n, _d, lk in SUBS.SUBS.get(s_, [])]
+                    rows = [(tx(n, lang), url(lang, f'urunler/{cat}/{lk}') if lk else url(lang, f'urunler/{cat}/{s_}/{sid}')) for sid, n, _d, lk in SUBS.SUBS.get(s_, [])]
                 lis += mitem(tx(D.PRODUCTS[s_][1], lang), url(lang, f'urunler/{cat}/{s_}'), rows)
         return f'<div class="mega-col"><a class="mega-h" href="{url(lang, f"urunler/{cat}")}">{tx(c["name"], lang)}</a><ul>{lis}</ul></div>'
     mega = f'<div class="mega" id="mega-urunler"><div class="mega-in">{mcol("perde")}<div class="mega-stack">{mcol("duvar-kagidi")}{mcol("hali")}</div><div class="mega-col mega-more"><a class="mega-h" href="{url(lang, "katalog")}">{ui("nav_catalog", lang)}</a><a class="mega-h" href="{url(lang, "perde-secici")}">{ui("nav_quiz", lang)}</a></div></div></div>'
