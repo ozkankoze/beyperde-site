@@ -243,7 +243,7 @@ def header(lang, path, avail, nav=''):
 </div>'''
 
 
-FT_CREDIT = {'tr': 'Bu siteyi <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a> dikti', 'en': 'Site stitched by <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>', 'ar': 'خاط هذا الموقع <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>'}
+FT_CREDIT = {'tr': 'Web Tasarım: <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>', 'en': 'Web Design: <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>', 'ar': 'تصميم الموقع: <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>'}
 
 
 def footer(lang, avail):
