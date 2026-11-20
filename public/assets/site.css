@@ -17,7 +17,7 @@
   --font:"Inter","Inter Fallback","Helvetica Neue",Arial,system-ui,sans-serif;
   --wrap:1320px; --gut:max(20px,env(safe-area-inset-left,0px)); --gut-e:max(20px,env(safe-area-inset-right,0px));
   --t-xs:12px; --t-sm:14px; --t-0:clamp(15.5px,1.02vw,17px); --t-1:clamp(18px,1.35vw,21px);
-  --t-h4:clamp(17px,1.25vw,19px); --t-h3:clamp(21px,1.8vw,27px); --t-h2:clamp(32px,3.9vw,58px); --t-h1:clamp(42px,6.2vw,92px); --t-num:clamp(44px,5.4vw,84px);
+  --t-h4:clamp(17px,1.25vw,19px); --t-h3:clamp(21px,1.8vw,27px); --t-h2:clamp(28px,3vw,44px); --t-h1:clamp(42px,6.2vw,92px); --t-num:clamp(44px,5.4vw,84px);
   --sp-band:clamp(48px,6vw,88px); --sp-tight:clamp(32px,4vw,56px);
   --ease:cubic-bezier(.2,.7,.1,1); --r:2px;
   color-scheme:light;
@@ -274,9 +274,9 @@ body.locked{overflow:hidden}
 @media (max-width:640px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.strip li:nth-child(n+4){display:none}}
 
 /* projeler */
-.pj-feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);align-items:center}
-.pj-media .ph{aspect-ratio:4/5}
-.pj-text{display:grid;gap:20px;justify-items:start}
+.pj-feature{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;max-width:1100px}
+.pj-media .ph{aspect-ratio:1/1}
+.pj-text{display:grid;gap:14px;justify-items:start}.pj-text .h2{font-size:clamp(24px,2.4vw,34px)}
 .pj-text .h2 a{text-decoration:none}
 .pj-text>p{color:var(--ink-2);max-width:56ch}
 .meta{display:flex;flex-wrap:wrap;gap:12px 36px}

@@ -160,25 +160,8 @@ def render_home(G, catalog):
 
 {quiz_block(G, lang)}
 
-<section class="band brand" id="marka" aria-labelledby="h-marka">
-  <div class="wrap brand-grid">
-    <div class="brand-text">
-      <p class="kicker">{h('brand_k')}</p>
-      <h2 class="h2" id="h-marka">{h('brand_h')}</h2>
-      <p class="lead">{h('brand_p')}</p>
-      <blockquote>{h('brand_q')}</blockquote>
-      {G['arrow_link'](url(lang, 'hakkimizda'), h('about_link'))}
-    </div>
-    <figure class="brand-img"><div class="ph">{picture('hakkimizda/isik', h('brand_img_alt'), '(max-width: 900px) 100vw, 55vw')}</div><figcaption>{h('brand_cap')}</figcaption></figure>
-  </div>
+<section class="band tight brand" id="marka" aria-label="{h('brand_k')}">
   <div class="wrap"><dl class="stats">{stats}</dl></div>
-</section>
-
-<section class="band linen" id="urunler" aria-labelledby="h-urunler">
-  <div class="wrap">
-    {G['sec_head'](h('prod_k'), h('prod_h'), h('prod_p'), 'h-urunler', extra=G['arrow_link'](url(lang, 'katalog'), ui('all_products', lang)))}
-    <div class="cat-grid">{''.join(cats)}</div>
-  </div>
 </section>
 
 <section class="band dark feature" aria-labelledby="h-rustik">
