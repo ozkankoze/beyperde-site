@@ -346,13 +346,27 @@ function openDlg(html, onSave, onDel) {
   if (!d.open) d.showModal();
   d.scrollTop = 0; f.scrollTop = 0;
   if (onSave) $('#dlg-ok').onclick = async () => { if (!f.reportValidity()) return; if ((await onSave(f)) !== false) { d.close(); route(); } };
-  if (onDel) armBtn($('#dlg-del'), 'Silmeyi onayla', async () => { if (await onDel()) { d.close(); route(); } });
+  if (onDel) armBtn($('#dlg-del'), 'Bu kayıt kalıcı olarak silinecek. Bu işlem geri alınamaz.', async () => { if (await onDel()) { d.close(); route(); } });
 }
-function armBtn(btn, confirmText, fn) {   // iki adımlı onay (tarayıcı onay pencereleri yerine)
-  let armed = false; const orig = btn.textContent;
+// Ekranın ortasında uyarı penceresi (tarayıcı onay pencereleri yerine). Onaylanırsa true döner.
+function onayIste(mesaj, okText = 'Evet, sil', baslik = 'Emin misiniz?') {
+  return new Promise((resolve) => {
+    const d = document.createElement('dialog');
+    d.className = 'onay';
+    d.innerHTML = `<div class="onay-in" role="alertdialog" aria-labelledby="onay-h" aria-describedby="onay-p"><div class="onay-ic" aria-hidden="true">!</div><h2 id="onay-h">${esc(baslik)}</h2><p id="onay-p">${esc(mesaj)}</p><div class="onay-btns"><button class="btn-ghost" type="button" data-v="0">Vazgeç</button><button class="btn red" type="button" data-v="1">${esc(okText)}</button></div></div>`;
+    document.body.appendChild(d);
+    let sonuc = false;
+    d.addEventListener('close', () => { d.remove(); resolve(sonuc); });
+    d.querySelectorAll('[data-v]').forEach((b) => (b.onclick = () => { sonuc = b.dataset.v === '1'; d.close(); }));
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+    d.showModal();
+    d.querySelector('[data-v="0"]').focus();
+  });
+}
+function armBtn(btn, confirmText, fn) {   // silme onayı: uyarı penceresi
   btn.onclick = async () => {
-    if (!armed) { armed = true; btn.textContent = confirmText; setTimeout(() => { armed = false; btn.textContent = orig; }, 5000); return; }
-    armed = false; btn.textContent = orig; await fn();
+    const msg = typeof confirmText === 'function' ? confirmText() : confirmText;
+    if (await onayIste(msg)) await fn();
   };
 }
 const val = (f, n) => f.elements[n] ? f.elements[n].value.trim() : '';
@@ -402,8 +416,8 @@ VIEWS.stok = (m) => {
   const guncelle = () => { const n = secili().length; $('#selc').textContent = `${n} kalem seçili`; $('#selsil').disabled = !n; $('#selsil').textContent = n ? `Seçilen ${n} kalemi sil` : 'Seçilenleri sil'; };
   $('#selall').onchange = (e) => { $$('[data-sel]', m).forEach((c) => (c.checked = e.target.checked)); guncelle(); };
   $$('[data-sel]', m).forEach((c) => (c.onchange = guncelle));
-  armBtn($('#selsil'), 'Silmeyi onayla (geri alınamaz)', () => kalemleriSil(secili()));
-  $$('[data-sil]', m).forEach((b) => armBtn(b, 'Onayla', () => kalemleriSil([b.dataset.sil])));
+  armBtn($('#selsil'), () => `Seçilen ${secili().length} kalem stoktan ve kalem listesinden silinecek. Bu işlem geri alınamaz.`, () => kalemleriSil(secili()));
+  $$('[data-sil]', m).forEach((b) => armBtn(b, () => `"${(S.kalemler.find((k) => k.id === b.dataset.sil) || {}).ad || 'Kalem'}" silinecek. Bu işlem geri alınamaz.`, () => kalemleriSil([b.dataset.sil])));
 };
 
 /* ---------------- SATIŞLAR ---------------- */
@@ -524,7 +538,7 @@ async function photos(satisId) {
     const lb = document.createElement('div'); lb.className = 'lightbox'; lb.innerHTML = `<img src="${esc(d.data)}" alt=""><p>Kapatmak için dokunun</p>`;
     lb.onclick = () => lb.remove(); $('#dlg').appendChild(lb);
   }));
-  $$('[data-pdel]', box).forEach((b) => armBtn(b, 'Emin misiniz?', async () => { if (await remove('fotolar', b.dataset.pdel)) photos(satisId); }));
+  $$('[data-pdel]', box).forEach((b) => armBtn(b, 'Bu fotoğraf silinecek. Bu işlem geri alınamaz.', async () => { if (await remove('fotolar', b.dataset.pdel)) photos(satisId); }));
   $('#fup').onchange = async (e) => {
     const files = [...e.target.files]; e.target.value = '';
     for (const f of files) {
@@ -658,7 +672,7 @@ VIEWS.kasa = (m) => {
     <p class="note">Başlangıç bakiyeleri ve hesap adları Ayarlar ekranından değiştirilir. Bakiye, girilen kayıtlardan hesaplanır; bankadaki gerçek bakiyeyle ara ara karşılaştırın.</p>`;
   $$('[data-h]', m).forEach((b) => (b.onclick = () => { kasaHesap = b.dataset.h; route(); }));
   $('#kym').onchange = (e) => { kasaYM = e.target.value; route(); };
-  $$('[data-vdel]', m).forEach((b) => armBtn(b, 'Emin misiniz?', async () => { if (await remove('virmanlar', b.dataset.vdel)) route(); }));
+  $$('[data-vdel]', m).forEach((b) => armBtn(b, 'Bu virman kaydı silinecek. Bu işlem geri alınamaz.', async () => { if (await remove('virmanlar', b.dataset.vdel)) route(); }));
   $('#vir').onclick = () => openDlg(`<h2>Hesaplar arası transfer</h2><div class="grid2">${field('tarih', 'Tarih', today(), 'date', 'required')}${sel('kaynak', 'Çıkan hesap', a.hesaplar.map((h) => [h, h]), a.hesaplar[0])}${sel('hedef', 'Giren hesap', a.hesaplar.map((h) => [h, h]), a.hesaplar[a.hesaplar.length - 1])}${field('tutar', 'Tutar', '', 'text', 'inputmode="decimal" required')}${field('aciklama', 'Açıklama', '', 'text', 'placeholder="Bankaya yatırıldı"')}</div>`,
     (f) => { if (val(f, 'kaynak') === val(f, 'hedef')) { toast('Hesaplar aynı olamaz', true); return false; } return save('virmanlar', { tarih: val(f, 'tarih'), kaynak: val(f, 'kaynak'), hedef: val(f, 'hedef'), tutar: num(val(f, 'tutar')), aciklama: val(f, 'aciklama') }); });
 };
@@ -960,7 +974,7 @@ VIEWS.ayarlar = async (m) => {
   const showY = (items) => {
     const box = $('#ylist'); if (!box) return;
     box.innerHTML = items.length ? `<table><tbody>${items.map((y) => `<tr><td>${new Date(y.tarih).toLocaleString('tr-TR')}</td><td>${esc(y.neden)}</td><td class="n">${y.n} kayıt</td><td><button class="btn-sm danger" data-yd="${y.id}" type="button">Bu yedeğe dön</button></td></tr>`).join('')}</tbody></table>` : 'Henüz yedek yok.';
-    $$('[data-yd]', box).forEach((b) => armBtn(b, 'Tüm kayıtlar bu yedekle değişecek, onayla', async () => { const r = await api({ a: 'yedege-don', id: b.dataset.yd, confirm: 'YEDEGE_DON' }); if (r.ok) { toast(`${r.n} kayıt geri yüklendi`); loadAll(); } else toast('Geri dönülemedi: ' + r.error, true); }));
+    $$('[data-yd]', box).forEach((b) => armBtn(b, 'Paneldeki tüm kayıtlar bu yedekteki hâliyle değiştirilecek.', async () => { const r = await api({ a: 'yedege-don', id: b.dataset.yd, confirm: 'YEDEGE_DON' }); if (r.ok) { toast(`${r.n} kayıt geri yüklendi`); loadAll(); } else toast('Geri dönülemedi: ' + r.error, true); }));
   };
   $('#ynow').onclick = async () => { const r = await api({ a: 'yedek-al' }); if (r.ok) { toast('Yedek alındı'); showY(r.items); } else toast('Yedek alınamadı', true); };
   const r = await api({ a: 'yedekler' });
