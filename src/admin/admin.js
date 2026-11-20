@@ -283,7 +283,7 @@ VIEWS.kalemler = (m) => {
 };
 
 /* ---------------- FİYAT LİSTESİ (Excel) İÇE AKTARMA ---------------- */
-function fiyatListesiYukle() {
+function fiyatListesiYukle(preFile) {
   let parsed = null, plan = null, fname = '';
   const turOpts = [['', 'Seçin…'], ...Object.entries(STOK_TUR)];
   openDlg(`<h2>Fiyat listesi yükle</h2>
@@ -319,8 +319,7 @@ function fiyatListesiYukle() {
       ${fiyat.length ? `<div class="tbl-wrap"><table><thead><tr><th>Kod</th><th>Ürün</th><th class="n">Eski alış</th><th class="n">Yeni alış</th><th class="n">Eski satış</th><th class="n">Yeni satış</th></tr></thead><tbody>${fiyat.slice(0, 200).map((d) => `<tr><td>${esc(d.yeni.kod)}</td><td>${esc(d.yeni.ad)}</td><td class="n">${TL(d.eski.alis)}</td><td class="n"><b>${TL(d.yeni.alis)}</b></td><td class="n">${TL(d.eski.satis)}</td><td class="n"><b>${TL(d.yeni.satis)}</b></td></tr>`).join('')}</tbody></table></div>` : ''}`;
     okBtn.disabled = !(plan.yeni.length || plan.degisen.length) || !ted || (plan.yeni.some((d) => !d.stokTur));
   };
-  $('#flf').onchange = async (e) => {
-    const f = e.target.files[0]; if (!f) return;
+  const oku = async (f) => {
     fname = f.name;
     const out = $('#flres'); out.innerHTML = '<p class="note">Okunuyor…</p>';
     try { parsed = parseFiyatListesi(await readXlsx(await f.arrayBuffer())); }
@@ -334,6 +333,8 @@ function fiyatListesiYukle() {
     if ($('#flvt')) $('#flvt').onchange = replan;
     replan();
   };
+  $('#flf').onchange = (e) => { const f = e.target.files[0]; if (f) oku(f); };
+  if (preFile) oku(preFile);
 }
 function field(id, label, val = '', type = 'text', extra = '') { return `<div><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" value="${esc(val)}" ${extra}></div>`; }
 function sel(id, label, opts, val, extra = '') { return `<div><label for="${id}">${label}</label><select id="${id}" name="${id}" ${extra}>${opts.map(([v, t]) => `<option value="${esc(v)}"${String(v) === String(val) ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></div>`; }
@@ -547,7 +548,7 @@ VIEWS.alislar = (m) => {
   let tm = 0, tk = 0, tt = 0, tkl = 0;
   const rows = list.map((d) => { const c = calcAlis(d); tm += c.matrah; tk += c.kdv; tt += c.toplam; tkl += Math.max(0, c.kalan);
     return `<tr><td>${fmtDate(d.tarih)}</td><td>${esc(d.tedarikci)}</td><td>${esc(d.faturaNo)}</td><td>${esc(d.aciklama)}${(d.stok || []).length ? ' <span class="pill ok">stok</span>' : ''}</td><td class="n">${TL(c.matrah)}</td><td class="n">${TL(c.kdv)}</td><td class="n">${TL(c.toplam)}</td><td class="n">${c.kalan > 0.009 ? `<span class="pill ${d.vade && d.vade <= today() ? 'bad' : 'warn'}">${TL(c.kalan)}</span>` : '<span class="pill ok">Ödendi</span>'}</td><td><button class="btn-sm" data-e="${d.id}">Aç</button></td></tr>`; }).join('');
-  m.innerHTML = head('Alışlar', 'Tedarikçi faturaları: kumaş, ray, aksesuar alımları. PDF kontrol ekranından faturayı okutup buraya aktarabilirsiniz.', '<button class="btn" id="new">Yeni alış</button>')
+  m.innerHTML = head('Alışlar', 'Tedarikçi faturaları: kumaş, ray, aksesuar alımları. Belge yükle ekranından faturayı okutup buraya aktarabilirsiniz.', '<button class="btn" id="new">Yeni alış</button>')
     + `<div class="tbl-wrap"><table><thead><tr><th>Tarih</th><th>Tedarikçi</th><th>Fatura no</th><th>Açıklama</th><th class="n">Matrah</th><th class="n">KDV</th><th class="n">Toplam</th><th class="n">Ödeme</th><th></th></tr></thead><tbody>${rows || empty(9, 'Henüz kayıt yok.')}</tbody>${rows ? `<tfoot><tr><td colspan="4">Toplam</td><td class="n">${TL(tm)}</td><td class="n">${TL(tk)}</td><td class="n">${TL(tt)}</td><td class="n">${TL(tkl)}</td><td></td></tr></tfoot>` : ''}</table></div>`;
   $('#new').onclick = () => editAlis({ tarih: today(), kdvOran: ayar().kdv });
   $$('[data-e]', m).forEach((b) => (b.onclick = () => editAlis(structuredClone(S.alislar.find((d) => d.id === b.dataset.e)))));
@@ -890,11 +891,14 @@ export function analyzeLabel(pages, { w, h }) {
 }
 VIEWS.pdf = (m) => {
   const a = ayar();
-  m.innerHTML = head('PDF kontrol', 'PDF bilgisayarınızda okunur, sunucuya yüklenmez. Taranmış (resim) PDF\'lerde metin okunamaz.')
-    + `<div class="card grid2">${sel('ptype', 'PDF türü', [['fatura', 'Tedarikçi faturası'], ['siparis', 'Sipariş / teklif formu'], ['etiket', `Etiket PDF'i (${a.etiketW} × ${a.etiketH} mm)`]], 'fatura')}
-      <div><label for="pfile">PDF dosyası</label><input id="pfile" type="file" accept="application/pdf"></div></div><div id="pres"></div>`;
+  m.innerHTML = head('Belge yükle', 'Tedarikçi fiyat listesi (Excel) yükleyin ya da fatura, sipariş ve etiket PDF\'lerini kontrol edin. Dosyalar bilgisayarınızda okunur; taranmış (resim) PDF\'lerde metin okunamaz.')
+    + `<div class="card grid2">${sel('ptype', 'Belge türü', [['fiyat', 'Tedarikçi fiyat listesi (Excel → stok)'], ['fatura', 'Tedarikçi faturası'], ['siparis', 'Sipariş / teklif formu'], ['etiket', `Etiket PDF'i (${a.etiketW} × ${a.etiketH} mm)`]], 'fiyat')}
+      <div><label for="pfile">Dosya</label><input id="pfile" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></div></div><div id="pres"></div>`;
+  const acc = () => { $('#pfile').accept = $('#ptype').value === 'fiyat' ? '.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'application/pdf'; $('#pfile').value = ''; $('#pres').innerHTML = ''; };
+  $('#ptype').onchange = acc;
   $('#pfile').onchange = async (e) => {
     const f = e.target.files[0]; if (!f) return;
+    if ($('#ptype').value === 'fiyat') { fiyatListesiYukle(f); e.target.value = ''; return; }
     const out = $('#pres'); out.innerHTML = '<p class="card">Okunuyor…</p>';
     let pages;
     try { pages = await loadPdf(f); } catch (err) { out.innerHTML = `<p class="card"><span class="pill bad">Hata</span> PDF açılamadı: ${esc(err.message)}</p>`; return; }
