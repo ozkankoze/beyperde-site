@@ -4,24 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Bey Perde Yönetim Paneli</title>
+<title>Bey Perde Ön Muhasebe</title>
 <link rel="icon" href="/favicon.png">
 <link rel="manifest" href="/admin/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#2a2019">
+<meta name="theme-color" content="#13201F">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Bey Perde">
+<link rel="preload" href="/admin/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
 <div id="app">
   <section class="login" id="login" hidden>
     <form class="login-card" id="login-form">
-      <img src="/brand/logo-brown-192.webp" width="96" height="96" alt="Bey Perde">
-      <h1>Yönetim Paneli</h1>
-      <label for="pw">Şifre</label>
-      <input id="pw" name="password" type="password" autocomplete="current-password" required>
+      <div class="lg"><span class="brand"><span class="mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3h18"/><path d="M5 3v18c2-3 3-8 3-18"/><path d="M19 3v18c-2-3-3-8-3-18"/></svg></span></span><div><h1 style="font-size:20px">BEY PERDE</h1><span class="mut sm">Ön Muhasebe</span></div></div>
+      <label for="pw">Şifre<input id="pw" name="password" type="password" autocomplete="current-password" required></label>
       <button class="btn" type="submit">Giriş yap</button>
       <p class="msg" id="login-msg" role="alert"></p>
     </form>
@@ -29,8 +28,7 @@
 
   <section class="setup" id="setup" hidden>
     <div class="login-card">
-      <img src="/brand/logo-brown-192.webp" width="96" height="96" alt="Bey Perde">
-      <h1>Kurulum tamamlanmadı</h1>
+      <h1 style="font-size:20px">Kurulum tamamlanmadı</h1>
       <p>Panelin çalışması için Vercel'de veri deposu ve şifre tanımlanmalı. Adımlar <code>docs/ADMIN.md</code> dosyasında.</p>
       <ul id="setup-list"></ul>
     </div>
@@ -38,24 +36,20 @@
 
   <div class="shell" id="shell" hidden>
     <aside class="side">
-      <a class="brand" href="#ozet"><img src="/brand/logo-brown-96.webp" width="40" height="40" alt="">Bey Perde</a>
-      <nav id="nav" aria-label="Panel">
-        <a href="#ozet">Özet</a>
-        <a href="#takvim">Montaj takvimi</a>
-        <a href="#satislar">Satışlar</a>
-        <a href="#musteriler">Müşteriler</a>
-        <a href="#alislar">Alışlar</a>
-        <a href="#tedarikciler">Tedarikçiler</a>
+      <a class="brand" href="#panel"><span class="mk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 3h18"/><path d="M5 3v18c2-3 3-8 3-18"/><path d="M19 3v18c-2-3-3-8-3-18"/></svg></span><span><b>BEY PERDE</b><small>Ön Muhasebe</small></span></a>
+      <nav id="nav" aria-label="Ana menü">
+        <a href="#panel">Gösterge Paneli</a>
+        <a href="#faturalar">Satış Faturaları</a>
+        <a href="#alislar">Alış Faturaları</a>
+        <a href="#cariler">Cari Hesaplar</a>
+        <a href="#stok">Stok ve Kumaş</a>
+        <a href="#kasa">Kasa ve Banka</a>
         <a href="#giderler">Giderler</a>
-        <a href="#kasa">Kasa ve banka</a>
-        <a href="#kalemler">Kalemler</a>
-        <a href="#stok">Stok</a>
-        <a href="#rapor">Yıllık rapor</a>
-        <a href="#pdf">Belge yükle</a>
-        <a href="#etiket">Etiket yazdır</a>
-        <a href="#ayarlar">Ayarlar ve yedek</a>
+        <a href="#raporlar">Raporlar</a>
+        <a href="#yillik">Yıllık Tablo</a>
       </nav>
-      <button class="btn-ghost" id="logout" type="button">Çıkış</button>
+      <div class="sess"><span>Oturum</span><b>Bey Perde</b><span>Yönetici</span>
+        <div class="row"><button type="button" id="yedek">Yedek indir</button><button type="button" id="logout">Çıkış</button></div></div>
     </aside>
     <main class="main" id="main" tabindex="-1"></main>
   </div>

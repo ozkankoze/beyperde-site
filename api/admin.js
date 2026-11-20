@@ -11,7 +11,7 @@
 
 const crypto = require('crypto');
 
-const COLS = ['kalemler', 'satislar', 'alislar', 'giderler', 'ayarlar', 'virmanlar'];   // 'all' ile yüklenen ve yedeğe giren kayıtlar
+const COLS = ['kalemler', 'satislar', 'alislar', 'giderler', 'ayarlar', 'virmanlar', 'cariler'];   // 'all' ile yüklenen ve yedeğe giren kayıtlar
 const FOTO = 'fotolar';            // sipariş fotoğrafları: yalnızca ilgili sipariş açılınca yüklenir
 const YEDEK = 'yedekler', YMETA = 'yedekmeta';
 const KEEP_SNAPSHOTS = 6, SNAPSHOT_DAYS = 7;
