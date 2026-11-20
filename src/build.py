@@ -563,6 +563,10 @@ def copy_static():
         shutil.rmtree(os.path.join(PUB, 'intro'))
     if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro')):
         shutil.copytree(os.path.join(ROOT, 'src', 'static', 'intro'), os.path.join(PUB, 'intro'))
+    if os.path.exists(os.path.join(PUB, 'pin')):
+        shutil.rmtree(os.path.join(PUB, 'pin'))
+    if os.path.exists(os.path.join(ROOT, 'src', 'static', 'pin')):   # Pinterest pin görselleri (noindex, yalnızca pin oluşturmak için)
+        shutil.copytree(os.path.join(ROOT, 'src', 'static', 'pin'), os.path.join(PUB, 'pin'))
     if os.path.exists(os.path.join(PUB, 'admin')):
         shutil.rmtree(os.path.join(PUB, 'admin'))
     shutil.copytree(os.path.join(ROOT, 'src', 'admin'), os.path.join(PUB, 'admin'))   # yönetim paneli (noindex)
