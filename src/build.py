@@ -313,7 +313,13 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
     m = re.search(r'<picture><source type="image/avif" srcset="([^"]+)" sizes="([^"]+)">(?:(?!</picture>).)*fetchpriority="high"', body, re.S)
     if m and 'data-intro' not in body:
         head_extra += f'<link rel="preload" as="image" type="image/avif" imagesrcset="{m.group(1)}" imagesizes="{m.group(2)}" fetchpriority="high">'
-    cfg = json.dumps({'lang': lang, 'wa': D.WA_NUMBER, 'ga': D.GA4_ID or '', 'consent': {'analytics': bool(D.GA4_ID)}}, ensure_ascii=False)
+    measure = bool(D.GA4_ID or D.ADS_ID)   # ölçüm kodu varsa çerez bildirimi izin ister
+    cfg = json.dumps({'lang': lang, 'wa': D.WA_NUMBER, 'ga': D.GA4_ID or '', 'ads': D.ADS_ID or '', 'conv': D.ADS_CONV if D.ADS_ID else {}, 'consent': {'analytics': measure}}, ensure_ascii=False)
+    lp = '' if lang == 'tr' else ' hreflang="tr"'
+    if measure:
+        cookie_box = f'<div class="cookie" data-cookie hidden role="region" aria-label="{ui("cookies", lang)}"><p>{ui("cookie_note_ads", lang)} <a href="/tr/cerez-politikasi"{lp}>{ui("cookie_more", lang)}</a></p><div class="row"><button class="btn btn-sm" type="button" data-consent="all">{ui("cookie_accept", lang)}</button><button class="btn btn-ghost btn-sm" type="button" data-consent="necessary">{ui("cookie_reject", lang)}</button></div></div>'
+    else:
+        cookie_box = f'<div class="cookie" data-cookie hidden role="region" aria-label="{ui("cookies", lang)}"><p>{ui("cookie_note", lang)} <a href="/tr/cerez-politikasi"{lp}>{ui("cookie_more", lang)}</a></p><button class="btn btn-sm" type="button" data-cookie-ok>{ui("cookie_ok", lang)}</button></div>'
     if not noindex:   # noindex sayfalar site haritasına girmez
         PAGES_OUT.append((path, sorted(avail, key=LANGS.index), lang))
     return f'''<!doctype html>
@@ -343,7 +349,7 @@ def layout(lang, path, title, desc, body, avail=ALL, nav='', schemas=(), scripts
 </main>
 {footer(lang, avail)}
 <a class="wa-float" href="{e(wa_link(wa))}" target="_blank" rel="noopener nofollow" aria-label="{ui('wa_float', lang)}" data-wa-float>{ICON['wa']}<span class="wa-float-l">{ui('whatsapp_short', lang)}</span></a>
-<div class="cookie" data-cookie hidden role="region" aria-label="{ui('cookies', lang)}"><p>{ui('cookie_note', lang)} <a href="/tr/cerez-politikasi"{'' if lang == 'tr' else ' hreflang="tr"'}>{ui('cookie_more', lang)}</a></p><button class="btn btn-sm" type="button" data-cookie-ok>{ui('cookie_ok', lang)}</button></div>
+{cookie_box}
 {js}
 </body>
 </html>'''

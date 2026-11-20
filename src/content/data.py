@@ -11,6 +11,11 @@ SITE = 'https://www.beyperde.com'
 
 # ---------- ölçüm ve doğrulama (gerçek kod gelene kadar boş kalır; boşken siteye hiçbir şey eklenmez) ----------
 GA4_ID = None             # örn. 'G-XXXXXXXXXX' — Google Analytics 4 ölçüm kimliği (Analytics > Yönetici > Veri akışları)
+ADS_ID = 'AW-18514954672'  # Google Ads hesabı (844-882-5339) etiketi
+ADS_CONV = {               # Google Ads dönüşüm işlemleri (Hedefler > Dönüşümler > Kişi)
+    'whatsapp': 'AW-18514954672/QMSaCNWThbwdELCTz_xE',   # "WhatsApp tıklama (site)"
+    'phone': 'AW-18514954672/AY5oCNiThbwdELCTz_xE',      # "Telefon tıklama (site)"
+}
 GSC_VERIFICATION = None   # Search Console HTML etiketi doğrulama kodu (content="..." içindeki değer)
 BING_VERIFICATION = None  # Bing Webmaster Tools doğrulama kodu
 PHONE = '+90 553 596 26 14'
@@ -108,6 +113,9 @@ UI = {
                      'This site only uses the local storage it needs to work; it sets no advertising or tracking cookies.',
                      'يستخدم هذا الموقع التخزين المحلي الضروري لعمله فقط، ولا يستخدم ملفات تعريف ارتباط إعلانية أو للتتبع.'),
     'cookie_ok': T('Anladım', 'OK', 'حسناً'),
+    'cookie_note_ads': T('Reklamlarımızın işe yarayıp yaramadığını ölçmek için Google çerezlerini yalnızca izninizle kullanırız.',
+                         'With your permission only, we use Google cookies to measure whether our ads work.',
+                         'نستخدم ملفات تعريف الارتباط من Google لقياس فعالية إعلاناتنا بإذنك فقط.'),
     'cookie_more': T('Ayrıntılar', 'Details', 'التفاصيل'),
     'cookie_accept': T('Kabul et', 'Accept', 'قبول'),
     'cookie_reject': T('Yalnızca zorunlu', 'Necessary only', 'الضرورية فقط'),

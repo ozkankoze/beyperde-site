@@ -147,49 +147,56 @@
   }
 
   /* ---------- çerez bildirimi ve izin yönetimi ---------- */
-  const KEY = 'bp-consent';
+  const analytics = !!(BP.consent && BP.consent.analytics);   // ölçüm kodu (GA4 / Google Ads) tanımlıysa true
+  // ölçüm eklenince anahtar değişir: daha önce yalnızca "Anladım" diyenlere de bir kez izin sorulur
+  const KEY = analytics ? 'bp-consent-v2' : 'bp-consent';
   const get = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (_) { return null; } };
   const set = (v) => { try { localStorage.setItem(KEY, JSON.stringify({ v, t: Date.now() })); } catch (_) { /* depolama kapalı */ } };
   const ck = $('[data-cookie]');
-  const analytics = !!(BP.consent && BP.consent.analytics);   // istatistik eklenene kadar false
   if (ck && !get()) {
     // bildirimi ilk kaydırmadan sonra göster: açılış görselinin üstünü kapatmasın
     const showCk = () => { ck.hidden = false; removeEventListener('scroll', onFirst); };
     const onFirst = () => { if (scrollY > 240) showCk(); };
     addEventListener('scroll', onFirst, { passive: true });
     setTimeout(() => { if (!intro) showCk(); }, 2500);
-    $('[data-cookie-ok]', ck).addEventListener('click', () => { set('necessary'); ck.hidden = true; });
+    const ok = $('[data-cookie-ok]', ck);
+    if (ok) ok.addEventListener('click', () => { set('necessary'); ck.hidden = true; });
+    $$('[data-consent]', ck).forEach((b) => b.addEventListener('click', () => { set(b.dataset.consent); ck.hidden = true; }));
   }
   const mgr = $('[data-consent-manage]');
   if (mgr) {
     const st = $('[data-consent-state]', mgr);
-    const render = () => { const c = get(); st.textContent = analytics ? (c && c.v === 'all' ? 'Durum: istatistik çerezlerine izin verildi.' : 'Durum: yalnızca zorunlu depolama.') : 'Durum: sitede yalnızca zorunlu depolama kullanılıyor; değiştirilecek bir tercih yok.'; };
+    const render = () => { const c = get(); st.textContent = analytics ? (c && c.v === 'all' ? 'Durum: ölçüm çerezlerine izin verildi.' : 'Durum: yalnızca zorunlu depolama.') : 'Durum: sitede yalnızca zorunlu depolama kullanılıyor; değiştirilecek bir tercih yok.'; };
     $$('[data-consent]', mgr).forEach((b) => { if (b.dataset.consent === 'all') b.hidden = !analytics; b.addEventListener('click', () => { set(b.dataset.consent); render(); if (ck) ck.hidden = true; }); });
     render();
   }
-  /* ---------- ölçüm (GA4): yalnızca data.py'de GA4_ID girildiyse VE ziyaretçi istatistik izni verdiyse yüklenir ---------- */
+  /* ---------- ölçüm (GA4 / Google Ads): yalnızca data.py'de kimlik girildiyse VE ziyaretçi izin verdiyse yüklenir ---------- */
   let gaOn = false;
   const loadGA = () => {
-    if (gaOn || !BP.ga || !analytics || (get() || {}).v !== 'all') return;
+    const first = BP.ga || BP.ads;
+    if (gaOn || !first || !analytics || (get() || {}).v !== 'all') return;
     gaOn = true;
     w.dataLayer = w.dataLayer || [];
     w.gtag = function () { w.dataLayer.push(arguments); };
+    w.gtag('consent', 'default', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'granted' });
     w.gtag('js', new Date());
-    w.gtag('config', BP.ga, { anonymize_ip: true });
-    const sc = d.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(BP.ga);
+    if (BP.ga) w.gtag('config', BP.ga, { anonymize_ip: true });
+    if (BP.ads) w.gtag('config', BP.ads, { allow_ad_personalization_signals: false });
+    const sc = d.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(first);
     d.head.appendChild(sc);
   };
   loadGA();
   $$('[data-consent]').forEach((b) => b.addEventListener('click', () => setTimeout(loadGA, 0)));
   // dönüşüm olayları: WhatsApp, telefon, e-posta tıklamaları ve gönderilen teklif formu (ölçüm kapalıysa hiçbir şey yapmaz)
   const track = (name, params) => { if (gaOn && typeof w.gtag === 'function') w.gtag('event', name, params || {}); };
+  const conv = (k) => { const id = BP.conv && BP.conv[k]; if (id && gaOn && typeof w.gtag === 'function') w.gtag('event', 'conversion', { send_to: id, transport_type: 'beacon' }); };
   d.addEventListener('click', (ev) => {
     const a = ev.target.closest && ev.target.closest('a[href]');
     if (!a) return;
     const href = a.getAttribute('href') || '';
     const where = { page_path: location.pathname, link_location: a.closest('header') ? 'header' : a.closest('footer') ? 'footer' : a.classList.contains('wa-float') ? 'float' : 'content' };
-    if (/^https:\/\/wa\.me\//.test(href)) track('whatsapp_click', where);
-    else if (/^tel:/.test(href)) track('phone_click', where);
+    if (/^https:\/\/wa\.me\//.test(href)) { track('whatsapp_click', where); conv('whatsapp'); }
+    else if (/^tel:/.test(href)) { track('phone_click', where); conv('phone'); }
     else if (/^mailto:/.test(href)) track('email_click', where);
   }, { capture: true, passive: true });
   d.addEventListener('bp:lead', (ev) => track('generate_lead', Object.assign({ page_path: location.pathname }, ev.detail || {})));

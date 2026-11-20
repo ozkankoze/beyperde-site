@@ -604,6 +604,7 @@ th{font-weight:500}
 .cookie a{color:var(--cream)}
 .cookie p{line-height:1.5}
 @media (max-width:640px){.cookie{font-size:12.5px;padding:12px 14px;gap:8px;max-inline-size:calc(100% - 96px)}}
+.cookie .row{display:flex;flex-wrap:wrap;gap:8px}
 .cookie .btn{justify-self:start;background:var(--cream);color:var(--ink);border-color:var(--cream)}
 .lb{position:fixed;inset:0;z-index:150;background:rgba(20,15,11,.96);display:grid;grid-template-rows:auto minmax(0,1fr) auto;
   padding:calc(12px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));color:var(--cream)}
