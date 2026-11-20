@@ -24,6 +24,7 @@ TEL = '+905535962614'
 WA_NUMBER = '905535962614'
 EMAIL = 'info@beyperde.com'
 INSTAGRAM = 'https://www.instagram.com/beyperdee/'
+PINTEREST = 'https://www.pinterest.com/beyperdee/'
 MAPS = 'https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc'
 MAPS_DIR = 'https://www.google.com/maps/dir/?api=1&destination=Bey%20Perde&destination_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc'
 ADDRESS = {

@@ -155,6 +155,7 @@ ICON = {
     'phone': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5h2.6l1.5 4-2 1.3a12 12 0 0 0 6.5 6.5l1.3-2 4 1.5v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
     'close': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
     'filter': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M7 12h10M10 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+    'pin': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11.2 8.2c2.6-.6 4.6.8 4.6 3 0 2.3-1.4 3.9-3.2 3.9-.9 0-1.5-.5-1.7-1.1l-.9 3.6M10.4 14.3l1-4.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
     'insta': '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>',
 }
 
@@ -242,6 +243,9 @@ def header(lang, path, avail, nav=''):
 </div>'''
 
 
+FT_CREDIT = {'tr': 'Bu siteyi <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a> dikti', 'en': 'Site stitched by <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>', 'ar': 'خاط هذا الموقع <a href="https://www.medya333.com" target="_blank" rel="noopener">Medya 333</a>'}
+
+
 def footer(lang, avail):
     prods = ''.join(f'<li><a href="{url(lang, f"urunler/{c}")}">{tx(D.CATS[c]["name"], lang)}</a></li>' for c in ('perde', 'duvar-kagidi', 'hali'))
     prods += f'<li><a href="{url(lang, "urunler/perde/motorlu-perde")}">{tx(D.PRODUCTS["motorlu-perde"][1], lang)}</a></li>'
@@ -256,19 +260,19 @@ def footer(lang, avail):
     <div class="ft-top">
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="{ui('brand', lang)}" loading="lazy">
-        <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
+        <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee">{ICON['insta']}<span>Instagram</span></a><a href="{D.PINTEREST}" target="_blank" rel="noopener nofollow" aria-label="Pinterest @beyperdee">{ICON['pin']}<span>Pinterest</span></a></div>
       </div>
       <div class="ft-cols">
         <nav aria-label="{ui('nav_products', lang)}"><h2>{ui('nav_products', lang)}</h2><ul>{prods}</ul></nav>
         <nav aria-label="{ui('footer_company', lang)}"><h2>{ui('footer_company', lang)}</h2><ul>{company}</ul></nav>
         <div><h2>{ui('footer_contact', lang)}</h2>
-          <address class="ft-nap"><strong>{ui('brand', lang)}</strong><br><span lang="tr">{e(D.ADDRESS_LINE)}</span><br><br>
+          <address class="ft-nap"><strong>{ui('brand', lang)}</strong><br><span lang="tr">{e(D.ADDRESS_LINE)}</span><br>
             <a href="tel:{D.TEL}">{ltr(D.PHONE)}</a><br><a href="mailto:{D.EMAIL}">{D.EMAIL}</a><br>{ui('hours', lang)}</address>
           <p class="ft-dir">{arrow_link(D.MAPS_DIR, ui('directions', lang), attrs=' target="_blank" rel="noopener nofollow"')}</p>
         </div>
       </div>
     </div>
-    <div class="ft-bottom"><span>© 2026 {ui('brand', lang)}. {ui('rights', lang)}</span><ul class="ft-legal">{legal}</ul></div>
+    <div class="ft-bottom"><span>© 2026 {ui('brand', lang)}. {ui('rights', lang)}</span><ul class="ft-legal">{legal}</ul><span class="ft-credit">{FT_CREDIT[lang]}</span></div>
   </div>
 </footer>'''
 
@@ -309,7 +313,7 @@ LOCALBIZ = {
         {'@type': 'OfferCatalog', 'name': D.CATS[ck]['name']['tr'], 'url': f'{D.SITE}/tr/urunler/{ck}',
          'itemListElement': [{'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': D.PRODUCTS[s_][1]['tr'], 'url': f'{D.SITE}/tr/urunler/{ck}/{s_}'}}
                              for s_ in D.CATS[ck]['items']]} for ck in D.CATS]},
-    'sameAs': [D.INSTAGRAM],
+    'sameAs': [D.INSTAGRAM, D.PINTEREST],
 }
 
 
