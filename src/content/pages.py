@@ -315,7 +315,7 @@ ABOUT2 = {
     'pdz_h': T('Pencere, duvar ve zemin.', 'Window, wall and floor.', 'النافذة والجدار والأرضية.'),
     'pdz': [
         ('perde', '01', T('Pencere', 'Window', 'النافذة'), T('Perde sistemleri ve özel ölçü çözümleri.', 'Curtain systems and made-to-measure solutions.', 'أنظمة الستائر وحلول بمقاسات خاصة.'), 'urunler/fon-perde/kose-koltuklu-salon'),
-        ('duvar-kagidi', '02', T('Duvar', 'Wall', 'الجدار'), T('Tekstil ve dekoratif duvar kağıtları.', 'Textile and decorative wallpapers.', 'ورق جدران نسيجي وزخرفي.'), 'urunler/tekstil-1'),
+        ('duvar-kagidi', '02', T('Duvar', 'Wall', 'الجدار'), T('Baskılı, vinil ve non-woven duvar kağıtları.', 'Printed, vinyl and non-woven wallpapers.', 'ورق جدران مطبوع وفينيل ونون-ووفن.'), 'urunler/tekstil-1'),
         ('hali', '03', T('Zemin', 'Floor', 'الأرضية'), T('Dekoratif halılar ve tamamlayıcı dokular.', 'Decorative rugs and finishing textures.', 'سجاد زخرفي وملامس مكمّلة.'), 'urunler/hali-kapak'),
     ],
     'explore': T('Keşfedin', 'Explore', 'اكتشف'),

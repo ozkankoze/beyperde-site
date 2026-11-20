@@ -32,7 +32,7 @@ Hizmet bölgeleri yalnızca şunlardır: **Çekmeköy, Şile, Ağva, Riva, Beyko
 | 2026-12-05 | Yazılacak | cekmekoy-dosemelik-kumas | Çekmeköy'de döşemelik kumaş: koltuk ve sandalye için seçim — *çekmeköy döşemelik kumaş* |
 | 2026-12-06 | Hazır | duvar-kagidi-mi-boya-mi | Duvar kağıdı mı boya mı? |
 | 2026-12-07 | Yazılacak | beykoz-motorlu-perde | Beykoz'da motorlu perde: geniş cam cepheler ve manzaralı salonlar — *beykoz motorlu perde* |
-| 2026-12-08 | Hazır | tekstil-duvar-kagidi-nedir | Tekstil duvar kağıdı nedir? |
+| 2026-12-08 | Kaldırıldı (tekstil duvar kağıdı satılmıyor) | tekstil-duvar-kagidi-nedir | Tekstil duvar kağıdı nedir? |
 | 2026-12-09 | Yazılacak | perde-nasil-yikanir | Perde nasıl yıkanır? Tül, fon ve stor için bakım rehberi — *perde yıkama* |
 | 2026-12-10 | Hazır | villa-perde-secimi | Villa ve lüks konutlar için perde seçimi |
 

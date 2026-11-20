@@ -5,7 +5,7 @@ REGIONS = {
     'cekmekoy': {
         'name': 'Çekmeköy',
         'title': 'Çekmeköy Perdeci — Perde ve Duvar Kağıdı Atölyesi | Bey Perde',
-        'desc': "Çekmeköy'de tül, fon, stor ve motorlu perde, duvar kağıdı ve özel ölçü halı. Kartelaları ofisimizde inceleyin, yerinde ölçü alalım; 3 yıl garanti.",
+        'desc': "Çekmeköy'de tül, fon, stor ve motorlu perde, duvar kağıdı ve halı. Kartelaları ofisimizde inceleyin, yerinde ölçü alalım; 3 yıl garanti.",
         'h1': 'Çekmeköy’de perde ve duvar kağıdı',
         'lead': "Atölyemiz ve ofisimiz Çekmeköy'de, Ekşioğlu Mahallesi'nde. Kumaşı ofisimizde görerek seçebilir, ölçü için bizi evinize çağırabilirsiniz.",
         'sections': [
@@ -13,7 +13,7 @@ REGIONS = {
             ('Ölçü, dikim ve montaj aynı ekipten', 'Ölçüye geldiğimizde pencerenin yönünü ve günün ışığını not ederiz; kartelalar yanımızda olur, kumaşı kendi ışığınızda, kendi mobilyalarınızın yanında görürsünüz. Perdeler atölyemizde ölçünüze göre dikilir ve siparişler 3–8 iş günü içinde hazırlanır. Montajı kendi ekibimiz yapar.'),
             ('Daire ve sitelerde sık sorulanlar', "Boydan pencereli salonlarda tül ve fonu tavandaki çift kanallı bir rayda iki katman olarak planlamak hem gündüz hem gece için rahat bir çözüm. Yatak ve çocuk odalarında karartma stor ya da astarlı fon perde uyku düzenine yardımcı olur. Mutfak ve çalışma odalarında ise ışığı açısıyla ayarlayan jaluziler pratiktir."),
         ],
-        'products': ['tul-perde', 'fon-perde', 'stor-perde', 'jaluzi-perde', 'tekstil', 'vinyl'],
+        'products': ['tul-perde', 'fon-perde', 'stor-perde', 'jaluzi-perde', 'vinyl', 'non-woven'],
         'faq': [
             ('Çekmeköy’deki ofisinize randevusuz gelebilir miyim?', 'Mesai saatlerinde ofisimizdeyiz; yine de kartelaları ve numuneleri sizin için hazırlayabilmemiz için önceden telefonla ya da WhatsApp’tan haber vermenizi rica ederiz.'),
             ('Ölçü için ne kadar sürede gelirsiniz?', 'Ölçü randevusunu iş yoğunluğumuza göre sizinle birlikte planlarız. Uygun gün ve saati WhatsApp’tan ya da telefonla konuşalım.'),
@@ -47,7 +47,7 @@ REGIONS = {
             ('Konaklama işletmeleri için', "Ev ve villaların yanında otel ve proje işleri de yapıyoruz. Aynı kumaşı onlarca pencerede aynı biçimde düşürmek, tek bir salonu doğru yapmaktan daha zordur; odalar arasında tutarlılık için ölçü, dikim ve montajı tek ekip olarak planlıyoruz."),
             ('Karartma ve uyku düzeni', 'Yatak odalarında ve konaklama odalarında gündüz uykusu ya da erken gün ışığı için astarlı fon perde veya karartma stor tercih edilebilir. Tülle birlikte kurulduğunda gün içinde de aydınlık bir oda elde edersiniz.'),
         ],
-        'products': ['tul-perde', 'fon-perde', 'rustik-perde', 'jaluzi-perde', 'stor-perde', 'el-dokuma'],
+        'products': ['tul-perde', 'fon-perde', 'rustik-perde', 'jaluzi-perde', 'stor-perde', 'sisal'],
         'faq': [
             ('Ağva’daki pansiyon ve oteller için çalışıyor musunuz?', 'Evet. Ev ve villaların yanında otel ve proje işleri de yapıyoruz. Oda sayısını ve pencere ölçülerini paylaşırsanız planlamayı birlikte yapalım.'),
             ('Karartma perde mi, karartma stor mu?', 'İkisi de ışığı keser. Fon perde odaya kumaşın sıcaklığını katar ve pencereyi çerçeveler; stor ise pencereye yakın, sade bir yüzeydir. Odanın kullanımına göre ölçüde birlikte karar veririz.'),
@@ -73,15 +73,15 @@ REGIONS = {
     'beykoz': {
         'name': 'Beykoz',
         'title': 'Beykoz Perde ve Duvar Kağıdı — Ev, Köşk ve Villa | Bey Perde',
-        'desc': "Beykoz'da ev, köşk ve villalar için tül, fon, rustik ve motorlu perde; tekstil ve vinil duvar kağıdı, özel ölçü halı. Yerinde ölçü, 3 yıl garanti.",
+        'desc': "Beykoz'da ev, köşk ve villalar için tül, fon, rustik ve motorlu perde; baskılı ve vinil duvar kağıdı, halı. Yerinde ölçü, 3 yıl garanti.",
         'h1': 'Beykoz’da perde ve duvar kağıdı',
         'lead': "Beykoz'daki ev, köşk ve villalara perde, duvar kağıdı ve halı çözümleri sunuyoruz; kumaşı yerinde, kendi ışığınızda seçersiniz.",
         'sections': [
             ('Boğaz ışığında perde', 'Suya bakan odalarda ışık gün boyu değişir. Işığı süzen bir tülle başlayıp akşam için bir fon perde eklemek manzarayı kapatmadan mahremiyet sağlar. Kumaşı ölçü sırasında, aynı tülün öğle ve akşam ışığında nasıl durduğuna bakarak seçiyoruz.'),
             ('Klasik ve modern odalar', 'Klasik odalarda fon perde, rustik boru, tutucu ve saçak gibi ayrıntılar odayı tamamlar; modern odalarda tavanda gizli bir ray ve düzenli dalgalarla inen bir tül sade bir çizgi çizer. İkisinde de ray ve boruyu kumaşla birlikte seçiyoruz.'),
-            ('Duvarda doku', 'Tekstil duvar kağıdı duvara boyanın veremeyeceği bir derinlik katar ve odadaki sesi yumuşatır; koridor ve mutfak gibi yoğun kullanılan alanlarda ise silinebilir vinil duvar kağıdı pratiktir.'),
+            ('Duvarda doku', 'Ahşap ya da kumaş dokulu baskılı duvar kağıdı duvara boyanın veremeyeceği bir doku katar; koridor ve mutfak gibi yoğun kullanılan alanlarda ise silinebilir vinil duvar kağıdı pratiktir.'),
         ],
-        'products': ['fon-perde', 'tul-perde', 'rustik-perde', 'perde-aksesuarlari', 'tekstil', 'ozel-olcu'],
+        'products': ['fon-perde', 'tul-perde', 'rustik-perde', 'perde-aksesuarlari', 'ahsap-baskili', 'sisal'],
         'faq': [
             ('Beykoz’a ölçü için geliyor musunuz?', "Evet. Beykoz ve çevresindeki ev, köşk ve villalara ölçü, montaj ve bakım için geliyoruz."),
             ('Perde ve duvar kağıdını birlikte planlayabilir miyiz?', 'Evet; bir odayı pencere, duvar ve zemin olarak birlikte düşünmeyi tercih ediyoruz. Ölçüye geldiğimizde perde ve duvar kağıdı kartelalarını birlikte getiririz.'),

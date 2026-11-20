@@ -28,19 +28,19 @@ from content import subs as SUBS  # noqa: E402
 # Rensolar: henüz fotoğrafı ve beyperde.com'da ayrı metni olmayan yeni ürün; sayfa metni burada (yalnızca ürün tipini tarif eder)
 RAW.setdefault('perde/rensolar', {
     'tr': {'imgs': [], 'alts': {}, 'h1': 'Rensolar', 'specs': [], 'faq': [],
-           'lead': 'Ahşap, metal ve mermer seçenekleriyle perde düzenini tamamlayan dekoratif aksesuar.',
-           'h2': 'Ahşap, metal ya da mermer',
-           'intro': 'Renso, perde düzenini tamamlayan dekoratif bir aksesuardır. Ahşap, metal ve mermer seçeneklerinden perdenize ve mekânınızın tarzına uyanı birlikte seçeriz; ölçü ve montajı perdeyle birlikte aynı ekip yapar. Modelleri ve size uygun seçeneği öğrenmek için bize WhatsApp ya da telefonla ulaşın.',
+           'lead': 'Fon perdeyi açıkken toplu ve düzgün tutan, duvara takılan dekoratif perde tutucu.',
+           'h2': 'Perdeyi toplayan son dokunuş',
+           'intro': 'Renso, perdenin yanına duvara takılan dekoratif perde tutucudur; kolbağı olarak da bilinir. Fon perdeyi açtığınızda kumaşı toplu ve düzgün tutar, pencerenin iki yanında perdeye son dokunuşu verir. Ahşap, metal ve mermer seçenekleri; yaprak gibi dekoratif formlar ve sade düğme modelleri vardır. Perdenizin kumaşına ve odanın tarzına uyanı birlikte seçer, perdeyle birlikte aynı ekiple takarız. Modelleri görmek için bize WhatsApp ya da telefonla ulaşın.',
            'sections': []},
     'en': {'imgs': [], 'alts': {}, 'h1': 'Rensos', 'specs': [], 'faq': [],
-           'lead': 'A decorative accessory that completes the curtain set-up, in wood, metal or marble.',
-           'h2': 'Wood, metal or marble',
-           'intro': 'A renso is a decorative accessory that completes the curtain set-up. We choose the wood, metal or marble option that suits your curtains and your room with you, and the same team measures and fits it together with the curtains. Message us on WhatsApp or call to see the models and the right option for you.',
+           'lead': 'A decorative wall-mounted holdback that keeps an open drape neat and gathered.',
+           'h2': 'The finishing touch that gathers the curtain',
+           'intro': 'A renso is a decorative curtain holdback fixed to the wall beside the curtain. When you open a drape it keeps the fabric gathered and neat, framing the window on both sides. There are wood, metal and marble options, from decorative forms such as leaves to simple knobs. We choose the one that suits your fabric and your room with you, and fit it with the curtains. Message us on WhatsApp or call to see the models.',
            'sections': []},
     'ar': {'imgs': [], 'alts': {}, 'h1': 'رينسو', 'specs': [], 'faq': [],
-           'lead': 'إكسسوار ديكوري يكمل تنسيق الستائر، من الخشب أو المعدن أو الرخام.',
-           'h2': 'خشب أو معدن أو رخام',
-           'intro': 'الرينسو إكسسوار ديكوري يكمل تنسيق الستائر. نختار معك بين الخشب والمعدن والرخام ما يناسب ستائرك وطابع مكانك، ويتولى الفريق نفسه القياس والتركيب مع الستائر. راسلنا عبر واتساب أو اتصل بنا لترى الموديلات والخيار المناسب لك.',
+           'lead': 'ماسك ستارة ديكوري يُثبت على الجدار ويبقي الستارة مجموعة ومرتبة وهي مفتوحة.',
+           'h2': 'اللمسة الأخيرة التي تجمع الستارة',
+           'intro': 'الرينسو ماسك ستارة ديكوري يُثبت على الجدار بجانب الستارة. عندما تفتح الستارة يبقي القماش مجموعاً ومرتباً ويؤطر النافذة من الجانبين. تتوفر خيارات من الخشب والمعدن والرخام، من أشكال ديكورية كأوراق الشجر إلى مقابض بسيطة. نختار معك ما يناسب قماشك وطابع غرفتك، ونركّبه مع الستائر. راسلنا عبر واتساب أو اتصل بنا لترى الموديلات.',
            'sections': []},
 })
 COMPARE = json.load(open(os.path.join(ROOT, 'src', 'content', 'compare.json')))

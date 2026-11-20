@@ -76,9 +76,9 @@ Bir villada perdenin kalitesi detaylarda görünür:
 
 Villalarda perde, duvar kağıdı ve halıyı ayrı ayrı değil, mekâna özel bir bütün olarak düşünmek gerekir. Aynı dokusal dil, büyük mekânları dağınıklıktan kurtarır:
 
-- Keten bir tül, [tekstil duvar kağıdı](/tr/blog/tekstil-duvar-kagidi-nedir) ve sisal bir halı aynı doğal ailedendir.
-- Kadife bir fon, el dokuma bir halıyla sıcak bir denge kurar.
-- [Özel ölçü halılar](/tr/urunler/hali/ozel-olcu), büyük salonlarda oturma gruplarını tanımlar.
+- Keten bir tül, kumaş dokulu [baskılı duvar kağıdı](/tr/urunler/duvar-kagidi/kumas-baskili) ve [sisal bir halı](/tr/urunler/hali/sisal) aynı doğal ailedendir.
+- Kadife bir fon, yumuşak dokulu bir halıyla sıcak bir denge kurar.
+- [Duvardan duvara halı](/tr/urunler/hali#duvardan-duvara-hali) büyük salonlarda zemini tek parça gibi bütünler.
 
 ## 7. Süreç ve takvim
 

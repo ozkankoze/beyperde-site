@@ -75,7 +75,7 @@ Villanın tüm pencerelerini tek seferde yaptırmak istiyorsanız ölçüyü bü
 
 ## Perdenin yanında duvar ve zemin
 
-Şile'deki bir evi yenilerken perdeyle birlikte duvar kağıdı ve halıyı da düşünüyorsanız, üçünü aynı ekiple planlamak uyumu kolaylaştırır. Silinebilir [vinil duvar kağıdı](/tr/urunler/duvar-kagidi/vinyl) kullanımı yoğun alanlarda pratiktir; [tekstil duvar kağıdı](/tr/urunler/duvar-kagidi/tekstil) ise odaya kumaş sıcaklığı katar. Doğal dokulu bir evde sisal ya da [özel ölçü halı](/tr/urunler/hali/ozel-olcu) perdeyle aynı dili konuşur.
+Şile'deki bir evi yenilerken perdeyle birlikte duvar kağıdı ve halıyı da düşünüyorsanız, üçünü aynı ekiple planlamak uyumu kolaylaştırır. Silinebilir [vinil duvar kağıdı](/tr/urunler/duvar-kagidi/vinyl) kullanımı yoğun alanlarda pratiktir; ahşap ya da kumaş dokulu [baskılı duvar kağıdı](/tr/urunler/duvar-kagidi#baskili-duvar-kagidi) ise duvara doku katar. Doğal dokulu bir evde [sisal halı](/tr/urunler/hali/sisal) perdeyle aynı dili konuşur.
 
 ## Sıkça sorulan sorular
 

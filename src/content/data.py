@@ -185,9 +185,7 @@ PRODUCTS = {
     'perde-aksesuarlari': ('perde', T('Perde Aksesuarları', 'Curtain Accessories', 'إكسسوارات الستائر'),
         T('Dekoratif ray, korniş ve rustik boru; tutucu, püskül ve motor donanımları.', 'Decorative tracks, rails and poles; holdbacks, tassels and motor fittings.', 'سكك ديكورية وكرانيش وقضبان؛ مشابك وشراريب وملحقات المحرك.')),
     'rensolar': ('perde', T('Rensolar', 'Rensos', 'رينسو'),
-        T('Ahşap, metal ve mermer seçenekleriyle perde düzenini tamamlayan dekoratif aksesuar.', 'A decorative accessory that completes the curtain set-up, in wood, metal or marble.', 'إكسسوار ديكوري يكمل تنسيق الستائر، من الخشب أو المعدن أو الرخام.')),
-    'tekstil': ('duvar-kagidi', T('Tekstil Duvar Kağıdı', 'Textile Wallcovering', 'ورق جدران نسيجي'),
-        T('Kumaş yüzey; duvarda derinlik ve sesin yumuşaması.', 'A cloth surface: depth on the wall and softer sound.', 'سطح قماشي يمنح الجدار عمقاً ويلطف الصوت.')),
+        T('Fon perdeyi açıkken toplu tutan, duvara takılan dekoratif perde tutucu.', 'A decorative wall-mounted holdback that keeps an open drape gathered.', 'ماسك ستارة ديكوري يُثبت على الجدار ويبقي الستارة مجموعة وهي مفتوحة.')),
     'vinyl': ('duvar-kagidi', T('Vinil Duvar Kağıdı', 'Vinyl Wallpaper', 'ورق جدران فينيل'),
         T('Silinebilir yüzey; mutfak, koridor ve yoğun kullanım alanları.', 'Wipe-clean, for kitchens, corridors and hard-worn walls.', 'سطح قابل للمسح، للمطابخ والممرات والأماكن كثيرة الاستعمال.')),
     'non-woven': ('duvar-kagidi', T('Non-Woven Duvar Kağıdı', 'Non-Woven Wallpaper', 'ورق جدران نون-ووفن'),
@@ -198,10 +196,6 @@ PRODUCTS = {
         T('Kumaş dokusunun dijital baskısı; desen ve ölçü size göre.', 'Digitally printed fabric texture — your pattern, your measurements.', 'طباعة رقمية لملمس القماش — النقش والمقاس كما تريد.')),
     'sisal': ('hali', T('Sisal Halı', 'Sisal Rugs', 'سجاد سيزال'),
         T('Doğal lif; mat, dayanıklı ve ayak altında sıcak.', 'Natural fibre: matt, hard-wearing, warm underfoot.', 'ألياف طبيعية: مطفأة اللمعة، متينة ودافئة تحت القدم.')),
-    'ozel-olcu': ('hali', T('Özel Ölçü Halı', 'Made-to-Measure Rugs', 'سجاد بمقاس خاص'),
-        T('Odanın ölçüsüne göre kesim ve kenar bandı.', 'Cut to the room, with a bound edge.', 'قص على مقاس الغرفة مع حياكة للأطراف.')),
-    'el-dokuma': ('hali', T('El Dokuma Halı', 'Hand-Woven Rugs', 'سجاد منسوج يدوياً'),
-        T('Tezgâhta dokunur; her parça kendine ait.', 'Woven on a loom — each piece its own.', 'منسوج على النول — كل قطعة بذاتها.')),
 }
 
 # ---------- oda / kullanım alanı sözlüğü (katalog ve ürün sayfaları ortak) ----------
@@ -333,18 +327,9 @@ EXTRA = {
     'rensolar': {
         'rooms': ['salon', 'yatak', 'yemek', 'villa'],
         'materials': T(['Ahşap renso', 'Metal renso', 'Mermer renso'], ['Wooden renso', 'Metal renso', 'Marble renso'], ['رينسو خشبي', 'رينسو معدني', 'رينسو رخامي']),
-        'adv': T(['Ahşap, metal ve mermer seçenekleri', 'Perdenin ve mekânın tarzına göre seçilir', 'Ölçü ve montaj perdeyle birlikte, tek elden'],
-                 ['A choice of wood, metal and marble', 'Chosen to suit the curtains and the room', 'Measured and fitted together with the curtains, by one team'],
-                 ['خيارات من الخشب والمعدن والرخام', 'يُختار بما يناسب الستائر وطابع المكان', 'القياس والتركيب مع الستائر من فريق واحد']),
-    },
-    'tekstil': {
-        'rooms': ['salon', 'yatak', 'calisma', 'koridor', 'ofis'],
-        'materials': T(['Keten ve ipek görünümlü dokular', 'Örgü ve hasır dokular', 'Kağıt ya da non-woven taban'],
-                       ['Linen- and silk-look weaves', 'Woven and grasscloth textures', 'Paper or non-woven backing'],
-                       ['أنسجة بمظهر الكتان والحرير', 'ملامس منسوجة ومجدولة', 'قاعدة ورقية أو نون-ووفن']),
-        'adv': T(['Duvara boyanın veremeyeceği bir derinlik', 'Işık liflerin üzerinde yumuşakça dağılır', 'Odadaki sesi yumuşatır', 'Panel ve kemerli nişlerde etkileyici'],
-                 ['A depth paint cannot give a wall', 'Light spreads softly over the fibres', 'Softens the sound in the room', 'Striking in panels and arched niches'],
-                 ['عمق لا يمنحه الطلاء للجدار', 'ينتشر الضوء بنعومة على الألياف', 'يلطّف الصوت في الغرفة', 'لافت في الألواح والتجاويف المقوّسة']),
+        'adv': T(['Açık perdeyi düzgün ve toplu tutar', 'Ahşap, metal ve mermer seçenekleri; yaprak gibi dekoratif formlar', 'Perdeyle birlikte seçilir ve aynı ekip takar'],
+                 ['Keeps an open drape neat and gathered', 'Wood, metal and marble, including decorative forms such as leaves', 'Chosen with the curtains and fitted by the same team'],
+                 ['يبقي الستارة المفتوحة مرتبة ومجموعة', 'خيارات من الخشب والمعدن والرخام، منها أشكال ديكورية كأوراق الشجر', 'يُختار مع الستائر ويركّبه الفريق نفسه']),
     },
     'vinyl': {
         'rooms': ['mutfak', 'koridor', 'cocuk', 'banyo', 'ofis', 'salon'],
@@ -391,24 +376,6 @@ EXTRA = {
                  ['A matt, natural look', 'Hard-wearing, suits busy rooms', 'Warm underfoot', 'Sits well on wood and stone floors'],
                  ['مظهر طبيعي مطفأ', 'متين ومناسب للاستعمال الكثيف', 'دافئ تحت القدم', 'يتناسب مع الأرضيات الخشبية والحجرية']),
     },
-    'ozel-olcu': {
-        'rooms': ['salon', 'yatak', 'cocuk', 'calisma', 'ofis'],
-        'materials': T(['Odaya göre kesim', 'Kenar bandı ve overlok', 'Farklı lif ve doku seçenekleri'],
-                       ['Cut to the room', 'Edge binding and overlocking', 'A choice of fibres and textures'],
-                       ['قص حسب الغرفة', 'حياكة الحواف وتشطيبها', 'خيارات متعددة من الألياف والملامس']),
-        'adv': T(['Odanın ölçüsüne tam oturur', 'Mobilya yerleşimine göre planlanır', 'Kenarları bantla temiz biter', 'Alışılmadık ölçülerde çözüm'],
-                 ['Fits the room exactly', 'Planned around the furniture', 'Finished cleanly with a bound edge', 'A solution for unusual sizes'],
-                 ['يناسب مقاس الغرفة تماماً', 'يُخطَّط حسب توزيع الأثاث', 'حواف نظيفة بشريط محاك', 'حل للمقاسات غير المعتادة']),
-    },
-    'el-dokuma': {
-        'rooms': ['salon', 'yatak', 'yemek', 'calisma'],
-        'materials': T(['Tezgâhta el dokuma', 'Doğal lifler', 'Her parça kendine özgü'],
-                       ['Hand-woven on a loom', 'Natural fibres', 'Every piece its own'],
-                       ['منسوج يدوياً على النول', 'ألياف طبيعية', 'كل قطعة فريدة']),
-        'adv': T(['Her parça tek ve kendine ait', 'Odaya karakter katar', 'Uzun ömürlü', 'Doğal dokularla uyumlu'],
-                 ['Every piece is one of a kind', 'Gives a room character', 'Long-lasting', 'Sits well with natural textures'],
-                 ['كل قطعة فريدة من نوعها', 'يمنح الغرفة طابعاً خاصاً', 'يدوم طويلاً', 'يتناسب مع الملامس الطبيعية']),
-    },
 }
 
 RELATED = {
@@ -425,14 +392,11 @@ RELATED = {
     'rustik-perde': ['tul-perde', 'fon-perde', 'perde-aksesuarlari', 'katlamali-perde'],
     'perde-aksesuarlari': ['fon-perde', 'tul-perde', 'rustik-perde', 'motorlu-perde'],
     'rensolar': ['perde-aksesuarlari', 'rustik-perde', 'fon-perde'],
-    'tekstil': ['vinyl', 'non-woven', 'kumas-baskili', 'fon-perde'],
-    'vinyl': ['non-woven', 'tekstil', 'ahsap-baskili', 'stor-perde'],
-    'non-woven': ['vinyl', 'tekstil', 'kumas-baskili', 'ahsap-baskili'],
-    'ahsap-baskili': ['kumas-baskili', 'non-woven', 'tekstil', 'jaluzi-perde'],
-    'kumas-baskili': ['ahsap-baskili', 'tekstil', 'non-woven', 'fon-perde'],
-    'sisal': ['ozel-olcu', 'el-dokuma', 'tekstil', 'rustik-perde'],
-    'ozel-olcu': ['sisal', 'el-dokuma', 'tul-perde', 'fon-perde'],
-    'el-dokuma': ['sisal', 'ozel-olcu', 'tekstil', 'fon-perde'],
+    'vinyl': ['non-woven', 'ahsap-baskili', 'stor-perde'],
+    'non-woven': ['vinyl', 'kumas-baskili', 'ahsap-baskili'],
+    'ahsap-baskili': ['kumas-baskili', 'non-woven', 'jaluzi-perde'],
+    'kumas-baskili': ['ahsap-baskili', 'non-woven', 'fon-perde'],
+    'sisal': ['tul-perde', 'fon-perde', 'rustik-perde'],
 }
 
 # ---------- katalog filtre sözlüğü ----------

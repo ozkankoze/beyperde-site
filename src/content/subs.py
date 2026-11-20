@@ -103,11 +103,11 @@ SUBS = {
     ],
     'rensolar': [
         ('ahsap-renso', T('Ahşap Renso', 'Wooden Renso', 'رينسو خشبي'),
-         T('Ahşap seçenek; sıcak ve doğal bir görünüm.', 'The wooden option, warm and natural.', 'الخيار الخشبي، دافئ وطبيعي.'), None),
+         T('Ahşap perde tutucu; sıcak ve doğal bir görünüm.', 'A wooden holdback, warm and natural.', 'ماسك ستارة خشبي، دافئ وطبيعي.'), None),
         ('metal-renso', T('Metal Renso', 'Metal Renso', 'رينسو معدني'),
-         T('Metal seçenek; ince ve modern bir çizgi.', 'The metal option, slim and modern.', 'الخيار المعدني، رفيع وعصري.'), None),
+         T('Metal perde tutucu; yaprak gibi dekoratif ya da sade modern formlar.', 'A metal holdback, in decorative forms such as leaves or simple modern shapes.', 'ماسك ستارة معدني، بأشكال ديكورية كأوراق الشجر أو بخطوط عصرية بسيطة.'), None),
         ('mermer-renso', T('Mermer Renso', 'Marble Renso', 'رينسو رخامي'),
-         T('Mermer seçenek; ağırbaşlı ve şık bir duruş.', 'The marble option, with a solid, refined presence.', 'الخيار الرخامي، بحضور متين وأنيق.'), None),
+         T('Mermer perde tutucu; ağırbaşlı ve şık bir duruş.', 'A marble holdback, solid and refined.', 'ماسك ستارة رخامي، متين وأنيق.'), None),
     ],
 }
 

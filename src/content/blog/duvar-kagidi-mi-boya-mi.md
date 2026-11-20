@@ -6,7 +6,7 @@ aciklama: Boya hızlı ve kolay yenilenir; duvar kağıdı doku, desen ve dayan�
 kapak: urunler/duvar-kagidi-1
 kategori: duvar-kagidi
 yazar: Bey Perde
-urunler: vinyl, tekstil, non-woven
+urunler: vinyl, ahsap-baskili, non-woven
 etiketler: Duvar kağıdı, Boya, Dekorasyon
 dil: tr
 ---
@@ -44,7 +44,7 @@ Duvar kağıdı mı boya mı sorusunun kısa cevabı: **düz bir renk ve sık ye
 
 **Avantajları:**
 
-- **Doku ve derinlik:** [Tekstil duvar kağıdı](/tr/urunler/duvar-kagidi/tekstil) duvara boyanın veremeyeceği bir derinlik katar; ışık kumaşın lifleri üzerinde yumuşakça dağılır.
+- **Doku ve derinlik:** [Baskılı duvar kağıdı](/tr/urunler/duvar-kagidi#baskili-duvar-kagidi) ahşap ya da kumaş dokusunu duvara taşır; boyanın veremeyeceği bir derinlik katar.
 - **Desen:** Geometrik, çiçekli, çizgili ya da baskılı; [ahşap baskılı](/tr/urunler/duvar-kagidi/ahsap-baskili) ve [kumaş baskılı](/tr/urunler/duvar-kagidi/kumas-baskili) türleri malzemenin görünümünü duvara taşır.
 - **Dayanıklılık:** [Vinil duvar kağıdı](/tr/urunler/duvar-kagidi/vinyl) lekeye, neme ve sürtünmeye dayanıklıdır; nemli bir bezle silinir.
 - **Kolay değiştirme:** [Non-woven](/tr/urunler/duvar-kagidi/non-woven) tabanlı kağıtlar söküldüğünde çoğu zaman kuru ve tek parça halinde ayrılır, duvarı yormaz.
@@ -83,13 +83,13 @@ Kısa vadede boya çoğu zaman daha düşük bir bütçeyle başlar. Duvar kağ�
 
 | Oda | Önerimiz | Neden |
 |---|---|---|
-| Salon | Boya + bir duvarda tekstil ya da desenli kağıt | Odaya derinlik ve odak noktası |
-| Yatak odası | Yatak başı duvarında tekstil ya da non-woven | Sakin bir doku, sesin yumuşaması |
+| Salon | Boya + bir duvarda baskılı ya da desenli kağıt | Odaya derinlik ve odak noktası |
+| Yatak odası | Yatak başı duvarında kumaş dokulu baskılı ya da non-woven | Sakin bir doku, sesin yumuşaması |
 | Çocuk odası | Vinil duvar kağıdı | Silinebilir, sürtünmeye dayanıklı |
 | Mutfak | Vinil duvar kağıdı ya da silinebilir boya | Leke ve nem |
 | Banyo | Vinil (duş ve küvet çevresi hariç) ya da neme dayanıklı boya | Nem |
 | Koridor ve merdiven | Vinil duvar kağıdı | El izi ve sürtünme |
-| Ofis ve toplantı | Tekstil ya da vinil | Özenli görünüm, dayanıklılık |
+| Ofis ve toplantı | Vinil ya da non-woven | Özenli görünüm, dayanıklılık |
 
 Banyolarda vinil duvar kağıdı kullanılabilir; ama suyun doğrudan değdiği duş ve küvet çevresinde başka bir kaplama öneririz.
 

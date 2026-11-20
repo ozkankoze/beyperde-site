@@ -79,7 +79,7 @@ Atölyemizin nasıl çalıştığını [Çekmeköy perdeci](/tr/blog/cekmekoy-pe
 
 ## Perdenin yanında duvar ve zemin
 
-Bir odayı yenilerken perdeyle birlikte duvar kağıdını ve halıyı da düşünmek uyumu kolaylaştırır. [Tekstil duvar kağıdı](/tr/urunler/duvar-kagidi/tekstil) duvara boyanın veremeyeceği bir derinlik katar ve odadaki sesi yumuşatır; koridor ve mutfak gibi yoğun kullanılan alanlarda silinebilir [vinil duvar kağıdı](/tr/urunler/duvar-kagidi/vinyl) pratiktir. Zeminde [özel ölçü halı](/tr/urunler/hali/ozel-olcu) odanın ölçüsüne göre hazırlanır. Ölçüye geldiğimizde perde ve duvar kağıdı kartelalarını birlikte getiririz.
+Bir odayı yenilerken perdeyle birlikte duvar kağıdını ve halıyı da düşünmek uyumu kolaylaştırır. Ahşap ya da kumaş dokulu [baskılı duvar kağıdı](/tr/urunler/duvar-kagidi#baskili-duvar-kagidi) duvara boyanın veremeyeceği bir doku katar; koridor ve mutfak gibi yoğun kullanılan alanlarda silinebilir [vinil duvar kağıdı](/tr/urunler/duvar-kagidi/vinyl) pratiktir. Zeminde [duvardan duvara halı](/tr/urunler/hali#duvardan-duvara-hali) odanın ölçüsüne göre kesilir. Ölçüye geldiğimizde perde ve duvar kağıdı kartelalarını birlikte getiririz.
 
 ## Sıkça sorulan sorular
 
