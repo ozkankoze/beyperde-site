@@ -141,3 +141,17 @@ test('toplu kayıt: fiyat listesi kalemleri tek istekte kaydedilir, sınırlar u
   assert.strictEqual((await call(h, { a: 'bulk', col: 'kalemler', docs: [] }, { headers: { cookie } })).code, 400);
   assert.strictEqual((await call(h, { a: 'bulk', col: 'kalemler', docs }, {})).code, 401);
 });
+test('toplu silme: onay ister, önce yedek alır, seçilenleri siler', async () => {
+  const db = {};
+  const h = createHandler({ env: ENV, fetch: fakeFetch(db) });
+  const cookie = await login(h);
+  const r = await call(h, { a: 'bulk', col: 'kalemler', docs: [{ id: 'a1', ad: 'A' }, { id: 'a2', ad: 'B' }, { id: 'a3', ad: 'C' }] }, { headers: { cookie } });
+  assert.strictEqual(r.code, 200);
+  assert.strictEqual((await call(h, { a: 'bulkdel', col: 'kalemler', ids: ['a1'] }, { headers: { cookie } })).code, 400);
+  const d = await call(h, { a: 'bulkdel', col: 'kalemler', ids: ['a1', 'a2'], confirm: 'TOPLU_SIL' }, { headers: { cookie } });
+  assert.strictEqual(d.body.n, 2);
+  const l = await call(h, { a: 'list', col: 'kalemler' }, { headers: { cookie } });
+  assert.deepStrictEqual(l.body.docs.map((x) => x.id), ['a3']);
+  const y = await call(h, { a: 'yedekler' }, { headers: { cookie } });
+  assert.ok(y.body.items.some((i) => /toplu silme/.test(i.neden)));
+});

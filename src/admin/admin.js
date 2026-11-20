@@ -373,19 +373,37 @@ function editKalem(k) {
 
 /* ---------------- STOK ---------------- */
 let sTur = '';
+// Kalem bir satışta ya da alış faturasında kullanılıyorsa silinmez (geçmiş kayıtlar bozulmasın)
+const kalemKullanimda = (id) => S.satislar.some((x) => (x.satirlar || []).some((l) => l.kalemId === id)) || S.alislar.some((a) => (a.stok || []).some((x) => x.kalemId === id));
+async function kalemleriSil(ids) {
+  const sil = ids.filter((id) => !kalemKullanimda(id)), kalan = ids.length - sil.length;
+  if (!sil.length) { toast('Seçilen kalemler satış ya da alış kayıtlarında kullanıldığı için silinemez', true); return; }
+  const r = await api({ a: 'bulkdel', col: 'kalemler', ids: sil, confirm: 'TOPLU_SIL' });
+  if (!r.ok) { toast(r.error === 'session' ? 'Oturum süresi doldu, yeniden giriş yapın.' : 'Silinemedi: ' + r.error, true); return; }
+  const set = new Set(sil); S.kalemler = S.kalemler.filter((k) => !set.has(k.id));
+  toast(`${sil.length} kalem silindi${kalan ? `, ${kalan} kalem kayıtlarda kullanıldığı için bırakıldı` : ''}`);
+  route();
+}
 VIEWS.stok = (m) => {
   const ks = S.kalemler.filter((k) => k.stok && (!sTur || k.stokTur === sTur)).sort((a, b) => String(a.ad).localeCompare(b.ad, 'tr'));
   const rows = ks.map((k) => { const s = stokOf(k), low = num(k.kritik) > 0 && s.mevcut <= num(k.kritik);
-    return `<tr><td>${esc(k.ad)}${k.tedarikci ? `<br><small class="note">${esc(k.tedarikci)}</small>` : ''}</td><td>${STOK_TUR[k.stokTur] || ''}</td><td>${esc(k.birim)}</td><td class="n">${N2(num(k.acilisStok) + num(k.duzeltme))}</td><td class="n">${N2(s.giris)}</td><td class="n">${N2(s.cikis)}</td><td class="n"><b>${N2(s.mevcut)}</b></td><td class="n">${N2(k.kritik)}</td><td>${s.mevcut < 0 ? '<span class="pill bad">Eksi</span>' : low ? '<span class="pill warn">Azaldı</span>' : '<span class="pill ok">Yeterli</span>'}</td><td><button class="btn-sm" data-say="${k.id}">Sayım gir</button></td></tr>`; }).join('');
+    return `<tr><td><input type="checkbox" data-sel="${k.id}" aria-label="${esc(k.ad)} seç"></td><td>${esc(k.ad)}${k.tedarikci ? `<br><small class="note">${esc(k.tedarikci)}</small>` : ''}</td><td>${STOK_TUR[k.stokTur] || ''}</td><td>${esc(k.birim)}</td><td class="n">${N2(num(k.acilisStok) + num(k.duzeltme))}</td><td class="n">${N2(s.giris)}</td><td class="n">${N2(s.cikis)}</td><td class="n"><b>${N2(s.mevcut)}</b></td><td class="n">${N2(k.kritik)}</td><td>${s.mevcut < 0 ? '<span class="pill bad">Eksi</span>' : low ? '<span class="pill warn">Azaldı</span>' : '<span class="pill ok">Yeterli</span>'}</td><td><button class="btn-sm" data-say="${k.id}">Sayım gir</button> <button class="btn-sm danger" data-sil="${k.id}" type="button">Sil</button></td></tr>`; }).join('');
   m.innerHTML = head('Stok', 'Alış faturasındaki "stoğa giren" satırlar stoğu artırır; sipariş ve teslimlerdeki satırlar düşer (teklifler düşmez). Depoyu saydığınızda "Sayım gir" ile düzeltin.')
     + `<div class="row" style="margin-bottom:12px">${[['', 'Tümü'], ...Object.entries(STOK_TUR)].map(([v, t]) => `<button class="${sTur === v ? "btn" : "btn-ghost"}" data-st="${v}" type="button">${t} (${S.kalemler.filter((k) => k.stok && (!v || k.stokTur === v)).length})</button>`).join('')}</div>`
-    + `<div class="tbl-wrap"><table><thead><tr><th>Kalem</th><th>Tür</th><th>Birim</th><th class="n">Başlangıç + sayım</th><th class="n">Giriş</th><th class="n">Çıkış</th><th class="n">Mevcut</th><th class="n">Uyarı</th><th>Durum</th><th></th></tr></thead><tbody>${rows || empty(10, 'Stok takibi açık kalem yok. Kalemler ekranında "Bu kalemin stoğunu takip et" kutusunu işaretleyin.')}</tbody></table></div>`;
+    + `<div class="row" style="margin-bottom:12px;align-items:center"><span class="note" id="selc">0 kalem seçili</span><button class="btn-sm danger" id="selsil" type="button" disabled>Seçilenleri sil</button></div>`
+    + `<div class="tbl-wrap"><table><thead><tr><th><input type="checkbox" id="selall" aria-label="Tümünü seç"></th><th>Kalem</th><th>Tür</th><th>Birim</th><th class="n">Başlangıç + sayım</th><th class="n">Giriş</th><th class="n">Çıkış</th><th class="n">Mevcut</th><th class="n">Uyarı</th><th>Durum</th><th></th></tr></thead><tbody>${rows || empty(11, 'Stok takibi açık kalem yok. Kalemler ekranında "Bu kalemin stoğunu takip et" kutusunu işaretleyin.')}</tbody></table></div>`;
   $$('[data-say]', m).forEach((b) => (b.onclick = () => {
     const k = S.kalemler.find((x) => x.id === b.dataset.say), s = stokOf(k);
     openDlg(`<h2>Sayım: ${esc(k.ad)}</h2><p>Sistemdeki miktar: <b>${N2(s.mevcut)} ${esc(k.birim)}</b></p>${field('sayim', `Depoda saydığınız miktar (${esc(k.birim)})`, N2(s.mevcut), 'text', 'inputmode="decimal" required')}`,
       (f) => save('kalemler', { ...k, duzeltme: r2(num(k.duzeltme) + num(val(f, 'sayim')) - s.mevcut) }));
   }));
   $$('[data-st]', m).forEach((b) => (b.onclick = () => { sTur = b.dataset.st; route(); }));
+  const secili = () => $$('[data-sel]:checked', m).map((c) => c.dataset.sel);
+  const guncelle = () => { const n = secili().length; $('#selc').textContent = `${n} kalem seçili`; $('#selsil').disabled = !n; $('#selsil').textContent = n ? `Seçilen ${n} kalemi sil` : 'Seçilenleri sil'; };
+  $('#selall').onchange = (e) => { $$('[data-sel]', m).forEach((c) => (c.checked = e.target.checked)); guncelle(); };
+  $$('[data-sel]', m).forEach((c) => (c.onchange = guncelle));
+  armBtn($('#selsil'), 'Silmeyi onayla (geri alınamaz)', () => kalemleriSil(secili()));
+  $$('[data-sil]', m).forEach((b) => armBtn(b, 'Onayla', () => kalemleriSil([b.dataset.sil])));
 };
 
 /* ---------------- SATIŞLAR ---------------- */

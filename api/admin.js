@@ -214,6 +214,14 @@ function createHandler(opts = {}) {
           for (const doc of out) await store.save(b.col, doc);
           return send(res, 200, { ok: true, docs: out });
         }
+        case 'bulkdel': {   // seçilen kalemleri toplu silme; önce mevcut hâlin anlık yedeği alınır
+          const ids = Array.isArray(b.ids) ? b.ids.map(cleanId).filter(Boolean) : [];
+          if (!COLS.includes(b.col) || !ids.length || ids.length > 1000 || b.confirm !== 'TOPLU_SIL') return send(res, 400, { ok: false, error: 'ids' });
+          const cur = {}; for (const c of COLS) cur[c] = await store.list(c);
+          await snapshot(store, cur, now(), `toplu silme öncesi (${ids.length} kayıt)`);
+          for (const id of ids) await store.del(b.col, id);
+          return send(res, 200, { ok: true, n: ids.length });
+        }
         case 'del': {
           if (!(COLS.includes(b.col) || b.col === FOTO) || !cleanId(b.id)) return send(res, 400, { ok: false, error: 'id' });
           await store.del(b.col, cleanId(b.id));
