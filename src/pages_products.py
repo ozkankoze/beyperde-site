@@ -440,7 +440,7 @@ def render_product(G, lang, slug, ck, catalog):
         models = models_section(G, lang, cards, MOD_TXT['h'][lang])
     if ck == 'perde':   # "Işığı nasıl karşılıyor?" bölümü sadelik için kaldırıldı
         fam = ''
-    body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + rel + '</div>'
+    body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + '</div>'
     if ck == 'perde':
         opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]
     else:
