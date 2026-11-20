@@ -202,6 +202,18 @@ function createHandler(opts = {}) {
           await store.save(b.col, doc);
           return send(res, 200, { ok: true, doc });
         }
+        case 'bulk': {   // fiyat listesi içe aktarma: tek istekte birden çok kalem (yalnızca COLS, kayıt başına boyut sınırı)
+          if (!COLS.includes(b.col) || !Array.isArray(b.docs) || !b.docs.length || b.docs.length > 300) return send(res, 400, { ok: false, error: 'docs' });
+          const stamp = new Date(now()).toISOString(), out = [];
+          for (const d of b.docs) {
+            if (!d || typeof d !== 'object') return send(res, 400, { ok: false, error: 'doc' });
+            const doc = { ...d, id: cleanId(d.id) || crypto.randomUUID(), guncelleme: stamp };
+            if (JSON.stringify(doc).length > MAX_DOC) return send(res, 400, { ok: false, error: 'too_large' });
+            out.push(doc);
+          }
+          for (const doc of out) await store.save(b.col, doc);
+          return send(res, 200, { ok: true, docs: out });
+        }
         case 'del': {
           if (!(COLS.includes(b.col) || b.col === FOTO) || !cleanId(b.id)) return send(res, 400, { ok: false, error: 'id' });
           await store.del(b.col, cleanId(b.id));

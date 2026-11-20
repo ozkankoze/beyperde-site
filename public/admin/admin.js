@@ -1,5 +1,6 @@
 /* Bey Perde yönetim paneli — ön yüz. Veriler /api/admin üzerinden sunucudaki depoda tutulur.
    Hesaplamalar burada yapılır (calc*); yazdırma için #print-area kullanılır. */
+import { readXlsx, parseFiyatListesi, planImport, STOK_TUR } from '/admin/fiyat.mjs';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -254,16 +255,86 @@ VIEWS.takvim = (m) => {
 
 /* ---------------- KALEMLER ---------------- */
 const TUR = { urun: 'Ürün', iscilik: 'İşçilik', hizmet: 'Hizmet' };
+let kFilter = { q: '', tur: '', ted: '' };
 VIEWS.kalemler = (m) => {
-  const rows = [...S.kalemler].sort((a, b) => String(a.ad).localeCompare(b.ad, 'tr')).map((k) => {
-    const marj = num(k.satis) ? ((num(k.satis) - num(k.alis)) / num(k.satis)) * 100 : 0;
-    return `<tr><td>${esc(k.kod)}</td><td>${esc(k.ad)}${k.stok ? ' <span class="pill ok">stok</span>' : ''}</td><td>${TUR[k.tur] || ''}</td><td>${esc(k.birim)}</td><td class="n">${TL(k.alis)}</td><td class="n">${TL(k.satis)}</td><td class="n">%${N2(k.kdv)}</td><td class="n">%${N2(marj)}</td><td><button class="btn-sm" data-e="${k.id}">Düzenle</button></td></tr>`;
-  }).join('');
-  m.innerHTML = head('Kalemler', 'Ürün, işçilik ve hizmet kalemleri; alış (maliyet) ve satış fiyatları. Fiyatı değişen kalemi buradan güncelleyin.', '<button class="btn" id="new">Yeni kalem</button>')
-    + `<div class="tbl-wrap"><table><thead><tr><th>Kod</th><th>Ad</th><th>Tür</th><th>Birim</th><th class="n">Alış / maliyet</th><th class="n">Satış</th><th class="n">KDV</th><th class="n">Marj</th><th></th></tr></thead><tbody>${rows || empty(9, 'Henüz kalem yok. "Yeni kalem" ile ekleyin.')}</tbody></table></div>`;
+  const teds = [...new Set(S.kalemler.map((k) => k.tedarikci).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'tr'));
+  const draw = () => {
+    const q = kFilter.q.toLocaleLowerCase('tr');
+    const list = [...S.kalemler].filter((k) => (!q || `${k.kod} ${k.ad}`.toLocaleLowerCase('tr').includes(q)) && (!kFilter.tur || k.stokTur === kFilter.tur) && (!kFilter.ted || k.tedarikci === kFilter.ted))
+      .sort((a, b) => String(a.ad).localeCompare(b.ad, 'tr'));
+    $('#kbody').innerHTML = list.map((k) => {
+      const marj = num(k.satis) ? ((num(k.satis) - num(k.alis)) / num(k.satis)) * 100 : 0;
+      return `<tr><td>${esc(k.kod)}</td><td>${esc(k.ad)}${k.stok ? ' <span class="pill ok">stok</span>' : ''}${k.tedarikci ? `<br><small class="note">${esc(k.tedarikci)}${k.en ? ' · en ' + esc(k.en) + ' cm' : ''}${k.durum ? ' · ' + esc(k.durum) : ''}</small>` : ''}</td><td>${STOK_TUR[k.stokTur] || TUR[k.tur] || ''}</td><td>${esc(k.birim)}</td><td class="n">${TL(k.alis)}${k.dovizFiyat ? `<br><small class="note">${N2(k.dovizFiyat)} ${esc(k.doviz || '')}</small>` : ''}</td><td class="n">${TL(k.satis)}</td><td class="n">%${N2(k.kdv)}</td><td class="n">%${N2(marj)}</td><td><button class="btn-sm" data-e="${k.id}">Düzenle</button></td></tr>`;
+    }).join('') || empty(9, S.kalemler.length ? 'Aramaya uyan kalem yok.' : 'Henüz kalem yok. "Fiyat listesi yükle" ya da "Yeni kalem" ile ekleyin.');
+    $('#kcount').textContent = `${list.length} kalem`;
+    $$('[data-e]', m).forEach((b) => (b.onclick = () => editKalem(S.kalemler.find((k) => k.id === b.dataset.e))));
+  };
+  m.innerHTML = head('Kalemler', 'Ürün, işçilik ve hizmet kalemleri; alış (maliyet) ve satış fiyatları. Tedarikçinin fiyat listesini yükleyerek kalemleri toplu ekleyin ya da fiyatları güncelleyin.', '<button class="btn-ghost" id="fl">Fiyat listesi yükle</button><button class="btn" id="new">Yeni kalem</button>')
+    + `<div class="card grid2" style="margin-bottom:12px"><div><label for="kq">Ara (kod ya da ad)</label><input id="kq" type="search" value="${esc(kFilter.q)}"></div>
+      <div class="grid2">${sel('kt', 'Stok türü', [['', 'Tümü'], ...Object.entries(STOK_TUR)], kFilter.tur)}${sel('kted', 'Tedarikçi', [['', 'Tümü'], ...teds.map((t) => [t, t])], kFilter.ted)}</div></div>
+    <p class="note" id="kcount"></p>
+    <div class="tbl-wrap"><table><thead><tr><th>Kod</th><th>Ad</th><th>Tür</th><th>Birim</th><th class="n">Alış / maliyet</th><th class="n">Satış</th><th class="n">KDV</th><th class="n">Marj</th><th></th></tr></thead><tbody id="kbody"></tbody></table></div>`;
+  $('#kq').oninput = (e) => { kFilter.q = e.target.value; draw(); };
+  $('#kt').onchange = (e) => { kFilter.tur = e.target.value; draw(); };
+  $('#kted').onchange = (e) => { kFilter.ted = e.target.value; draw(); };
   $('#new').onclick = () => editKalem({ tur: 'urun', birim: 'metre', kdv: ayar().kdv });
-  $$('[data-e]', m).forEach((b) => (b.onclick = () => editKalem(S.kalemler.find((k) => k.id === b.dataset.e))));
+  $('#fl').onclick = fiyatListesiYukle;
+  draw();
 };
+
+/* ---------------- FİYAT LİSTESİ (Excel) İÇE AKTARMA ---------------- */
+function fiyatListesiYukle() {
+  let parsed = null, plan = null, fname = '';
+  const turOpts = [['', 'Seçin…'], ...Object.entries(STOK_TUR)];
+  openDlg(`<h2>Fiyat listesi yükle</h2>
+    <p class="note">Tedarikçinin fiyat listesini Excel (.xlsx) olarak seçin. Listede olmayan ürünler stok kalemi olarak eklenir; daha önce yüklenmiş ürünlerin (aynı tedarikçi ve kod) yalnızca fiyatları güncellenir, stok miktarlarına dokunulmaz. Dosya bilgisayarınızda okunur.</p>
+    <div><label for="flf">Excel dosyası</label><input id="flf" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></div>
+    <div id="flres"></div>`, async () => {
+    if (!plan) { toast('Önce dosya seçin', true); return false; }
+    const docs = [...plan.yeni, ...plan.degisen.map((d) => d.yeni)];
+    if (!docs.length) { toast('Değişiklik yok'); return true; }
+    const btn = $('#dlg-ok'); btn.disabled = true; btn.textContent = 'Kaydediliyor…';
+    let n = 0;
+    for (let i = 0; i < docs.length; i += 100) {
+      const r = await api({ a: 'bulk', col: 'kalemler', docs: docs.slice(i, i + 100) });
+      if (!r.ok) { toast(r.error === 'session' ? 'Oturum süresi doldu, yeniden giriş yapın.' : 'Kaydedilemedi: ' + r.error, true); btn.disabled = false; btn.textContent = 'Kaydet'; if (n) await loadAll(); return false; }
+      for (const d of r.docs) { const j = S.kalemler.findIndex((x) => x.id === d.id); if (j >= 0) S.kalemler[j] = d; else S.kalemler.push(d); }
+      n += r.docs.length;
+    }
+    toast(`${plan.yeni.length} yeni kalem eklendi, ${plan.degisen.length} kalem güncellendi`);
+    return true;
+  });
+  const okBtn = $('#dlg-ok'); okBtn.textContent = 'Listeyi uygula'; okBtn.disabled = true;
+  const replan = () => {
+    const ted = $('#flted').value.trim(), vt = $('#flvt') ? $('#flvt').value : '';
+    const items = parsed.items.map((it) => ({ ...it, stokTur: it.stokTur || vt }));
+    plan = planImport(S.kalemler, items, { tedarikci: ted, tarih: today(), kdv: num(ayar().kdv), kaynak: fname });
+    const fiyat = plan.degisen.filter((d) => d.fiyatDegisti);
+    const turSay = {}; plan.yeni.forEach((d) => (turSay[d.stokTur || '-'] = (turSay[d.stokTur || '-'] || 0) + 1));
+    $('#flsum').innerHTML = `<ul class="checks">
+      <li><span class="pill ok">Yeni</span> <span>${plan.yeni.length} ürün stok kalemi olarak eklenecek${plan.yeni.length ? ' (' + Object.entries(turSay).map(([t, c]) => `${STOK_TUR[t] || 'türü seçilmemiş'}: ${c}`).join(', ') + ')' : ''}</span></li>
+      <li><span class="pill warn">Güncelleme</span> <span>${fiyat.length} üründe fiyat değişti${plan.degisen.length - fiyat.length ? `, ${plan.degisen.length - fiyat.length} üründe en/durum bilgisi değişti` : ''}</span></li>
+      <li><span class="pill teklif">Aynı</span> <span>${plan.ayni} ürün değişmedi</span></li>
+      ${plan.atlanan ? `<li><span class="pill bad">Atlandı</span> <span>${plan.atlanan} satır listede iki kez geçiyor</span></li>` : ''}</ul>
+      ${fiyat.length ? `<div class="tbl-wrap"><table><thead><tr><th>Kod</th><th>Ürün</th><th class="n">Eski alış</th><th class="n">Yeni alış</th><th class="n">Eski satış</th><th class="n">Yeni satış</th></tr></thead><tbody>${fiyat.slice(0, 200).map((d) => `<tr><td>${esc(d.yeni.kod)}</td><td>${esc(d.yeni.ad)}</td><td class="n">${TL(d.eski.alis)}</td><td class="n"><b>${TL(d.yeni.alis)}</b></td><td class="n">${TL(d.eski.satis)}</td><td class="n"><b>${TL(d.yeni.satis)}</b></td></tr>`).join('')}</tbody></table></div>` : ''}`;
+    okBtn.disabled = !(plan.yeni.length || plan.degisen.length) || !ted || (plan.yeni.some((d) => !d.stokTur));
+  };
+  $('#flf').onchange = async (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    fname = f.name;
+    const out = $('#flres'); out.innerHTML = '<p class="note">Okunuyor…</p>';
+    try { parsed = parseFiyatListesi(await readXlsx(await f.arrayBuffer())); }
+    catch (err) { out.innerHTML = `<p><span class="pill bad">Hata</span> ${esc(err.message)}. Dosya Excel (.xlsx) biçiminde olmalı; PDF ise önce Excel'e aktarılmış hâlini yükleyin.</p>`; return; }
+    if (!parsed.items.length) { out.innerHTML = '<p><span class="pill bad">Hata</span> Listede ürün satırı bulunamadı.</p>'; return; }
+    const eksikTur = parsed.items.some((it) => !it.stokTur);
+    const kur = Object.entries(parsed.kur).map(([k, v]) => `${esc(k)}: ${N2(v)}`).join(' · ');
+    out.innerHTML = `<div class="grid2">${field('flted', 'Tedarikçi', parsed.tedarikci, 'text', 'required')}${eksikTur ? sel('flvt', 'Kategorisinden türü anlaşılmayan ürünlerin stok türü', turOpts, '') : `<div><label>Okunan</label><p>${parsed.items.length} ürün${kur ? ' · ' + kur : ''}</p></div>`}</div>
+      <p class="note">Tedarikçi adı eşleştirme için kullanılır: aynı firmanın sonraki listelerini aynı adla yükleyin.</p><div id="flsum"></div>`;
+    $('#flted').oninput = replan;
+    if ($('#flvt')) $('#flvt').onchange = replan;
+    replan();
+  };
+}
 function field(id, label, val = '', type = 'text', extra = '') { return `<div><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" value="${esc(val)}" ${extra}></div>`; }
 function sel(id, label, opts, val, extra = '') { return `<div><label for="${id}">${label}</label><select id="${id}" name="${id}" ${extra}>${opts.map(([v, t]) => `<option value="${esc(v)}"${String(v) === String(val) ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></div>`; }
 const hesapOpts = (v) => ayar().hesaplar.map((h) => `<option${h === (v || H0()) ? ' selected' : ''}>${esc(h)}</option>`).join('');
@@ -291,23 +362,29 @@ function editKalem(k) {
     ${field('kdv', 'KDV %', k.kdv ?? ayar().kdv, 'text', 'inputmode="decimal"')}</div>
     <p class="note">İşçilik ve hizmet kalemlerinde "alış" alanına ustaya ödenen ya da size maliyeti olan tutarı yazın; kâr hesabı buna göre yapılır.</p>
     <fieldset class="card"><legend>Stok takibi</legend><label class="chk"><input type="checkbox" id="stok" ${k.stok ? 'checked' : ''}> Bu kalemin stoğunu takip et (kumaş, ray, aksesuar)</label>
-    <div class="grid2">${field('acilisStok', 'Başlangıç stoğu', N2(k.acilisStok || 0), 'text', 'inputmode="decimal"')}${field('kritik', 'Uyarı seviyesi (bunun altına inince uyar)', N2(k.kritik || 0), 'text', 'inputmode="decimal"')}</div></fieldset>`,
-  (f) => save('kalemler', { ...k, kod: val(f, 'kod'), ad: val(f, 'ad'), tur: val(f, 'tur'), birim: val(f, 'birim'), alis: num(val(f, 'alis')), satis: num(val(f, 'satis')), kdv: num(val(f, 'kdv')), stok: $('#stok').checked, acilisStok: num(val(f, 'acilisStok')), kritik: num(val(f, 'kritik')) }),
+    <div class="grid2">${sel('stokTur', 'Stok türü', [['', '—'], ...Object.entries(STOK_TUR)], k.stokTur || '')}${field('tedarikci', 'Tedarikçi', k.tedarikci || '')}
+    ${field('acilisStok', 'Başlangıç stoğu', N2(k.acilisStok || 0), 'text', 'inputmode="decimal"')}${field('kritik', 'Uyarı seviyesi (bunun altına inince uyar)', N2(k.kritik || 0), 'text', 'inputmode="decimal"')}</div>
+    ${k.dovizFiyat || k.en || k.kategori ? `<p class="note">${[k.kategori, k.dovizFiyat ? `liste fiyatı ${N2(k.dovizFiyat)} ${esc(k.doviz || '')}` : '', k.en ? `en ${esc(k.en)} cm` : '', k.durum].filter(Boolean).map(esc).join(' · ')}</p>` : ''}</fieldset>
+    ${(k.fiyatGecmis || []).length > 1 ? `<details class="card"><summary>Fiyat geçmişi (${k.fiyatGecmis.length})</summary><div class="tbl-wrap"><table><thead><tr><th>Tarih</th><th class="n">Alış</th><th class="n">Satış</th><th class="n">Liste</th></tr></thead><tbody>${[...k.fiyatGecmis].reverse().map((g) => `<tr><td>${fmtDate(g.tarih)}</td><td class="n">${TL(g.alis)}</td><td class="n">${TL(g.satis)}</td><td class="n">${g.dovizFiyat != null ? N2(g.dovizFiyat) : ''}</td></tr>`).join('')}</tbody></table></div></details>` : ''}`,
+  (f) => save('kalemler', { ...k, kod: val(f, 'kod'), ad: val(f, 'ad'), tur: val(f, 'tur'), birim: val(f, 'birim'), alis: num(val(f, 'alis')), satis: num(val(f, 'satis')), kdv: num(val(f, 'kdv')), stok: $('#stok').checked, stokTur: val(f, 'stokTur'), tedarikci: val(f, 'tedarikci'), acilisStok: num(val(f, 'acilisStok')), kritik: num(val(f, 'kritik')) }),
   k.id ? () => remove('kalemler', k.id) : null);
 }
 
 /* ---------------- STOK ---------------- */
+let sTur = '';
 VIEWS.stok = (m) => {
-  const ks = S.kalemler.filter((k) => k.stok).sort((a, b) => String(a.ad).localeCompare(b.ad, 'tr'));
+  const ks = S.kalemler.filter((k) => k.stok && (!sTur || k.stokTur === sTur)).sort((a, b) => String(a.ad).localeCompare(b.ad, 'tr'));
   const rows = ks.map((k) => { const s = stokOf(k), low = num(k.kritik) > 0 && s.mevcut <= num(k.kritik);
-    return `<tr><td>${esc(k.ad)}</td><td>${esc(k.birim)}</td><td class="n">${N2(num(k.acilisStok) + num(k.duzeltme))}</td><td class="n">${N2(s.giris)}</td><td class="n">${N2(s.cikis)}</td><td class="n"><b>${N2(s.mevcut)}</b></td><td class="n">${N2(k.kritik)}</td><td>${s.mevcut < 0 ? '<span class="pill bad">Eksi</span>' : low ? '<span class="pill warn">Azaldı</span>' : '<span class="pill ok">Yeterli</span>'}</td><td><button class="btn-sm" data-say="${k.id}">Sayım gir</button></td></tr>`; }).join('');
+    return `<tr><td>${esc(k.ad)}${k.tedarikci ? `<br><small class="note">${esc(k.tedarikci)}</small>` : ''}</td><td>${STOK_TUR[k.stokTur] || ''}</td><td>${esc(k.birim)}</td><td class="n">${N2(num(k.acilisStok) + num(k.duzeltme))}</td><td class="n">${N2(s.giris)}</td><td class="n">${N2(s.cikis)}</td><td class="n"><b>${N2(s.mevcut)}</b></td><td class="n">${N2(k.kritik)}</td><td>${s.mevcut < 0 ? '<span class="pill bad">Eksi</span>' : low ? '<span class="pill warn">Azaldı</span>' : '<span class="pill ok">Yeterli</span>'}</td><td><button class="btn-sm" data-say="${k.id}">Sayım gir</button></td></tr>`; }).join('');
   m.innerHTML = head('Stok', 'Alış faturasındaki "stoğa giren" satırlar stoğu artırır; sipariş ve teslimlerdeki satırlar düşer (teklifler düşmez). Depoyu saydığınızda "Sayım gir" ile düzeltin.')
-    + `<div class="tbl-wrap"><table><thead><tr><th>Kalem</th><th>Birim</th><th class="n">Başlangıç + sayım</th><th class="n">Giriş</th><th class="n">Çıkış</th><th class="n">Mevcut</th><th class="n">Uyarı</th><th>Durum</th><th></th></tr></thead><tbody>${rows || empty(9, 'Stok takibi açık kalem yok. Kalemler ekranında "Bu kalemin stoğunu takip et" kutusunu işaretleyin.')}</tbody></table></div>`;
+    + `<div class="row" style="margin-bottom:12px">${[['', 'Tümü'], ...Object.entries(STOK_TUR)].map(([v, t]) => `<button class="${sTur === v ? "btn" : "btn-ghost"}" data-st="${v}" type="button">${t} (${S.kalemler.filter((k) => k.stok && (!v || k.stokTur === v)).length})</button>`).join('')}</div>`
+    + `<div class="tbl-wrap"><table><thead><tr><th>Kalem</th><th>Tür</th><th>Birim</th><th class="n">Başlangıç + sayım</th><th class="n">Giriş</th><th class="n">Çıkış</th><th class="n">Mevcut</th><th class="n">Uyarı</th><th>Durum</th><th></th></tr></thead><tbody>${rows || empty(10, 'Stok takibi açık kalem yok. Kalemler ekranında "Bu kalemin stoğunu takip et" kutusunu işaretleyin.')}</tbody></table></div>`;
   $$('[data-say]', m).forEach((b) => (b.onclick = () => {
     const k = S.kalemler.find((x) => x.id === b.dataset.say), s = stokOf(k);
     openDlg(`<h2>Sayım: ${esc(k.ad)}</h2><p>Sistemdeki miktar: <b>${N2(s.mevcut)} ${esc(k.birim)}</b></p>${field('sayim', `Depoda saydığınız miktar (${esc(k.birim)})`, N2(s.mevcut), 'text', 'inputmode="decimal" required')}`,
       (f) => save('kalemler', { ...k, duzeltme: r2(num(k.duzeltme) + num(val(f, 'sayim')) - s.mevcut) }));
   }));
+  $$('[data-st]', m).forEach((b) => (b.onclick = () => { sTur = b.dataset.st; route(); }));
 };
 
 /* ---------------- SATIŞLAR ---------------- */

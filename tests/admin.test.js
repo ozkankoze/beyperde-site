@@ -129,3 +129,15 @@ test('haftalık sunucu yedeği alınır ve geri dönülebilir', async () => {
   assert.strictEqual((await call(h, { a: 'list', col: 'kalemler' }, { headers: { cookie } })).body.docs[0].ad, 'Eski');
   assert.strictEqual((await call(h, { a: 'yedekler' }, { headers: { cookie } })).body.items[0].neden, 'geri dönüş öncesi');
 });
+test('toplu kayıt: fiyat listesi kalemleri tek istekte kaydedilir, sınırlar uygulanır', async () => {
+  const h = createHandler({ env: ENV, fetch: fakeFetch() });
+  const cookie = await login(h);
+  const docs = [{ kod: 'CAS-001', ad: 'Casting 912935', alis: 345.8 }, { id: 'var-olan', kod: 'CAS-002', ad: 'Casting ALADRA', alis: 256.88 }];
+  const r = await call(h, { a: 'bulk', col: 'kalemler', docs }, { headers: { cookie } });
+  assert.strictEqual(r.code, 200); assert.strictEqual(r.body.docs.length, 2); assert.strictEqual(r.body.docs[1].id, 'var-olan');
+  const l = await call(h, { a: 'list', col: 'kalemler' }, { headers: { cookie } });
+  assert.strictEqual(l.body.docs.length, 2);
+  assert.strictEqual((await call(h, { a: 'bulk', col: 'yok', docs }, { headers: { cookie } })).code, 400);
+  assert.strictEqual((await call(h, { a: 'bulk', col: 'kalemler', docs: [] }, { headers: { cookie } })).code, 400);
+  assert.strictEqual((await call(h, { a: 'bulk', col: 'kalemler', docs }, {})).code, 401);
+});
