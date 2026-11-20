@@ -394,14 +394,17 @@ def render_product(G, lang, slug, ck, catalog):
 
     # ---- 7. teknik bilgiler + SSS (akordeon; içerik HTML'de, arama motorları okur)
     acc = ''.join(f'<details class="pp-acc"><summary><span>{e(h)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(b)}</p></div></details>' for h, b in sections)
-    acc += (f'<details class="pp-acc"><summary><span>{q("delivery_h")}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><dl class="pp-dl">'
-            f'<div><dt>{ui("measure", lang)}</dt><dd>{ui("measure_v", lang)}</dd></div><div><dt>{ui("delivery", lang)}</dt><dd>{ui("delivery_v", lang)}</dd></div>'
-            f'<div><dt>{ui("fitting", lang)}</dt><dd>{ui("fitting_v", lang)}</dd></div><div><dt>{ui("guarantee", lang)}</dt><dd>{ui("guarantee_v", lang)}</dd></div></dl></div></details>')
     faq_items = [(qq, a) for qq, a in r['faq']]
-    faq = ''.join(f'<details class="pp-acc pp-faq"><summary><span>{e(qq)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(a)}</p></div></details>' for qq, a in faq_items)
-    info_sec = f'''<section class="pp-sec pp-info-s" aria-labelledby="pp-info"><div class="wrap pp-info">
-  <div><h2 class="pp-h2" id="pp-info">{q('info_h')}</h2></div>
-  <div class="pp-accs">{acc}{f'<h3 class="pp-h4 pp-faq-h">{ui("faq", lang)}</h3>{faq}' if faq else ''}</div>
+    fq = lambda qq, a: f'<details class="pp-acc pp-faq"><summary><span>{e(qq)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(a)}</p></div></details>'  # noqa: E731
+    faq = ''.join(fq(qq, a) for qq, a in faq_items[:3])
+    if len(faq_items) > 3:   # kalan sorular tek satırda toplanır; içerik HTML'de kalır
+        more = {'tr': 'Diğer sorular', 'en': 'More questions', 'ar': 'أسئلة أخرى'}[lang]
+        faq += (f'<details class="pp-acc pp-more"><summary><span>{more} ({len(faq_items) - 3})</span><span class="pp-acc-i" aria-hidden="true"></span></summary>'
+                f'<div class="pp-more-b">{"".join(fq(qq, a) for qq, a in faq_items[3:])}</div></details>')
+    tech_h = {'tr': 'Teknik bilgiler', 'en': 'Details', 'ar': 'التفاصيل'}[lang]
+    info_sec = f'''<section class="pp-sec pp-info-s" aria-label="{q('info_h')}"><div class="wrap pp-info">
+  <div><h2 class="pp-h4 pp-info-h">{tech_h}</h2><div class="pp-accs">{acc}</div></div>
+  {f'<div><h2 class="pp-h4 pp-info-h">{ui("faq", lang)}</h2><div class="pp-accs">{faq}</div></div>' if faq else ''}
 </div></section>'''
 
     # ---- 8. teklif (ürün ailesine göre alanlar)
@@ -437,7 +440,7 @@ def render_product(G, lang, slug, ck, catalog):
         models = models_section(G, lang, cards, MOD_TXT['h'][lang])
     if ck == 'perde':   # "Işığı nasıl karşılıyor?" bölümü sadelik için kaldırıldı
         fam = ''
-    body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
+    body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + rel + '</div>'
     if ck == 'perde':
         opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]
     else:

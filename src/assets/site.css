@@ -1217,7 +1217,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-room-l{font-size:15.5px}
 /* teknik bilgiler: akordeon */
 .pp-info-s{border-top:1px solid var(--line)}
-.pp-info{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);gap:var(--pp-gap);align-items:start}
+.pp-info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--pp-gap);align-items:start}
 .pp-side{margin-top:28px;display:grid;gap:12px}
 .pp-accs{border-top:1px solid var(--line)}
 .pp-acc{border-bottom:1px solid var(--line)}
@@ -1286,3 +1286,4 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-mod-a .arrow-link{font-size:14px}
 
 .pp-info .pp-h2{font-size:clamp(24px,2.2vw,32px)}
+.pp-info-h{margin-bottom:10px}.pp-more-b{padding-left:14px;border-left:1px solid var(--line);margin-bottom:12px}.pp-more-b .pp-acc:last-child{border-bottom:0}
