@@ -215,9 +215,6 @@ def render_home(G, catalog):
         {G['arrow_link'](url(lang, 'projeler/erenkoy-hk-evi'), h('project_cta'))}
       </div>
     </article>
-    {compare_block(G, lang, G['COMPARE'])}
-    <div class="gal-grid">{gal}</div>
-    <p class="center">{G['arrow_link'](url(lang, 'galeri'), h('gallery_cta'))}</p>
   </div>
 </section>
 

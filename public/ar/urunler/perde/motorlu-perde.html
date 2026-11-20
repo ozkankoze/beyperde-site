@@ -601,7 +601,7 @@ th{font-weight:500}
 .ft-brand p{font-size:14px;color:var(--cream-dim);max-width:32ch}
 .ft-social a{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-size:14px;text-decoration:none;opacity:.85}
 .ft-social svg{inline-size:20px;block-size:20px}
-.ft-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .ft-cols h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--cream-dim);margin-bottom:16px}
 :root[lang="ar"] .ft-cols h2{letter-spacing:0;font-size:13px}
 .ft-cols h2 a{text-decoration:none}
@@ -617,8 +617,8 @@ th{font-weight:500}
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 20px}
 .ft-legal a{display:inline-flex;align-items:center;min-block-size:32px;text-decoration:none}
 .ft-legal a:hover{text-decoration:underline}
-@media (max-width:1000px){.ft-top{grid-template-columns:1fr}.ft-cols{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.ft-cols{grid-template-columns:1fr}}
+@media (max-width:1000px){.ft-top{grid-template-columns:1fr}}
+@media (max-width:520px){.ft-cols{grid-template-columns:1fr 1fr;gap:8px 20px}.ft-cols>div{grid-column:1/-1}}
 
 /* ---------- WhatsApp, çerez, lightbox ---------- */
 .wa-float{position:fixed;z-index:70;inset-inline-end:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;
@@ -1402,14 +1402,11 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
     <div class="ft-top">
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="باي بردة" loading="lazy">
-        <p>ستائر وورق جدران وسجاد؛ القياس والتصنيع والتركيب من مصدر واحد. من ورشتنا في تشكمكوي منذ ٢٠١٧.</p>
         <div class="ft-social"><a href="https://www.instagram.com/beyperdee/" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee" title="@beyperdee"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg><span>@beyperdee</span></a></div>
       </div>
       <div class="ft-cols">
-        <nav aria-label="أنظمة الستائر"><h2><a href="/ar/urunler/perde" title="أنظمة الستائر">أنظمة الستائر</a></h2><ul><li><a href="/ar/urunler/perde/stor-perde" title="ستائر رول">ستائر رول</a></li><li><a href="/ar/urunler/perde/tul-perde" title="ستائر التول">ستائر التول</a></li><li><a href="/ar/urunler/perde/fon-perde" title="الستائر القماشية">الستائر القماشية</a></li><li><a href="/ar/urunler/perde/katlamali-perde" title="ستائر رومانية">ستائر رومانية</a></li><li><a href="/ar/urunler/perde/plicell-perde" title="ستائر بليسيه">ستائر بليسيه</a></li><li><a href="/ar/urunler/perde/dikey-perde" title="الستائر العمودية">الستائر العمودية</a></li><li><a href="/ar/urunler/perde/jaluzi-perde" title="ستائر جالوزي">ستائر جالوزي</a></li><li><a href="/ar/urunler/perde/motorlu-perde" title="الستائر الكهربائية">الستائر الكهربائية</a></li><li><a href="/ar/urunler/perde/perde-aksesuarlari" title="إكسسوارات الستائر">إكسسوارات الستائر</a></li><li><a href="/ar/urunler/perde/rensolar" title="رينسو">رينسو</a></li></ul></nav>
-        <div><nav aria-label="ورق الجدران"><h2><a href="/ar/urunler/duvar-kagidi" title="ورق الجدران">ورق الجدران</a></h2><ul><li><a href="/ar/urunler/duvar-kagidi/vinyl" title="ورق جدران فينيل">ورق جدران فينيل</a></li><li><a href="/ar/urunler/duvar-kagidi/non-woven" title="ورق جدران نون-ووفن">ورق جدران نون-ووفن</a></li><li><a href="/ar/urunler/duvar-kagidi/ahsap-baskili" title="ورق جدران بنقش الخشب">ورق جدران بنقش الخشب</a></li><li><a href="/ar/urunler/duvar-kagidi/kumas-baskili" title="ورق جدران بنقش القماش">ورق جدران بنقش القماش</a></li></ul></nav><nav aria-label="السجاد الديكوري"><h2><a href="/ar/urunler/hali" title="السجاد الديكوري">السجاد الديكوري</a></h2><ul><li><a href="/ar/urunler/hali/sisal" title="سجاد سيزال">سجاد سيزال</a></li></ul></nav></div>
-        <nav aria-label="باي بردة"><h2>باي بردة</h2><ul><li><a href="/ar/hakkimizda" title="من نحن">من نحن</a></li><li><a href="/ar/projeler" title="المشاريع">المشاريع</a></li><li><a href="/ar/katalog" title="الكتالوج">الكتالوج</a></li><li><a href="/ar/galeri" title="المعرض">المعرض</a></li><li><a href="/ar/iletisim" title="اتصل بنا">اتصل بنا</a></li><li><a href="/ar/blog" title="المدونة">المدونة</a></li></ul>
-          <h2 class="mt">مناطق الخدمة</h2><ul><li><a href="/tr/hizmet-bolgeleri/cekmekoy" hreflang="tr" lang="tr" title="تشكمكوي">تشكمكوي</a></li><li><a href="/tr/hizmet-bolgeleri/sile" hreflang="tr" lang="tr" title="شيلي">شيلي</a></li><li><a href="/tr/hizmet-bolgeleri/agva" hreflang="tr" lang="tr" title="آغفا">آغفا</a></li><li><a href="/tr/hizmet-bolgeleri/riva" hreflang="tr" lang="tr" title="ريفا">ريفا</a></li><li><a href="/tr/hizmet-bolgeleri/beykoz" hreflang="tr" lang="tr" title="بيكوز">بيكوز</a></li></ul></nav>
+        <nav aria-label="المنتجات"><h2>المنتجات</h2><ul><li><a href="/ar/urunler/perde" title="أنظمة الستائر">أنظمة الستائر</a></li><li><a href="/ar/urunler/duvar-kagidi" title="ورق الجدران">ورق الجدران</a></li><li><a href="/ar/urunler/hali" title="السجاد الديكوري">السجاد الديكوري</a></li><li><a href="/ar/urunler/perde/motorlu-perde" title="الستائر الكهربائية">الستائر الكهربائية</a></li></ul></nav>
+        <nav aria-label="باي بردة"><h2>باي بردة</h2><ul><li><a href="/ar/hakkimizda" title="من نحن">من نحن</a></li><li><a href="/ar/projeler" title="المشاريع">المشاريع</a></li><li><a href="/ar/katalog" title="الكتالوج">الكتالوج</a></li><li><a href="/ar/blog" title="المدونة">المدونة</a></li><li><a href="/ar/iletisim" title="اتصل بنا">اتصل بنا</a></li></ul></nav>
         <div><h2>تواصل معنا</h2>
           <address class="ft-nap"><strong>باي بردة</strong><br><span lang="tr">Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12, 34794 Çekmeköy/İstanbul</span><br><br>
             <a href="tel:+905535962614" title="+90 553 596 26 14"><bdi dir="ltr">+90 553 596 26 14</bdi></a><br><a href="mailto:info@beyperde.com" title="info@beyperde.com">info@beyperde.com</a><br>الاثنين – السبت، ٠٩:٠٠ – ١٨:٠٠</address>
@@ -1422,6 +1419,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A8%D8%A7%D9%8A%20%D8%A8%D8%B1%D8%AF%D8%A9%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%B9%D8%B1%20%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85%20%D9%85%D9%86%20%D8%A7%D9%84%D8%B3%D8%AA%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6%D9%8A%D8%A9." target="_blank" rel="noopener nofollow" aria-label="راسلنا عبر واتساب" data-wa-float title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">واتساب</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="سياسة ملفات تعريف الارتباط (بالتركية)"><p>نستخدم ملفات تعريف الارتباط من Google لقياس فعالية إعلاناتنا بإذنك فقط. <a href="/tr/cerez-politikasi" hreflang="tr" title="التفاصيل">التفاصيل</a></p><div class="row"><button class="btn btn-sm" type="button" data-consent="all">قبول</button><button class="btn btn-ghost btn-sm" type="button" data-consent="necessary">الضرورية فقط</button></div></div>
-<script src="/assets/site.js?v=7868ad281e" defer></script><script src="/assets/forms.js?v=7868ad281e" defer></script><script src="/assets/about.js?v=7868ad281e" defer></script>
+<script src="/assets/site.js?v=0d27471363" defer></script><script src="/assets/forms.js?v=0d27471363" defer></script><script src="/assets/about.js?v=0d27471363" defer></script>
 </body>
 </html>

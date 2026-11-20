@@ -601,7 +601,7 @@ th{font-weight:500}
 .ft-brand p{font-size:14px;color:var(--cream-dim);max-width:32ch}
 .ft-social a{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-size:14px;text-decoration:none;opacity:.85}
 .ft-social svg{inline-size:20px;block-size:20px}
-.ft-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .ft-cols h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--cream-dim);margin-bottom:16px}
 :root[lang="ar"] .ft-cols h2{letter-spacing:0;font-size:13px}
 .ft-cols h2 a{text-decoration:none}
@@ -617,8 +617,8 @@ th{font-weight:500}
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 20px}
 .ft-legal a{display:inline-flex;align-items:center;min-block-size:32px;text-decoration:none}
 .ft-legal a:hover{text-decoration:underline}
-@media (max-width:1000px){.ft-top{grid-template-columns:1fr}.ft-cols{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.ft-cols{grid-template-columns:1fr}}
+@media (max-width:1000px){.ft-top{grid-template-columns:1fr}}
+@media (max-width:520px){.ft-cols{grid-template-columns:1fr 1fr;gap:8px 20px}.ft-cols>div{grid-column:1/-1}}
 
 /* ---------- WhatsApp, çerez, lightbox ---------- */
 .wa-float{position:fixed;z-index:70;inset-inline-end:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;
@@ -1402,14 +1402,11 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
     <div class="ft-top">
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="Bey Perde" loading="lazy">
-        <p>Curtains, wallpaper and rugs — measuring, making and fitting from one house. From our workshop in Çekmeköy since 2017.</p>
         <div class="ft-social"><a href="https://www.instagram.com/beyperdee/" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee" title="@beyperdee"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg><span>@beyperdee</span></a></div>
       </div>
       <div class="ft-cols">
-        <nav aria-label="Curtain Systems"><h2><a href="/en/urunler/perde" title="Curtain Systems">Curtain Systems</a></h2><ul><li><a href="/en/urunler/perde/stor-perde" title="Roller Blinds">Roller Blinds</a></li><li><a href="/en/urunler/perde/tul-perde" title="Sheer Curtains">Sheer Curtains</a></li><li><a href="/en/urunler/perde/fon-perde" title="Drapes">Drapes</a></li><li><a href="/en/urunler/perde/katlamali-perde" title="Roman Blinds">Roman Blinds</a></li><li><a href="/en/urunler/perde/plicell-perde" title="Pleated Blinds">Pleated Blinds</a></li><li><a href="/en/urunler/perde/dikey-perde" title="Vertical Blinds">Vertical Blinds</a></li><li><a href="/en/urunler/perde/jaluzi-perde" title="Venetian Blinds">Venetian Blinds</a></li><li><a href="/en/urunler/perde/motorlu-perde" title="Motorised Curtains">Motorised Curtains</a></li><li><a href="/en/urunler/perde/perde-aksesuarlari" title="Curtain Accessories">Curtain Accessories</a></li><li><a href="/en/urunler/perde/rensolar" title="Rensos">Rensos</a></li></ul></nav>
-        <div><nav aria-label="Wallpapers"><h2><a href="/en/urunler/duvar-kagidi" title="Wallpapers">Wallpapers</a></h2><ul><li><a href="/en/urunler/duvar-kagidi/vinyl" title="Vinyl Wallpaper">Vinyl Wallpaper</a></li><li><a href="/en/urunler/duvar-kagidi/non-woven" title="Non-Woven Wallpaper">Non-Woven Wallpaper</a></li><li><a href="/en/urunler/duvar-kagidi/ahsap-baskili" title="Wood Print Wallpaper">Wood Print Wallpaper</a></li><li><a href="/en/urunler/duvar-kagidi/kumas-baskili" title="Fabric Print Wallpaper">Fabric Print Wallpaper</a></li></ul></nav><nav aria-label="Decorative Rugs"><h2><a href="/en/urunler/hali" title="Decorative Rugs">Decorative Rugs</a></h2><ul><li><a href="/en/urunler/hali/sisal" title="Sisal Rugs">Sisal Rugs</a></li></ul></nav></div>
-        <nav aria-label="Bey Perde"><h2>Bey Perde</h2><ul><li><a href="/en/hakkimizda" title="About">About</a></li><li><a href="/en/projeler" title="Projects">Projects</a></li><li><a href="/en/katalog" title="Catalogue">Catalogue</a></li><li><a href="/en/galeri" title="Gallery">Gallery</a></li><li><a href="/en/iletisim" title="Contact">Contact</a></li><li><a href="/en/blog" title="Blog">Blog</a></li></ul>
-          <h2 class="mt">Service areas</h2><ul><li><a href="/tr/hizmet-bolgeleri/cekmekoy" hreflang="tr" lang="tr" title="Çekmeköy">Çekmeköy</a></li><li><a href="/tr/hizmet-bolgeleri/sile" hreflang="tr" lang="tr" title="Şile">Şile</a></li><li><a href="/tr/hizmet-bolgeleri/agva" hreflang="tr" lang="tr" title="Ağva">Ağva</a></li><li><a href="/tr/hizmet-bolgeleri/riva" hreflang="tr" lang="tr" title="Riva">Riva</a></li><li><a href="/tr/hizmet-bolgeleri/beykoz" hreflang="tr" lang="tr" title="Beykoz">Beykoz</a></li></ul></nav>
+        <nav aria-label="Products"><h2>Products</h2><ul><li><a href="/en/urunler/perde" title="Curtain Systems">Curtain Systems</a></li><li><a href="/en/urunler/duvar-kagidi" title="Wallpapers">Wallpapers</a></li><li><a href="/en/urunler/hali" title="Decorative Rugs">Decorative Rugs</a></li><li><a href="/en/urunler/perde/motorlu-perde" title="Motorised Curtains">Motorised Curtains</a></li></ul></nav>
+        <nav aria-label="Bey Perde"><h2>Bey Perde</h2><ul><li><a href="/en/hakkimizda" title="About">About</a></li><li><a href="/en/projeler" title="Projects">Projects</a></li><li><a href="/en/katalog" title="Catalogue">Catalogue</a></li><li><a href="/en/blog" title="Blog">Blog</a></li><li><a href="/en/iletisim" title="Contact">Contact</a></li></ul></nav>
         <div><h2>Contact us</h2>
           <address class="ft-nap"><strong>Bey Perde</strong><br><span lang="tr">Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12, 34794 Çekmeköy/İstanbul</span><br><br>
             <a href="tel:+905535962614" title="+90 553 596 26 14"><bdi dir="ltr">+90 553 596 26 14</bdi></a><br><a href="mailto:info@beyperde.com" title="info@beyperde.com">info@beyperde.com</a><br>Monday – Saturday, 09:00 – 18:00</address>
@@ -1422,6 +1419,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Hello%20Bey%20Perde%2C%20I%20would%20like%20information%20and%20a%20quote%20for%20your%20Drapes." target="_blank" rel="noopener nofollow" aria-label="Message us on WhatsApp" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Cookie policy (Turkish)"><p>With your permission only, we use Google cookies to measure whether our ads work. <a href="/tr/cerez-politikasi" hreflang="tr" title="Details">Details</a></p><div class="row"><button class="btn btn-sm" type="button" data-consent="all">Accept</button><button class="btn btn-ghost btn-sm" type="button" data-consent="necessary">Necessary only</button></div></div>
-<script src="/assets/site.js?v=7868ad281e" defer></script><script src="/assets/forms.js?v=7868ad281e" defer></script><script src="/assets/about.js?v=7868ad281e" defer></script>
+<script src="/assets/site.js?v=0d27471363" defer></script><script src="/assets/forms.js?v=0d27471363" defer></script><script src="/assets/about.js?v=0d27471363" defer></script>
 </body>
 </html>

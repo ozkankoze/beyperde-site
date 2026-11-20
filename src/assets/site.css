@@ -587,7 +587,7 @@ th{font-weight:500}
 .ft-brand p{font-size:14px;color:var(--cream-dim);max-width:32ch}
 .ft-social a{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-size:14px;text-decoration:none;opacity:.85}
 .ft-social svg{inline-size:20px;block-size:20px}
-.ft-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .ft-cols h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--cream-dim);margin-bottom:16px}
 :root[lang="ar"] .ft-cols h2{letter-spacing:0;font-size:13px}
 .ft-cols h2 a{text-decoration:none}
@@ -603,8 +603,8 @@ th{font-weight:500}
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 20px}
 .ft-legal a{display:inline-flex;align-items:center;min-block-size:32px;text-decoration:none}
 .ft-legal a:hover{text-decoration:underline}
-@media (max-width:1000px){.ft-top{grid-template-columns:1fr}.ft-cols{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.ft-cols{grid-template-columns:1fr}}
+@media (max-width:1000px){.ft-top{grid-template-columns:1fr}}
+@media (max-width:520px){.ft-cols{grid-template-columns:1fr 1fr;gap:8px 20px}.ft-cols>div{grid-column:1/-1}}
 
 /* ---------- WhatsApp, çerez, lightbox ---------- */
 .wa-float{position:fixed;z-index:70;inset-inline-end:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;

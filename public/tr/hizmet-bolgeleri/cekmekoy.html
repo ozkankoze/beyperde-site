@@ -601,7 +601,7 @@ th{font-weight:500}
 .ft-brand p{font-size:14px;color:var(--cream-dim);max-width:32ch}
 .ft-social a{display:inline-flex;align-items:center;gap:8px;min-height:40px;font-size:14px;text-decoration:none;opacity:.85}
 .ft-social svg{inline-size:20px;block-size:20px}
-.ft-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .ft-cols h2{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--cream-dim);margin-bottom:16px}
 :root[lang="ar"] .ft-cols h2{letter-spacing:0;font-size:13px}
 .ft-cols h2 a{text-decoration:none}
@@ -617,8 +617,8 @@ th{font-weight:500}
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 20px}
 .ft-legal a{display:inline-flex;align-items:center;min-block-size:32px;text-decoration:none}
 .ft-legal a:hover{text-decoration:underline}
-@media (max-width:1000px){.ft-top{grid-template-columns:1fr}.ft-cols{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.ft-cols{grid-template-columns:1fr}}
+@media (max-width:1000px){.ft-top{grid-template-columns:1fr}}
+@media (max-width:520px){.ft-cols{grid-template-columns:1fr 1fr;gap:8px 20px}.ft-cols>div{grid-column:1/-1}}
 
 /* ---------- WhatsApp, çerez, lightbox ---------- */
 .wa-float{position:fixed;z-index:70;inset-inline-end:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;
@@ -1378,14 +1378,11 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
     <div class="ft-top">
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="Bey Perde" loading="lazy">
-        <p>Perde, duvar kağıdı ve halı; ölçü, üretim ve montaj tek elden. 2017'den beri Çekmeköy'deki atölyemizden.</p>
         <div class="ft-social"><a href="https://www.instagram.com/beyperdee/" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee" title="@beyperdee"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg><span>@beyperdee</span></a></div>
       </div>
       <div class="ft-cols">
-        <nav aria-label="Perde Sistemleri"><h2><a href="/tr/urunler/perde" title="Perde Sistemleri">Perde Sistemleri</a></h2><ul><li><a href="/tr/urunler/perde/stor-perde" title="Stor Perde">Stor Perde</a></li><li><a href="/tr/urunler/perde/tul-perde" title="Tül Perde">Tül Perde</a></li><li><a href="/tr/urunler/perde/fon-perde" title="Fon Perde">Fon Perde</a></li><li><a href="/tr/urunler/perde/katlamali-perde" title="Katlamalı Perde">Katlamalı Perde</a></li><li><a href="/tr/urunler/perde/plicell-perde" title="Plise Perde">Plise Perde</a></li><li><a href="/tr/urunler/perde/dikey-perde" title="Dikey Perde">Dikey Perde</a></li><li><a href="/tr/urunler/perde/jaluzi-perde" title="Jaluzi Perde">Jaluzi Perde</a></li><li><a href="/tr/urunler/perde/motorlu-perde" title="Motorlu Perde">Motorlu Perde</a></li><li><a href="/tr/urunler/perde/perde-aksesuarlari" title="Perde Aksesuarları">Perde Aksesuarları</a></li><li><a href="/tr/urunler/perde/rensolar" title="Rensolar">Rensolar</a></li></ul></nav>
-        <div><nav aria-label="Duvar Kağıtları"><h2><a href="/tr/urunler/duvar-kagidi" title="Duvar Kağıtları">Duvar Kağıtları</a></h2><ul><li><a href="/tr/urunler/duvar-kagidi/vinyl" title="Vinil Duvar Kağıdı">Vinil Duvar Kağıdı</a></li><li><a href="/tr/urunler/duvar-kagidi/non-woven" title="Non-Woven Duvar Kağıdı">Non-Woven Duvar Kağıdı</a></li><li><a href="/tr/urunler/duvar-kagidi/ahsap-baskili" title="Ahşap Baskılı Duvar Kağıdı">Ahşap Baskılı Duvar Kağıdı</a></li><li><a href="/tr/urunler/duvar-kagidi/kumas-baskili" title="Kumaş Baskılı Duvar Kağıdı">Kumaş Baskılı Duvar Kağıdı</a></li></ul></nav><nav aria-label="Dekoratif Halılar"><h2><a href="/tr/urunler/hali" title="Dekoratif Halılar">Dekoratif Halılar</a></h2><ul><li><a href="/tr/urunler/hali/sisal" title="Sisal Halı">Sisal Halı</a></li></ul></nav></div>
-        <nav aria-label="Bey Perde"><h2>Bey Perde</h2><ul><li><a href="/tr/hakkimizda" title="Hakkımızda">Hakkımızda</a></li><li><a href="/tr/projeler" title="Projeler">Projeler</a></li><li><a href="/tr/katalog" title="Katalog">Katalog</a></li><li><a href="/tr/galeri" title="Galeri">Galeri</a></li><li><a href="/tr/iletisim" title="İletişim">İletişim</a></li><li><a href="/tr/blog" title="Blog">Blog</a></li></ul>
-          <h2 class="mt">Hizmet bölgeleri</h2><ul><li><a href="/tr/hizmet-bolgeleri/cekmekoy" title="Çekmeköy">Çekmeköy</a></li><li><a href="/tr/hizmet-bolgeleri/sile" title="Şile">Şile</a></li><li><a href="/tr/hizmet-bolgeleri/agva" title="Ağva">Ağva</a></li><li><a href="/tr/hizmet-bolgeleri/riva" title="Riva">Riva</a></li><li><a href="/tr/hizmet-bolgeleri/beykoz" title="Beykoz">Beykoz</a></li></ul></nav>
+        <nav aria-label="Ürünler"><h2>Ürünler</h2><ul><li><a href="/tr/urunler/perde" title="Perde Sistemleri">Perde Sistemleri</a></li><li><a href="/tr/urunler/duvar-kagidi" title="Duvar Kağıtları">Duvar Kağıtları</a></li><li><a href="/tr/urunler/hali" title="Dekoratif Halılar">Dekoratif Halılar</a></li><li><a href="/tr/urunler/perde/motorlu-perde" title="Motorlu Perde">Motorlu Perde</a></li></ul></nav>
+        <nav aria-label="Bey Perde"><h2>Bey Perde</h2><ul><li><a href="/tr/hakkimizda" title="Hakkımızda">Hakkımızda</a></li><li><a href="/tr/projeler" title="Projeler">Projeler</a></li><li><a href="/tr/katalog" title="Katalog">Katalog</a></li><li><a href="/tr/blog" title="Blog">Blog</a></li><li><a href="/tr/iletisim" title="İletişim">İletişim</a></li></ul></nav>
         <div><h2>Bize ulaşın</h2>
           <address class="ft-nap"><strong>Bey Perde</strong><br><span lang="tr">Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12, 34794 Çekmeköy/İstanbul</span><br><br>
             <a href="tel:+905535962614" title="+90 553 596 26 14"><bdi dir="ltr">+90 553 596 26 14</bdi></a><br><a href="mailto:info@beyperde.com" title="info@beyperde.com">info@beyperde.com</a><br>Pazartesi – Cumartesi, 09:00 – 18:00</address>
@@ -1398,6 +1395,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=Merhaba%2C%20%C3%87ekmek%C3%B6y%20i%C3%A7in%20perde%20/%20duvar%20ka%C4%9F%C4%B1d%C4%B1%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener nofollow" aria-label="WhatsApp'tan yazın" data-wa-float title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">WhatsApp</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="Çerez Politikası"><p>Reklamlarımızın işe yarayıp yaramadığını ölçmek için Google çerezlerini yalnızca izninizle kullanırız. <a href="/tr/cerez-politikasi" title="Ayrıntılar">Ayrıntılar</a></p><div class="row"><button class="btn btn-sm" type="button" data-consent="all">Kabul et</button><button class="btn btn-ghost btn-sm" type="button" data-consent="necessary">Yalnızca zorunlu</button></div></div>
-<script src="/assets/site.js?v=7868ad281e" defer></script><script src="/assets/forms.js?v=7868ad281e" defer></script>
+<script src="/assets/site.js?v=0d27471363" defer></script><script src="/assets/forms.js?v=0d27471363" defer></script>
 </body>
 </html>

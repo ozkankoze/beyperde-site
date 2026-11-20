@@ -243,28 +243,24 @@ def header(lang, path, avail, nav=''):
 
 
 def footer(lang, avail):
-    def col(cat):
-        c = D.CATS[cat]
-        lis = ''.join(f'<li><a href="{url(lang, f"urunler/{cat}/{s}")}">{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in c['items'])
-        return f'<nav aria-label="{tx(c["name"], lang)}"><h2><a href="{url(lang, f"urunler/{cat}")}">{tx(c["name"], lang)}</a></h2><ul>{lis}</ul></nav>'
-    areas = ''.join(f'<li><a href="/tr/hizmet-bolgeleri/{k}"{"" if lang == "tr" else " hreflang=\"tr\" lang=\"tr\""}>{tx(P.AREA_NAMES[k], lang)}</a></li>' for k, _ in P.AREAS)
+    prods = ''.join(f'<li><a href="{url(lang, f"urunler/{c}")}">{tx(D.CATS[c]["name"], lang)}</a></li>' for c in ('perde', 'duvar-kagidi', 'hali'))
+    prods += f'<li><a href="{url(lang, "urunler/perde/motorlu-perde")}">{tx(D.PRODUCTS["motorlu-perde"][1], lang)}</a></li>'
     legal = ''.join(f'<li><a href="/tr/{p}"{"" if lang == "tr" else " hreflang=\"tr\""}>{ui(k, lang)}</a></li>' for p, k in [('kvkk', 'kvkk'), ('gizlilik-politikasi', 'privacy'), ('cerez-politikasi', 'cookies')])
-    company = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in [('hakkimizda', 'nav_about'), ('projeler', 'nav_projects'), ('katalog', 'nav_catalog'), ('galeri', 'nav_gallery'), ('iletisim', 'nav_contact')])
+    pages = [('hakkimizda', 'nav_about'), ('projeler', 'nav_projects'), ('katalog', 'nav_catalog')]
     if globals().get('BLOG_POSTS'):
-        company += f'<li><a href="{url(lang, "blog")}">{ui("nav_blog", lang)}</a></li>'
+        pages.append(('blog', 'nav_blog'))
+    pages.append(('iletisim', 'nav_contact'))
+    company = ''.join(f'<li><a href="{url(lang, p)}">{ui(k, lang)}</a></li>' for p, k in pages)
     return f'''<footer class="site-footer">
   <div class="wrap">
     <div class="ft-top">
       <div class="ft-brand">
         <img src="/brand/logo-cream-192.webp" width="192" height="190" alt="{ui('brand', lang)}" loading="lazy">
-        <p>{ui('footer_about', lang)}</p>
         <div class="ft-social"><a href="{D.INSTAGRAM}" target="_blank" rel="noopener nofollow" aria-label="Instagram @beyperdee">{ICON['insta']}<span>@beyperdee</span></a></div>
       </div>
       <div class="ft-cols">
-        {col('perde')}
-        <div>{col('duvar-kagidi')}{col('hali')}</div>
-        <nav aria-label="{ui('footer_company', lang)}"><h2>{ui('footer_company', lang)}</h2><ul>{company}</ul>
-          <h2 class="mt">{ui('areas', lang)}</h2><ul>{areas}</ul></nav>
+        <nav aria-label="{ui('nav_products', lang)}"><h2>{ui('nav_products', lang)}</h2><ul>{prods}</ul></nav>
+        <nav aria-label="{ui('footer_company', lang)}"><h2>{ui('footer_company', lang)}</h2><ul>{company}</ul></nav>
         <div><h2>{ui('footer_contact', lang)}</h2>
           <address class="ft-nap"><strong>{ui('brand', lang)}</strong><br><span lang="tr">{e(D.ADDRESS_LINE)}</span><br><br>
             <a href="tel:{D.TEL}">{ltr(D.PHONE)}</a><br><a href="mailto:{D.EMAIL}">{D.EMAIL}</a><br>{ui('hours', lang)}</address>
