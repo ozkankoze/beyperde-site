@@ -364,8 +364,6 @@ def render_product(G, lang, slug, ck, catalog):
     used = {imgs[0]} if imgs else set()
     if story_img:
         used.add(story_img)
-    if ck == 'perde' and len(imgs) > 2:
-        used.add(imgs[2])
     if ck == 'duvar-kagidi':   # kartela gibi gösterilen desenler galeride tekrar etmez
         used |= set([it['key'] for it in items if re.search(r'\d', it['code']) and '/' not in it['code']][:12])
     if ck == 'hali' and len(imgs) > 1:
@@ -402,8 +400,7 @@ def render_product(G, lang, slug, ck, catalog):
     faq_items = [(qq, a) for qq, a in r['faq']]
     faq = ''.join(f'<details class="pp-acc pp-faq"><summary><span>{e(qq)}</span><span class="pp-acc-i" aria-hidden="true"></span></summary><div class="pp-acc-b"><p>{e(a)}</p></div></details>' for qq, a in faq_items)
     info_sec = f'''<section class="pp-sec pp-info-s" aria-labelledby="pp-info"><div class="wrap pp-info">
-  <div><h2 class="pp-h2" id="pp-info">{q('info_h')}</h2>
-    <nav class="pp-side" aria-label="{tx(c['name'], lang)}"><p class="kicker">{tx(c['name'], lang)}</p><ul class="chips">{''.join(f'<li><a href="{url(lang, f"urunler/{ck}/{s_}")}"{" aria-current=\"page\"" if s_ == slug else ""}>{tx(D.PRODUCTS[s_][1], lang)}</a></li>' for s_ in c['items'])}</ul></nav></div>
+  <div><h2 class="pp-h2" id="pp-info">{q('info_h')}</h2></div>
   <div class="pp-accs">{acc}{f'<h3 class="pp-h4 pp-faq-h">{ui("faq", lang)}</h3>{faq}' if faq else ''}</div>
 </div></section>'''
 
@@ -438,6 +435,8 @@ def render_product(G, lang, slug, ck, catalog):
         cards = [(rw[0], tx(rw[1], lang), tx(rw[2], lang), '', [(MOD_TXT['more'][lang], sub_href(G, lang, ck, slug, rw))])
                  for rw in S.SUBS[slug]]
         models = models_section(G, lang, cards, MOD_TXT['h'][lang])
+    if ck == 'perde':   # "Işığı nasıl karşılıyor?" bölümü sadelik için kaldırıldı
+        fam = ''
     body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
     if ck == 'perde':
         opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]

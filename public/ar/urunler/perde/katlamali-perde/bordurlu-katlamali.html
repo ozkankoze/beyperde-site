@@ -32,7 +32,7 @@
   --wrap:1320px; --gut:max(20px,env(safe-area-inset-left,0px)); --gut-e:max(20px,env(safe-area-inset-right,0px));
   --t-xs:12px; --t-sm:14px; --t-0:clamp(15.5px,1.02vw,17px); --t-1:clamp(18px,1.35vw,21px);
   --t-h4:clamp(17px,1.25vw,19px); --t-h3:clamp(21px,1.8vw,27px); --t-h2:clamp(32px,3.9vw,58px); --t-h1:clamp(42px,6.2vw,92px); --t-num:clamp(44px,5.4vw,84px);
-  --sp-band:clamp(80px,10vw,152px); --sp-tight:clamp(56px,6.5vw,96px);
+  --sp-band:clamp(48px,6vw,88px); --sp-tight:clamp(32px,4vw,56px);
   --ease:cubic-bezier(.2,.7,.1,1); --r:2px;
   color-scheme:light;
 }
@@ -209,12 +209,12 @@ body.locked{overflow:hidden}
 .linen{background:var(--paper-2)}
 .dark{background:var(--ink);color:var(--cream)}
 .dark .kicker,.dark .lead,.dark figcaption{color:var(--cream-dim)}
-.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(24px,3vw,40px)}
 .sec-head .kicker{margin-bottom:16px}
 .sec-head .h2 a{text-decoration:none}
 .sec-head-p{display:grid;gap:22px;justify-items:start}
 @media (max-width:860px){.sec-head{grid-template-columns:1fr}}
-.page-hero{padding-top:calc(124px + env(safe-area-inset-top,0px));padding-bottom:clamp(48px,6vw,88px)}
+.page-hero{padding-top:calc(116px + env(safe-area-inset-top,0px));padding-bottom:clamp(32px,4vw,56px)}
 .page-hero .h1{margin-block:14px 20px}
 .page-hero .row{margin-top:28px}
 .ph-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(32px,5vw,80px);align-items:end}
@@ -1124,7 +1124,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
   .jfeat-ph img,.jcard-ph img{transition:none}
 }
 /* Ürün detay — ortak premium sistem (yalnızca .pp); aileye göre vurgu: .pp-perde / .pp-duvar-kagidi / .pp-hali */
-.pp{--pp-gap:clamp(28px,5vw,88px)}
+.pp{--pp-gap:clamp(24px,4vw,64px)}
 .pp-hero{padding-top:calc(112px + env(safe-area-inset-top,0px));padding-bottom:clamp(36px,4.5vw,64px)}
 .pp-hero-g{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--pp-gap);align-items:center}
 .pp-hero-t{display:grid;gap:16px;align-content:center}
@@ -1147,7 +1147,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-hali .pp-hero-ph{aspect-ratio:1/1}
 .pp-perde .pp-hero-ph{aspect-ratio:4/5}
 /* hizmet şeridi */
-.pp-strip dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.pp-strip dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-block:1px solid var(--line)}
 .pp-strip dl>div{padding:22px clamp(14px,2vw,28px);border-inline-start:1px solid var(--line);display:grid;gap:4px}
 .pp-strip dl>div:first-child{border-inline-start:0;padding-inline-start:0}
 .pp-strip dt{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -1155,7 +1155,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 /* bölümler */
 .pp-sec{padding-block:var(--sp-band)}
 .pp-sec-tight{padding-block:var(--sp-tight)}
-.pp-h2{font-size:clamp(30px,3.6vw,54px);font-weight:300;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+.pp-h2{font-size:clamp(28px,3vw,44px);font-weight:300;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
 .pp-h3{font-size:clamp(24px,2.2vw,32px);font-weight:300;letter-spacing:-.02em;margin-bottom:24px}
 .pp-h4{font-size:var(--t-xs);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
 .pp-h5{font-size:17px;font-weight:500;margin-block:16px 6px}
@@ -1209,7 +1209,7 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-size-svg{inline-size:100%;max-inline-size:420px;block-size:auto;color:var(--brown)}
 .pp-size p{color:var(--ink-2);font-size:15.5px;line-height:1.65}
 /* galeri */
-.pp-sec-head{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:end;justify-content:space-between;margin-bottom:clamp(28px,3.5vw,48px)}
+.pp-sec-head{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:end;justify-content:space-between;margin-bottom:clamp(20px,2.5vw,32px)}
 .pp-gal{display:grid;gap:14px}
 .pp-gf{margin:0;border-radius:12px;overflow:hidden;background:var(--paper-2)}
 .pp-gf a{display:block;block-size:100%}
@@ -1231,18 +1231,18 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-room-l{font-size:15.5px}
 /* teknik bilgiler: akordeon */
 .pp-info-s{border-top:1px solid var(--line)}
-.pp-info{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--pp-gap);align-items:start}
+.pp-info{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,7fr);gap:var(--pp-gap);align-items:start}
 .pp-side{margin-top:28px;display:grid;gap:12px}
 .pp-accs{border-top:1px solid var(--line)}
 .pp-acc{border-bottom:1px solid var(--line)}
-.pp-acc summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;padding-block:16px;cursor:pointer;list-style:none;font-size:clamp(17px,1.3vw,20px);font-weight:400}
+.pp-acc summary{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:50px;padding-block:10px;cursor:pointer;list-style:none;font-size:clamp(16px,1.15vw,18px);font-weight:400}
 .pp-acc summary::-webkit-details-marker{display:none}
 .pp-acc summary:focus-visible{outline:2px solid var(--brass);outline-offset:4px}
 .pp-acc-i{position:relative;inline-size:14px;block-size:14px;flex:none}
 .pp-acc-i::before,.pp-acc-i::after{content:"";position:absolute;inset:6.5px 0 auto;block-size:1px;background:currentColor;transition:transform .35s var(--ease)}
 .pp-acc-i::after{transform:rotate(90deg)}
 .pp-acc[open] .pp-acc-i::after{transform:rotate(0)}
-.pp-acc-b{padding-bottom:22px;color:var(--ink-2);line-height:1.7;max-width:66ch}
+.pp-acc-b{padding-bottom:16px;color:var(--ink-2);line-height:1.7;max-width:66ch}
 .pp-acc[open] .pp-acc-b{animation:abRise .45s var(--ease)}
 .pp-faq-h{margin-top:36px}
 .pp-dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}
@@ -1297,7 +1297,9 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .pp-mod-t{font-size:var(--t-h4,19px);font-weight:500;line-height:1.25}
 .pp-mod-i p:not(.pp-mod-k){color:var(--muted);font-size:14.5px;line-height:1.55}
 .pp-mod-a{margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;gap:6px 18px}
-.pp-mod-a .arrow-link{font-size:14px}</style>
+.pp-mod-a .arrow-link{font-size:14px}
+
+.pp-info .pp-h2{font-size:clamp(24px,2.2vw,32px)}</style>
 <script>window.BP={"lang": "ar", "wa": "905535962614", "ga": "", "ads": "AW-18514954672", "conv": {"whatsapp": "AW-18514954672/QMSaCNWThbwdELCTz_xE", "phone": "AW-18514954672/AY5oCNiThbwdELCTz_xE"}, "consent": {"analytics": true}};document.documentElement.classList.add('js')</script>
 <link rel="preload" as="image" type="image/avif" imagesrcset="/img/urunler/katlamali-perde/salon-240.avif 240w, /img/urunler/katlamali-perde/salon-480.avif 480w, /img/urunler/katlamali-perde/salon-720.avif 720w, /img/urunler/katlamali-perde/salon-960.avif 960w, /img/urunler/katlamali-perde/salon-1200.avif 1200w" imagesizes="(max-width: 900px) calc(100vw - 40px), 50vw" fetchpriority="high">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HomeGoodsStore", "@id": "https://www.beyperde.com/#isletme", "name": "Bey Perde", "url": "https://www.beyperde.com/tr", "logo": {"@type": "ImageObject", "url": "https://www.beyperde.com/img/logo-brown.png", "width": 420, "height": 416}, "image": "https://www.beyperde.com/img/og/ana-sayfa.jpg", "description": "Perde, duvar kağıdı ve halı. Ölçüden üretime, montajdan bakıma; ev, villa ve proje işleri tek elden.", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "foundingDate": "2017", "priceRange": "₺₺", "address": {"@type": "PostalAddress", "streetAddress": "Ekşioğlu Mah. Kuran Kursu Cad. No:4, Demek Sitesi B Blok, İç Kapı No:12", "addressLocality": "Çekmeköy", "addressRegion": "İstanbul", "postalCode": "34794", "addressCountry": "TR"}, "hasMap": "https://www.google.com/maps/search/?api=1&query=Bey%20Perde&query_place_id=ChIJ17Q1bZ_RyhQRsyWTGJ3FGvc", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "09:00", "closes": "18:00"}], "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}], "knowsLanguage": ["tr", "en", "ar"], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "telephone": "+90 553 596 26 14", "email": "info@beyperde.com", "areaServed": "TR", "availableLanguage": ["Turkish", "English", "Arabic"]}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Perde, duvar kağıdı ve halı", "itemListElement": [{"@type": "OfferCatalog", "name": "Perde Sistemleri", "url": "https://www.beyperde.com/tr/urunler/perde", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stor Perde", "url": "https://www.beyperde.com/tr/urunler/perde/stor-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tül Perde", "url": "https://www.beyperde.com/tr/urunler/perde/tul-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fon Perde", "url": "https://www.beyperde.com/tr/urunler/perde/fon-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Katlamalı Perde", "url": "https://www.beyperde.com/tr/urunler/perde/katlamali-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Plise Perde", "url": "https://www.beyperde.com/tr/urunler/perde/plicell-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dikey Perde", "url": "https://www.beyperde.com/tr/urunler/perde/dikey-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Jaluzi Perde", "url": "https://www.beyperde.com/tr/urunler/perde/jaluzi-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Motorlu Perde", "url": "https://www.beyperde.com/tr/urunler/perde/motorlu-perde"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Perde Aksesuarları", "url": "https://www.beyperde.com/tr/urunler/perde/perde-aksesuarlari"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Rensolar", "url": "https://www.beyperde.com/tr/urunler/perde/rensolar"}}]}, {"@type": "OfferCatalog", "name": "Duvar Kağıtları", "url": "https://www.beyperde.com/tr/urunler/duvar-kagidi", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Vinil Duvar Kağıdı", "url": "https://www.beyperde.com/tr/urunler/duvar-kagidi/vinyl"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Non-Woven Duvar Kağıdı", "url": "https://www.beyperde.com/tr/urunler/duvar-kagidi/non-woven"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ahşap Baskılı Duvar Kağıdı", "url": "https://www.beyperde.com/tr/urunler/duvar-kagidi/ahsap-baskili"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kumaş Baskılı Duvar Kağıdı", "url": "https://www.beyperde.com/tr/urunler/duvar-kagidi/kumas-baskili"}}]}, {"@type": "OfferCatalog", "name": "Dekoratif Halılar", "url": "https://www.beyperde.com/tr/urunler/hali", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sisal Halı", "url": "https://www.beyperde.com/tr/urunler/hali/sisal"}}]}]}, "sameAs": ["https://www.instagram.com/beyperdee/", "https://www.pinterest.com/beyperdee/"]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://www.beyperde.com/ar"}, {"@type": "ListItem", "position": 2, "name": "الكتالوج", "item": "https://www.beyperde.com/ar/katalog"}, {"@type": "ListItem", "position": 3, "name": "أنظمة الستائر", "item": "https://www.beyperde.com/ar/urunler/perde"}, {"@type": "ListItem", "position": 4, "name": "ستائر رومانية", "item": "https://www.beyperde.com/ar/urunler/perde/katlamali-perde"}, {"@type": "ListItem", "position": 5, "name": "ستارة رومانية بحواف", "item": "https://www.beyperde.com/ar/urunler/perde/katlamali-perde/bordurlu-katlamali"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "ستارة رومانية بحواف", "serviceType": "ستارة رومانية بحواف", "description": "ستارة رومانية مؤطرة بحافة.", "category": "ستائر رومانية", "provider": {"@id": "https://www.beyperde.com/#isletme"}, "areaServed": [{"@type": "Place", "name": "Çekmeköy"}, {"@type": "Place", "name": "Şile"}, {"@type": "Place", "name": "Ağva"}, {"@type": "Place", "name": "Riva"}, {"@type": "Place", "name": "Beykoz"}, {"@type": "Place", "name": "İstanbul"}], "url": "https://www.beyperde.com/ar/urunler/perde/katlamali-perde/bordurlu-katlamali", "image": ["https://www.beyperde.com/img/og/urunler/katlamali-perde/salon.jpg", "https://www.beyperde.com/img/og/urunler/katlamali-perde/mutfak.jpg"]}</script>
@@ -1403,6 +1405,6 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 </footer>
 <a class="wa-float" href="https://wa.me/905535962614?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A8%D8%A7%D9%8A%20%D8%A8%D8%B1%D8%AF%D8%A9%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D9%88%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%B9%D8%B1%20%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85%20%D9%85%D9%86%20%D8%B3%D8%AA%D8%A7%D8%B1%D8%A9%20%D8%B1%D9%88%D9%85%D8%A7%D9%86%D9%8A%D8%A9%20%D8%A8%D8%AD%D9%88%D8%A7%D9%81." target="_blank" rel="noopener nofollow" aria-label="راسلنا عبر واتساب" data-wa-float title="واتساب"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.3-1.7-.1-.2 0-.4.1-.5l.4-.4.3-.4v-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 2.2.9 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.3-.5-.4Z"/></svg><span class="wa-float-l">واتساب</span></a>
 <div class="cookie" data-cookie hidden role="region" aria-label="سياسة ملفات تعريف الارتباط (بالتركية)"><p>نستخدم ملفات تعريف الارتباط من Google لقياس فعالية إعلاناتنا بإذنك فقط. <a href="/tr/cerez-politikasi" hreflang="tr" title="التفاصيل">التفاصيل</a></p><div class="row"><button class="btn btn-sm" type="button" data-consent="all">قبول</button><button class="btn btn-ghost btn-sm" type="button" data-consent="necessary">الضرورية فقط</button></div></div>
-<script src="/assets/site.js?v=d462a1c323" defer></script><script src="/assets/forms.js?v=d462a1c323" defer></script><script src="/assets/about.js?v=d462a1c323" defer></script>
+<script src="/assets/site.js?v=bb65360788" defer></script><script src="/assets/forms.js?v=bb65360788" defer></script><script src="/assets/about.js?v=bb65360788" defer></script>
 </body>
 </html>
