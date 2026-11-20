@@ -14,6 +14,33 @@ def fit_desc(lead, tail, limit=155):
     cut = lead[:limit - 1].rsplit(' ', 1)[0].rstrip(',;:')
     return cut + '…'
 
+
+MOD_TXT = {
+    'h': {'tr': 'Modeller', 'en': 'Models', 'ar': 'الموديلات'},
+    'h_motor': {'tr': 'Tüm motorlu modeller', 'en': 'All motorised models', 'ar': 'جميع الموديلات الكهربائية'},
+    'h_cat': {'tr': 'Çeşitler', 'en': 'Types', 'ar': 'الأنواع'},
+    'k': {'tr': 'Seçenekler', 'en': 'Options', 'ar': 'الخيارات'},
+    'more': {'tr': 'Ayrıntılar', 'en': 'Details', 'ar': 'التفاصيل'},
+    'ask': {'tr': 'Bilgi al', 'en': 'Ask about it', 'ar': 'اسأل عنه'},
+}
+
+
+def models_section(G, lang, cards, heading, sid='modeller'):
+    """Modeller / çeşitler bölümü. cards: (çapa, ad, açıklama, etiket, [(bağlantı adı, adres)] ya da None)."""
+    e, ui, arrow = G['e'], G['ui'], G['ICON']['arrow']
+    lis = ''
+    for aid, name, desc, label, links in cards:
+        if links:
+            acts = ''.join(f'<a class="arrow-link" href="{h}"><span>{e(t)}</span>{arrow}</a>' for t, h in links)
+        else:
+            acts = G['btn_wa'](lang, ui('wa_product', lang, x=name), MOD_TXT['ask'][lang], 'arrow-link pp-mod-wa')
+        lab = f'<p class="pp-mod-k">{e(label)}</p>' if label else ''
+        lis += f'<li class="pp-mod-i" id="{aid}">{lab}<h3 class="pp-mod-t">{e(name)}</h3><p>{e(desc)}</p><div class="pp-mod-a">{acts}</div></li>'
+    return f'''<section class="pp-sec pp-models" id="{sid}" aria-labelledby="{sid}-h"><div class="wrap">
+  <div class="pp-sec-head"><div><p class="kicker">{MOD_TXT['k'][lang]}</p><h2 class="pp-h2" id="{sid}-h">{e(heading)}</h2></div></div>
+  <ul class="pp-mod">{lis}</ul>
+</div></section>'''
+
 def render_products(G, catalog):
     D, P, e, tx, ui, url, picture, ICON = G['D'], G['P'], G['e'], G['tx'], G['ui'], G['url'], G['picture'], G['ICON']
     RAW = G['RAW']
@@ -41,6 +68,18 @@ def render_products(G, catalog):
                 extra = f'<section class="band tight linen"><div class="wrap">{G["sec_head"](tx(c["kicker"], lang), ui("photos", lang))}<div class="gal-grid">{gl}</div></div></section>'
             if ck == 'perde':
                 extra = quiz_block(G, lang)
+            if ck in G['SUBS'].CAT_MODELS:
+                cards = []
+                for sid, n, d, link in G['SUBS'].CAT_MODELS[ck]:
+                    if isinstance(link, str):
+                        links = [(MOD_TXT['more'][lang], url(lang, f'urunler/{ck}/{link}'))]
+                    elif link:
+                        links = [(tx(D.PRODUCTS[s_][1], lang), url(lang, f'urunler/{ck}/{s_}')) for s_ in link]
+                    else:
+                        links = None
+                    cards.append((sid, tx(n, lang), tx(d, lang), '', links))
+                extra = models_section(G, lang, cards, MOD_TXT['h_cat'][lang], 'cesitler') + extra
+            grid = '' if ck == 'hali' else f'<section class="band tight"><div class="wrap"><h2 class="sr">{tx(c["name"], lang)}</h2><div class="pgrid pgrid-4">{cards}</div></div></section>'
             title = {'tr': f'{tx(c["name"], "tr")} — Modeller, Kumaşlar ve Montaj | Bey Perde',
                      'en': f'{tx(c["name"], "en")} — Types, Fabrics and Fitting | Bey Perde',
                      'ar': f'{tx(c["name"], "ar")} — الأنواع والأقمشة والتركيب | باي بردة'}[lang]
@@ -49,7 +88,7 @@ def render_products(G, catalog):
     <div class="row">{G['btn_wa'](lang, ui('wa_product', lang, x=tx(c['name'], lang)))}{G['arrow_link'](url(lang, 'katalog') + f'?type={",".join(c["items"])}', ui('nav_catalog', lang))}</div></div>
   <div class="ph hero-ph">{picture(c['cover'], '', '(max-width: 900px) 100vw, 45vw', eager=True)}</div>
 </div></section>
-<section class="band tight"><div class="wrap"><h2 class="sr">{tx(c['name'], lang)}</h2><div class="pgrid pgrid-4">{cards}</div></div></section>
+{grid}
 {extra}
 {G['cta_band'](lang, ui('wa_product', lang, x=tx(c['name'], lang)), c['cover'])}'''
             itemlist = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': tx(c['name'], lang), 'itemListElement': [
@@ -253,7 +292,21 @@ def render_product(G, lang, slug, ck, catalog):
     <div class="row"><a class="btn btn-light" href="#teklif"><span>{q('quote')}</span>{arrow}</a>{G['btn_wa'](lang, wa_text, q('end_wa'), 'btn btn-wa')}</div></div>
 </section>'''
 
-    body = f'<div class="pp pp-{ck}">' + hero + strip + story + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
+    S = G['SUBS']
+    models = ''
+    if slug == 'motorlu-perde':
+        cards = []
+        for p_, sid in S.MOTOR:
+            _pp, row = S.find(sid)
+            link = row[3] or p_
+            cards.append((sid, tx(row[1], lang), tx(row[2], lang), tx(D.PRODUCTS[p_][1], lang),
+                          [(MOD_TXT['more'][lang], url(lang, f'urunler/{ck}/{link}') + ('' if row[3] else f'#{sid}'))]))
+        models = models_section(G, lang, cards, MOD_TXT['h_motor'][lang])
+    elif S.SUBS.get(slug):
+        cards = [(sid, tx(n, lang), tx(d, lang), '', [(MOD_TXT['more'][lang], url(lang, f'urunler/{ck}/{lk}'))] if lk else None)
+                 for sid, n, d, lk in S.SUBS[slug]]
+        models = models_section(G, lang, cards, MOD_TXT['h'][lang])
+    body = f'<div class="pp pp-{ck}">' + hero + strip + story + models + fam + gallery + rooms + info_sec + quote + rel + end + '</div>'
     if ck == 'perde':
         opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]
     else:

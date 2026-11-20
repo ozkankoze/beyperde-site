@@ -1,5 +1,5 @@
 /* Bey Perde — giriş animasyonu: tek parça video, sayfa açılınca kendiliğinden oynar ve son karede kalır (kaydırma gerekmez).
-   Video bir kez belleğe (blob) alınır; böylece her konuma anında atlanır.
+   Video akış olarak yüklenir ve ilk kareler gelince hemen oynar.
    Hareket azaltma, veri tasarrufu ve düşük güçlü cihazlarda yalnızca ilk kare (statik görsel) gösterilir. */
 (() => {
   'use strict';
@@ -36,25 +36,19 @@
   const needPx = Math.max(innerWidth, innerHeight * 16 / 9) * Math.min(devicePixelRatio || 1, 2);
   const SRC = PORT ? vid.dataset.srcM : (vid.dataset.srcHd && needPx > 2100) ? vid.dataset.srcHd : vid.dataset.src, DUR = parseFloat(vid.dataset.dur) || 15;
   let ready = false;
-  // Video (≈6 MB) sayfa açılışını yavaşlatmasın: ilk etkileşimde ya da sayfa yüklendikten sonra boşta indirilir.
-  // O ana kadar videonun ilk karesiyle aynı olan statik görsel görünür.
+  // Video sayfa açılır açılmaz akış (stream) olarak yüklenir ve ilk kareler gelir gelmez oynar;
+  // tüm dosyanın inmesi ya da sayfadaki diğer görsellerin bitmesi beklenmez. O ana kadar ilk kareyle aynı statik görsel görünür.
   let started = false;
-  const EV = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'];
   function start() {
     if (started) return; started = true;
-    EV.forEach((t) => removeEventListener(t, start, { passive: true }));
-    fetch(SRC).then((r) => { if (!r.ok) throw 0; return r.blob(); })
-      .then((b) => URL.createObjectURL(b))
-      .catch(() => SRC)
-      .then((url) => {
-        vid.addEventListener('loadeddata', () => { ready = true; intro.classList.add('ready'); dirty = true; wake(); setTimeout(autoplay, HOLD); }, { once: true });
-        vid.addEventListener('error', goStatic, { once: true });
-        vid.preload = 'auto'; vid.src = url; vid.load();
-      });
+    let go = false;
+    const begin = () => { if (go) return; go = true; ready = true; intro.classList.add('ready'); dirty = true; wake(); autoplay(); };
+    vid.addEventListener('canplay', begin, { once: true });
+    vid.addEventListener('loadeddata', () => { if (vid.readyState >= 3) begin(); }, { once: true });
+    vid.addEventListener('error', goStatic, { once: true });
+    vid.preload = 'auto'; vid.src = SRC; vid.load();
   }
-  EV.forEach((t) => addEventListener(t, start, { passive: true }));
-  // otomatik oynatma: video sayfa yüklenir yüklenmez indirilir
-  if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  start();
 
   // Ürün bölümleri: kaydırma oranı a→b arasında ok + yazı görünür. key: okun başladığı halkanın videodaki yeri (0..1);
   // halka ekranda sabit durur. pos: yazının ekrandaki yeri (masaüstü / dar ekran). v: dikey (telefon) videosundaki yer ve zaman. Sıra videodaki sırayla aynıdır.
@@ -155,7 +149,7 @@
   /* ---------- otomatik oynatma ---------- */
   // Giriş karesi (başlık ve kapıdaki logo) kısa bir süre görünür, sonra video kendi hızında oynar; bitince son karede kalır.
   // Tarayıcı otomatik oynatmayı reddederse (ör. güç tasarrufu) video aynı hızda kare kare ilerletilir.
-  const HOLD = 1600, SPEED = 1.3;   // video normal hızın 1,3 katında oynar
+  const SPEED = 1.3;   // video normal hızın 1,3 katında oynar
   let mode = '', t0 = 0, done = false;
   vid.loop = false;
   vid.addEventListener('ended', () => { done = true; dirty = true; wake(); });

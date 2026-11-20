@@ -24,6 +24,25 @@ PUB = os.path.join(ROOT, 'public')
 IMG = json.load(open(os.path.join(ROOT, 'src', 'content', 'images.json')))
 RAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'products.raw.json')))
 PRAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'pages.raw.json')))
+from content import subs as SUBS  # noqa: E402
+# Rensolar: henüz fotoğrafı ve beyperde.com'da ayrı metni olmayan yeni ürün; sayfa metni burada (yalnızca ürün tipini tarif eder)
+RAW.setdefault('perde/rensolar', {
+    'tr': {'imgs': [], 'alts': {}, 'h1': 'Rensolar', 'specs': [], 'faq': [],
+           'lead': 'Ahşap, metal ve mermer seçenekleriyle perde düzenini tamamlayan dekoratif aksesuar.',
+           'h2': 'Ahşap, metal ya da mermer',
+           'intro': 'Renso, perde düzenini tamamlayan dekoratif bir aksesuardır. Ahşap, metal ve mermer seçeneklerinden perdenize ve mekânınızın tarzına uyanı birlikte seçeriz; ölçü ve montajı perdeyle birlikte aynı ekip yapar. Modelleri ve size uygun seçeneği öğrenmek için bize WhatsApp ya da telefonla ulaşın.',
+           'sections': []},
+    'en': {'imgs': [], 'alts': {}, 'h1': 'Rensos', 'specs': [], 'faq': [],
+           'lead': 'A decorative accessory that completes the curtain set-up, in wood, metal or marble.',
+           'h2': 'Wood, metal or marble',
+           'intro': 'A renso is a decorative accessory that completes the curtain set-up. We choose the wood, metal or marble option that suits your curtains and your room with you, and the same team measures and fits it together with the curtains. Message us on WhatsApp or call to see the models and the right option for you.',
+           'sections': []},
+    'ar': {'imgs': [], 'alts': {}, 'h1': 'رينسو', 'specs': [], 'faq': [],
+           'lead': 'إكسسوار ديكوري يكمل تنسيق الستائر، من الخشب أو المعدن أو الرخام.',
+           'h2': 'خشب أو معدن أو رخام',
+           'intro': 'الرينسو إكسسوار ديكوري يكمل تنسيق الستائر. نختار معك بين الخشب والمعدن والرخام ما يناسب ستائرك وطابع مكانك، ويتولى الفريق نفسه القياس والتركيب مع الستائر. راسلنا عبر واتساب أو اتصل بنا لترى الموديلات والخيار المناسب لك.',
+           'sections': []},
+})
 COMPARE = json.load(open(os.path.join(ROOT, 'src', 'content', 'compare.json')))
 def _asset_version():
     # içerik özeti: dosyalar her değiştiğinde adres değişir, tarayıcı önbelleği eski sürümü kullanamaz
@@ -155,10 +174,32 @@ def header(lang, path, avail, nav=''):
     links = ''.join(f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items)
     blog_li = (f'<li><a href="{url(lang, "blog")}"{" aria-current=\"page\"" if nav == "blog" else ""}>{ui("nav_blog", lang)}</a></li>'
                if globals().get('BLOG_POSTS') else '')
-    # Masaüstü menüde "Ürünler" altında açılan kategori paneli
+    # Masaüstü menüde "Ürünler" altında açılan kategori paneli; ürünün üstüne gelince alt modeller yanda açılır (content/subs.py)
+    def flyout(rows):
+        lis = ''.join(f'<li><a href="{h}">{e(n)}</a></li>' for n, h in rows)
+        return f'<ul class="mm-sub">{lis}</ul>' if rows else ''
+    def mitem(name, href, rows):
+        cls = ' class="mm-has"' if rows else ''
+        arrow = '<svg class="mm-ar" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>' if rows else ''
+        return f'<li{cls}><a href="{href}">{e(name)}{arrow}</a>{flyout(rows)}</li>'
     def mcol(cat):
         c = D.CATS[cat]
-        lis = ''.join(f'<li><a href="{url(lang, f"urunler/{cat}/{s}")}">{tx(D.PRODUCTS[s][1], lang)}</a></li>' for s in c['items'])
+        if cat in SUBS.CAT_MODELS:
+            lis = ''
+            for sid, n, _d, link in SUBS.CAT_MODELS[cat]:
+                if isinstance(link, str):
+                    lis += mitem(tx(n, lang), url(lang, f'urunler/{cat}/{link}'), [])
+                else:
+                    rows = [(tx(D.PRODUCTS[s_][1], lang), url(lang, f'urunler/{cat}/{s_}')) for s_ in (link or [])]
+                    lis += mitem(tx(n, lang), url(lang, f'urunler/{cat}') + f'#{sid}', rows)
+        else:
+            lis = ''
+            for s_ in c['items']:
+                if s_ == 'motorlu-perde':
+                    rows = [(tx(SUBS.find(sid)[1][1], lang), url(lang, f'urunler/{cat}/{p_}') + f'#{sid}') for p_, sid in SUBS.MOTOR]
+                else:
+                    rows = [(tx(n, lang), url(lang, f'urunler/{cat}/{lk}') if lk else url(lang, f'urunler/{cat}/{s_}') + f'#{sid}') for sid, n, _d, lk in SUBS.SUBS.get(s_, [])]
+                lis += mitem(tx(D.PRODUCTS[s_][1], lang), url(lang, f'urunler/{cat}/{s_}'), rows)
         return f'<div class="mega-col"><a class="mega-h" href="{url(lang, f"urunler/{cat}")}">{tx(c["name"], lang)}</a><ul>{lis}</ul></div>'
     mega = f'<div class="mega" id="mega-urunler"><div class="mega-in">{mcol("perde")}<div class="mega-stack">{mcol("duvar-kagidi")}{mcol("hali")}</div><div class="mega-col mega-more"><a class="mega-h" href="{url(lang, "katalog")}">{ui("nav_catalog", lang)}</a><a class="mega-h" href="{url(lang, "perde-secici")}">{ui("nav_quiz", lang)}</a></div></div></div>'
     dlinks = ''.join(
@@ -166,6 +207,7 @@ def header(lang, path, avail, nav=''):
          else f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>') for p, k in items[:3]) + blog_li + ''.join(
         f'<li><a href="{url(lang, p)}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a></li>' for p, k in items[3:])
     mcats = ''.join(f'<li><a href="{url(lang, f"urunler/{c}")}">{tx(D.CATS[c]["name"], lang)}</a></li>' for c in ('perde', 'duvar-kagidi', 'hali'))
+    mcats += f'<li><a href="{url(lang, "urunler/perde/motorlu-perde")}">{tx(D.PRODUCTS["motorlu-perde"][1], lang)}</a></li>'
     mcats += f'<li><a href="{url(lang, "perde-secici")}">{ui("nav_quiz", lang)}</a></li>'
     mlinks = ''.join(
         (f'<li><a href="{url(lang, 'katalog')}"{" aria-current=\"page\"" if nav == p else ""}>{ui(k, lang)}</a><ul class="mmenu-sub">{mcats}</ul></li>' if p == 'urunler'
