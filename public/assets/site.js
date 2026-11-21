@@ -154,11 +154,13 @@
   const set = (v) => { try { localStorage.setItem(KEY, JSON.stringify({ v, t: Date.now() })); } catch (_) { /* depolama kapalı */ } };
   const ck = $('[data-cookie]');
   if (ck && !get()) {
-    // bildirimi ilk kaydırmadan sonra göster: açılış görselinin üstünü kapatmasın
-    const showCk = () => { ck.hidden = false; removeEventListener('scroll', onFirst); };
-    const onFirst = () => { if (scrollY > 240) showCk(); };
+    // bildirim kısa bir gecikmeyle gösterilir; ana sayfada açılış animasyonu bitince ya da ilk kaydırmada
+    let shown = false;
+    const showCk = () => { if (shown) return; shown = true; ck.hidden = false; removeEventListener('scroll', onFirst); };
+    const onFirst = () => { if (scrollY > 120) showCk(); };
     addEventListener('scroll', onFirst, { passive: true });
-    setTimeout(() => { if (!intro) showCk(); }, 2500);
+    if (intro) { d.addEventListener('bp:intro-static', () => setTimeout(showCk, 400), { once: true }); setTimeout(showCk, 4500); }
+    else setTimeout(showCk, 900);
     const ok = $('[data-cookie-ok]', ck);
     if (ok) ok.addEventListener('click', () => { set('necessary'); ck.hidden = true; });
     $$('[data-consent]', ck).forEach((b) => b.addEventListener('click', () => { set(b.dataset.consent); ck.hidden = true; }));
