@@ -17,7 +17,7 @@ Hizmet bölgeleri yalnızca şunlardır: **Çekmeköy, Şile, Ağva, Riva, Beyko
 | ✅ 2026-11-20 | Hazır | riva-perdeci | Riva perdeci: deniz kenarındaki ev ve villalar için perde — *riva perdeci* |
 | ✅ 2026-11-21 | Hazır | agva-perdeci | Ağva perdeci: dere ve orman kenarındaki ev ve bungalovlar için perde — *ağva perdeci* |
 | ✅ 2026-11-22 | Hazır | cekmekoy-duvar-kagidi | Çekmeköy duvar kağıdı: seçim, ölçü ve uygulama — *çekmeköy duvar kağıdı* |
-| 2026-11-23 | Yazılacak | omerli-alemdag-villa-perde | Ömerli ve Alemdağ'da villa perdeleri (ikisi de Çekmeköy'e bağlı) — *ömerli perde, alemdağ perde* |
+| ✅ 2026-11-23 | Hazır | omerli-alemdag-villa-perde | Ömerli ve Alemdağ'da villa perdeleri (ikisi de Çekmeköy'e bağlı) — *ömerli perde, alemdağ perde* |
 | 2026-11-24 | Hazır | stor-perde-mi-zebra-perde-mi | Stor perde mi zebra perde mi? |
 | 2026-11-25 | Yazılacak | beykoz-duvar-kagidi | Beykoz duvar kağıdı: eski ve yeni evlerde uygulama — *beykoz duvar kağıdı* |
 | 2026-11-26 | Hazır | blackout-perde-nedir | Blackout perde nedir? |
