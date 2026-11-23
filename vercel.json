@@ -8,22 +8,32 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/ar",
+      "destination": "/tr",
+      "permanent": true
+    },
+    {
+      "source": "/ar/:path*",
+      "destination": "/tr/:path*",
+      "permanent": true
+    },
+    {
       "source": "/",
       "destination": "/tr",
       "permanent": true
     },
     {
-      "source": "/:lang(tr|en|ar)/urunler/duvar-kagidi/tekstil",
+      "source": "/:lang(tr|en)/urunler/duvar-kagidi/tekstil",
       "destination": "/:lang/urunler/duvar-kagidi",
       "permanent": true
     },
     {
-      "source": "/:lang(tr|en|ar)/urunler/hali/:slug(ozel-olcu|el-dokuma)",
+      "source": "/:lang(tr|en)/urunler/hali/:slug(ozel-olcu|el-dokuma)",
       "destination": "/:lang/urunler/hali",
       "permanent": true
     },
     {
-      "source": "/:lang(tr|en|ar)/urunler",
+      "source": "/:lang(tr|en)/urunler",
       "destination": "/:lang/katalog",
       "permanent": true
     },
@@ -33,22 +43,22 @@
       "permanent": true
     },
     {
-      "source": "/:lang(tr|en|ar)/projeler/resadiye-nbo-villa",
+      "source": "/:lang(tr|en)/projeler/resadiye-nbo-villa",
       "destination": "/:lang/projeler",
       "permanent": false
     },
     {
-      "source": "/:lang(tr|en|ar)/projeler/sile-evi-ofc-villa",
+      "source": "/:lang(tr|en)/projeler/sile-evi-ofc-villa",
       "destination": "/:lang/projeler",
       "permanent": false
     },
     {
-      "source": "/:lang(en|ar)/hizmet-bolgeleri/:path*",
+      "source": "/:lang(en)/hizmet-bolgeleri/:path*",
       "destination": "/tr/hizmet-bolgeleri/:path*",
       "permanent": false
     },
     {
-      "source": "/:lang(en|ar)/:page(kvkk|gizlilik-politikasi|cerez-politikasi)",
+      "source": "/:lang(en)/:page(kvkk|gizlilik-politikasi|cerez-politikasi)",
       "destination": "/tr/:page",
       "permanent": false
     }

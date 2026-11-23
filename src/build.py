@@ -305,7 +305,7 @@ LOCALBIZ = {
     'hasMap': D.MAPS,
     'openingHoursSpecification': [{'@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], 'opens': '09:00', 'closes': '18:00'}],
     'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz']],
-    'knowsLanguage': ['tr', 'en', 'ar'],
+    'knowsLanguage': ['tr', 'en'],
     'contactPoint': [{'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': D.PHONE, 'email': D.EMAIL,
                       'areaServed': 'TR', 'availableLanguage': ['Turkish', 'English', 'Arabic']}],
     # sunulan hizmetler (fiyat bilgisi yok; yalnızca sitedeki gerçek ürün sayfaları)

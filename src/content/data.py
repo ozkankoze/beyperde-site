@@ -6,7 +6,7 @@ alınmıştır ve products.raw.json içindedir. Burada yalnızca yeni eklenen i�
 Her metin üç dilde: (tr, en, ar).
 """
 
-LANGS = ['tr', 'en', 'ar']
+LANGS = ['tr', 'en']
 SITE = 'https://www.beyperde.com'
 
 # ---------- ölçüm ve doğrulama (gerçek kod gelene kadar boş kalır; boşken siteye hiçbir şey eklenmez) ----------
