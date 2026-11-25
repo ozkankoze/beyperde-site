@@ -24,7 +24,7 @@ def quiz_block(G, lang, hid='oda-rehberi', intro=True):
             for v, lbl in opts)
         fs.append(f'''<fieldset class="qstep" data-step="{i}"><legend><span class="qnum">{tx(Q["step"], lang).format(n=i + 1, t=len(Q["questions"]))}</span>{tx(qlabel, lang)}</legend><div class="qopts">{radios}</div></fieldset>''')
     prods = {}
-    for s in {p for sc in Q['scores'].values() for p in sc}:
+    for s in sorted({p for sc in Q['scores'].values() for p in sc}):
         cat, name, short = D.PRODUCTS[s]
         imgs = G['product_imgs'](s)
         prods[s] = {'n': tx(name, lang), 'd': tx(short, lang), 'u': url(lang, f'urunler/{cat}/{s}'),

@@ -56,7 +56,7 @@ def render_secici(G, lang):
     segs = ''.join(f'<li><button type="button" class="aseg" data-goto="{i}" disabled><span class="sr">{tx(A["step_label"], lang).format(n=i + 1)}</span></button></li>' for i in range(n_steps))
 
     prods = {}
-    for s in {p for sc in Q['scores'].values() for p in sc}:
+    for s in sorted({p for sc in Q['scores'].values() for p in sc}):
         cat, name, short = D.PRODUCTS[s]
         imgs = G['product_imgs'](s)
         prods[s] = {'n': tx(name, lang), 'd': tx(short, lang), 'u': url(lang, f'urunler/{cat}/{s}'),
