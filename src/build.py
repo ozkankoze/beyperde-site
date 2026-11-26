@@ -43,6 +43,27 @@ RAW.setdefault('perde/rensolar', {
            'intro': 'الرينسو ماسك ستارة ديكوري يُثبت على الجدار بجانب الستارة. عندما تفتح الستارة يبقي القماش مجموعاً ومرتباً ويؤطر النافذة من الجانبين. تتوفر خيارات من الخشب والمعدن والرخام، من أشكال ديكورية كأوراق الشجر إلى مقابض بسيطة. نختار معك ما يناسب قماشك وطابع غرفتك، ونركّبه مع الستائر. راسلنا عبر واتساب أو اتصل بنا لترى الموديلات.',
            'sections': []},
 })
+# Bey Perde'nin gönderdiği yeni uygulama fotoğrafları ve yeni ürünler (content/media.py)
+from content import media as MD  # noqa: E402
+for _slug, _items in MD.PROD_IMGS.items():
+    for _l in RAW[f'{D.PRODUCTS[_slug][0]}/{_slug}']:
+        _L = RAW[f'{D.PRODUCTS[_slug][0]}/{_slug}'][_l]
+        for _j, (_k, _tr, _en) in enumerate(_items):
+            _r = '/' + _k + '.jpg'
+            if _r not in _L['imgs']:
+                _L['imgs'].insert(1 + _j, _r)
+            _L['alts'][_r] = _tr if _l == 'tr' else _en
+for _slug, _p in MD.NEW_PRODUCTS.items():
+    D.PRODUCTS[_slug] = ('perde', D.T(_p['name'][0], _p['name'][1], _p['name'][1]), D.T(_p['short'][0], _p['short'][1], _p['short'][1]))
+    if _slug not in D.CATS['perde']['items']:
+        D.CATS['perde']['items'].append(_slug)
+    D.EXTRA[_slug] = {'rooms': _p['rooms'], 'materials': D.T(_p['materials'][0], _p['materials'][1], _p['materials'][1]),
+                      'adv': D.T(_p['adv'][0], _p['adv'][1], _p['adv'][1])}
+    D.RELATED[_slug] = _p['related']
+    _imgs = ['/' + k + '.jpg' for k, _a, _b in _p['imgs']]
+    RAW[f'perde/{_slug}'] = {_l: {'imgs': list(_imgs), 'alts': {'/' + k + '.jpg': (a if _l == 'tr' else b) for k, a, b in _p['imgs']},
+                                  'h1': _p['name'][0 if _l == 'tr' else 1], 'specs': [], 'faq': [], 'sections': [],
+                                  **_p['tr' if _l == 'tr' else 'en']} for _l in ('tr', 'en', 'ar')}
 COMPARE = json.load(open(os.path.join(ROOT, 'src', 'content', 'compare.json')))
 def _asset_version():
     # içerik özeti: dosyalar her değiştiğinde adres değişir, tarayıcı önbelleği eski sürümü kullanamaz
@@ -418,6 +439,13 @@ def faq_block(items, lang):
 def faq_schema(items):
     return {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
         {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in items]}
+
+
+def video_block(lang, src, poster, title=None):
+    """Sessiz uygulama videosu (dikey)."""
+    t = title or tx(MD.VIDEO_TXT, lang)
+    return (f'<section class="band dark" aria-label="{e(t)}"><div class="wrap two pj-video"><div><p class="kicker">Video</p><h2 class="h2">{e(t)}</h2></div>'
+            f'<div class="pj-video-box"><video src="{src}" poster="{og_src(poster)}" controls muted playsinline preload="none"></video></div></div></section>')
 
 
 def product_imgs(slug):

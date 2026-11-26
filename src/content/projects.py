@@ -219,4 +219,212 @@ ALEMDAG = {
 }
 
 AKCEKESE['short'] = 'Akçekese'
-PROJECTS = [YENIBOSNA, ALEMDAG, SUADIYE, AKCEKESE]
+
+
+ORMANKOY = {
+    'slug': 'ormankoy', 'short': 'Ormanköy',
+    'hero': 'projeler/ormankoy/salon-plicell',
+    'products': ['plicell-perde', 'motorlu-perde', 'stor-perde', 'jaluzi-perde', 'tul-perde', 'fon-perde', 'rustik-perde', 'rensolar'],
+    'location': T2('Ormanköy, Çekmeköy, İstanbul', 'Ormanköy, Çekmeköy, Istanbul'),
+    'h1': T2('Ormanköy K.T Evi', 'Ormanköy K.T House'),
+    'title_tail': T2('Tavan Plicell ve Motorlu Stor', 'Roof Pleated and Motorised Blinds'),
+    'lead': T2('Eğimli tavan camlarında motorlu plicell, yüksek camlarda motorlu storlar, eğimli çapraz ahşap jaluzi, mermer renso ve rustik takımları.',
+               'Motorised pleated blinds on sloping roof glazing, motorised roller blinds on tall windows, an angled wooden Venetian blind, and marble holdbacks and poles.'),
+    'h2': T2('Ulaşılması zor camlara çözüm', 'Answers for hard-to-reach glazing'),
+    'intro': T2('Bu evin salonu çift yükseklikte; tavanın bir bölümü eğimli camlardan oluşuyor. Eğimli tavan camlarına motorlu plicell taktık; '
+                'perdeler cama paralel çalışıyor ve kumandayla açılıp kapanıyor. Yüksek boyutlu camlarda motorlu storlar, eğimli bir pencerede çapraz ahşap jaluzi kullandık. '
+                'Tül ve fon perdeleri mermer top başlıklı siyah rustiklere astık ve mermer rensolarla topladık. Aşağıdaki videoda sistemler çalışırken görülüyor.',
+                'The living room is double height and part of the roof is sloping glass. We fitted motorised pleated blinds to the roof glazing; they run parallel to the glass and open by remote. '
+                'Motorised roller blinds cover the tall windows and an angled wooden Venetian blind fits a sloping window. Sheers and drapes hang from black poles with marble ball finials and are gathered with marble rensos. The video below shows the systems running.'),
+    'video': {'src': '/video/projeler/ormankoy.mp4', 'poster': 'projeler/ormankoy/video-kapak',
+              'h': T2('Sistemler çalışırken', 'The systems running'),
+              'p': T2('Tavan plicell, motorlu storlar ve jaluzi kumandayla çalışırken.', 'Roof pleated blinds, motorised rollers and the Venetian blind running by remote.')},
+    'groups': [
+        {'h': T2('Salon ve tavan camları', 'Living room and roof glazing'),
+         'p': T2('Çift yükseklikteki salonda eğimli tavan camları motorlu plicellle kaplandı; alttaki camlarda tül perdeler var.',
+                 'In the double-height living room the sloping roof glass carries motorised pleated blinds, with sheers on the windows below.'),
+         'items': [
+             ('salon-plicell', T2('Eğimli tavan camlarında motorlu plicell ve salon', 'Motorised pleated blinds on the roof glazing')),
+             ('tavan-plicell', T2('Avizenin üstünde tavan plicell ve tül', 'Roof pleated blinds and sheers above the chandelier')),
+             ('salon-genel', T2('Salonun genel görünümü', 'The living room')),
+             ('yemek-yuksek-cam', T2('Yemek alanında yüksek camlar ve tül', 'Tall windows and sheers by the dining table')),
+         ]},
+        {'h': T2('Tül, fon ve mermer aksesuarlar', 'Sheers, drapes and marble accessories'),
+         'p': T2('Koltuk duvarında tül ve fon; fonlar mermer top başlıklı rustiklerde ve mermer rensolarla toplanıyor.',
+                 'Sheers and drapes behind the sofa, hung on marble-finial poles and gathered with marble rensos.'),
+         'items': [
+             ('koltuk-pencere', T2('Koltuk duvarında tül ve fon', 'Sheer and drape behind the sofa')),
+             ('tul-fon-mermer', T2('Mermer rensoyla toplanmış fon', 'A drape gathered with a marble renso')),
+             ('mermer-renso', T2('Mermer renso', 'Marble renso')),
+             ('mermer-rustik', T2('Mermer top başlıklı rustik', 'Marble ball finial')),
+             ('yatak-fon', T2('Yatak odasında koyu fon ve tül', 'Dark drape and sheer in a bedroom')),
+         ]},
+        {'h': T2('Montaj', 'Installation'),
+         'p': T2('Montajı kendi ekibimiz yaptı; son ayarlar yerinde.', 'Our own team fitted everything, with final adjustments on site.'),
+         'items': [
+             ('montaj', T2('Fonun son ayarı', 'Final adjustment of a drape')),
+             ('montaj-tul', T2('Yüksek camda tül montajı', 'Fitting sheers on tall glazing')),
+         ]},
+    ],
+}
+
+RAPSODI = {
+    'slug': 'rapsodi', 'short': 'Rapsodi',
+    'hero': 'projeler/rapsodi/salon-tul-fon',
+    'products': ['tul-perde', 'fon-perde', 'jaluzi-perde', 'stor-perde', 'rustik-perde', 'pile-cesitleri'],
+    'location': T2('Rapsodi Evleri, Çekmeköy, İstanbul', 'Rapsodi Evleri, Çekmeköy, Istanbul'),
+    'h1': T2('Çekmeköy Rapsodi Evleri H.D Evi', 'Çekmeköy Rapsodi H.D House'),
+    'title_tail': T2('Tül, Fon ve Ahşap Jaluzi', 'Sheers, Drapes and Wooden Blinds'),
+    'lead': T2('Salonda aynı yaşam alanında iki farklı perde: tül ve fon ile ahşap jaluzi. Odalarda stor, rustik ve S pile tül.',
+               'Two curtain types in one living space, sheer-and-drape and a wooden Venetian blind, plus roller blinds, poles and wave-pleat sheers in the rooms.'),
+    'h2': T2('Bir salonda iki perde', 'Two curtain types in one room'),
+    'intro': T2('Salonun bir yanında geniş pencerelerde tül ve fon, köşedeki dar pencerelerde ise ahşap jaluzi kullandık; '
+                'iki sistem aynı renk ailesinde seçildiği için tek bir bütün gibi duruyor. Odalarda stor perde, rustik üzerinde fon ve '
+                'perde aksesuarlarında S pile (dalgalı) tül uyguladık. Videoda tüm odaları görebilirsiniz.',
+                'On one side of the living room the wide windows have sheers and drapes; the narrow corner windows have a wooden Venetian blind. Chosen in the same palette, they read as one. '
+                'The rooms have roller blinds, drapes on poles and wave-pleat sheers. The video shows every room.'),
+    'video': {'src': '/video/projeler/rapsodi.mp4', 'poster': 'projeler/rapsodi/video-kapak',
+              'h': T2('Odalar', 'The rooms'), 'p': T2('Evin odalarından kısa görüntüler.', 'Short clips from the rooms.')},
+    'groups': [
+        {'h': T2('Salon: tül, fon ve ahşap jaluzi', 'Living room: sheer, drape and wooden blind'),
+         'p': T2('Aynı yaşam alanında iki farklı perde: geniş camda tül ve fon, köşe pencerede ahşap jaluzi.', 'Two systems in one space: sheer and drape on the wide glass, a wooden blind on the corner window.'),
+         'items': [
+             ('salon-tul-fon', T2('Salonda tül ve fon', 'Sheer and drape in the living room')),
+             ('salon-jaluzi', T2('Fonun yanında ahşap jaluzi', 'A wooden blind beside the drape')),
+             ('koridor-jaluzi', T2('Koridor penceresinde ahşap jaluzi', 'A wooden blind on the hall window')),
+             ('yemek-fon', T2('Yemek masası yanında fon ve tül', 'Drape and sheer by the dining table')),
+         ]},
+        {'h': T2('Odalar', 'Rooms'),
+         'p': T2('Oturma odasında rustikte fon ve tül, mavi duvarlı odada gri fon, çalışma odasında stor.', 'A drape on a pole in the sitting room, grey drape in the blue room and roller blinds in the study.'),
+         'items': [
+             ('oturma-tul', T2('Oturma odasında tül ve koyu fon', 'Sheer and dark drape in the sitting room')),
+             ('fon-yildiz', T2('Rustikte pileli fon', 'A pleated drape on a pole')),
+             ('mavi-oda', T2('Mavi duvarlı odada fon ve tül', 'Drape and sheer in the blue room')),
+             ('mavi-oda-fon', T2('Fonun dokusu', 'Drape texture')),
+             ('stor-calisma', T2('Çalışma odasında stor perdeler', 'Roller blinds in the study')),
+             ('stor-balkon', T2('Balkon kapısında stor', 'A roller blind on the balcony door')),
+         ]},
+        {'h': T2('S pile tül', 'Wave-pleat sheers'),
+         'p': T2('Rustik boruda S pile (dalgalı) dikilmiş tüller; kıvrımlar boydan boya eşit.', 'Wave-pleat sheers on poles, with even folds from end to end.'),
+         'items': [
+             ('s-pile-tul', T2('Rustikte S pile tül', 'Wave-pleat sheer on a pole')),
+             ('dokulu-tul', T2('Dokulu tülde S pile', 'Wave pleats on a textured sheer')),
+         ]},
+    ],
+}
+
+BIRBAHCE = {
+    'slug': 'birbahce', 'short': 'Birbahçe',
+    'hero': 'projeler/birbahce/salon',
+    'products': ['fon-perde', 'tul-perde', 'perde-aksesuarlari', 'jaluzi-perde'],
+    'location': T2('Birbahçe, İstanbul', 'Birbahçe, Istanbul'),
+    'h1': T2('Birbahçe Projesi E.C Evi', 'Birbahçe E.C House'),
+    'title_tail': T2('Dekoratif Alınlık ve Fon', 'Decorative Pelmets and Drapes'),
+    'lead': T2('2021: dekoratif alınlık, dekoratif kapamalı fon perdeler ve banyoda ahşap jaluzi.', '2021: decorative pelmets, drapes with a decorative cover and a wooden blind in the bathroom.'),
+    'h2': T2('Alınlıkla tamamlanan pencereler', 'Windows finished with a pelmet'),
+    'intro': T2('2021 yılında yaptığımız bu evde rayları dekoratif alınlıkla kapattık; fon perdeler alınlığın altından tavana yakın başlıyor ve '
+                'pencereyi olduğundan yüksek gösteriyor. Fonlarda dekoratif kapamalı dikim kullandık. Banyoda boydan koyu ahşap jaluzi var.',
+                'In this 2021 project the tracks are hidden behind decorative pelmets; drapes start just under the pelmet near the ceiling and make the windows look taller. '
+                'The drapes have a decorative cover finish. The bathroom has a tall dark wooden Venetian blind.'),
+    'groups': [
+        {'h': T2('Salon ve yatak odası', 'Living room and bedroom'),
+         'p': T2('Dekoratif alınlığın altında kahverengi ve gri fonlar, beyaz tül.', 'Brown and grey drapes with white sheers under decorative pelmets.'),
+         'items': [
+             ('salon', T2('Salonda alınlık altında fon ve tül', 'Drapes and sheers under a pelmet in the living room')),
+             ('yatak-odasi', T2('Yatak odasında gri fon ve tül', 'Grey drapes and sheer in the bedroom')),
+             ('banyo-jaluzi', T2('Banyoda ahşap jaluzi', 'Wooden Venetian blind in the bathroom')),
+         ]},
+    ],
+}
+
+MDOFIS = {
+    'slug': 'md-ofis', 'short': 'M.D Ofis',
+    'hero': 'projeler/md-ofis/kemerler',
+    'products': ['jaluzi-perde'],
+    'location': T2('İstanbul', 'Istanbul'),
+    'h1': T2('Ofis Projesi M.D Ofis', 'M.D Office Project'),
+    'title_tail': T2('Metal Jaluzi', 'Metal Venetian Blinds'),
+    'lead': T2('Kemerli ofis pencerelerinde metal jaluzi: kemerin camı açık kalıyor, alt camlar jaluziyle kontrol ediliyor.',
+               'Metal Venetian blinds on arched office windows: the arch stays clear while the lower panes are controlled by the blinds.'),
+    'h2': T2('Kemerli camda düzenli bir ofis', 'A tidy office with arched windows'),
+    'intro': T2('Ofisin bütün pencereleri kemerli. Kemerin yarım dairesini açık bıraktık, altındaki dikdörtgen camlara metal jaluzi taktık. '
+                'Böylece gün ışığı yukarıdan girmeye devam ediyor, çalışma masalarına gelen güneş ve dışarıdan görünürlük lamellerle ayarlanıyor. '
+                'Tüm pencerelerde aynı renk jaluzi kullanıldığı için ofis düzenli ve sade görünüyor.',
+                'Every window in the office is arched. We left the half-round arch clear and fitted metal Venetian blinds to the rectangular panes below, '
+                'so daylight still comes in from above while sun on the desks and privacy are controlled by the slats. The same colour throughout keeps the office calm and tidy.'),
+    'groups': [
+        {'h': T2('Kemerli pencerelerde metal jaluzi', 'Metal blinds on arched windows'),
+         'p': T2('Toplantı alanı, çalışma alanı, mutfak köşesi ve merdiven boşluğundaki pencerelerin hepsi aynı sistemle.', 'Meeting area, desks, kitchenette and stairwell all use the same system.'),
+         'items': [
+             ('kemerler', T2('Kemerli pencerelerde metal jaluzi', 'Metal blinds on arched windows')),
+             ('toplanti', T2('Toplantı masasının arkasında jaluzi', 'A blind behind the meeting table')),
+             ('genel', T2('Ofisin genel görünümü', 'The office')),
+             ('calisma', T2('Çalışma alanı', 'Work area')),
+             ('masa', T2('Toplantı masası ve jaluzi', 'Meeting table and blind')),
+             ('merdiven', T2('Merdiven boşluğundaki kemerli pencere', 'The arched stairwell window')),
+             ('mutfak', T2('Mutfak köşesinde jaluzi', 'A blind in the kitchenette')),
+         ]},
+    ],
+}
+
+MODALEMDAG = {
+    'slug': 'modalemdag', 'short': 'ModAlemdağ',
+    'hero': 'projeler/modalemdag/yemek',
+    'products': ['fon-perde', 'tul-perde', 'perde-aksesuarlari'],
+    'location': T2('ModAlemdağ, Çekmeköy, İstanbul', 'ModAlemdağ, Çekmeköy, Istanbul'),
+    'h1': T2('ModAlemdağ Projesi K.H Evi', 'ModAlemdağ K.H House'),
+    'title_tail': T2('Dekoratif Alınlık ve Fon', 'Decorative Pelmets and Drapes'),
+    'lead': T2('Yüksek tavanlı salon ve yemek alanında beyaz dekoratif alınlık, koyu dokulu fonlar ve oturma odasında kiremit rengi fon.',
+               'White decorative pelmets with dark textured drapes in the tall living and dining room, and terracotta drapes in the sitting room.'),
+    'h2': T2('Alınlık ve dekoratif fon', 'Pelmet and decorative drapes'),
+    'intro': T2('Tavanı yüksek salonda rayı beyaz dekoratif alınlıkla kapattık. Alınlık hem rayı gizliyor hem de pencerenin üst çizgisini düzgün bir çerçeveye dönüştürüyor. '
+                'Koyu dokulu fonlar alınlığın hemen altından yere kadar iniyor, ortada beyaz tül ışığı yumuşatıyor. Oturma odasında ise kiremit rengi fon, koltuklardaki renkle uyumlu seçildi.',
+                'In the tall living room the track is hidden behind a white decorative pelmet, which also frames the top of the window neatly. Dark textured drapes fall from just under it to the floor, '
+                'with a white sheer softening the light between them. In the sitting room terracotta drapes pick up the colour of the sofa.'),
+    'groups': [
+        {'h': T2('Salon ve yemek alanı', 'Living and dining'),
+         'p': T2('Beyaz dekoratif alınlık, koyu fon ve tül.', 'White decorative pelmet, dark drapes and sheer.'),
+         'items': [
+             ('yemek', T2('Yemek alanında alınlık, fon ve tül', 'Pelmet, drapes and sheer by the dining table')),
+             ('salon', T2('Salonda alınlık altında fon', 'Drapes under the pelmet in the living room')),
+             ('yemek-2', T2('Avizenin yanında yüksek pencere', 'The tall window beside the chandelier')),
+         ]},
+        {'h': T2('Oturma odası', 'Sitting room'),
+         'p': T2('Kiremit rengi fon ve tül.', 'Terracotta drapes and sheer.'),
+         'items': [
+             ('oturma', T2('Kiremit rengi fon ve tül', 'Terracotta drapes and sheer')),
+             ('oturma-2', T2('Oturma odasının genel görünümü', 'The sitting room')),
+         ]},
+    ],
+}
+
+SURAT = {
+    'slug': 'surat-kargo', 'short': 'Sürat Kargo',
+    'hero': 'projeler/surat-kargo/toplanti',
+    'products': ['stor-perde'],
+    'location': T2('Kartal, İstanbul', 'Kartal, Istanbul'),
+    'h1': T2('Sürat Kargo Kartal Projesi', 'Sürat Kargo Kartal Project'),
+    'title_tail': T2('Stor Perde Uygulaması', 'Roller Blinds'),
+    'lead': T2('Ofis katında her cama ayrı stor perde: her çalışan kendi penceresini ayarlayabiliyor.',
+               'A separate roller blind on every pane of the office floor, so each person can set their own window.'),
+    'h2': T2('Her cama ayrı stor', 'A blind for every pane'),
+    'intro': T2('Ofisin cepheleri geniş ve kavisli. Tek parça büyük storlar yerine her cama ayrı stor taktık; '
+                'böylece güneş alan tarafta perde inerken diğer camlar açık kalabiliyor ve kavisli köşelerde bile storlar cama tam oturuyor. '
+                'Toplantı odaları ve çalışma alanlarının hepsinde aynı kumaş kullanıldı.',
+                'The office façades are wide and curved. Instead of a few large blinds we fitted a separate roller blind to every pane, '
+                'so the sunny side can be lowered while others stay open, and even on the curved corners each blind sits neatly on its glass. All rooms use the same fabric.'),
+    'groups': [
+        {'h': T2('Toplantı ve çalışma alanları', 'Meeting and work areas'),
+         'p': T2('Her cama ayrı stor; kavisli köşelerde bile düzgün hizalı.', 'One blind per pane, aligned even on the curves.'),
+         'items': [
+             ('toplanti', T2('Toplantı alanında her cama ayrı stor', 'A blind per pane in the meeting area')),
+             ('calisma', T2('Çalışma alanında storlar', 'Blinds in the work area')),
+             ('kose', T2('Kavisli köşede storlar', 'Blinds on the curved corner')),
+             ('oval', T2('Kavisli cephede yarıya inmiş storlar', 'Half-lowered blinds on the curved façade')),
+             ('oda', T2('Toplantı odasında storlar', 'Blinds in a meeting room')),
+             ('kose-yakin', T2('Köşedeki storların yakından görünümü', 'Close-up of the corner blinds')),
+         ]},
+    ],
+}
+
+PROJECTS = [ORMANKOY, RAPSODI, YENIBOSNA, ALEMDAG, MODALEMDAG, BIRBAHCE, SUADIYE, MDOFIS, SURAT, AKCEKESE]

@@ -491,6 +491,53 @@
 1600
 ]
 },
+"projeler/birbahce/banyo-jaluzi.webp": {
+"avg": [
+109,
+101,
+92
+],
+"h": 2000,
+"w": 900,
+"widths": [
+240,
+480,
+720,
+900
+]
+},
+"projeler/birbahce/salon.webp": {
+"avg": [
+141,
+117,
+105
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/birbahce/yatak-odasi.webp": {
+"avg": [
+131,
+156,
+178
+],
+"h": 1669,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
 "projeler/erenkoy-hk-evi/calisma-odasi.webp": {
 "avg": [
 117,
@@ -633,6 +680,594 @@
 720,
 960,
 1200
+]
+},
+"projeler/md-ofis/calisma.webp": {
+"avg": [
+158,
+155,
+149
+],
+"h": 806,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/genel.webp": {
+"avg": [
+127,
+117,
+112
+],
+"h": 1436,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/kemerler.webp": {
+"avg": [
+149,
+124,
+119
+],
+"h": 806,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/masa.webp": {
+"avg": [
+110,
+96,
+90
+],
+"h": 806,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/merdiven.webp": {
+"avg": [
+124,
+108,
+98
+],
+"h": 1436,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/mutfak.webp": {
+"avg": [
+127,
+124,
+122
+],
+"h": 1436,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/md-ofis/toplanti.webp": {
+"avg": [
+110,
+96,
+90
+],
+"h": 806,
+"w": 1080,
+"widths": [
+240,
+480,
+720,
+960,
+1080
+]
+},
+"projeler/modalemdag/oturma-2.webp": {
+"avg": [
+181,
+182,
+179
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
+"projeler/modalemdag/oturma.webp": {
+"avg": [
+188,
+189,
+185
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
+"projeler/modalemdag/salon.webp": {
+"avg": [
+168,
+161,
+150
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
+"projeler/modalemdag/yemek-2.webp": {
+"avg": [
+175,
+171,
+163
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
+"projeler/modalemdag/yemek.webp": {
+"avg": [
+181,
+179,
+172
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
+"projeler/ormankoy/koltuk-pencere.webp": {
+"avg": [
+175,
+176,
+168
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/mermer-renso.webp": {
+"avg": [
+143,
+132,
+116
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/mermer-rustik.webp": {
+"avg": [
+144,
+145,
+143
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/montaj-tul.webp": {
+"avg": [
+139,
+158,
+160
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/montaj.webp": {
+"avg": [
+197,
+188,
+169
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/salon-genel.webp": {
+"avg": [
+137,
+135,
+128
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/salon-plicell.webp": {
+"avg": [
+132,
+130,
+123
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/tavan-plicell.webp": {
+"avg": [
+142,
+156,
+151
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/tul-fon-mermer.webp": {
+"avg": [
+168,
+165,
+153
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/video-kapak.webp": {
+"avg": [
+181,
+177,
+167
+],
+"h": 1280,
+"w": 720,
+"widths": [
+240,
+480,
+720
+]
+},
+"projeler/ormankoy/yatak-fon.webp": {
+"avg": [
+111,
+91,
+66
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/ormankoy/yemek-yuksek-cam.webp": {
+"avg": [
+174,
+171,
+160
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/dokulu-tul.webp": {
+"avg": [
+155,
+135,
+101
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/fon-yildiz.webp": {
+"avg": [
+109,
+108,
+97
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/koridor-jaluzi.webp": {
+"avg": [
+158,
+150,
+138
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/mavi-oda-fon.webp": {
+"avg": [
+143,
+137,
+128
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/mavi-oda.webp": {
+"avg": [
+93,
+99,
+96
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/oturma-tul.webp": {
+"avg": [
+164,
+163,
+157
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/s-pile-tul.webp": {
+"avg": [
+196,
+193,
+180
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/salon-jaluzi.webp": {
+"avg": [
+116,
+110,
+94
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/salon-tul-fon.webp": {
+"avg": [
+149,
+144,
+126
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"projeler/rapsodi/stor-balkon.webp": {
+"avg": [
+163,
+154,
+132
+],
+"h": 2000,
+"w": 1125,
+"widths": [
+240,
+480,
+720,
+960,
+1125
+]
+},
+"projeler/rapsodi/stor-calisma.webp": {
+"avg": [
+143,
+142,
+130
+],
+"h": 2000,
+"w": 1125,
+"widths": [
+240,
+480,
+720,
+960,
+1125
+]
+},
+"projeler/rapsodi/video-kapak.webp": {
+"avg": [
+207,
+208,
+197
+],
+"h": 960,
+"w": 540,
+"widths": [
+240,
+480,
+540
+]
+},
+"projeler/rapsodi/yemek-fon.webp": {
+"avg": [
+133,
+121,
+103
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
 ]
 },
 "projeler/sile-akcekese/ahsap-jaluzi.webp": {
@@ -871,6 +1506,102 @@
 240,
 480,
 720
+]
+},
+"projeler/surat-kargo/calisma.webp": {
+"avg": [
+141,
+133,
+125
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/surat-kargo/kose-yakin.webp": {
+"avg": [
+132,
+126,
+120
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/surat-kargo/kose.webp": {
+"avg": [
+154,
+157,
+157
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/surat-kargo/oda.webp": {
+"avg": [
+142,
+145,
+143
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/surat-kargo/oval.webp": {
+"avg": [
+126,
+131,
+134
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"projeler/surat-kargo/toplanti.webp": {
+"avg": [
+163,
+149,
+138
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
 ]
 },
 "projeler/yenibosna/astar-gizli-dikis.webp": {
@@ -1400,6 +2131,70 @@
 1600
 ]
 },
+"urunler/cati-kati-perde/egimli-fon-mor.webp": {
+"avg": [
+78,
+65,
+70
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/cati-kati-perde/egimli-tul-balkon.webp": {
+"avg": [
+146,
+145,
+141
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/cati-kati-perde/kruvaze-tul-oda.webp": {
+"avg": [
+171,
+168,
+162
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/cati-kati-perde/kruvaze-tul-salon.webp": {
+"avg": [
+131,
+131,
+128
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
 "urunler/dikey-perde/doku.webp": {
 "avg": [
 185,
@@ -1446,6 +2241,22 @@
 900
 ]
 },
+"urunler/dikey-perde/manzara-dikey.webp": {
+"avg": [
+155,
+159,
+162
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
+]
+},
 "urunler/dikey-perde/manzara.webp": {
 "avg": [
 139,
@@ -1459,6 +2270,22 @@
 480,
 720,
 756
+]
+},
+"urunler/dikey-perde/ofis-dikey.webp": {
+"avg": [
+141,
+119,
+100
+],
+"h": 2000,
+"w": 1497,
+"widths": [
+240,
+480,
+720,
+960,
+1497
 ]
 },
 "urunler/dikey-perde/ray.webp": {
@@ -1740,6 +2567,38 @@
 ],
 "h": 1200,
 "w": 1600,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/fon-perde/gri-fon-oturma.webp": {
+"avg": [
+152,
+150,
+141
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/fon-perde/gri-fon-salon.webp": {
+"avg": [
+172,
+171,
+166
+],
+"h": 1500,
+"w": 2000,
 "widths": [
 240,
 480,
@@ -2164,6 +3023,22 @@
 1600
 ]
 },
+"urunler/katlamali-perde/merdiven-katlamali.webp": {
+"avg": [
+160,
+148,
+129
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
 "urunler/katlamali-perde/mutfak.webp": {
 "avg": [
 141,
@@ -2196,6 +3071,22 @@
 1200
 ]
 },
+"urunler/katlamali-perde/sari-katlamali.webp": {
+"avg": [
+140,
+131,
+106
+],
+"h": 1620,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
 "urunler/katlamali-perde/toplanmis.webp": {
 "avg": [
 177,
@@ -2210,6 +3101,54 @@
 720,
 960,
 1270
+]
+},
+"urunler/katlamali-perde/tul-katlamali-cift.webp": {
+"avg": [
+145,
+151,
+139
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/katlamali-perde/tul-katlamali-tek.webp": {
+"avg": [
+100,
+106,
+102
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/katlamali-perde/tul-katlamali-yakin.webp": {
+"avg": [
+101,
+98,
+97
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
 ]
 },
 "urunler/motorlu-jaluzi/kanat-acisi.webp": {
@@ -2340,6 +3279,22 @@
 1200
 ]
 },
+"urunler/perde-aksesuarlari/alinlik-pencere.webp": {
+"avg": [
+116,
+112,
+106
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
 "urunler/perde-aksesuarlari/alinlik-profili.webp": {
 "avg": [
 155,
@@ -2356,6 +3311,54 @@
 1600
 ]
 },
+"urunler/perde-aksesuarlari/alinlik-ray.webp": {
+"avg": [
+123,
+115,
+101
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/perde-aksesuarlari/alinlik-tavan.webp": {
+"avg": [
+140,
+138,
+129
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/perde-aksesuarlari/alinlik-yakin.webp": {
+"avg": [
+199,
+202,
+193
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
 "urunler/perde-aksesuarlari/antrasit-tavan-rayi.webp": {
 "avg": [
 116,
@@ -2370,6 +3373,37 @@
 720,
 960,
 1536
+]
+},
+"urunler/perde-aksesuarlari/beyaz-alinlik-salon.webp": {
+"avg": [
+159,
+160,
+154
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/beyaz-alinlik-yuksek.webp": {
+"avg": [
+191,
+187,
+171
+],
+"h": 2000,
+"w": 900,
+"widths": [
+240,
+480,
+720,
+900
 ]
 },
 "urunler/perde-aksesuarlari/bronz-alinlik.webp": {
@@ -2434,6 +3468,150 @@
 720,
 960,
 1200
+]
+},
+"urunler/perde-aksesuarlari/gri-alinlik-avlu.webp": {
+"avg": [
+124,
+122,
+115
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/gri-alinlik-bahce.webp": {
+"avg": [
+142,
+141,
+137
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/gri-alinlik-oda.webp": {
+"avg": [
+127,
+124,
+120
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-egik.webp": {
+"avg": [
+132,
+105,
+86
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-genel.webp": {
+"avg": [
+132,
+122,
+115
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-kasa.webp": {
+"avg": [
+176,
+131,
+102
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-kose.webp": {
+"avg": [
+168,
+139,
+113
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-manzara.webp": {
+"avg": [
+133,
+98,
+80
+],
+"h": 1497,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/perde-aksesuarlari/kis-bahcesi-uzun.webp": {
+"avg": [
+155,
+127,
+106
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
 ]
 },
 "urunler/perde-aksesuarlari/koyu-alinlik.webp": {
@@ -2564,6 +3742,38 @@
 1600
 ]
 },
+"urunler/pile-cesitleri/fon-pileler.webp": {
+"avg": [
+138,
+136,
+98
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/pile-cesitleri/tul-pileler.webp": {
+"avg": [
+163,
+160,
+134
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
 "urunler/plicell-perde-1.webp": {
 "avg": [
 159,
@@ -2612,11 +3822,185 @@
 1200
 ]
 },
+"urunler/plicell-perde/motorlu-plicell-cephe.webp": {
+"avg": [
+110,
+99,
+94
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/plicell-perde/motorlu-plicell-lounge.webp": {
+"avg": [
+102,
+93,
+90
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/plicell-perde/motorlu-plicell-oturma.webp": {
+"avg": [
+104,
+95,
+91
+],
+"h": 900,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/plicell-perde/pastane-plicell-yarim.webp": {
+"avg": [
+152,
+138,
+132
+],
+"h": 2000,
+"w": 900,
+"widths": [
+240,
+480,
+720,
+900
+]
+},
+"urunler/plicell-perde/pastane-plicell.webp": {
+"avg": [
+142,
+122,
+115
+],
+"h": 2000,
+"w": 900,
+"widths": [
+240,
+480,
+720,
+900
+]
+},
+"urunler/plicell-perde/tavan-plicell-genis.webp": {
+"avg": [
+132,
+130,
+123
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/plicell-perde/tavan-plicell-salon.webp": {
+"avg": [
+142,
+156,
+151
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/rensolar/ahsap-renso-ip-2.webp": {
+"avg": [
+106,
+109,
+124
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/rensolar/ahsap-renso-ip.webp": {
+"avg": [
+110,
+104,
+102
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
 "urunler/rensolar/mavi-fon-renso.webp": {
 "avg": [
 108,
 115,
 120
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/rensolar/mermer-renso.webp": {
+"avg": [
+143,
+132,
+116
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/rensolar/metal-renso.webp": {
+"avg": [
+125,
+122,
+110
 ],
 "h": 2000,
 "w": 1500,
@@ -2642,6 +4026,54 @@
 720,
 960,
 1600
+]
+},
+"urunler/rustik-perde/altin-fon-kose.webp": {
+"avg": [
+131,
+123,
+94
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
+"urunler/rustik-perde/altin-fon-salon.webp": {
+"avg": [
+171,
+165,
+154
+],
+"h": 1500,
+"w": 2000,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/rustik-perde/altin-fon-sol.webp": {
+"avg": [
+116,
+106,
+80
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
 ]
 },
 "urunler/rustik-perde/altin-yaprak.webp": {
@@ -2788,6 +4220,22 @@
 1600
 ]
 },
+"urunler/rustik-perde/mermer-rustik.webp": {
+"avg": [
+144,
+145,
+143
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
+]
+},
 "urunler/rustik-perde/mermer-top.webp": {
 "avg": [
 143,
@@ -2898,6 +4346,22 @@
 720,
 960,
 1600
+]
+},
+"urunler/rustik-perde/yildiz-baslik.webp": {
+"avg": [
+109,
+108,
+97
+],
+"h": 2000,
+"w": 1500,
+"widths": [
+240,
+480,
+720,
+960,
+1500
 ]
 },
 "urunler/stor-perde/balkon-kapisi.webp": {
@@ -3060,6 +4524,38 @@
 1600
 ]
 },
+"urunler/stor-perde/screen-stor-ofis-2.webp": {
+"avg": [
+180,
+176,
+167
+],
+"h": 900,
+"w": 1600,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
+"urunler/stor-perde/screen-stor-ofis.webp": {
+"avg": [
+164,
+151,
+131
+],
+"h": 900,
+"w": 1600,
+"widths": [
+240,
+480,
+720,
+960,
+1600
+]
+},
 "urunler/stor-perde/yatak-odasi.webp": {
 "avg": [
 153,
@@ -3201,6 +4697,34 @@
 480,
 720,
 900
+]
+},
+"urunler/video/dekoratif-alinlik.webp": {
+"avg": [
+173,
+167,
+142
+],
+"h": 1280,
+"w": 720,
+"widths": [
+240,
+480,
+720
+]
+},
+"urunler/video/fon-metal-tutucu.webp": {
+"avg": [
+161,
+159,
+149
+],
+"h": 1280,
+"w": 720,
+"widths": [
+240,
+480,
+720
 ]
 },
 "urunler/vinyl/alfa/3708-4.webp": {

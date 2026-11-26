@@ -178,6 +178,12 @@ def render_sub(G, lang, ck, parent, row):
         sib_h = SUB_TXT['sib_cat'][lang].format(x=pname)
         alt = lambda i: ''  # noqa: E731
         form_slug, back = '', (pname, url(lang, f'urunler/{ck}'))
+    SM = G['MD'].SUB_MEDIA.get(sid, {})
+    if SM.get('imgs'):
+        _salt = {k: (a if lang == 'tr' else b) for k, a, b in SM['imgs']}
+        _palt = alt
+        imgs = [k for k, _a, _b in SM['imgs']] + [i for i in imgs if i not in _salt]
+        alt = lambda i: _salt.get(i) or _palt(i)  # noqa: E731
     crumbs, cs = G['breadcrumbs'](lang, trail)
     wa_text = ui('wa_product', lang, x=h1)
 
@@ -216,7 +222,15 @@ def render_sub(G, lang, ck, parent, row):
   {G['quote_forms'](lang, form_slug, 'pq', ck)}
 </div></section>'''
 
-    body = f'<div class="pp pp-{ck} pp-subpage">' + hero + strip + about + sib + quote + '</div>'
+    sgal = ''
+    if SM.get('imgs') and len(SM['imgs']) > 1:
+        figs = ''.join(f'<figure class="pp-gf"><a href="{G["big_src"](k)}" data-lb="p" data-cap="{e(alt(k))}">{picture(k, alt(k), "(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) 50vw, 33vw")}</a></figure>'
+                       for k, _a, _b in SM['imgs'][1:])
+        sgal = (f'<section class="pp-sec pp-gal-s" aria-labelledby="sub-gal"><div class="wrap"><div class="pp-sec-head"><h2 class="pp-h2" id="sub-gal">{q("gallery_h")}</h2></div>'
+                f'<div class="pp-gal {"g-few" if len(SM["imgs"]) <= 4 else "g-ed"}">{figs}</div></div></section>')
+    if SM.get('video'):
+        sgal += G['video_block'](lang, *SM['video'])
+    body = f'<div class="pp pp-{ck} pp-subpage">' + hero + strip + about + sgal + sib + quote + '</div>'
     if ck == 'perde':
         opts = {'tr': ['Ölçüye Özel Dikim ve Montaj', 'Özel Dikim ve Montaj', 'Özel Ölçü'], 'en': ['Made to Measure and Fitted', 'Made to Measure'], 'ar': ['تفصيل حسب المقاس وتركيب', 'حسب المقاس']}[lang]
     else:
@@ -379,6 +393,9 @@ def render_product(G, lang, slug, ck, catalog):
   <div class="pp-sec-head"><h2 class="pp-h2" id="pp-gal">{q('gallery_h')}</h2>{more}</div>
   <div class="pp-gal {mode}">{figs}</div>
 </div></section>'''
+
+    if slug in G['MD'].PROD_VIDEO:
+        gallery += G['video_block'](lang, *G['MD'].PROD_VIDEO[slug])
 
     # ---- 6. kullanım alanları (fotoğraf yalnızca o oda için gerçek uygulama fotoğrafı varsa)
     room_cards = []
