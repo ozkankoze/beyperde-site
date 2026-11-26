@@ -64,7 +64,7 @@ def render_products(G, catalog):
             crumbs, cs = G['breadcrumbs'](lang, [(ui('nav_catalog', lang), 'katalog'), (tx(c['name'], lang), f'urunler/{ck}')])
             extra = ''
             if ck == 'duvar-kagidi':
-                gl = ''.join(f'<a class="gi" href="{G["big_src"](k)}" data-lb="cat">{picture(k, tx(a, lang), "(max-width: 640px) 50vw, 25vw")}</a>' for k, a in P.GALLERY[10:14])
+                gl = ''.join(f'<a class="gi" href="{G["big_src"](k)}" data-lb="cat">{picture(k, tx(a, lang), "(max-width: 640px) 50vw, 25vw")}</a>' for k, a in P.GALLERY if 'uvar kağıd' in a['tr'])
                 extra = f'<section class="band tight linen"><div class="wrap">{G["sec_head"](tx(c["kicker"], lang), ui("photos", lang))}<div class="gal-grid">{gl}</div></div></section>'
             if ck == 'perde':
                 extra = quiz_block(G, lang)

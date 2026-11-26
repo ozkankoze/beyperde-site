@@ -159,6 +159,14 @@ GALLERY = [
     ('urunler/duvar-kagidi-2', T('Duvar kağıdı uygulaması', 'A wallpaper installation', 'تركيب ورق جدران')),
     ('urunler/duvar-kagidi-3', T('Geometrik desenli duvar kağıdı uygulaması', 'A geometric-patterned wallpaper installation', 'تركيب ورق جدران بنقش هندسي')),
     ('urunler/duvar-kagidi-4', T('Duvar kağıdı uygulaması', 'A wallpaper installation', 'تركيب ورق جدران')),
+    ('urunler/duvar-kagidi-5', T('Ahşap merdiven boyunca bej, dokulu duvar kağıdı', 'Beige textured wallpaper along a wooden staircase', 'Beige textured wallpaper along a wooden staircase')),
+    ('urunler/duvar-kagidi-6', T('Bej dokulu duvar kağıdının yakından görünümü', 'Close-up of a beige textured wallpaper', 'Close-up of a beige textured wallpaper')),
+    ('urunler/duvar-kagidi-7', T('Yaldızlı oymalı ayna ve arkasında dokulu duvar kağıdı', 'A gilded carved mirror against textured wallpaper', 'A gilded carved mirror against textured wallpaper')),
+    ('urunler/duvar-kagidi-8', T('Aynalı çerçeveler ve bej dokulu duvar kağıdı', 'Mirrored frames on beige textured wallpaper', 'Mirrored frames on beige textured wallpaper')),
+    ('urunler/duvar-kagidi-9', T('Saksı bitkisi ve aynalı saatle bej dokulu duvar kağıdı', 'Beige textured wallpaper with a potted palm and a mirrored clock', 'Beige textured wallpaper with a potted palm and a mirrored clock')),
+    ('projeler/yenibosna/cicekli-detay', T('Işıklı kemerli nişte çiçek desenli duvar kağıdı', 'Blossom wallpaper in a backlit arched niche', 'Blossom wallpaper in a backlit arched niche')),
+    ('projeler/yenibosna/salon-kemer-duvar-kagidi', T('Kemerli nişlerde dokulu duvar kağıdı', 'Textured wallpaper in arched niches', 'Textured wallpaper in arched niches')),
+    ('projeler/yenibosna/cocuk-gezegen-duvar', T('Çocuk odasında gezegen desenli duvar kağıdı', 'Planet wallpaper in a children\'s room', 'Planet wallpaper in a children\'s room')),
 ]
 
 PAGES = {

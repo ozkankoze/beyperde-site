@@ -1299,3 +1299,23 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .rv figcaption b{color:var(--ink);font-weight:600}
 .rv figcaption span{color:var(--muted)}
 .rv-more{margin-top:28px}
+
+/* Proje galerisi: eşit hizalı ızgara */
+.pgal-eq{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}
+.pf-eq .ph{aspect-ratio:4/5}
+.pf-nat{grid-column:span 3}.pgal-eq:has(.pf-nat){grid-template-columns:repeat(6,minmax(0,1fr))}
+.pf-nat .ph{aspect-ratio:auto}.pf-nat .ph img{object-fit:contain;block-size:auto}
+@media (min-width:761px){.pgal-eq .pf-solo{grid-column:1/-1;max-inline-size:640px;justify-self:center;inline-size:100%}}
+@media (max-width:760px){.pgal-eq{grid-template-columns:1fr 1fr}.pf-nat{grid-column:1/-1}.pgal-eq .pf-solo{grid-column:1/-1}}
+/* Proje videosu */
+.pj-video{align-items:center}
+.pj-video-box{display:flex;justify-content:center}
+.pj-video-box video{inline-size:100%;max-inline-size:380px;aspect-ratio:9/16;border-radius:14px;background:#000;object-fit:cover}
+/* Projeler: öne çıkanlar (Instagram gibi yuvarlak kapaklar) */
+.pj-hl{margin-top:32px}
+.pj-hl ul{list-style:none;margin:0;padding:4px 0 8px;display:flex;gap:clamp(18px,3vw,32px);overflow-x:auto;scrollbar-width:none}
+.pj-hl a{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;inline-size:92px}
+.hl-ring{display:block;inline-size:84px;block-size:84px;border-radius:50%;padding:3px;border:1.5px solid var(--brown);flex:none}
+.hl-ring picture,.hl-ring img{display:block;inline-size:100%;block-size:100%;border-radius:50%;object-fit:cover}
+.hl-t{font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink);text-align:center;line-height:1.3}
+.pj-hl a:hover .hl-ring{border-color:var(--ink);border-width:2.5px;padding:2px}

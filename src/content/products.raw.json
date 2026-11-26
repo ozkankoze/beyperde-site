@@ -1909,6 +1909,13 @@
   "tr": {
    "imgs": [
     "/urunler/rustik-perde/kose.jpg",
+    "/urunler/rustik-perde/mavi-salon.jpg",
+    "/urunler/rustik-perde/mavi-koltuklar.jpg",
+    "/urunler/rustik-perde/pirinc-boru.jpg",
+    "/projeler/yenibosna/mermer-top-rustik.jpg",
+    "/projeler/yenibosna/orgu-top-rustik.jpg",
+    "/projeler/yenibosna/oturma-tul-fon.jpg",
+    "/projeler/alemdag/rustik-halka.jpg",
     "/urunler/rustik-perde/avize.jpg",
     "/urunler/rustik-perde/siyah-pencere.jpg",
     "/urunler/rustik-perde/sehir.jpg",
@@ -1934,7 +1941,14 @@
     "/urunler/rustik-perde/kristal.jpg": "Altın renkli halkalarla boruya geçirilmiş krem fon perde; borunun ucunda kristal top başlık",
     "/urunler/rustik-perde/yelpaze.jpg": "Yelpaze biçimli başlıkları olan bronz bir boruda halkalı gri fon perde, yanında tül",
     "/urunler/rustik-perde/turuncu.jpg": "Krem bir borunun ucunda turuncu, boncuk biçimli başlık; boruda krem fon perde",
-    "/urunler/rustik-perde/cift-boru.jpg": "Yivli silindir başlıkları olan vizon renkli çift boru; alttaki boruda beyaz tül"
+    "/urunler/rustik-perde/cift-boru.jpg": "Yivli silindir başlıkları olan vizon renkli çift boru; alttaki boruda beyaz tül",
+    "/urunler/rustik-perde/mavi-salon.jpg": "Pirinç rustik boruda halkalı mavi fon perde, kenarı püsküllü; arkasında işlemeli tül",
+    "/urunler/rustik-perde/mavi-koltuklar.jpg": "Balkon kapısında iki pirinç rustik boru, mavi fon perdeler ve işlemeli tül",
+    "/urunler/rustik-perde/pirinc-boru.jpg": "Oluklu pirinç rustik boru ve halkalarda mavi fon perde",
+    "/projeler/yenibosna/mermer-top-rustik.jpg": "Mermer top başlıklı rustik boruda astarlı gri fon perde",
+    "/projeler/yenibosna/orgu-top-rustik.jpg": "Örgü top başlıklı beyaz rustikte gri fon perde",
+    "/projeler/yenibosna/oturma-tul-fon.jpg": "Siyah rustik boruda keten görünümlü fon ve tül",
+    "/projeler/alemdag/rustik-halka.jpg": "Oluklu pirinç rustik boru ve halkalarda mavi saten fon"
    },
    "h1": "Rustik Perde",
    "lead": "Kumaş, pencerenin üstündeki dekoratif bir boruya halkalarla ya da kuşgözleriyle asılır; boru ve başlıkları da odanın bir parçası olur. Aşağıdaki fotoğraflar uyguladığımız rustik perdelerden.",
@@ -2010,6 +2024,13 @@
   "en": {
    "imgs": [
     "/urunler/rustik-perde/kose.jpg",
+    "/urunler/rustik-perde/mavi-salon.jpg",
+    "/urunler/rustik-perde/mavi-koltuklar.jpg",
+    "/urunler/rustik-perde/pirinc-boru.jpg",
+    "/projeler/yenibosna/mermer-top-rustik.jpg",
+    "/projeler/yenibosna/orgu-top-rustik.jpg",
+    "/projeler/yenibosna/oturma-tul-fon.jpg",
+    "/projeler/alemdag/rustik-halka.jpg",
     "/urunler/rustik-perde/avize.jpg",
     "/urunler/rustik-perde/siyah-pencere.jpg",
     "/urunler/rustik-perde/sehir.jpg",
@@ -2035,7 +2056,14 @@
     "/urunler/rustik-perde/kristal.jpg": "A cream drape threaded on a pole through gold-coloured eyelets, with a crystal ball finial on the end",
     "/urunler/rustik-perde/yelpaze.jpg": "A grey eyelet drape on a bronze pole with fan-shaped finials, a sheer beside it",
     "/urunler/rustik-perde/turuncu.jpg": "An orange bead-shaped finial on a cream pole, with a cream drape on it",
-    "/urunler/rustik-perde/cift-boru.jpg": "A taupe double pole with ribbed cylindrical finials, a white sheer on the lower rod"
+    "/urunler/rustik-perde/cift-boru.jpg": "A taupe double pole with ribbed cylindrical finials, a white sheer on the lower rod",
+    "/urunler/rustik-perde/mavi-salon.jpg": "Blue drapes on rings on a brass pole, with a tasselled edge and an embroidered sheer behind",
+    "/urunler/rustik-perde/mavi-koltuklar.jpg": "Two brass poles at a balcony door, with blue drapes and an embroidered sheer",
+    "/urunler/rustik-perde/pirinc-boru.jpg": "A fluted brass pole with a blue drape hanging on rings",
+    "/projeler/yenibosna/mermer-top-rustik.jpg": "A lined grey drape on a pole with a marble ball finial",
+    "/projeler/yenibosna/orgu-top-rustik.jpg": "A grey drape on a white pole with a knitted ball finial",
+    "/projeler/yenibosna/oturma-tul-fon.jpg": "A linen-look drape and sheer on a black pole",
+    "/projeler/alemdag/rustik-halka.jpg": "Blue satin drape on rings on a fluted brass pole"
    },
    "h1": "Rustic Curtains",
    "lead": "The fabric hangs on rings or eyelets from a decorative pole above the window, and the pole and its finials become part of the room. The photographs below are rustic curtains we have fitted.",
@@ -2111,6 +2139,9 @@
   "ar": {
    "imgs": [
     "/urunler/rustik-perde/kose.jpg",
+    "/urunler/rustik-perde/mavi-salon.jpg",
+    "/urunler/rustik-perde/mavi-koltuklar.jpg",
+    "/urunler/rustik-perde/pirinc-boru.jpg",
     "/urunler/rustik-perde/avize.jpg",
     "/urunler/rustik-perde/siyah-pencere.jpg",
     "/urunler/rustik-perde/sehir.jpg",

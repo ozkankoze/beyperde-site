@@ -38,7 +38,11 @@ def render_misc(G, catalog):
   </div>
 </article>'''
         crumbs, cs = G['breadcrumbs'](lang, [(tx(PP['h1'], lang), 'projeler')])
-        body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(PP['h1'], lang)}</h1><p class="lead">{tx(PP['lead'], lang)}</p></div></section>
+        hl = [(url(lang, 'projeler/erenkoy-hk-evi'), 'projeler/erenkoy-hk-evi/pencere', 'Erenköy')] + \
+             [(url(lang, 'projeler/' + pj['slug']), pj['hero'], pj['short']) for pj in G['PJ'].PROJECTS]
+        hls = ''.join(f'<li><a href="{u}"><span class="hl-ring">{picture(k, "", "120px")}</span><span class="hl-t">{e(t)}</span></a></li>' for u, k, t in hl)
+        body = f'''<section class="page-hero"><div class="wrap">{crumbs}<h1 class="h1">{tx(PP['h1'], lang)}</h1><p class="lead">{tx(PP['lead'], lang)}</p>
+<nav class="pj-hl" aria-label="{tx(PP['h1'], lang)}"><ul>{hls}</ul></nav></div></section>
 <section class="band tight"><div class="wrap pj-list">{card}{compare_block(G, lang, G['COMPARE'])}<p class="note">{tx(PP['more'], lang)}</p></div></section>
 {G['cta_band'](lang, ui('wa_general', lang), 'projeler/erenkoy-hk-evi/doku')}'''
         G['write'](lang, 'projeler', G['layout'](lang, 'projeler', tx(PP['title'], lang), tx(PP['lead'], lang), body, nav='projeler', schemas=[cs],
@@ -92,11 +96,20 @@ def render_misc(G, catalog):
             groups = []
             for gi, g in enumerate(pj['groups']):
                 n = len(g['items'])
-                figs = ''.join(f'<figure class="pf {"pf" + str(i % 4) if n > 1 else "pf-solo"}"><a class="ph" href="{G["big_src"](f"projeler/{pj["slug"]}/{k}")}" data-lb="pj" data-cap="{e(tx(c, lang))}">{picture(f"projeler/{pj["slug"]}/{k}", tx(c, lang), "(max-width: 900px) 100vw, 50vw")}</a><figcaption>{e(tx(c, lang))}</figcaption></figure>' for i, (k, c) in enumerate(g['items']))
+                cls = lambda i: 'pf-nat' if g.get('natural') else ('pf-solo' if n == 1 else 'pf-eq')  # noqa: E731
+                figs = ''.join(f'<figure class="pf {cls(i)}"><a class="ph" href="{G["big_src"](f"projeler/{pj["slug"]}/{k}")}" data-lb="pj" data-cap="{e(tx(c, lang))}">{picture(f"projeler/{pj["slug"]}/{k}", tx(c, lang), "(max-width: 900px) 100vw, 50vw")}</a><figcaption>{e(tx(c, lang))}</figcaption></figure>' for i, (k, c) in enumerate(g['items']))
                 groups.append(f'''<section class="band {'linen' if gi % 2 == 0 else ''}" aria-labelledby="pg{gi}">
   <div class="wrap">
     <div class="two"><div><p class="kicker">0{gi + 1}</p><h2 class="h2" id="pg{gi}">{e(tx(g['h'], lang))}</h2></div><div class="prose"><p>{e(tx(g['p'], lang))}</p></div></div>
-    <div class="pgal">{figs}</div>
+    <div class="pgal pgal-eq">{figs}</div>
+  </div>
+</section>''')
+            if pj.get('video'):
+                v = pj['video']
+                groups.insert(1, f'''<section class="band dark" aria-labelledby="pv">
+  <div class="wrap two pj-video">
+    <div><p class="kicker">Video</p><h2 class="h2" id="pv">{e(tx(v['h'], lang))}</h2><p class="lead">{e(tx(v['p'], lang))}</p></div>
+    <div class="pj-video-box"><video src="{v['src']}" poster="{G['og_src'](v['poster'])}" controls muted playsinline preload="none"></video></div>
   </div>
 </section>''')
             wa_text = ui('wa_project', lang, x=name)
@@ -118,7 +131,8 @@ def render_misc(G, catalog):
             cw = {'@context': 'https://schema.org', '@type': 'CreativeWork', 'name': name, 'description': tx(pj['lead'], lang), 'creator': {'@id': D.SITE + '/#isletme'},
                   'locationCreated': {'@type': 'Place', 'name': pj['location']['tr']},
                   'image': [G['og_src'](f"projeler/{pj['slug']}/{k}") for g in pj['groups'] for k, _ in g['items']][:6]}
-            title = {'tr': f'{name} — Tül, Fon, Jaluzi, Sisal | Bey Perde', 'en': f'{name} — Curtains and Sisal Rugs | Bey Perde', 'ar': f'{name} — ستائر وسجاد سيزال | باي بردة'}[lang]
+            title = (f"{name} — {tx(pj['title_tail'], lang)} | Bey Perde" if pj.get('title_tail') else
+                     {'tr': f'{name} — Tül, Fon, Jaluzi, Sisal | Bey Perde', 'en': f'{name} — Curtains and Sisal Rugs | Bey Perde', 'ar': f'{name} — ستائر وسجاد سيزال | باي بردة'}[lang])
             G['write'](lang, path, G['layout'](lang, path, title, tx(pj['lead'], lang), body, nav='projeler', schemas=[cs, cw], wa_text=wa_text, body_cls='has-hero',
                                                og_image=G['og_src'](pj['hero'])))
 

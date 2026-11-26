@@ -25,19 +25,19 @@ IMG = json.load(open(os.path.join(ROOT, 'src', 'content', 'images.json')))
 RAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'products.raw.json')))
 PRAW = json.load(open(os.path.join(ROOT, 'src', 'content', 'pages.raw.json')))
 from content import subs as SUBS  # noqa: E402
-# Rensolar: henüz fotoğrafı ve beyperde.com'da ayrı metni olmayan yeni ürün; sayfa metni burada (yalnızca ürün tipini tarif eder)
+# Rensolar: beyperde.com'da ayrı metni olmayan ürün; sayfa metni ve uygulama fotoğrafları burada (yalnızca ürün tipini tarif eder)
 RAW.setdefault('perde/rensolar', {
-    'tr': {'imgs': [], 'alts': {}, 'h1': 'Rensolar', 'specs': [], 'faq': [],
+    'tr': {'imgs': ['/urunler/rensolar/pirinc-renso.jpg', '/urunler/rensolar/mavi-fon-renso.jpg'], 'alts': {'/urunler/rensolar/pirinc-renso.jpg': 'Pirinç renso ile toplanmış mavi fon perde ve püsküllü kenar', '/urunler/rensolar/mavi-fon-renso.jpg': 'Pirinç rustik borunun altında pirinç rensoyla toplanmış mavi fon perde'}, 'h1': 'Rensolar', 'specs': [], 'faq': [],
            'lead': 'Fon perdeyi açıkken toplu ve düzgün tutan, duvara takılan dekoratif perde tutucu.',
            'h2': 'Perdeyi toplayan son dokunuş',
            'intro': 'Renso, perdenin yanına duvara takılan dekoratif perde tutucudur; kolbağı olarak da bilinir. Fon perdeyi açtığınızda kumaşı toplu ve düzgün tutar, pencerenin iki yanında perdeye son dokunuşu verir. Ahşap, metal ve mermer seçenekleri; yaprak gibi dekoratif formlar ve sade düğme modelleri vardır. Perdenizin kumaşına ve odanın tarzına uyanı birlikte seçer, perdeyle birlikte aynı ekiple takarız. Modelleri görmek için bize WhatsApp ya da telefonla ulaşın.',
            'sections': []},
-    'en': {'imgs': [], 'alts': {}, 'h1': 'Rensos', 'specs': [], 'faq': [],
+    'en': {'imgs': ['/urunler/rensolar/pirinc-renso.jpg', '/urunler/rensolar/mavi-fon-renso.jpg'], 'alts': {'/urunler/rensolar/pirinc-renso.jpg': 'A blue drape gathered with a brass renso, with a tasselled edge', '/urunler/rensolar/mavi-fon-renso.jpg': 'A blue drape gathered with a brass renso under a brass pole'}, 'h1': 'Rensos', 'specs': [], 'faq': [],
            'lead': 'A decorative wall-mounted holdback that keeps an open drape neat and gathered.',
            'h2': 'The finishing touch that gathers the curtain',
            'intro': 'A renso is a decorative curtain holdback fixed to the wall beside the curtain. When you open a drape it keeps the fabric gathered and neat, framing the window on both sides. There are wood, metal and marble options, from decorative forms such as leaves to simple knobs. We choose the one that suits your fabric and your room with you, and fit it with the curtains. Message us on WhatsApp or call to see the models.',
            'sections': []},
-    'ar': {'imgs': [], 'alts': {}, 'h1': 'رينسو', 'specs': [], 'faq': [],
+    'ar': {'imgs': ['/urunler/rensolar/pirinc-renso.jpg', '/urunler/rensolar/mavi-fon-renso.jpg'], 'alts': {}, 'h1': 'رينسو', 'specs': [], 'faq': [],
            'lead': 'ماسك ستارة ديكوري يُثبت على الجدار ويبقي الستارة مجموعة ومرتبة وهي مفتوحة.',
            'h2': 'اللمسة الأخيرة التي تجمع الستارة',
            'intro': 'الرينسو ماسك ستارة ديكوري يُثبت على الجدار بجانب الستارة. عندما تفتح الستارة يبقي القماش مجموعاً ومرتباً ويؤطر النافذة من الجانبين. تتوفر خيارات من الخشب والمعدن والرخام، من أشكال ديكورية كأوراق الشجر إلى مقابض بسيطة. نختار معك ما يناسب قماشك وطابع غرفتك، ونركّبه مع الستائر. راسلنا عبر واتساب أو اتصل بنا لترى الموديلات.',
@@ -563,6 +563,10 @@ def copy_static():
         shutil.rmtree(os.path.join(PUB, 'intro'))
     if os.path.exists(os.path.join(ROOT, 'src', 'static', 'intro')):
         shutil.copytree(os.path.join(ROOT, 'src', 'static', 'intro'), os.path.join(PUB, 'intro'))
+    if os.path.exists(os.path.join(PUB, 'video')):
+        shutil.rmtree(os.path.join(PUB, 'video'))
+    if os.path.exists(os.path.join(ROOT, 'src', 'static', 'video')):   # proje videoları (sessiz)
+        shutil.copytree(os.path.join(ROOT, 'src', 'static', 'video'), os.path.join(PUB, 'video'))
     if os.path.exists(os.path.join(PUB, 'pin')):
         shutil.rmtree(os.path.join(PUB, 'pin'))
     if os.path.exists(os.path.join(ROOT, 'src', 'static', 'pin')):   # Pinterest pin görselleri (noindex, yalnızca pin oluşturmak için)
