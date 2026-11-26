@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Anasayfa: giriş animasyonu → marka → ürünler → uygulamalar → güven → teklif."""
 import json
+from content import reviews as RV
 
 
 def quiz_block(G, lang, hid='oda-rehberi', intro=True):
@@ -132,6 +133,10 @@ def render_home(G, catalog):
         steps = ''.join(f'<li><span class="n">0{i + 1}</span><h3 class="h4">{tx(t, lang)}</h3><p>{tx(d, lang)}</p></li>' for i, (t, d) in enumerate(P.STEPS))
         faq_items = [(tx(q, lang), tx(a, lang)) for q, a in P.HOME_FAQ]
         areas = ''.join(f'<li><a href="/tr/hizmet-bolgeleri/{k}"{"" if lang == "tr" else " hreflang=\"tr\""}>{tx(P.AREA_NAMES[k], lang)}</a></li>' for k, _ in P.AREAS)
+        rv_cards = ''.join(
+            f'<li class="rv"><figure><div class="rv-stars" role="img" aria-label="{tx(RV.TEXT["stars"], lang)}">★★★★★</div>'
+            f'<blockquote lang="tr"><p>{e(t)}</p></blockquote><figcaption><b>{e(n)}</b><span>{tx(RV.TEXT["src"], lang)}</span></figcaption></figure></li>'
+            for n, t in RV.REVIEWS)
         rail = ''.join(f'<li data-i="{i}"><b>{tx(r, lang)}</b><span>0{i + 1}</span><i></i></li>' for i, r in enumerate(H['rail']))
 
         body = f'''
@@ -211,6 +216,14 @@ def render_home(G, catalog):
       <div><dt>{ui('fitting', lang)}</dt><dd>{ui('fitting_v', lang)}</dd></div>
       <div><dt>{ui('guarantee', lang)}</dt><dd>{ui('guarantee_v', lang)}</dd></div>
     </dl>
+  </div>
+</section>
+
+<section class="band reviews" id="yorumlar" aria-labelledby="h-yorum">
+  <div class="wrap">
+    {G['sec_head'](tx(RV.TEXT['k'], lang), tx(RV.TEXT['h'], lang), tx(RV.TEXT['p'], lang), 'h-yorum')}
+    <ul class="rv-list">{rv_cards}</ul>
+    <p class="rv-more"><a class="arrow-link" href="{D.MAPS}" target="_blank" rel="noopener"><span>{tx(RV.TEXT['all'], lang)}</span>{ICON['arrow']}</a></p>
   </div>
 </section>
 

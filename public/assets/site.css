@@ -1287,3 +1287,15 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 
 .pp-info .pp-h2{font-size:clamp(24px,2.2vw,32px)}
 .pp-info-h{margin-bottom:10px}.pp-more-b{padding-left:14px;border-left:1px solid var(--line);margin-bottom:12px}.pp-more-b .pp-acc:last-child{border-bottom:0}
+
+/* Müşteri yorumları (Google'dan seçki) */
+.rv-list{list-style:none;margin:40px 0 0;padding:0 0 12px;display:grid;grid-auto-flow:column;grid-auto-columns:min(360px,82%);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:thin}
+.rv{scroll-snap-align:start;display:flex}
+.rv figure{margin:0;display:flex;flex-direction:column;gap:14px;padding:26px 24px 22px;border:1px solid var(--line);border-radius:14px;background:var(--card);width:100%}
+.rv-stars{color:#b8892e;letter-spacing:.18em;font-size:15px;line-height:1}
+.rv blockquote{margin:0;flex:1}
+.rv blockquote p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.rv figcaption{margin:0;display:flex;flex-direction:column;gap:2px;font-size:13.5px}
+.rv figcaption b{color:var(--ink);font-weight:600}
+.rv figcaption span{color:var(--muted)}
+.rv-more{margin-top:28px}
