@@ -68,6 +68,7 @@ SUB_MEDIA = {
             ('urunler/perde-aksesuarlari/kis-bahcesi-uzun', 'Kış bahçesinin uzun cephesinde kasa', 'A cassette along the long side of a winter garden'),
             ('urunler/perde-aksesuarlari/kis-bahcesi-kose', 'Kış bahçesinde köşeyi dönen kasa', 'A cassette turning the corner of a winter garden'),
             ('urunler/perde-aksesuarlari/kis-bahcesi-egik', 'Eğimli camlarda kasa birleşimi', 'Cassettes meeting on angled glazing'),
+            ('urunler/perde-aksesuarlari/kis-bahcesi-bahce', 'Bahçeye bakan kış bahçesi camları boyunca kasa', 'A cassette along winter-garden windows facing the garden'),
             ('urunler/perde-aksesuarlari/kis-bahcesi-kasa', 'Kış bahçesinde camlar boyunca kasa', 'Cassettes along winter-garden glazing'),
         ],
         'video': ('/video/urunler/dekoratif-alinlik.mp4', 'urunler/video/dekoratif-alinlik'),
