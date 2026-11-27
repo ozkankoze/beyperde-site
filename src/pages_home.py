@@ -147,7 +147,8 @@ def render_home(G, catalog):
     <div class="veil" aria-hidden="true"></div>
     <div class="idoor" id="idoor" aria-hidden="true"><img src="/brand/logo-cream-420.webp" width="420" height="416" alt="" decoding="async"></div>
     <div class="ilabel" id="ihero">
-      <h1><span class="isub">{h('h1_sub')}</span><span class="ibig">{h('h1')}</span></h1>
+      <h1 class="sr">{ {'tr': 'Çekmeköy’de ölçüye özel perde ve duvar kağıdı', 'en': 'Made-to-measure curtains and wallpaper in Çekmeköy'}.get(lang, 'Made-to-measure curtains and wallpaper in Çekmeköy')}</h1>
+      <p class="ih"><span class="isub">{h('h1_sub')}</span><span class="ibig">{h('h1')}</span></p>
       <div class="irule" aria-hidden="true"></div>
       <p class="ihint" aria-hidden="true"><span class="mouse"></span><span>{h('hint')}</span></p>
     </div>

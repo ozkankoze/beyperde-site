@@ -647,7 +647,7 @@ th{font-weight:500}
 #ihero{left:max(24px,7vw);top:50%;transform:translateY(-50%);display:grid;gap:20px;inline-size:min(56vw,680px)}
 [dir="rtl"] #ihero{left:auto;right:max(24px,7vw);direction:rtl;text-align:right}
 #ihero::before,.iprod::before,#ioutro::before{content:"";position:absolute;inset:-70px -80px;z-index:-1;background:radial-gradient(closest-side,rgba(36,25,16,.36),rgba(36,25,16,0))}
-#ihero h1{display:grid;gap:18px;font-weight:300}
+#ihero .ih{display:grid;gap:18px;font-weight:300;letter-spacing:-.025em;line-height:1.06;text-wrap:balance}
 .isub{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--shell-dim);font-weight:500}
 [dir="rtl"] .isub{letter-spacing:0;font-size:14px}
 .ibig{font-size:clamp(46px,6.6vw,100px);line-height:1;letter-spacing:-.035em;text-shadow:0 2px 14px rgba(0,0,0,.4)}
