@@ -1319,3 +1319,4 @@ html:not(.js) #stage,html:not(.js) .iprod,html:not(.js) #ioutro,html:not(.js) .r
 .hl-ring picture,.hl-ring img{display:block;inline-size:100%;block-size:100%;border-radius:50%;object-fit:cover}
 .hl-t{font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink);text-align:center;line-height:1.3}
 .pj-hl a:hover .hl-ring{border-color:var(--ink);border-width:2.5px;padding:2px}
+.lp-card .kicker{margin-top:4px}.lp-sys{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:2px 0 0}.lp-sys li{font-size:12px;padding:3px 10px;border:1px solid var(--line-2);border-radius:999px;opacity:.85}

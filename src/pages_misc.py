@@ -290,10 +290,26 @@ def render_regions(G):
         secs = ''.join(f'<section><h2 class="h3">{e(h)}</h2><p>{e(p)}</p></section>' for h, p in r['sections'])
         prods = ''.join(G['product_card'](s, lang, '(max-width: 640px) 50vw, 25vw') for s in r['products'])
         others = ''.join(f'<li><a href="/tr/hizmet-bolgeleri/{o}">{L.REGIONS[o]["name"]}</a></li>' for o in L.REGIONS if o != k)
+        tx = G['tx']
+        local = [pj for pj in G['PJ'].PROJECTS if r['name'] in tx(pj['location'], 'tr')]
+        lp = ''
+        if local:
+            def lcard(pj):
+                hood = tx(pj['location'], 'tr').split(',')[0].strip()
+                systems = ''.join(f'<li>{e(tx(D.PRODUCTS[s][1], lang))}</li>' for s in pj['products'][:5] if s in D.PRODUCTS)
+                href = url(lang, 'projeler/' + pj['slug'])
+                return (f'<article class="pcard lp-card"><a href="{href}"><div class="ph">{picture(pj["hero"], "", "(max-width: 640px) 100vw, 33vw")}</div>'
+                        f'<p class="kicker">{e(hood)}, {r["name"]}</p><h3 class="pcard-t">{e(tx(pj["h1"], lang))}</h3><p>{e(tx(pj["lead"], lang))}</p>'
+                        f'<ul class="lp-sys" aria-label="Kullanılan sistemler">{systems}</ul><span class="pcard-more">Projeyi incele{ICON["arrow"]}</span></a></article>')
+            hoods = sorted({tx(pj['location'], 'tr').split(',')[0].strip() for pj in local})
+            lp = (f'<section class="band tight" aria-labelledby="h-lp"><div class="wrap">'
+                  f'{G["sec_head"](r["name"], r["name"] + "’de yaptığımız uygulamalar", ", ".join(hoods) + " — gerçek projelerimizden fotoğraflar ve kullandığımız perde sistemleri.", "h-lp")}'
+                  f'<div class="pgrid {"pgrid-4" if len(local) % 4 == 0 else "pgrid-3"} lp-grid">{"".join(lcard(pj) for pj in local)}</div></div></section>')
         wa = f'Merhaba, {r["name"]} için perde / duvar kağıdı teklifi almak istiyorum.'
         body = f'''<section class="page-hero"><div class="wrap">{crumbs}<p class="kicker">{ui('areas', lang)}</p><h1 class="h1">{e(r['h1'])}</h1><p class="lead">{e(r['lead'])}</p>
   <div class="row">{G['btn_wa'](lang, wa)}<a class="btn btn-ghost" href="#teklif">{ui('get_quote', lang)}</a></div></div></section>
 <section class="band linen"><div class="wrap art art-solo"><article class="prose">{secs}</article></div></section>
+{lp}
 <section class="band tight" aria-labelledby="h-rp"><div class="wrap">{G['sec_head'](r['name'], 'Bu bölgede sık seçilenler' if False else 'Önerdiğimiz ürünler', '', 'h-rp')}<div class="pgrid pgrid-3">{prods}</div></div></section>
 <section class="band linen" aria-labelledby="h-sss"><div class="wrap faq-grid"><div><p class="kicker">{r['name']}</p><h2 class="h2" id="h-sss">{ui('faq', lang)}</h2><p class="kicker mt">{ui('areas', lang)}</p><ul class="chips">{others}</ul></div>{G['faq_block'](r['faq'], lang)}</div></section>
 <section class="band quote-band" id="teklif" aria-labelledby="h-teklif"><div class="wrap quote-grid"><div class="quote-intro"><h2 class="h2" id="h-teklif">{ui('cta_h', lang)}</h2><p class="lead">{ui('cta_p', lang)}</p></div>{G['quote_forms'](lang, idp='rq')}</div></section>'''

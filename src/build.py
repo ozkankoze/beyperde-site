@@ -328,7 +328,7 @@ LOCALBIZ = {
     'areaServed': [{'@type': 'Place', 'name': n} for n in ['Çekmeköy', 'Şile', 'Ağva', 'Riva', 'Beykoz']],
     'knowsLanguage': ['tr', 'en'],
     'contactPoint': [{'@type': 'ContactPoint', 'contactType': 'customer service', 'telephone': D.PHONE, 'email': D.EMAIL,
-                      'areaServed': 'TR', 'availableLanguage': ['Turkish', 'English', 'Arabic']}],
+                      'areaServed': 'TR', 'availableLanguage': ['Turkish', 'English']}],
     # sunulan hizmetler (fiyat bilgisi yok; yalnızca sitedeki gerçek ürün sayfaları)
     'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': 'Perde, duvar kağıdı ve halı', 'itemListElement': [
         {'@type': 'OfferCatalog', 'name': D.CATS[ck]['name']['tr'], 'url': f'{D.SITE}/tr/urunler/{ck}',
