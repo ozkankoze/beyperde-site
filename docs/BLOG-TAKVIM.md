@@ -22,7 +22,7 @@ Hizmet bölgeleri yalnızca şunlardır: **Çekmeköy, Şile, Ağva, Riva, Beyko
 | ✅ 2026-11-25 | Hazır | beykoz-duvar-kagidi | Beykoz duvar kağıdı: eski ve yeni evlerde uygulama — *beykoz duvar kağıdı* |
 | ✅ 2026-11-26 | Hazır | blackout-perde-nedir | Blackout perde nedir? |
 | ✅ 2026-11-27 | Hazır | cekmekoy-stor-zebra-perde | Çekmeköy'de stor ve zebra perde: hangi oda için hangisi — *çekmeköy stor perde* |
-| 2026-11-28 | Hazır | 2027-perde-modelleri-ve-renkleri | 2027'nin trend perde modelleri ve renkleri |
+| ✅ 2026-11-28 | Hazır | 2027-perde-modelleri-ve-renkleri | 2027'nin trend perde modelleri ve renkleri |
 | 2026-11-29 | Yazılacak | beykoz-villa-perde | Beykoz'da villa ve köşk perdeleri: Acarlar, Kavacık, Riva yolu — *beykoz villa perde* |
 | 2026-11-30 | Hazır | kucuk-salon-perde-secimi | Küçük salonlar için perde seçimi |
 | 2026-12-01 | Yazılacak | sile-duvar-kagidi | Şile'de duvar kağıdı: nemli ve deniz kenarındaki evlerde doğru seçim — *şile duvar kağıdı* |
